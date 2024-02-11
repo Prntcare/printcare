@@ -1,66 +1,103 @@
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Print Care</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-		}
-		header {
-			background-color: #007bff;
-			color: #fff;
-			padding: 10px;
-			text-align: center;
-		}
-		nav {
-			background-color: #f1f1f1;
-			padding: 10px;
-			text-align: center;
-		}
-		nav a {
-			display: inline-block;
-			margin: 5px;
-			padding: 5px;
-			text-decoration: none;
-			color: #007bff;
-		}
-		section {
-			padding: 10px;
-			text-align: center;
-		}
-		footer {
-			background-color: #007bff;
-			color: #fff;
-			padding: 10px;
-			text-align: center;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login</title>
+    <style>
+        /* Bordered form */
+        form {
+            border: 3px solid #f1f1f1;
+        }
+
+        /* Full-width inputs */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Add a hover effect for buttons */
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Extra style for the cancel button (red) */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        /* Center the avatar image inside this container */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        /* Avatar image */
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+        }
+
+        /* The "Forgot password" text */
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-	<header>
-		<h1>Print Care</h1>
-		<p>Welcome to our printing business!</p>
-	</header>
-	<nav>
-		<a href="#">Home</a>
-		<a href="#">About Us</a>
-		<a href="#">Services</a>
-		<a href="#">Contact Us</a>
-	</nav>
-	<section>
-		<h2>Printing Services</h2>
-		<p>We offer a wide variety of printing services, including:</p>
-		<ul>
-			<li>Business Cards</li>
-			<li>Flyers</li>
-			<li>Banners</li>
-			<li>Posters</li>
-			<li>And much more!</li>
-		</ul>
-	</section>
-	<footer>
-		<p>&copy; Print Care. All Rights Reserved.</p>
-	</footer>
+    <form action="action_page.php" method="post">
+        <div class="imgcontainer">
+            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+            <button type="submit">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
 </body>
 </html>
