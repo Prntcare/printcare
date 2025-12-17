@@ -1,42 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print Care</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print Care</title>
+<style>
+    body { margin:0; font-family: Arial, sans-serif; color:#333; }
+    header { background:#005eb8; color:white; text-align:center; padding:40px 20px; }
+    header h1 { margin:0; font-size:2.5em; }
+    header p { margin:5px 0 0; font-size:1.2em; font-style:italic; }
+    nav { text-align:center; background:#fff; padding:10px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+    nav a { margin:0 15px; text-decoration:none; color:#005eb8; font-weight:bold; }
+    section { padding:60px 20px; }
+    .section-title { text-align:center; margin-bottom:30px; color:#005eb8; }
+    .contact-buttons { text-align:center; margin-top:20px; }
+    .contact-buttons a { display:inline-block; margin:5px; padding:10px 20px; background:#005eb8; color:white; text-decoration:none; border-radius:5px; }
+    .converter { max-width:500px; margin:auto; background:#f9f9f9; padding:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:40px; }
+    .converter textarea, .converter input { width:100%; padding:10px; margin:5px 0; font-size:1em; }
+    .converter button { padding:10px 15px; margin:5px 0; background:#005eb8; color:white; border:none; border-radius:5px; cursor:pointer; }
+    .footer { text-align:center; padding:20px 0; background:#eee; font-size:0.9em; }
+    @media(max-width:600px){ .converter{width:90%;} }
+</style>
+
+<!-- Nepali Date Converter library -->
+<script src="https://cdn.jsdelivr.net/npm/@remotemerge/nepali-date-converter@1/dist/ndc-browser.js"></script>
+
 </head>
 <body>
-    <header>
-        <h1>Welcome to Print Care</h1>
-        <p>Your one-stop solution for all your printing needs.</p>
-    </header>
-    <nav>
-        <a href="#services">Our Services</a> |
-        <a href="#contact">Contact Us</a>
-    </nav>
-    <main>
-        <section id="services">
-            <h2>Our Services</h2>
-            <ul>
-                <li>Self Ink Stamp</li>
-                <li>Menu Design and Print</li>
-                <li>2D, 3D Board</li>
-                <li>LH Design Print</li>
-                <li>ID Card</li>
-                <li>Photo Print</li>
-                <li>Photo Frame</li>
-                <li>Token Of Love</li>
-                <li>Flex Print</li>
-            </ul>
-        </section>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Address: 44401, Bagdev Sadak, Nepal</p>
-            <p>Email: info@printcare.com.np</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Print Care</p>
-    </footer>
+
+<header>
+    <h1>Print Care</h1>
+    <p>Where Design Comes To Life</p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#converter">Converters</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+    <h2 class="section-title">About Us</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">
+        Print Care is a design and printing shop located at Nijgadh municipality ward no 8, Bara district, Madhesh province, Nepal.<br>
+        <strong>Managing Director:</strong> Unish Neupane<br>
+        We provide high-quality printing services including design, flex printing, stamps, boards, and more.
+    </p>
+</section>
+
+<section id="converter">
+    <h2 class="section-title">Converters</h2>
+
+    <!-- Preeti ↔ Unicode Converter -->
+    <div class="converter">
+        <h3>Preeti ↔ Unicode</h3>
+        <textarea id="preetiInput" placeholder="Type Preeti or Unicode text"></textarea><br>
+        <button onclick="preetiToUnicode()">Preeti → Unicode</button>
+        <button onclick="unicodeToPreeti()">Unicode → Preeti</button><br>
+        <textarea id="preetiOutput" placeholder="Result" readonly></textarea>
+    </div>
+
+    <!-- English ↔ Nepali Date Converter -->
+    <div class="converter">
+        <h3>English ↔ Nepali Date</h3>
+        <input type="date" id="engDate">
+        <button onclick="engToNepDate()">AD → BS</button><br>
+        <input type="number" id="nepYear" placeholder="2079">
+        <input type="number" id="nepMonth" placeholder="1">
+        <input type="number" id="nepDay" placeholder="17">
+        <button onclick="nepToEngDate()">BS → AD</button><br>
+        <input type="text" id="dateOutput" placeholder="Converted date" readonly>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <p style="text-align:center;">
+        📍 Nijgadh municipality ward no 8, Bara, Madhesh Province, Nepal<br>
+        ✉️ Email: prntcare@gmail.com<br>
+        📞 WhatsApp: +9779811809093
+    </p>
+    <div class="contact-buttons">
+        <a href="https://www.facebook.com/care" target="_blank">Facebook</a>
+        <a href="https://wa.me/9779811809093" target="_blank">WhatsApp</a>
+    </div>
+</section>
+
+<footer class="footer">
+    &copy; 2025 Print Care – All Rights Reserved
+</footer>
+
+<script>
+    // Preeti ↔ Unicode Converter
+    const preetiMap = {
+        'f': 'क','{': 'ख','d': 'ग','D': 'घ','t': 'ङ',
+        'j': 'च','J': 'छ','q': 'ज','Q': 'झ','k': 'ञ',
+        'l': 'ट','L': 'ठ','m': 'ड','M': 'ढ','n': 'ण',
+        'u': 'त','U': 'थ','i': 'द','I': 'ध','o': 'न',
+        'p': 'प','P': 'फ',';': 'ब','x': 'भ','b': 'म',
+        'c': 'य','C': 'र','v': 'ल','V': 'व','z': 'श'
+        // Add more mappings as needed
+    };
+
+    function preetiToUnicode() {
+        const text = document.getElementById("preetiInput").value;
+        let result = "";
+        for (let ch of text) {
+            result += preetiMap[ch] || ch;
+        }
+        document.getElementById("preetiOutput").value = result;
+    }
+
+    function unicodeToPreeti() {
+        const reverseMap = Object.fromEntries(Object.entries(preetiMap).map(([k,v]) => [v,k]));
+        const text = document.getElementById("preetiInput").value;
+        let result = "";
+        for (let ch of text) {
+            result += reverseMap[ch] || ch;
+        }
+        document.getElementById("preetiOutput").value = result;
+    }
+
+    // English ↔ Nepali Date Converter
+    function engToNepDate() {
+        const input = document.getElementById("engDate").value;
+        if (!input) return;
+        const converter = new DateConverter(input);
+        const bs = converter.toBs();
+        document.getElementById("dateOutput").value = `${bs.year}-${bs.month}-${bs.date} (BS)`;
+    }
+
+    function nepToEngDate() {
+        let val = document.getElementById("nepYear").value + "-" +
+                  document.getElementById("nepMonth").value + "-" +
+                  document.getElementById("nepDay").value;
+        const converter = new DateConverter(val);
+        const ad = converter.toAd();
+        document.getElementById("dateOutput").value = `${ad.year}-${ad.month}-${ad.date} (AD)`;
+    }
+</script>
+
 </body>
 </html>
