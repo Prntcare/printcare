@@ -54,10 +54,34 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 .slider-button{position:absolute;top:50%;transform:translateY(-50%);background:#333;color:white;border:none;padding:15px;border-radius:50%;cursor:pointer; z-index:10; font-size:20px;}
 #prev{left:15px;} #next{right:15px;}
 
+/* Photo Gallery Grid */
+#worksContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.work-card img {
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.work-card img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
 /* Popup */
-.popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:2000;}
-.popup-content{background:white;padding:30px;border-radius:15px;max-width:400px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.3);}
-.popup-content button{margin-top:15px; cursor:pointer;}
+.popup-overlay, #galleryPopup {
+  position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);
+  display:none; justify-content:center; align-items:center; z-index:2000;
+}
+.popup-content, #galleryContent {
+  background:white; padding:30px; border-radius:15px; max-width:400px; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+.popup-content button, #galleryContent button { margin-top:15px; cursor:pointer;}
+#popupImage { width:100%; border-radius:12px; }
+
 </style>
 </head>
 <body>
@@ -75,7 +99,7 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 <nav>
 <a href="#featured">Featured</a>
 <a href="#products">Services</a>
-<a href="#works">Work</a>
+<a href="#works">Photo Gallery</a>
 <a href="#tools">Tools</a>
 <a href="#contact">Contact</a>
 <a href="#upload">Upload</a>
@@ -96,8 +120,14 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 </section>
 
 <section id="works">
-<h2>Previous & Recent Work</h2>
-<div class="works" id="worksContainer"></div>
+<h2>Photo Gallery</h2>
+<div class="works" id="worksContainer">
+  <!-- Sample Images -->
+  <div class="work-card"><img src="https://via.placeholder.com/300" alt="Work 1"></div>
+  <div class="work-card"><img src="https://via.placeholder.com/300" alt="Work 2"></div>
+  <div class="work-card"><img src="https://via.placeholder.com/300" alt="Work 3"></div>
+  <div class="work-card"><img src="https://via.placeholder.com/300" alt="Work 4"></div>
+</div>
 </section>
 
 <section id="tools">
@@ -162,10 +192,18 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 <p>Managing Director: Unish Neupane</p>
 </section>
 
+<!-- Popups -->
 <div class="popup-overlay" id="popupOverlay">
 <div class="popup-content" id="popupContent">
 <p id="popupMessage">Popup Message</p>
 <button onclick="closePopup()">Close</button>
+</div>
+</div>
+
+<div class="popup-overlay" id="galleryPopup">
+<div class="popup-content" id="galleryContent">
+<img id="popupImage" src="">
+<button onclick="closeGalleryPopup()">Close</button>
 </div>
 </div>
 
@@ -183,18 +221,15 @@ document.getElementById('popupMessage').innerText = msg;
 document.getElementById('popupOverlay').style.display = 'flex';
 playSound();
 }
-function closePopup(){
-document.getElementById('popupOverlay').style.display = 'none';
-}
+function closePopup(){ document.getElementById('popupOverlay').style.display = 'none'; }
 
 // Close popup on ESC or click outside
-window.addEventListener('keydown', e => { if(e.key==='Escape') closePopup(); });
+window.addEventListener('keydown', e => { if(e.key==='Escape') closePopup(); closeGalleryPopup(); });
 document.getElementById('popupOverlay').addEventListener('click', e => { if(e.target===document.getElementById('popupOverlay')) closePopup(); });
+document.getElementById('galleryPopup').addEventListener('click', e => { if(e.target===document.getElementById('galleryPopup')) closeGalleryPopup(); });
 
 // Trigger file upload
-function triggerUpload(){
-document.getElementById('imgUploader').click();
-}
+function triggerUpload(){ document.getElementById('imgUploader').click(); }
 
 // Slider
 let slideIndex=0; 
@@ -226,9 +261,18 @@ function uploadMultiple(){
 const files=document.getElementById('imgUploader').files;
 if(files.length===0){ showPopup('No files selected!'); return;}
 showPopup(files.length + ' file(s) ready for upload.'); 
-// Here you can add your API upload logic
+// Add your API upload logic here
 }
 
+// Gallery Lightbox
+document.querySelectorAll('#worksContainer img').forEach(img => {
+  img.addEventListener('click', () => {
+    document.getElementById('popupImage').src = img.src;
+    document.getElementById('galleryPopup').style.display = 'flex';
+  });
+});
+function closeGalleryPopup(){ document.getElementById('galleryPopup').style.display = 'none'; }
 </script>
+
 </body>
 </html>
