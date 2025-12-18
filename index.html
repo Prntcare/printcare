@@ -63,7 +63,7 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 .work-card img {
   width: 100%;
   border-radius: 12px;
-  cursor: pointer;
+  cursor:pointer;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .work-card img:hover {
@@ -89,7 +89,7 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 <audio id="clickSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
 
 <header>
-<img id="logo" src="logo.png" alt="Print Care Logo" onclick="triggerUpload()">
+<img id="logo" src="logo.png" alt="Print Care Logo">
 <h1>Print Care</h1>
 <p>Where Design Comes To Life</p>
 <a href="https://wa.me/9779811809093" target="_blank" class="button whatsapp" onclick="playSound()">WhatsApp</a>
@@ -176,7 +176,7 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 <section id="upload">
 <h2>Upload Images</h2>
 <div class="upload-section" id="dropZone" style="border:2px dashed #444; padding:30px; border-radius:15px; text-align:center;">
-<p>Drag & drop images here or click logo to select multiple files.</p>
+<p>Drag & drop images here or click logo/any picture to upload.</p>
 <input type="file" id="imgUploader" accept="image/*" multiple style="display:none;">
 <br>
 <button onclick="uploadMultiple()">Upload & Save</button>
@@ -200,13 +200,6 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 </div>
 </div>
 
-<div class="popup-overlay" id="galleryPopup">
-<div class="popup-content" id="galleryContent">
-<img id="popupImage" src="">
-<button onclick="closeGalleryPopup()">Close</button>
-</div>
-</div>
-
 <footer>
 &copy; 2025 Print Care - All Rights Reserved
 </footer>
@@ -223,13 +216,11 @@ playSound();
 }
 function closePopup(){ document.getElementById('popupOverlay').style.display = 'none'; }
 
-// Close popup on ESC or click outside
-window.addEventListener('keydown', e => { if(e.key==='Escape') closePopup(); closeGalleryPopup(); });
-document.getElementById('popupOverlay').addEventListener('click', e => { if(e.target===document.getElementById('popupOverlay')) closePopup(); });
-document.getElementById('galleryPopup').addEventListener('click', e => { if(e.target===document.getElementById('galleryPopup')) closeGalleryPopup(); });
-
 // Trigger file upload
-function triggerUpload(){ document.getElementById('imgUploader').click(); }
+function triggerUploadSection() {
+  document.getElementById('upload').scrollIntoView({behavior:'smooth'});
+  document.getElementById('imgUploader').click();
+}
 
 // Slider
 let slideIndex=0; 
@@ -264,14 +255,14 @@ showPopup(files.length + ' file(s) ready for upload.');
 // Add your API upload logic here
 }
 
-// Gallery Lightbox
-document.querySelectorAll('#worksContainer img').forEach(img => {
-  img.addEventListener('click', () => {
-    document.getElementById('popupImage').src = img.src;
-    document.getElementById('galleryPopup').style.display = 'flex';
-  });
+// Gallery Lightbox removed for click-to-upload feature
+
+// Add click-to-upload to logo, slider, gallery
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('logo').addEventListener('click', triggerUploadSection);
+  document.querySelectorAll('#slider img').forEach(img => img.addEventListener('click', triggerUploadSection));
+  document.querySelectorAll('#worksContainer img').forEach(img => img.addEventListener('click', triggerUploadSection));
 });
-function closeGalleryPopup(){ document.getElementById('galleryPopup').style.display = 'none'; }
 </script>
 
 </body>
