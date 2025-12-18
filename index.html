@@ -8,38 +8,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.7.0/docx.min.js"></script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://raw.githubusercontent.com https://api.github.com; connect-src 'self' https://api.ipify.org https://ipapi.co https://printcare-ai.workers.dev">
-
 <style>
-body { font-family:'Roboto',sans-serif;margin:0;padding:0;background:#fff;color:#222;overflow-x:hidden;}
-header { background:linear-gradient(135deg,#e53935,#1e88e5,#ffffff); color:white; text-align:center; padding:50px 10px; position:relative;}
-header img{max-width:150px;margin-bottom:15px;transition: transform 0.5s;}
-header img:hover{transform:scale(1.1) rotate(-5deg);}
-header h1 { margin:0;font-size:2.5em; color:#1e88e5;}
-header p { font-size:1.2em;margin-top:5px;color:#e53935;}
-nav { display:flex; justify-content:center; gap:20px; background:#1e88e5; padding:12px 0;position:sticky; top:0; z-index:1000;}
-nav a { color:white;text-decoration:none;font-weight:700; transition:0.3s;}
-nav a:hover{text-decoration:underline; color:#ffeb3b;}
-section{padding:60px 20px; max-width:1200px;margin:auto;}
-h2{text-align:center;margin-bottom:40px;font-size:2em;color:#e53935;}
+/* General Styles */
+body { font-family:'Roboto',sans-serif; margin:0; padding:0; background:#f5f5f5; color:#111; overflow-x:hidden;}
+header { background:#222; color:white; text-align:center; padding:50px 10px; position:relative;}
+header img { max-width:150px; margin-bottom:15px; cursor:pointer; transition: transform 0.5s; }
+header img:hover { transform:scale(1.1) rotate(-5deg);}
+header h1 { margin:0; font-size:2.5em; color:#fff;}
+header p { font-size:1.2em; margin-top:5px; color:#bbb;}
+nav { display:flex; justify-content:center; gap:20px; background:#333; padding:12px 0; position:sticky; top:0; z-index:1000;}
+nav a { color:white; text-decoration:none; font-weight:700; transition:0.3s;}
+nav a:hover { text-decoration:underline; color:#999;}
+section{padding:60px 20px; max-width:1200px; margin:auto;}
+h2{text-align:center; margin-bottom:40px; font-size:2em; color:#333;}
 .products,.works{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
 .product-card,.work-card{background:white;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);width:280px;text-align:center;transition:0.3s;}
-.product-card:hover,.work-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+.product-card:hover,.work-card:hover{transform:translateY(-10px) scale(1.02); box-shadow:0 10px 25px rgba(0,0,0,0.2);}
 .product-card img,.work-card img{width:100%;border-radius:12px; transition:0.5s;}
 .product-card img:hover,.work-card img:hover{transform:scale(1.05);}
 .product-card h3,.work-card h3{margin:10px 0 5px;font-size:1.3em;}
 .product-card p,.work-card p{margin:5px 0;color:#555;}
-.product-card .price,.work-card .price{font-weight:bold;color:#1e88e5;margin-top:5px;}
-.button{display:inline-block;padding:12px 25px;margin:10px 5px;border-radius:50px;text-decoration:none;color:white;font-weight:700; cursor:pointer;position:relative; overflow:hidden; background:#e53935; transition:0.3s;}
-.button:hover{background:#1e88e5; transform:scale(1.05);}
+.product-card .price,.work-card .price{font-weight:bold;color:#222;margin-top:5px;}
+.button{display:inline-block;padding:12px 25px;margin:10px 5px;border-radius:50px;text-decoration:none;color:white;font-weight:700; cursor:pointer;position:relative; overflow:hidden; background:#444; transition:0.3s;}
+.button:hover{background:#666; transform:scale(1.05);}
 .button:active{transform:scale(0.95);}
 .facebook{background:#3b5998;}
 .whatsapp{background:#25d366;}
 .tool{background:white;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);margin:20px auto;max-width:600px;}
 .tool label{font-weight:700;display:block;margin-bottom:5px;}
 .tool input,.tool textarea,.tool select{width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;}
-.tool button{background:#1e88e5;color:white;border:none;padding:12px 18px;border-radius:8px;cursor:pointer; transition:0.3s;}
-.tool button:hover{background:#1565c0;}
-footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
+.tool button{background:#333;color:white;border:none;padding:12px 18px;border-radius:8px;cursor:pointer; transition:0.3s;}
+.tool button:hover{background:#555;}
+footer{text-align:center;padding:25px;background:#222;color:white;}
 @media(max-width:700px){.products,.works{flex-direction:column;align-items:center;}}
 
 /* Slider */
@@ -50,14 +50,14 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 .slider img:hover{transform:scale(1.05);}
 .slider h3{margin:12px 0 5px;}
 .slider p{color:#555;}
-.slider .price{font-weight:bold;color:#1e88e5;margin-top:8px;}
-.slider-button{position:absolute;top:50%;transform:translateY(-50%);background:#1e88e5;color:white;border:none;padding:15px;border-radius:50%;cursor:pointer; z-index:10; font-size:20px;}
+.slider .price{font-weight:bold;color:#222;margin-top:8px;}
+.slider-button{position:absolute;top:50%;transform:translateY(-50%);background:#333;color:white;border:none;padding:15px;border-radius:50%;cursor:pointer; z-index:10; font-size:20px;}
 #prev{left:15px;} #next{right:15px;}
 
 /* Popup */
 .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:2000;}
 .popup-content{background:white;padding:30px;border-radius:15px;max-width:400px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.3);}
-.popup-content button{margin-top:15px;}
+.popup-content button{margin-top:15px; cursor:pointer;}
 </style>
 </head>
 <body>
@@ -65,7 +65,7 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 <audio id="clickSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
 
 <header>
-<img id="logo" src="logo.png" alt="Print Care Logo">
+<img id="logo" src="logo.png" alt="Print Care Logo" onclick="triggerUpload()">
 <h1>Print Care</h1>
 <p>Where Design Comes To Life</p>
 <a href="https://wa.me/9779811809093" target="_blank" class="button whatsapp" onclick="playSound()">WhatsApp</a>
@@ -84,9 +84,9 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 <section id="featured">
 <h2>Featured Products</h2>
 <div class="slider-container">
-  <button id="prev" class="slider-button">&#10094;</button>
-  <div class="slider" id="slider"></div>
-  <button id="next" class="slider-button">&#10095;</button>
+<button id="prev" class="slider-button">&#10094;</button>
+<div class="slider" id="slider"></div>
+<button id="next" class="slider-button">&#10095;</button>
 </div>
 </section>
 
@@ -141,25 +141,25 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 <label>Skills:</label><input type="text" id="cvSkills" placeholder="Separate by commas">
 <button onclick="generateCV()">Generate CV PDF</button>
 </div>
-
-</section>
-
-<section id="contact">
-<h2>Contact Us</h2>
-<p>Address: Nijgadh Municipality, Ward No 8, Bara District, Madhesh Province, Nepal</p>
-<p>Email: <a href="mailto:prntcare@gmail.com">prntcare@gmail.com</a></p>
-<p>WhatsApp: <a href="https://wa.me/9779811809093">+9779811809093</a></p>
-<p>Managing Director: Unish Neupane</p>
 </section>
 
 <section id="upload">
 <h2>Upload Images</h2>
-<div class="upload-section" id="dropZone" style="border:2px dashed #1e88e5; padding:30px; border-radius:15px; text-align:center;">
-<p>Drag & drop images here or click to select multiple files.</p>
+<div class="upload-section" id="dropZone" style="border:2px dashed #444; padding:30px; border-radius:15px; text-align:center;">
+<p>Drag & drop images here or click logo to select multiple files.</p>
 <input type="file" id="imgUploader" accept="image/*" multiple style="display:none;">
 <br>
 <button onclick="uploadMultiple()">Upload & Save</button>
 </div>
+</section>
+
+<section id="contact">
+<h2>Contact Us</h2>
+<img src="https://i.ibb.co/3cMZ9Jt/unish-profile.jpg" alt="Managing Director Unish Neupane" style="width:150px; border-radius:50%; margin-bottom:15px;">
+<p>Address: Nijgadh Municipality, Ward No 8, Bara District, Madhesh Province, Nepal</p>
+<p>Email: <a href="mailto:prntcare@gmail.com">prntcare@gmail.com</a></p>
+<p>WhatsApp: <a href="https://wa.me/9779811809093">+9779811809093</a></p>
+<p>Managing Director: Unish Neupane</p>
 </section>
 
 <div class="popup-overlay" id="popupOverlay">
@@ -174,27 +174,61 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 </footer>
 
 <script>
-// Sound
+// Sound function
 function playSound(){ document.getElementById('clickSound').play(); }
 
-// Popup
-function showPopup(msg){ document.getElementById('popupMessage').innerText=msg; document.getElementById('popupOverlay').style.display='flex'; playSound();}
-function closePopup(){ document.getElementById('popupOverlay').style.display='none';}
+// Popup functions
+function showPopup(msg){
+document.getElementById('popupMessage').innerText = msg;
+document.getElementById('popupOverlay').style.display = 'flex';
+playSound();
+}
+function closePopup(){
+document.getElementById('popupOverlay').style.display = 'none';
+}
+
+// Close popup on ESC or click outside
+window.addEventListener('keydown', e => { if(e.key==='Escape') closePopup(); });
+document.getElementById('popupOverlay').addEventListener('click', e => { if(e.target===document.getElementById('popupOverlay')) closePopup(); });
+
+// Trigger file upload
+function triggerUpload(){
+document.getElementById('imgUploader').click();
+}
+
+// Slider
+let slideIndex=0; 
+const slider=document.getElementById('slider'); 
+function updateSlider(){ 
+const slides=slider.children; 
+if(slides.length===0) return; 
+const slideWidth=slides[0].offsetWidth+30; 
+slider.style.transform=`translateX(-${slideIndex*slideWidth}px)`; 
+} 
+document.getElementById('next').addEventListener('click',()=>{slideIndex=(slideIndex+1)%slider.children.length; updateSlider(); playSound();}); 
+document.getElementById('prev').addEventListener('click',()=>{slideIndex=(slideIndex-1+slider.children.length)%slider.children.length; updateSlider(); playSound();}); 
+setInterval(()=>{ if(slider.children.length>0){ slideIndex=(slideIndex+1)%slider.children.length; updateSlider(); } },4000);
 
 // Visitor Tracking
 fetch('https://ipapi.co/json/').then(res=>res.json()).then(data=>console.log('Visitor:',data));
 
-// Slider
-let slideIndex=0;
-const slider=document.getElementById('slider');
-function updateSlider(){ const slides=slider.children; if(slides.length===0) return; const slideWidth=slides[0].offsetWidth+30; slider.style.transform=`translateX(-${slideIndex*slideWidth}px)`;}
-document.getElementById('next').addEventListener('click',()=>{slideIndex=(slideIndex+1)%slider.children.length; updateSlider(); playSound();});
-document.getElementById('prev').addEventListener('click',()=>{slideIndex=(slideIndex-1+slider.children.length)%slider.children.length; updateSlider(); playSound();});
-setInterval(()=>{ if(slider.children.length>0){ slideIndex=(slideIndex+1)%slider.children.length; updateSlider(); } },4000);
-
 // Preeti ↔ Unicode
 const preetiMap={'á':'क','â':'ख','ä':'ग','ã':'घ','å':'ङ','æ':'च','ç':'छ','è':'ज','é':'झ','ê':'ञ'};
-function convertPreeti(){ const text=document.getElementById('preetiText').value; let result=''; for(let i=0;i<text.length;i++){ result+=preetiMap[text[i]]||text[i];} document.getElementById('preetiText').value=result;}
+function convertPreeti(){ 
+const text=document.getElementById('preetiText').value; 
+let result=''; 
+for(let i=0;i<text.length;i++){ result+=preetiMap[text[i]]||text[i]; } 
+document.getElementById('preetiText').value=result;
+}
+
+// Image upload popup
+function uploadMultiple(){
+const files=document.getElementById('imgUploader').files;
+if(files.length===0){ showPopup('No files selected!'); return;}
+showPopup(files.length + ' file(s) ready for upload.'); 
+// Here you can add your API upload logic
+}
+
 </script>
 </body>
 </html>
