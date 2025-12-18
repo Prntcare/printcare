@@ -295,3 +295,13 @@ async function uploadMultiple(){
           const prod=document.createElement('div');
           prod.className='product-card';
           prod.innerHTML=`<img src="${url}" alt="${file.name}"><h3>${file.name}</h3><p>High quality print service</p><p class="price">NPR 0</p><button class="button order" onclick="orderProduct('${file.name}')">Order Now</button>`;
+          document.getElementById('productsContainer').appendChild(prod);
+        }
+      }
+    }
+    reader.readAsDataURL(file);
+  }
+}
+</script>
+
+</body
