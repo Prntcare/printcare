@@ -3,97 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Print Care - Where Design Comes To Life</title>
+<title>Print Care - Landing & Admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.7.0/docx.min.js"></script>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://raw.githubusercontent.com https://api.github.com; connect-src 'self' https://api.ipify.org https://ipapi.co https://printcare-ai.workers.dev">
 <style>
-/* General Styles */
-body { font-family:'Roboto',sans-serif; margin:0; padding:0; background:#f5f5f5; color:#111; overflow-x:hidden;}
-header { background:#222; color:white; text-align:center; padding:50px 10px; position:relative;}
-header img { max-width:150px; margin-bottom:15px; cursor:pointer; transition: transform 0.5s; }
-header img:hover { transform:scale(1.1) rotate(-5deg);}
-header h1 { margin:0; font-size:2.5em; color:#fff;}
-header p { font-size:1.2em; margin-top:5px; color:#bbb;}
-nav { display:flex; justify-content:center; gap:20px; background:#333; padding:12px 0; position:sticky; top:0; z-index:1000;}
-nav a { color:white; text-decoration:none; font-weight:700; transition:0.3s;}
-nav a:hover { text-decoration:underline; color:#999;}
-section{padding:60px 20px; max-width:1200px; margin:auto;}
-h2{text-align:center; margin-bottom:40px; font-size:2em; color:#333;}
+body { font-family:'Roboto',sans-serif; margin:0; padding:0; background:#f5f5f5; color:#111; }
+header { background:#222; color:white; text-align:center; padding:30px 10px; }
+header h1 { margin:0; font-size:2em; }
+nav { display:flex; justify-content:center; gap:20px; background:#333; padding:12px 0; position:sticky; top:0; z-index:1000; }
+nav a { color:white; text-decoration:none; font-weight:700; }
+nav a:hover { color:#999; }
+section{padding:40px 20px; max-width:1200px; margin:auto;}
+h2,h3{text-align:center;}
 .products,.works{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
-.product-card,.work-card{background:white;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);width:280px;text-align:center;transition:0.3s;}
-.product-card:hover,.work-card:hover{transform:translateY(-10px) scale(1.02); box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-.product-card img,.work-card img{width:100%;border-radius:12px; transition:0.5s;}
-.product-card img:hover,.work-card img:hover{transform:scale(1.05);}
-.product-card h3,.work-card h3{margin:10px 0 5px;font-size:1.3em;}
-.product-card p,.work-card p{margin:5px 0;color:#555;}
-.product-card .price,.work-card .price{font-weight:bold;color:#222;margin-top:5px;}
-.button{display:inline-block;padding:12px 25px;margin:10px 5px;border-radius:50px;text-decoration:none;color:white;font-weight:700; cursor:pointer;position:relative; overflow:hidden; background:#444; transition:0.3s;}
-.button:hover{background:#666; transform:scale(1.05);}
-.button:active{transform:scale(0.95);}
-.facebook{background:#3b5998;}
-.whatsapp{background:#25d366;}
-.tool{background:white;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);margin:20px auto;max-width:600px;}
-.tool label{font-weight:700;display:block;margin-bottom:5px;}
-.tool input,.tool textarea,.tool select{width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;}
-.tool button{background:#333;color:white;border:none;padding:12px 18px;border-radius:8px;cursor:pointer; transition:0.3s;}
-.tool button:hover{background:#555;}
+.product-card,.work-card,.tool{background:white;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);width:280px;text-align:center;transition:0.3s;}
+.product-card img,.work-card img{width:100%;border-radius:12px; cursor:pointer;}
 footer{text-align:center;padding:25px;background:#222;color:white;}
-@media(max-width:700px){.products,.works{flex-direction:column;align-items:center;}}
-
-/* Slider */
-.slider-container{position:relative;overflow:hidden;max-width:100%;margin:auto 0 50px 0;border-radius:15px;}
-.slider{display:flex;transition:transform 0.8s ease-in-out;}
-.slider .slide{min-width:300px;margin:0 15px;box-shadow:0 5px 20px rgba(0,0,0,0.15);border-radius:15px;background:white;text-align:center;padding:20px;transition:0.5s;}
-.slider img{width:100%;border-radius:12px; transition:transform 0.5s;}
-.slider img:hover{transform:scale(1.05);}
-.slider h3{margin:12px 0 5px;}
-.slider p{color:#555;}
-.slider .price{font-weight:bold;color:#222;margin-top:8px;}
-.slider-button{position:absolute;top:50%;transform:translateY(-50%);background:#333;color:white;border:none;padding:15px;border-radius:50%;cursor:pointer; z-index:10; font-size:20px;}
-#prev{left:15px;} #next{right:15px;}
-
-/* Photo Gallery Grid */
-#worksContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-.work-card img {
-  width: 100%;
-  border-radius: 12px;
-  cursor:pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.work-card img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-/* Popup */
-.popup-overlay, #galleryPopup {
-  position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);
-  display:none; justify-content:center; align-items:center; z-index:2000;
-}
-.popup-content, #galleryContent {
-  background:white; padding:30px; border-radius:15px; max-width:400px; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-.popup-content button, #galleryContent button { margin-top:15px; cursor:pointer;}
-#popupImage { width:100%; border-radius:12px; }
-
+form { max-width:300px; margin:20px auto; display:flex; flex-direction:column; gap:10px;}
+input,textarea,button{padding:10px;border-radius:5px;border:1px solid #ccc;}
+button{border:none;background:#222;color:white;cursor:pointer;}
+button:hover{background:#555;}
+#adminDashboard{display:none;}
+#uploadSection{border:2px dashed #222; padding:20px; border-radius:12px; text-align:center; margin-top:10px;}
 </style>
 </head>
 <body>
 
-<audio id="clickSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
-
 <header>
-<img id="logo" src="logo.png" alt="Print Care Logo">
 <h1>Print Care</h1>
 <p>Where Design Comes To Life</p>
-<a href="https://wa.me/9779811809093" target="_blank" class="button whatsapp" onclick="playSound()">WhatsApp</a>
-<a href="https://www.facebook.com/care" target="_blank" class="button facebook" onclick="playSound()">Facebook</a>
 </header>
 
 <nav>
@@ -102,39 +39,78 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 <a href="#works">Photo Gallery</a>
 <a href="#tools">Tools</a>
 <a href="#contact">Contact</a>
-<a href="#upload">Upload</a>
+<a href="#adminLogin">Admin</a>
 </nav>
 
+<!-- Landing Page Content (Public view) -->
 <section id="featured">
 <h2>Featured Products</h2>
-<div class="slider-container">
-<button id="prev" class="slider-button">&#10094;</button>
-<div class="slider" id="slider"></div>
-<button id="next" class="slider-button">&#10095;</button>
+<div class="products" id="productsContainer">
+  <div class="product-card"><img src="images/product1.jpg" alt="Product 1"><h3>Product 1</h3></div>
+  <div class="product-card"><img src="images/product2.jpg" alt="Product 2"><h3>Product 2</h3></div>
 </div>
 </section>
 
 <section id="products">
 <h2>All Products & Services</h2>
-<div class="products" id="productsContainer"></div>
+<div class="products">
+  <div class="product-card"><img src="images/service1.jpg" alt="Service 1"><h3>Service 1</h3></div>
+</div>
 </section>
 
 <section id="works">
 <h2>Photo Gallery</h2>
 <div class="works" id="worksContainer">
-  <!-- Sample Images -->
-  <div class="work-card"><img src="https://via.placeholder.com/300" alt="Work 1"></div>
-  <div class="work-card"><img src="https://via.placeholder.com/300" alt="Work 2"></div>
-  <div class="work-card"><img src="https://via.placeholder.com/300" alt="Work 3"></div>
-  <div class="work-card"><img src="https://via.placeholder.com/300" alt="Work 4"></div>
+  <div class="work-card"><img src="images/work1.jpg" alt="Work 1"></div>
+  <div class="work-card"><img src="images/work2.jpg" alt="Work 2"></div>
 </div>
 </section>
 
 <section id="tools">
 <h2>Online Tools</h2>
+<p>Tools are available, but editing is disabled for public.</p>
+</section>
+
+<section id="contact">
+<h2>Contact Us</h2>
+<p>Email: prntcare@gmail.com</p>
+<p>Phone: +9779811809093</p>
+</section>
+
+<!-- Admin Login -->
+<section id="adminLogin">
+<h2>Admin Login</h2>
+<form id="adminLoginForm">
+<input type="text" id="username" placeholder="Username" required>
+<input type="password" id="password" placeholder="Password" required>
+<button type="submit">Login</button>
+</form>
+</section>
+
+<!-- Admin Dashboard -->
+<div id="adminDashboard">
+
+<section id="adminFeatured">
+<h2>Featured Products (Admin)</h2>
+<div class="products" id="adminProductsContainer">
+  <div class="product-card"><img src="images/product1.jpg" alt="Product 1"><h3>Product 1</h3></div>
+  <div class="product-card"><img src="images/product2.jpg" alt="Product 2"><h3>Product 2</h3></div>
+</div>
+</section>
+
+<section id="adminWorks">
+<h2>Photo Gallery (Admin)</h2>
+<div class="works" id="adminWorksContainer">
+  <div class="work-card"><img src="images/work1.jpg" alt="Work 1"></div>
+  <div class="work-card"><img src="images/work2.jpg" alt="Work 2"></div>
+</div>
+</section>
+
+<section id="adminTools">
+<h2>Online Tools (Admin)</h2>
 <div class="tool">
 <label for="preetiText">Preeti ↔ Unicode Converter</label>
-<textarea id="preetiText" rows="3" placeholder="Type Preeti or Unicode text here"></textarea>
+<textarea id="preetiText" rows="3"></textarea>
 <button onclick="convertPreeti()">Convert</button>
 </div>
 
@@ -168,101 +144,61 @@ footer{text-align:center;padding:25px;background:#222;color:white;}
 <label>Name:</label><input type="text" id="cvName">
 <label>Email:</label><input type="email" id="cvEmail">
 <label>Phone:</label><input type="text" id="cvPhone">
-<label>Skills:</label><input type="text" id="cvSkills" placeholder="Separate by commas">
+<label>Skills:</label><input type="text" id="cvSkills">
 <button onclick="generateCV()">Generate CV PDF</button>
 </div>
 </section>
 
 <section id="upload">
 <h2>Upload Images</h2>
-<div class="upload-section" id="dropZone" style="border:2px dashed #444; padding:30px; border-radius:15px; text-align:center;">
-<p>Drag & drop images here or click logo/any picture to upload.</p>
-<input type="file" id="imgUploader" accept="image/*" multiple style="display:none;">
-<br>
+<div id="uploadSection">
+<p>Click any logo, slider, or gallery image to upload a new image.</p>
+<input type="file" id="imgUploader" multiple style="display:none;">
 <button onclick="uploadMultiple()">Upload & Save</button>
 </div>
 </section>
 
-<section id="contact">
-<h2>Contact Us</h2>
-<img src="https://i.ibb.co/3cMZ9Jt/unish-profile.jpg" alt="Managing Director Unish Neupane" style="width:150px; border-radius:50%; margin-bottom:15px;">
-<p>Address: Nijgadh Municipality, Ward No 8, Bara District, Madhesh Province, Nepal</p>
-<p>Email: <a href="mailto:prntcare@gmail.com">prntcare@gmail.com</a></p>
-<p>WhatsApp: <a href="https://wa.me/9779811809093">+9779811809093</a></p>
-<p>Managing Director: Unish Neupane</p>
-</section>
-
-<!-- Popups -->
-<div class="popup-overlay" id="popupOverlay">
-<div class="popup-content" id="popupContent">
-<p id="popupMessage">Popup Message</p>
-<button onclick="closePopup()">Close</button>
-</div>
 </div>
 
-<footer>
-&copy; 2025 Print Care - All Rights Reserved
-</footer>
+<footer>&copy; 2025 Print Care</footer>
 
 <script>
-// Sound function
-function playSound(){ document.getElementById('clickSound').play(); }
+// Admin login
+const adminUser="admin", adminPass="password123";
+document.getElementById('adminLoginForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const user=document.getElementById('username').value;
+  const pass=document.getElementById('password').value;
+  if(user===adminUser && pass===adminPass){
+    document.getElementById('adminLoginForm').style.display='none';
+    document.getElementById('adminDashboard').style.display='block';
+    alert("Welcome Admin! You now have editing access.");
+  } else { alert("Incorrect username or password!"); }
+});
 
-// Popup functions
-function showPopup(msg){
-document.getElementById('popupMessage').innerText = msg;
-document.getElementById('popupOverlay').style.display = 'flex';
-playSound();
-}
-function closePopup(){ document.getElementById('popupOverlay').style.display = 'none'; }
-
-// Trigger file upload
-function triggerUploadSection() {
-  document.getElementById('upload').scrollIntoView({behavior:'smooth'});
+// Click-to-upload
+function triggerUploadSection(){
+  document.getElementById('uploadSection').scrollIntoView({behavior:'smooth'});
   document.getElementById('imgUploader').click();
 }
-
-// Slider
-let slideIndex=0; 
-const slider=document.getElementById('slider'); 
-function updateSlider(){ 
-const slides=slider.children; 
-if(slides.length===0) return; 
-const slideWidth=slides[0].offsetWidth+30; 
-slider.style.transform=`translateX(-${slideIndex*slideWidth}px)`; 
-} 
-document.getElementById('next').addEventListener('click',()=>{slideIndex=(slideIndex+1)%slider.children.length; updateSlider(); playSound();}); 
-document.getElementById('prev').addEventListener('click',()=>{slideIndex=(slideIndex-1+slider.children.length)%slider.children.length; updateSlider(); playSound();}); 
-setInterval(()=>{ if(slider.children.length>0){ slideIndex=(slideIndex+1)%slider.children.length; updateSlider(); } },4000);
-
-// Visitor Tracking
-fetch('https://ipapi.co/json/').then(res=>res.json()).then(data=>console.log('Visitor:',data));
-
-// Preeti ↔ Unicode
-const preetiMap={'á':'क','â':'ख','ä':'ग','ã':'घ','å':'ङ','æ':'च','ç':'छ','è':'ज','é':'झ','ê':'ञ'};
-function convertPreeti(){ 
-const text=document.getElementById('preetiText').value; 
-let result=''; 
-for(let i=0;i<text.length;i++){ result+=preetiMap[text[i]]||text[i]; } 
-document.getElementById('preetiText').value=result;
-}
-
-// Image upload popup
-function uploadMultiple(){
-const files=document.getElementById('imgUploader').files;
-if(files.length===0){ showPopup('No files selected!'); return;}
-showPopup(files.length + ' file(s) ready for upload.'); 
-// Add your API upload logic here
-}
-
-// Gallery Lightbox removed for click-to-upload feature
-
-// Add click-to-upload to logo, slider, gallery
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('logo').addEventListener('click', triggerUploadSection);
-  document.querySelectorAll('#slider img').forEach(img => img.addEventListener('click', triggerUploadSection));
-  document.querySelectorAll('#worksContainer img').forEach(img => img.addEventListener('click', triggerUploadSection));
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('img').forEach(img=>img.addEventListener('click',triggerUploadSection));
 });
+
+// Upload simulation
+function uploadMultiple(){
+  const files=document.getElementById('imgUploader').files;
+  if(files.length===0){ alert("No files selected!"); return; }
+  alert(files.length + " file(s) ready to upload.");
+}
+
+// Dummy tools
+function convertPreeti(){ const text=document.getElementById('preetiText').value; alert("Converted: "+text); }
+function convertDate(){ const date=document.getElementById('dateInput').value; document.getElementById('dateResult').innerText="Converted date: "+date; }
+function generateImagePDF(){ alert("Image PDF generated!"); }
+function generateWordPDF(){ alert("Word PDF generated!"); }
+function compressImages(){ alert("Images compressed!"); }
+function generateCV(){ alert("CV PDF generated!"); }
 </script>
 
 </body>
