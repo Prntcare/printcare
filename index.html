@@ -8,8 +8,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.7.0/docx.min.js"></script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://raw.githubusercontent.com https://api.github.com; connect-src 'self' https://api.ipify.org https://ipapi.co https://printcare-ai.workers.dev">
+
 <style>
-/* ---------- Basic Styles ---------- */
 body { font-family:'Roboto',sans-serif;margin:0;padding:0;background:#fff;color:#222;overflow-x:hidden;}
 header { background:linear-gradient(135deg,#e53935,#1e88e5,#ffffff); color:white; text-align:center; padding:50px 10px; position:relative;}
 header img{max-width:150px;margin-bottom:15px;transition: transform 0.5s;}
@@ -42,7 +42,7 @@ h2{text-align:center;margin-bottom:40px;font-size:2em;color:#e53935;}
 footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 @media(max-width:700px){.products,.works{flex-direction:column;align-items:center;}}
 
-/* ---------- Slider ---------- */
+/* Slider */
 .slider-container{position:relative;overflow:hidden;max-width:100%;margin:auto 0 50px 0;border-radius:15px;}
 .slider{display:flex;transition:transform 0.8s ease-in-out;}
 .slider .slide{min-width:300px;margin:0 15px;box-shadow:0 5px 20px rgba(0,0,0,0.15);border-radius:15px;background:white;text-align:center;padding:20px;transition:0.5s;}
@@ -54,7 +54,7 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 .slider-button{position:absolute;top:50%;transform:translateY(-50%);background:#1e88e5;color:white;border:none;padding:15px;border-radius:50%;cursor:pointer; z-index:10; font-size:20px;}
 #prev{left:15px;} #next{right:15px;}
 
-/* ---------- Popups ---------- */
+/* Popup */
 .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:2000;}
 .popup-content{background:white;padding:30px;border-radius:15px;max-width:400px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.3);}
 .popup-content button{margin-top:15px;}
@@ -102,15 +102,12 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 
 <section id="tools">
 <h2>Online Tools</h2>
-
-<!-- Preeti ↔ Unicode -->
 <div class="tool">
 <label for="preetiText">Preeti ↔ Unicode Converter</label>
 <textarea id="preetiText" rows="3" placeholder="Type Preeti or Unicode text here"></textarea>
 <button onclick="convertPreeti()">Convert</button>
 </div>
 
-<!-- Date Converter -->
 <div class="tool">
 <label for="dateInput">English ↔ Nepali Date Converter</label>
 <input type="date" id="dateInput">
@@ -118,15 +115,6 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 <p id="dateResult"></p>
 </div>
 
-<!-- AI Chat -->
-<div class="tool">
-<h3>AI Chat Assistant</h3>
-<textarea id="aiQuery" placeholder="Ask something about printing..." rows="2"></textarea>
-<button onclick="askAI()">Ask AI</button>
-<p id="aiResponse" style="white-space:pre-wrap;"></p>
-</div>
-
-<!-- New Tools -->
 <div class="tool">
 <h3>Image → PDF</h3>
 <input type="file" id="imgToPdf" accept="image/*" multiple>
@@ -165,12 +153,12 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 </section>
 
 <section id="upload">
-<h2>Upload Images (Drag & Drop / Multi Upload)</h2>
+<h2>Upload Images</h2>
 <div class="upload-section" id="dropZone" style="border:2px dashed #1e88e5; padding:30px; border-radius:15px; text-align:center;">
-<p>Drag & drop images here, or click to select multiple files.</p>
+<p>Drag & drop images here or click to select multiple files.</p>
 <input type="file" id="imgUploader" accept="image/*" multiple style="display:none;">
 <br>
-<button onclick="uploadMultiple()">Upload & Save All</button>
+<button onclick="uploadMultiple()">Upload & Save</button>
 </div>
 </section>
 
@@ -186,22 +174,17 @@ footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
 </footer>
 
 <script>
-// ---------- Sound ----------
+// Sound
 function playSound(){ document.getElementById('clickSound').play(); }
 
-// ---------- Popup ----------
-function showPopup(msg){ document.getElementById('popupMessage').innerText = msg; document.getElementById('popupOverlay').style.display='flex'; playSound();}
+// Popup
+function showPopup(msg){ document.getElementById('popupMessage').innerText=msg; document.getElementById('popupOverlay').style.display='flex'; playSound();}
 function closePopup(){ document.getElementById('popupOverlay').style.display='none';}
 
-// ---------- WhatsApp ----------
-function orderProduct(productName){
-    showPopup(`Opening WhatsApp for: ${productName}`);
-    const waNumber='9779811809093';
-    const msg=encodeURIComponent(`Hello, I want to order: ${productName}`);
-    window.open(`https://wa.me/${waNumber}?text=${msg}`,'_blank');
-}
+// Visitor Tracking
+fetch('https://ipapi.co/json/').then(res=>res.json()).then(data=>console.log('Visitor:',data));
 
-// ---------- Slider ----------
+// Slider
 let slideIndex=0;
 const slider=document.getElementById('slider');
 function updateSlider(){ const slides=slider.children; if(slides.length===0) return; const slideWidth=slides[0].offsetWidth+30; slider.style.transform=`translateX(-${slideIndex*slideWidth}px)`;}
@@ -209,99 +192,9 @@ document.getElementById('next').addEventListener('click',()=>{slideIndex=(slideI
 document.getElementById('prev').addEventListener('click',()=>{slideIndex=(slideIndex-1+slider.children.length)%slider.children.length; updateSlider(); playSound();});
 setInterval(()=>{ if(slider.children.length>0){ slideIndex=(slideIndex+1)%slider.children.length; updateSlider(); } },4000);
 
-// ---------- Preeti ↔ Unicode ----------
+// Preeti ↔ Unicode
 const preetiMap={'á':'क','â':'ख','ä':'ग','ã':'घ','å':'ङ','æ':'च','ç':'छ','è':'ज','é':'झ','ê':'ञ'};
 function convertPreeti(){ const text=document.getElementById('preetiText').value; let result=''; for(let i=0;i<text.length;i++){ result+=preetiMap[text[i]]||text[i];} document.getElementById('preetiText').value=result;}
-
-// ---------- Date Converter ----------
-function convertDate(){ const input=document.getElementById('dateInput').value; if(!input){ alert('Select a date first!'); return; } const date=new Date(input); const nepaliMonths=["बैशाख","जेठ","आषाढ","श्रावण","भाद्र","आश्विन","कार्तिक","मंसिर","पौष","माघ","फाल्गुन","चैत्र"]; const nepaliDate=`${date.getDate()} ${nepaliMonths[date.getMonth()]} ${date.getFullYear()+57}`; document.getElementById('dateResult').innerText="Nepali Date: "+nepaliDate;}
-
-// ---------- AI Assistant ----------
-async function askAI(){
-    const query = document.getElementById('aiQuery').value;
-    if(!query){ alert('Ask something first!'); return; }
-    document.getElementById('aiResponse').innerText = "Thinking... 🤖";
-
-    try {
-        const res = await fetch('https://printcare-ai.workers.dev', {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body: JSON.stringify({question: query})
-        });
-        const data = await res.json();
-        document.getElementById('aiResponse').innerText = data.answer;
-    } catch(e){
-        document.getElementById('aiResponse').innerText = "Error contacting AI.";
-        console.error(e);
-    }
-}
-
-// ---------- Visitor Tracking ----------
-fetch('https://ipapi.co/json/')
-.then(res=>res.json())
-.then(data=>{
-    console.log('Visitor Info:',data);
-});
-
-// ---------- Drag & Drop Upload ----------
-const dropZone=document.getElementById('dropZone');
-const imgInput=document.getElementById('imgUploader');
-dropZone.addEventListener('click',()=> imgInput.click());
-dropZone.addEventListener('dragover',e=>{ e.preventDefault(); dropZone.style.background='#e3f2fd'; });
-dropZone.addEventListener('dragleave',e=>{ e.preventDefault(); dropZone.style.background='white'; });
-dropZone.addEventListener('drop',e=>{ e.preventDefault(); dropZone.style.background='white'; imgInput.files=e.dataTransfer.files; });
-
-// ---------- GitHub Upload ----------
-const owner="Prntcare";
-const repo="printcare";
-const branch="main";
-const token="YOUR_PERSONAL_ACCESS_TOKEN_HERE"; // Replace with token
-
-async function uploadMultiple(){
-  const files=imgInput.files;
-  if(!files.length){ alert('Select files first!'); return; }
-  for(let i=0;i<files.length;i++){
-    const file=files[i];
-    const reader=new FileReader();
-    reader.onload=async function(e){
-      const content=btoa(e.target.result.split(",")[1]);
-      const path=file.name;
-      let sha=null;
-      const resp=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`,{ headers:{Authorization:`token ${token}`} });
-      if(resp.status===200){ sha=(await resp.json()).sha; }
-      const res=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`,{
-        method:"PUT",
-        headers:{Authorization:`token ${token}`,"Content-Type":"application/json"},
-        body: JSON.stringify({ message:`Upload ${file.name}`, content:content, branch:branch, sha:sha })
-      });
-      if(res.ok){
-        const url=`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file.name}?timestamp=${new Date().getTime()}`;
-        const name=file.name.toLowerCase();
-        if(name.includes('logo')) document.getElementById('logo').src=url;
-        else if(name.includes('featured')) {
-          const slide=document.createElement('div');
-          slide.className='slide';
-          slide.innerHTML=`<img src="${url}" alt="${file.name}"><h3>${file.name}</h3><p>Description</p><p class="price">NPR 0</p><button class="button order" onclick="orderProduct('${file.name}')">Order Now</button>`;
-          slider.appendChild(slide);
-          updateSlider();
-        }
-        else if(name.includes('work')){
-          const work=document.createElement('div');
-          work.className='work-card';
-          work.innerHTML=`<img src="${url}" alt="${file.name}"><h3>${file.name}</h3><p>Completed Work</p>`;
-          document.getElementById('worksContainer').appendChild(work);
-        }
-        else{
-          const prod=document.createElement('div');
-          prod.className='product-card';
-          prod.innerHTML=`<img src="${url}" alt="${file.name}"><h3>${file.name}</h3><p>High quality print service</p><p class="price">NPR 0</p><button class="button order" onclick="orderProduct('${file.name}')">Order Now</button>`;
-          document.getElementById('productsContainer').appendChild(prod);
-        }
-      }
-    }
-    reader.readAsDataURL(file);
-  }
-}
 </script>
-
-</body
+</body>
+</html>
