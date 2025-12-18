@@ -3,142 +3,295 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Print Care</title>
+<title>Print Care - Where Design Comes To Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.7.0/docx.min.js"></script>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://raw.githubusercontent.com https://api.github.com; connect-src 'self' https://api.ipify.org https://ipapi.co https://printcare-ai.workers.dev">
 <style>
-    body { margin:0; font-family: Arial, sans-serif; color:#333; }
-    header { background:#005eb8; color:white; text-align:center; padding:40px 20px; }
-    header h1 { margin:0; font-size:2.5em; }
-    header p { margin:5px 0 0; font-size:1.2em; font-style:italic; }
-    nav { text-align:center; background:#fff; padding:10px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
-    nav a { margin:0 15px; text-decoration:none; color:#005eb8; font-weight:bold; }
-    section { padding:60px 20px; }
-    .section-title { text-align:center; margin-bottom:30px; color:#005eb8; }
-    .contact-buttons { text-align:center; margin-top:20px; }
-    .contact-buttons a { display:inline-block; margin:5px; padding:10px 20px; background:#005eb8; color:white; text-decoration:none; border-radius:5px; }
-    .converter { max-width:500px; margin:auto; background:#f9f9f9; padding:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:40px; }
-    .converter textarea, .converter input { width:100%; padding:10px; margin:5px 0; font-size:1em; }
-    .converter button { padding:10px 15px; margin:5px 0; background:#005eb8; color:white; border:none; border-radius:5px; cursor:pointer; }
-    .footer { text-align:center; padding:20px 0; background:#eee; font-size:0.9em; }
-    @media(max-width:600px){ .converter{width:90%;} }
+/* ---------- Basic Styles ---------- */
+body { font-family:'Roboto',sans-serif;margin:0;padding:0;background:#fff;color:#222;overflow-x:hidden;}
+header { background:linear-gradient(135deg,#e53935,#1e88e5,#ffffff); color:white; text-align:center; padding:50px 10px; position:relative;}
+header img{max-width:150px;margin-bottom:15px;transition: transform 0.5s;}
+header img:hover{transform:scale(1.1) rotate(-5deg);}
+header h1 { margin:0;font-size:2.5em; color:#1e88e5;}
+header p { font-size:1.2em;margin-top:5px;color:#e53935;}
+nav { display:flex; justify-content:center; gap:20px; background:#1e88e5; padding:12px 0;position:sticky; top:0; z-index:1000;}
+nav a { color:white;text-decoration:none;font-weight:700; transition:0.3s;}
+nav a:hover{text-decoration:underline; color:#ffeb3b;}
+section{padding:60px 20px; max-width:1200px;margin:auto;}
+h2{text-align:center;margin-bottom:40px;font-size:2em;color:#e53935;}
+.products,.works{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+.product-card,.work-card{background:white;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);width:280px;text-align:center;transition:0.3s;}
+.product-card:hover,.work-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+.product-card img,.work-card img{width:100%;border-radius:12px; transition:0.5s;}
+.product-card img:hover,.work-card img:hover{transform:scale(1.05);}
+.product-card h3,.work-card h3{margin:10px 0 5px;font-size:1.3em;}
+.product-card p,.work-card p{margin:5px 0;color:#555;}
+.product-card .price,.work-card .price{font-weight:bold;color:#1e88e5;margin-top:5px;}
+.button{display:inline-block;padding:12px 25px;margin:10px 5px;border-radius:50px;text-decoration:none;color:white;font-weight:700; cursor:pointer;position:relative; overflow:hidden; background:#e53935; transition:0.3s;}
+.button:hover{background:#1e88e5; transform:scale(1.05);}
+.button:active{transform:scale(0.95);}
+.facebook{background:#3b5998;}
+.whatsapp{background:#25d366;}
+.tool{background:white;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);margin:20px auto;max-width:600px;}
+.tool label{font-weight:700;display:block;margin-bottom:5px;}
+.tool input,.tool textarea,.tool select{width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;}
+.tool button{background:#1e88e5;color:white;border:none;padding:12px 18px;border-radius:8px;cursor:pointer; transition:0.3s;}
+.tool button:hover{background:#1565c0;}
+footer{text-align:center;padding:25px;background:#1e88e5;color:white;}
+@media(max-width:700px){.products,.works{flex-direction:column;align-items:center;}}
+
+/* ---------- Slider ---------- */
+.slider-container{position:relative;overflow:hidden;max-width:100%;margin:auto 0 50px 0;border-radius:15px;}
+.slider{display:flex;transition:transform 0.8s ease-in-out;}
+.slider .slide{min-width:300px;margin:0 15px;box-shadow:0 5px 20px rgba(0,0,0,0.15);border-radius:15px;background:white;text-align:center;padding:20px;transition:0.5s;}
+.slider img{width:100%;border-radius:12px; transition:transform 0.5s;}
+.slider img:hover{transform:scale(1.05);}
+.slider h3{margin:12px 0 5px;}
+.slider p{color:#555;}
+.slider .price{font-weight:bold;color:#1e88e5;margin-top:8px;}
+.slider-button{position:absolute;top:50%;transform:translateY(-50%);background:#1e88e5;color:white;border:none;padding:15px;border-radius:50%;cursor:pointer; z-index:10; font-size:20px;}
+#prev{left:15px;} #next{right:15px;}
+
+/* ---------- Popups ---------- */
+.popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:2000;}
+.popup-content{background:white;padding:30px;border-radius:15px;max-width:400px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.3);}
+.popup-content button{margin-top:15px;}
 </style>
-
-<!-- Nepali Date Converter library -->
-<script src="https://cdn.jsdelivr.net/npm/@remotemerge/nepali-date-converter@1/dist/ndc-browser.js"></script>
-
 </head>
 <body>
 
+<audio id="clickSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
+
 <header>
-    <h1>Print Care</h1>
-    <p>Where Design Comes To Life</p>
+<img id="logo" src="logo.png" alt="Print Care Logo">
+<h1>Print Care</h1>
+<p>Where Design Comes To Life</p>
+<a href="https://wa.me/9779811809093" target="_blank" class="button whatsapp" onclick="playSound()">WhatsApp</a>
+<a href="https://www.facebook.com/care" target="_blank" class="button facebook" onclick="playSound()">Facebook</a>
 </header>
 
 <nav>
-    <a href="#about">About</a>
-    <a href="#converter">Converters</a>
-    <a href="#contact">Contact</a>
+<a href="#featured">Featured</a>
+<a href="#products">Services</a>
+<a href="#works">Work</a>
+<a href="#tools">Tools</a>
+<a href="#contact">Contact</a>
+<a href="#upload">Upload</a>
 </nav>
 
-<section id="about">
-    <h2 class="section-title">About Us</h2>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-        Print Care is a design and printing shop located at Nijgadh municipality ward no 8, Bara district, Madhesh province, Nepal.<br>
-        <strong>Managing Director:</strong> Unish Neupane<br>
-        We provide high-quality printing services including design, flex printing, stamps, boards, and more.
-    </p>
+<section id="featured">
+<h2>Featured Products</h2>
+<div class="slider-container">
+  <button id="prev" class="slider-button">&#10094;</button>
+  <div class="slider" id="slider"></div>
+  <button id="next" class="slider-button">&#10095;</button>
+</div>
 </section>
 
-<section id="converter">
-    <h2 class="section-title">Converters</h2>
+<section id="products">
+<h2>All Products & Services</h2>
+<div class="products" id="productsContainer"></div>
+</section>
 
-    <!-- Preeti ↔ Unicode Converter -->
-    <div class="converter">
-        <h3>Preeti ↔ Unicode</h3>
-        <textarea id="preetiInput" placeholder="Type Preeti or Unicode text"></textarea><br>
-        <button onclick="preetiToUnicode()">Preeti → Unicode</button>
-        <button onclick="unicodeToPreeti()">Unicode → Preeti</button><br>
-        <textarea id="preetiOutput" placeholder="Result" readonly></textarea>
-    </div>
+<section id="works">
+<h2>Previous & Recent Work</h2>
+<div class="works" id="worksContainer"></div>
+</section>
 
-    <!-- English ↔ Nepali Date Converter -->
-    <div class="converter">
-        <h3>English ↔ Nepali Date</h3>
-        <input type="date" id="engDate">
-        <button onclick="engToNepDate()">AD → BS</button><br>
-        <input type="number" id="nepYear" placeholder="2079">
-        <input type="number" id="nepMonth" placeholder="1">
-        <input type="number" id="nepDay" placeholder="17">
-        <button onclick="nepToEngDate()">BS → AD</button><br>
-        <input type="text" id="dateOutput" placeholder="Converted date" readonly>
-    </div>
+<section id="tools">
+<h2>Online Tools</h2>
+
+<!-- Preeti ↔ Unicode -->
+<div class="tool">
+<label for="preetiText">Preeti ↔ Unicode Converter</label>
+<textarea id="preetiText" rows="3" placeholder="Type Preeti or Unicode text here"></textarea>
+<button onclick="convertPreeti()">Convert</button>
+</div>
+
+<!-- Date Converter -->
+<div class="tool">
+<label for="dateInput">English ↔ Nepali Date Converter</label>
+<input type="date" id="dateInput">
+<button onclick="convertDate()">Convert</button>
+<p id="dateResult"></p>
+</div>
+
+<!-- AI Chat -->
+<div class="tool">
+<h3>AI Chat Assistant</h3>
+<textarea id="aiQuery" placeholder="Ask something about printing..." rows="2"></textarea>
+<button onclick="askAI()">Ask AI</button>
+<p id="aiResponse" style="white-space:pre-wrap;"></p>
+</div>
+
+<!-- New Tools -->
+<div class="tool">
+<h3>Image → PDF</h3>
+<input type="file" id="imgToPdf" accept="image/*" multiple>
+<button onclick="generateImagePDF()">Generate PDF</button>
+</div>
+
+<div class="tool">
+<h3>Word → PDF</h3>
+<input type="file" id="wordToPdf" accept=".doc,.docx">
+<button onclick="generateWordPDF()">Generate PDF</button>
+</div>
+
+<div class="tool">
+<h3>Image Size Reducer</h3>
+<input type="file" id="imgCompressor" accept="image/*" multiple>
+<button onclick="compressImages()">Compress & Download</button>
+</div>
+
+<div class="tool">
+<h3>Online CV Builder</h3>
+<label>Name:</label><input type="text" id="cvName">
+<label>Email:</label><input type="email" id="cvEmail">
+<label>Phone:</label><input type="text" id="cvPhone">
+<label>Skills:</label><input type="text" id="cvSkills" placeholder="Separate by commas">
+<button onclick="generateCV()">Generate CV PDF</button>
+</div>
+
 </section>
 
 <section id="contact">
-    <h2 class="section-title">Contact Us</h2>
-    <p style="text-align:center;">
-        📍 Nijgadh municipality ward no 8, Bara, Madhesh Province, Nepal<br>
-        ✉️ Email: prntcare@gmail.com<br>
-        📞 WhatsApp: +9779811809093
-    </p>
-    <div class="contact-buttons">
-        <a href="https://www.facebook.com/care" target="_blank">Facebook</a>
-        <a href="https://wa.me/9779811809093" target="_blank">WhatsApp</a>
-    </div>
+<h2>Contact Us</h2>
+<p>Address: Nijgadh Municipality, Ward No 8, Bara District, Madhesh Province, Nepal</p>
+<p>Email: <a href="mailto:prntcare@gmail.com">prntcare@gmail.com</a></p>
+<p>WhatsApp: <a href="https://wa.me/9779811809093">+9779811809093</a></p>
+<p>Managing Director: Unish Neupane</p>
 </section>
 
-<footer class="footer">
-    &copy; 2025 Print Care – All Rights Reserved
+<section id="upload">
+<h2>Upload Images (Drag & Drop / Multi Upload)</h2>
+<div class="upload-section" id="dropZone" style="border:2px dashed #1e88e5; padding:30px; border-radius:15px; text-align:center;">
+<p>Drag & drop images here, or click to select multiple files.</p>
+<input type="file" id="imgUploader" accept="image/*" multiple style="display:none;">
+<br>
+<button onclick="uploadMultiple()">Upload & Save All</button>
+</div>
+</section>
+
+<div class="popup-overlay" id="popupOverlay">
+<div class="popup-content" id="popupContent">
+<p id="popupMessage">Popup Message</p>
+<button onclick="closePopup()">Close</button>
+</div>
+</div>
+
+<footer>
+&copy; 2025 Print Care - All Rights Reserved
 </footer>
 
 <script>
-    // Preeti ↔ Unicode Converter
-    const preetiMap = {
-        'f': 'क','{': 'ख','d': 'ग','D': 'घ','t': 'ङ',
-        'j': 'च','J': 'छ','q': 'ज','Q': 'झ','k': 'ञ',
-        'l': 'ट','L': 'ठ','m': 'ड','M': 'ढ','n': 'ण',
-        'u': 'त','U': 'थ','i': 'द','I': 'ध','o': 'न',
-        'p': 'प','P': 'फ',';': 'ब','x': 'भ','b': 'म',
-        'c': 'य','C': 'र','v': 'ल','V': 'व','z': 'श'
-        // Add more mappings as needed
-    };
+// ---------- Sound ----------
+function playSound(){ document.getElementById('clickSound').play(); }
 
-    function preetiToUnicode() {
-        const text = document.getElementById("preetiInput").value;
-        let result = "";
-        for (let ch of text) {
-            result += preetiMap[ch] || ch;
+// ---------- Popup ----------
+function showPopup(msg){ document.getElementById('popupMessage').innerText = msg; document.getElementById('popupOverlay').style.display='flex'; playSound();}
+function closePopup(){ document.getElementById('popupOverlay').style.display='none';}
+
+// ---------- WhatsApp ----------
+function orderProduct(productName){
+    showPopup(`Opening WhatsApp for: ${productName}`);
+    const waNumber='9779811809093';
+    const msg=encodeURIComponent(`Hello, I want to order: ${productName}`);
+    window.open(`https://wa.me/${waNumber}?text=${msg}`,'_blank');
+}
+
+// ---------- Slider ----------
+let slideIndex=0;
+const slider=document.getElementById('slider');
+function updateSlider(){ const slides=slider.children; if(slides.length===0) return; const slideWidth=slides[0].offsetWidth+30; slider.style.transform=`translateX(-${slideIndex*slideWidth}px)`;}
+document.getElementById('next').addEventListener('click',()=>{slideIndex=(slideIndex+1)%slider.children.length; updateSlider(); playSound();});
+document.getElementById('prev').addEventListener('click',()=>{slideIndex=(slideIndex-1+slider.children.length)%slider.children.length; updateSlider(); playSound();});
+setInterval(()=>{ if(slider.children.length>0){ slideIndex=(slideIndex+1)%slider.children.length; updateSlider(); } },4000);
+
+// ---------- Preeti ↔ Unicode ----------
+const preetiMap={'á':'क','â':'ख','ä':'ग','ã':'घ','å':'ङ','æ':'च','ç':'छ','è':'ज','é':'झ','ê':'ञ'};
+function convertPreeti(){ const text=document.getElementById('preetiText').value; let result=''; for(let i=0;i<text.length;i++){ result+=preetiMap[text[i]]||text[i];} document.getElementById('preetiText').value=result;}
+
+// ---------- Date Converter ----------
+function convertDate(){ const input=document.getElementById('dateInput').value; if(!input){ alert('Select a date first!'); return; } const date=new Date(input); const nepaliMonths=["बैशाख","जेठ","आषाढ","श्रावण","भाद्र","आश्विन","कार्तिक","मंसिर","पौष","माघ","फाल्गुन","चैत्र"]; const nepaliDate=`${date.getDate()} ${nepaliMonths[date.getMonth()]} ${date.getFullYear()+57}`; document.getElementById('dateResult').innerText="Nepali Date: "+nepaliDate;}
+
+// ---------- AI Assistant ----------
+async function askAI(){
+    const query = document.getElementById('aiQuery').value;
+    if(!query){ alert('Ask something first!'); return; }
+    document.getElementById('aiResponse').innerText = "Thinking... 🤖";
+
+    try {
+        const res = await fetch('https://printcare-ai.workers.dev', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({question: query})
+        });
+        const data = await res.json();
+        document.getElementById('aiResponse').innerText = data.answer;
+    } catch(e){
+        document.getElementById('aiResponse').innerText = "Error contacting AI.";
+        console.error(e);
+    }
+}
+
+// ---------- Visitor Tracking ----------
+fetch('https://ipapi.co/json/')
+.then(res=>res.json())
+.then(data=>{
+    console.log('Visitor Info:',data);
+});
+
+// ---------- Drag & Drop Upload ----------
+const dropZone=document.getElementById('dropZone');
+const imgInput=document.getElementById('imgUploader');
+dropZone.addEventListener('click',()=> imgInput.click());
+dropZone.addEventListener('dragover',e=>{ e.preventDefault(); dropZone.style.background='#e3f2fd'; });
+dropZone.addEventListener('dragleave',e=>{ e.preventDefault(); dropZone.style.background='white'; });
+dropZone.addEventListener('drop',e=>{ e.preventDefault(); dropZone.style.background='white'; imgInput.files=e.dataTransfer.files; });
+
+// ---------- GitHub Upload ----------
+const owner="Prntcare";
+const repo="printcare";
+const branch="main";
+const token="YOUR_PERSONAL_ACCESS_TOKEN_HERE"; // Replace with token
+
+async function uploadMultiple(){
+  const files=imgInput.files;
+  if(!files.length){ alert('Select files first!'); return; }
+  for(let i=0;i<files.length;i++){
+    const file=files[i];
+    const reader=new FileReader();
+    reader.onload=async function(e){
+      const content=btoa(e.target.result.split(",")[1]);
+      const path=file.name;
+      let sha=null;
+      const resp=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`,{ headers:{Authorization:`token ${token}`} });
+      if(resp.status===200){ sha=(await resp.json()).sha; }
+      const res=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`,{
+        method:"PUT",
+        headers:{Authorization:`token ${token}`,"Content-Type":"application/json"},
+        body: JSON.stringify({ message:`Upload ${file.name}`, content:content, branch:branch, sha:sha })
+      });
+      if(res.ok){
+        const url=`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file.name}?timestamp=${new Date().getTime()}`;
+        const name=file.name.toLowerCase();
+        if(name.includes('logo')) document.getElementById('logo').src=url;
+        else if(name.includes('featured')) {
+          const slide=document.createElement('div');
+          slide.className='slide';
+          slide.innerHTML=`<img src="${url}" alt="${file.name}"><h3>${file.name}</h3><p>Description</p><p class="price">NPR 0</p><button class="button order" onclick="orderProduct('${file.name}')">Order Now</button>`;
+          slider.appendChild(slide);
+          updateSlider();
         }
-        document.getElementById("preetiOutput").value = result;
-    }
-
-    function unicodeToPreeti() {
-        const reverseMap = Object.fromEntries(Object.entries(preetiMap).map(([k,v]) => [v,k]));
-        const text = document.getElementById("preetiInput").value;
-        let result = "";
-        for (let ch of text) {
-            result += reverseMap[ch] || ch;
+        else if(name.includes('work')){
+          const work=document.createElement('div');
+          work.className='work-card';
+          work.innerHTML=`<img src="${url}" alt="${file.name}"><h3>${file.name}</h3><p>Completed Work</p>`;
+          document.getElementById('worksContainer').appendChild(work);
         }
-        document.getElementById("preetiOutput").value = result;
-    }
-
-    // English ↔ Nepali Date Converter
-    function engToNepDate() {
-        const input = document.getElementById("engDate").value;
-        if (!input) return;
-        const converter = new DateConverter(input);
-        const bs = converter.toBs();
-        document.getElementById("dateOutput").value = `${bs.year}-${bs.month}-${bs.date} (BS)`;
-    }
-
-    function nepToEngDate() {
-        let val = document.getElementById("nepYear").value + "-" +
-                  document.getElementById("nepMonth").value + "-" +
-                  document.getElementById("nepDay").value;
-        const converter = new DateConverter(val);
-        const ad = converter.toAd();
-        document.getElementById("dateOutput").value = `${ad.year}-${ad.month}-${ad.date} (AD)`;
-    }
-</script>
-
-</body>
-</html>
+        else{
+          const prod=document.createElement('div');
+          prod.className='product-card';
+          prod.innerHTML=`<img src="${url}" alt="${file.name}"><h3>${file.name}</h3><p>High quality print service</p><p class="price">NPR 0</p><button class="button order" onclick="orderProduct('${file.name}')">Order Now</button>`;
