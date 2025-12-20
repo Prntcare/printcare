@@ -36,6 +36,8 @@
     .admin input { padding:10px; border-radius:5px; border:none; width:100%; }
     .admin button { padding:10px; border-radius:5px; border:none; background-color:#fff; color:#111; cursor:pointer; }
 
+    #gallery-drop-zone { border:2px dashed #555; border-radius:10px; padding:20px; margin-top:10px; text-align:center; }
+
     #ai-widget { position:fixed; bottom:20px; right:20px; background-color:#222; padding:15px; border-radius:10px; width:250px; color:#fff; display:flex; flex-direction:column; gap:10px; }
     #ai-widget textarea { width:100%; height:80px; padding:5px; border-radius:5px; border:none; resize:none; }
     #ai-widget button { padding:8px; border-radius:5px; border:none; background-color:#fff; color:#111; cursor:pointer; }
@@ -103,7 +105,13 @@
 <section class="admin" id="admin-panel">
     <h2>Admin Dashboard</h2>
     <input type="file" id="upload-logo" accept="image/*">
-    <input type="file" id="upload-gallery" accept="image/*" multiple>
+
+    <label for="upload-gallery" style="cursor:pointer; background-color:#333; padding:10px; border-radius:5px;">
+        Drag & Drop Gallery Images Here or Click to Upload
+        <input type="file" id="upload-gallery" accept="image/*" multiple style="display:none;">
+    </label>
+    <div id="gallery-drop-zone">Drop images here</div>
+
     <button id="save-changes">Save Changes</button>
 </section>
 <div id="ai-widget">
@@ -116,7 +124,7 @@
 </footer>
 <script>
 // Slider Logic
-let slideIndex = 0;
+let slideIndex=0;
 const slides=document.querySelectorAll('.slides img');
 function showSlides(){slides.forEach(img=>img.style.display='none');slideIndex++;if(slideIndex>slides.length)slideIndex=1;slides[slideIndex-1].style.display='block';setTimeout(showSlides,4000);}
 showSlides();
@@ -127,11 +135,17 @@ galleryContainer.addEventListener('click',e=>{if(e.target.tagName==='IMG')window
 
 // Admin Uploads
 const logoInput=document.getElementById('upload-logo');
+logoInput.addEventListener('change',e=>{const file=e.target.files[0];if(file){const reader=new FileReader();reader.onload=evt=>{document.getElementById('logo').src=evt.target.result;};reader.readAsDataURL(file);}});
+
 const galleryInput=document.getElementById('upload-gallery');
+const galleryDropZone=document.getElementById('gallery-drop-zone');
+function handleFiles(files){Array.from(files).forEach(file=>{const reader=new FileReader();const progress=document.createElement('p');progress.textContent=`Uploading ${file.name}...`;galleryContainer.appendChild(progress);reader.onload=evt=>{const img=document.createElement('img');img.src=evt.target.result;galleryContainer.appendChild(img);img.addEventListener('click',()=>window.open(img.src,'_blank'));progress.remove();};reader.readAsDataURL(file);});}
+galleryInput.addEventListener('change',e=>handleFiles(e.target.files));
+galleryDropZone.addEventListener('dragover',e=>{e.preventDefault();galleryDropZone.style.backgroundColor='#333';});
+galleryDropZone.addEventListener('dragleave',e=>{e.preventDefault();galleryDropZone.style.backgroundColor='#222';});
+galleryDropZone.addEventListener('drop',e=>{e.preventDefault();galleryDropZone.style.backgroundColor='#222';handleFiles(e.dataTransfer.files);});
+
 const saveBtn=document.getElementById('save-changes');
-const logoImg=document.getElementById('logo');
-logoInput.addEventListener('change',e=>{const file=e.target.files[0];if(file){const reader=new FileReader();reader.onload=evt=>{logoImg.src=evt.target.result;};reader.readAsDataURL(file);}});
-galleryInput.addEventListener('change',e=>{const files=Array.from(e.target.files);files.forEach(file=>{const reader=new FileReader();const progress=document.createElement('p');progress.textContent=`Uploading ${file.name}...`;galleryContainer.appendChild(progress);reader.onload=evt=>{const img=document.createElement('img');img.src=evt.target.result;galleryContainer.appendChild(img);img.addEventListener('click',()=>window.open(img.src,'_blank'));progress.remove();};reader.readAsDataURL(file);});});
 saveBtn.addEventListener('click',()=>{alert('Changes applied locally (for persistence, backend required).');});
 
 // AI Widget calling Cloudflare Worker
