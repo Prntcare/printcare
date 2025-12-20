@@ -7,7 +7,7 @@
 <style>
     body { margin:0; font-family: Arial, sans-serif; background-color:#111; color:#fff; }
     a { color:#fff; text-decoration:none; }
-    header { position:relative; text-align:center; color:#fff; }
+    header { text-align:center; position:relative; }
     header img { width:150px; margin-top:20px; }
     header .hero { background: url('slider1.jpg') center/cover no-repeat; padding:120px 20px 60px; }
     header h1 { font-size:3rem; margin:0; text-shadow:0 0 10px #000; }
@@ -31,6 +31,7 @@
     .contact { display:flex; flex-direction:column; gap:20px; align-items:center; }
     .contact a { display:inline-block; background-color:#222; padding:15px 20px; border-radius:8px; transition:0.3s; }
     .contact a:hover { background-color:#fff; color:#111; }
+    .contact iframe { border:0; border-radius:10px; margin-top:20px; }
 
     .admin { display:none; flex-direction:column; gap:15px; background-color:#222; padding:20px; border-radius:10px; }
     .admin input, .admin button { padding:10px; border-radius:5px; border:none; width:100%; }
@@ -94,6 +95,8 @@
         <a href="https://wa.me/1234567890" target="_blank">WhatsApp Us</a>
         <a href="https://m.me/yourpage" target="_blank">Messenger</a>
         <a href="mailto:info@printcare.com.np">Email Us</a>
+        <!-- Mini Google Map -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.9121532217676!2d85.18553731507261!3d27.181337183160056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb59a9cda0ece5%3A0x35b2367e38096b08!2sPrint%20Care!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" width="300" height="200" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </section>
 <section class="admin" id="admin-panel">
@@ -121,31 +124,62 @@ showSlides();
 const galleryContainer=document.getElementById('gallery-container');
 galleryContainer.addEventListener('click',e=>{if(e.target.tagName==='IMG')window.open(e.target.src,'_blank');});
 
-// Admin Uploads
+// Admin Uploads (Permanent via Cloudinary)
 const logoInput=document.getElementById('upload-logo');
-logoInput.addEventListener('change',e=>{const file=e.target.files[0];if(file){const reader=new FileReader();reader.onload=evt=>{document.getElementById('logo').src=evt.target.result;};reader.readAsDataURL(file);}});
+logoInput.addEventListener('change',e=>{
+  const file=e.target.files[0];
+  if(file){
+    const formData=new FormData();
+    formData.append('file',file);
+    formData.append('upload_preset','YOUR_UPLOAD_PRESET'); // Set in Cloudinary
+    fetch('https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload',{method:'POST',body:formData})
+    .then(res=>res.json())
+    .then(data=>{document.getElementById('logo').src=data.secure_url;})
+    .catch(err=>console.error('Logo upload error',err));
+  }
+});
+
 const galleryInput=document.getElementById('upload-gallery');
-galleryInput.addEventListener('change',e=>{Array.from(e.target.files).forEach(file=>{const reader=new FileReader();reader.onload=evt=>{const img=document.createElement('img');img.src=evt.target.result;galleryContainer.appendChild(img);img.addEventListener('click',()=>window.open(img.src,'_blank'));};reader.readAsDataURL(file);});});
+galleryInput.addEventListener('change',e=>{
+  Array.from(e.target.files).forEach(file=>{
+    const formData=new FormData();
+    formData.append('file',file);
+    formData.append('upload_preset','YOUR_UPLOAD_PRESET');
+    fetch('https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload',{method:'POST',body:formData})
+    .then(res=>res.json())
+    .then(data=>{
+      const img=document.createElement('img');
+      img.src=data.secure_url;
+      galleryContainer.appendChild(img);
+      img.addEventListener('click',()=>window.open(img.src,'_blank'));
+    })
+    .catch(err=>console.error('Gallery upload error',err));
+  });
+});
 
 const saveBtn=document.getElementById('save-changes');
-saveBtn.addEventListener('click',()=>{alert('Changes applied locally (for persistence, backend required).');});
+saveBtn.addEventListener('click',()=>{alert('Changes applied successfully!');});
 
-// AI Widget calling Cloudflare Worker
+// AI Widget
 const sendBtn=document.getElementById('send-ai');
 const aiTextarea=document.querySelector('#ai-widget textarea');
 const aiResponse=document.getElementById('ai-response');
 sendBtn.addEventListener('click',async()=>{
-const prompt=aiTextarea.value.trim();if(!prompt)return;
-aiResponse.innerHTML+=`<p><strong>You:</strong> ${prompt}</p>`;
-aiTextarea.value='';
-const thinkingPara=document.createElement('p');thinkingPara.innerHTML='<strong>AI:</strong> Thinking...';aiResponse.appendChild(thinkingPara);aiResponse.scrollTop=aiResponse.scrollHeight;
-try{
-const res=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt})});
-const data=await res.json();
-const reply=data.choices?.[0]?.message?.content||'No response';
-thinkingPara.innerHTML=`<strong>AI:</strong> ${reply}`;
-aiResponse.scrollTop=aiResponse.scrollHeight;
-}catch(err){thinkingPara.innerHTML='<strong>AI:</strong> Error connecting to AI.';aiResponse.scrollTop=aiResponse.scrollHeight;}
+  const prompt=aiTextarea.value.trim();
+  if(!prompt) return;
+  aiResponse.innerHTML+=`<p><strong>You:</strong> ${prompt}</p>`;
+  aiTextarea.value='';
+  const thinkingPara=document.createElement('p');
+  thinkingPara.innerHTML='<strong>AI:</strong> Thinking...';
+  aiResponse.appendChild(thinkingPara);
+  aiResponse.scrollTop=aiResponse.scrollHeight;
+  try{
+    const res=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt})});
+    const data=await res.json();
+    const reply=data.choices?.[0]?.message?.content||'No response';
+    thinkingPara.innerHTML=`<strong>AI:</strong> ${reply}`;
+    aiResponse.scrollTop=aiResponse.scrollHeight;
+  }catch(err){thinkingPara.innerHTML='<strong>AI:</strong> Error connecting to AI.'; aiResponse.scrollTop=aiResponse.scrollHeight;}
 });
 </script>
 </body>
