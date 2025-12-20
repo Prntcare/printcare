@@ -58,7 +58,7 @@ saveBtn.addEventListener('click', ()=>{
     alert('Changes applied locally (for persistence, backend required).');
 });
 
-/* --- AI Assistant Integration (Styled & Scrollable) --- */
+/* --- AI Assistant Placeholder (Safe for Cloudflare) --- */
 const sendBtn = document.getElementById('send-ai');
 const aiTextarea = document.querySelector('#ai-widget textarea');
 const aiResponse = document.getElementById('ai-response');
@@ -72,36 +72,14 @@ aiResponse.style.fontSize = '0.9rem';
 aiResponse.style.color = '#fff';
 aiResponse.style.lineHeight = '1.4';
 
-sendBtn.addEventListener('click', async ()=>{
+sendBtn.addEventListener('click', ()=>{
     const prompt = aiTextarea.value.trim();
     if(!prompt) return;
 
     aiResponse.innerHTML += `<p><strong>You:</strong> ${prompt}</p>`;
     aiTextarea.value = '';
-    
-    const thinkingPara = document.createElement('p');
-    thinkingPara.innerHTML = '<strong>AI:</strong> Thinking...';
-    aiResponse.appendChild(thinkingPara);
-    aiResponse.scrollTop = aiResponse.scrollHeight;
 
-    try{
-        const res = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer YOUR_OPENAI_API_KEY' // Replace with your key
-            },
-            body: JSON.stringify({
-                model: 'gpt-3.5-turbo',
-                messages: [{ role: 'user', content: prompt }]
-            })
-        });
-        const data = await res.json();
-        thinkingPara.innerHTML = `<strong>AI:</strong> ${data.choices[0].message.content}`;
-        aiResponse.scrollTop = aiResponse.scrollHeight;
-    } catch(err){
-        thinkingPara.innerHTML = '<strong>AI:</strong> Error connecting to AI.';
-        aiResponse.scrollTop = aiResponse.scrollHeight;
-    }
+    aiResponse.innerHTML += `<p><strong>AI:</strong> This is a placeholder response. AI feature will be enabled via secure backend later.</p>`;
+    aiResponse.scrollTop = aiResponse.scrollHeight;
 });
 </script>
