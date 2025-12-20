@@ -55,7 +55,7 @@ button:hover {
   background: #333;
 }
 
-input[type="file"], input[type="text"], input[type="password"] {
+input {
   padding: 8px;
   width: 100%;
   margin-top: 10px;
@@ -97,10 +97,10 @@ input[type="file"], input[type="text"], input[type="password"] {
   </div>
 </header>
 
-<!-- MAIN -->
+<!-- INTRO -->
 <section>
   <h2>Welcome to Print Care</h2>
-  <p>Click any image or logo to upload (Admin only).</p>
+  <p>Admin login गरेर logo वा gallery image मा click गर्दा upload खुल्छ।</p>
 </section>
 
 <!-- GALLERY -->
@@ -119,7 +119,7 @@ input[type="file"], input[type="text"], input[type="password"] {
   </div>
 </section>
 
-<!-- ADMIN DASHBOARD -->
+<!-- ADMIN PANEL -->
 <section id="adminPanel" class="hidden">
   <div class="admin">
     <h3>Admin Panel</h3>
@@ -128,44 +128,31 @@ input[type="file"], input[type="text"], input[type="password"] {
     <input type="file" id="logoUpload" accept="image/*">
 
     <br><br>
+
     <label><b>Upload Gallery Image</b></label>
     <input type="file" id="galleryUpload" accept="image/*">
   </div>
 </section>
 
 <script>
-// -------- LOGO FIX --------
+/* ---------- GLOBAL ---------- */
+let isAdmin = false;
 const logoImg = document.getElementById("siteLogo");
 const logoInput = document.getElementById("logoUpload");
+const galleryDiv = document.getElementById("gallery");
+const galleryUpload = document.getElementById("galleryUpload");
 
-// Load saved logo
+/* ---------- LOAD SAVED DATA ---------- */
 window.addEventListener("load", () => {
   const savedLogo = localStorage.getItem("printcare_logo");
   if (savedLogo) {
     logoImg.src = savedLogo;
     logoImg.style.display = "block";
   }
-
   loadGallery();
 });
 
-// Upload logo
-if (logoInput) {
-  logoInput.addEventListener("change", function () {
-    const file = this.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      localStorage.setItem("printcare_logo", e.target.result);
-      logoImg.src = e.target.result;
-      logoImg.style.display = "block";
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-// -------- ADMIN LOGIN --------
+/* ---------- ADMIN LOGIN ---------- */
 function login() {
   const u = document.getElementById("username").value;
   const p = document.getElementById("password").value;
@@ -173,16 +160,28 @@ function login() {
   if (u === "admin" && p === "password123") {
     document.getElementById("adminPanel").classList.remove("hidden");
     document.getElementById("loginSection").classList.add("hidden");
+    isAdmin = true;
     alert("Admin Logged In");
   } else {
     alert("Wrong login");
   }
 }
 
-// -------- GALLERY --------
-const galleryDiv = document.getElementById("gallery");
-const galleryUpload = document.getElementById("galleryUpload");
+/* ---------- LOGO UPLOAD ---------- */
+logoInput.addEventListener("change", function () {
+  const file = this.files[0];
+  if (!file) return;
 
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    localStorage.setItem("printcare_logo", e.target.result);
+    logoImg.src = e.target.result;
+    logoImg.style.display = "block";
+  };
+  reader.readAsDataURL(file);
+});
+
+/* ---------- GALLERY ---------- */
 function loadGallery() {
   const images = JSON.parse(localStorage.getItem("printcare_gallery") || "[]");
   galleryDiv.innerHTML = "";
@@ -193,21 +192,32 @@ function loadGallery() {
   });
 }
 
-if (galleryUpload) {
-  galleryUpload.addEventListener("change", function () {
-    const file = this.files[0];
-    if (!file) return;
+galleryUpload.addEventListener("change", function () {
+  const file = this.files[0];
+  if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const images = JSON.parse(localStorage.getItem("printcare_gallery") || "[]");
-      images.push(e.target.result);
-      localStorage.setItem("printcare_gallery", JSON.stringify(images));
-      loadGallery();
-    };
-    reader.readAsDataURL(file);
-  });
-}
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const images = JSON.parse(localStorage.getItem("printcare_gallery") || "[]");
+    images.push(e.target.result);
+    localStorage.setItem("printcare_gallery", JSON.stringify(images));
+    loadGallery();
+  };
+  reader.readAsDataURL(file);
+});
+
+/* ---------- CLICK TO UPLOAD (ADMIN ONLY) ---------- */
+logoImg.addEventListener("click", () => {
+  if (!isAdmin) return;
+  logoInput.click();
+});
+
+galleryDiv.addEventListener("click", (e) => {
+  if (!isAdmin) return;
+  if (e.target.tagName === "IMG") {
+    galleryUpload.click();
+  }
+});
 </script>
 
 </body>
