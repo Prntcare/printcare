@@ -1,224 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Print Care</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  color: #111;
-}
-
-header {
-  background: #000;
-  color: #fff;
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-header h1 {
-  font-size: 42px;
-  margin: 0;
-}
-
-header p {
-  margin: 0;
-  font-size: 14px;
-  color: #ccc;
-}
-
-#siteLogo {
-  height: 80px;
-  display: none;
-  cursor: pointer;
-}
-
-section {
-  padding: 30px;
-}
-
-button {
-  padding: 10px 18px;
-  background: #000;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #333;
-}
-
-input {
-  padding: 8px;
-  width: 100%;
-  margin-top: 10px;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.admin {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-}
-
-.hidden {
-  display: none;
-}
-</style>
-</head>
-
-<body>
-
-<!-- HEADER -->
-<header>
-  <img id="siteLogo" alt="Print Care Logo">
-  <div>
-    <h1>Print Care</h1>
-    <p>Your Complete Printing Solution</p>
-  </div>
-</header>
-
-<!-- INTRO -->
-<section>
-  <h2>Welcome to Print Care</h2>
-  <p>Admin login गरेर logo वा gallery image मा click गर्दा upload खुल्छ।</p>
-</section>
-
-<!-- GALLERY -->
-<section>
-  <h2>Gallery</h2>
-  <div class="gallery" id="gallery"></div>
-</section>
-
-<!-- ADMIN LOGIN -->
-<section id="loginSection">
-  <div class="admin">
-    <h3>Admin Login</h3>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
-</section>
-
-<!-- ADMIN PANEL -->
-<section id="adminPanel" class="hidden">
-  <div class="admin">
-    <h3>Admin Panel</h3>
-
-    <label><b>Upload Logo</b></label>
-    <input type="file" id="logoUpload" accept="image/*">
-
-    <br><br>
-
-    <label><b>Upload Gallery Image</b></label>
-    <input type="file" id="galleryUpload" accept="image/*">
-  </div>
-</section>
-
 <script>
-/* ---------- GLOBAL ---------- */
-let isAdmin = false;
-const logoImg = document.getElementById("siteLogo");
-const logoInput = document.getElementById("logoUpload");
-const galleryDiv = document.getElementById("gallery");
-const galleryUpload = document.getElementById("galleryUpload");
-
-/* ---------- LOAD SAVED DATA ---------- */
-window.addEventListener("load", () => {
-  const savedLogo = localStorage.getItem("printcare_logo");
-  if (savedLogo) {
-    logoImg.src = savedLogo;
-    logoImg.style.display = "block";
-  }
-  loadGallery();
-});
-
-/* ---------- ADMIN LOGIN ---------- */
-function login() {
-  const u = document.getElementById("username").value;
-  const p = document.getElementById("password").value;
-
-  if (u === "admin" && p === "password123") {
-    document.getElementById("adminPanel").classList.remove("hidden");
-    document.getElementById("loginSection").classList.add("hidden");
-    isAdmin = true;
-    alert("Admin Logged In");
-  } else {
-    alert("Wrong login");
-  }
+/* --- Slider Logic --- */
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slides img');
+function showSlides(){
+    slides.forEach((img,i)=> img.style.display = 'none');
+    slideIndex++;
+    if(slideIndex > slides.length) slideIndex = 1;
+    slides[slideIndex-1].style.display = 'block';
+    setTimeout(showSlides, 4000);
 }
+showSlides();
 
-/* ---------- LOGO UPLOAD ---------- */
-logoInput.addEventListener("change", function () {
-  const file = this.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    localStorage.setItem("printcare_logo", e.target.result);
-    logoImg.src = e.target.result;
-    logoImg.style.display = "block";
-  };
-  reader.readAsDataURL(file);
+/* --- Gallery Lightbox --- */
+const galleryContainer = document.getElementById('gallery-container');
+galleryContainer.addEventListener('click', e => {
+    if(e.target.tagName === 'IMG') window.open(e.target.src,'_blank');
 });
 
-/* ---------- GALLERY ---------- */
-function loadGallery() {
-  const images = JSON.parse(localStorage.getItem("printcare_gallery") || "[]");
-  galleryDiv.innerHTML = "";
-  images.forEach(img => {
-    const i = document.createElement("img");
-    i.src = img;
-    galleryDiv.appendChild(i);
-  });
-}
+/* --- Admin Upload Functionality with Live Preview & Progress --- */
+const logoInput = document.getElementById('upload-logo');
+const galleryInput = document.getElementById('upload-gallery');
+const saveBtn = document.getElementById('save-changes');
+const logoImg = document.getElementById('logo');
 
-galleryUpload.addEventListener("change", function () {
-  const file = this.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    const images = JSON.parse(localStorage.getItem("printcare_gallery") || "[]");
-    images.push(e.target.result);
-    localStorage.setItem("printcare_gallery", JSON.stringify(images));
-    loadGallery();
-  };
-  reader.readAsDataURL(file);
+logoInput.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if(file){
+        const reader = new FileReader();
+        reader.onloadstart = () => console.log('Logo upload started...');
+        reader.onload = function(evt){
+            logoImg.src = evt.target.result;
+            console.log('Logo upload complete');
+        }
+        reader.readAsDataURL(file);
+    }
 });
 
-/* ---------- CLICK TO UPLOAD (ADMIN ONLY) ---------- */
-logoImg.addEventListener("click", () => {
-  if (!isAdmin) return;
-  logoInput.click();
+galleryInput.addEventListener('change', e => {
+    const files = Array.from(e.target.files);
+    files.forEach(file => {
+        const reader = new FileReader();
+        const progress = document.createElement('p');
+        progress.textContent = `Uploading ${file.name}...`;
+        galleryContainer.appendChild(progress);
+        reader.onload = function(evt){
+            const img = document.createElement('img');
+            img.src = evt.target.result;
+            galleryContainer.appendChild(img);
+            img.addEventListener('click', ()=> window.open(img.src,'_blank'));
+            progress.remove();
+        }
+        reader.readAsDataURL(file);
+    });
 });
 
-galleryDiv.addEventListener("click", (e) => {
-  if (!isAdmin) return;
-  if (e.target.tagName === "IMG") {
-    galleryUpload.click();
-  }
+saveBtn.addEventListener('click', ()=>{
+    alert('Changes applied locally (for persistence, backend required).');
+});
+
+/* --- AI Assistant Integration (Styled & Scrollable) --- */
+const sendBtn = document.getElementById('send-ai');
+const aiTextarea = document.querySelector('#ai-widget textarea');
+const aiResponse = document.getElementById('ai-response');
+
+aiResponse.style.maxHeight = '200px';
+aiResponse.style.overflowY = 'auto';
+aiResponse.style.padding = '5px';
+aiResponse.style.backgroundColor = '#111';
+aiResponse.style.borderRadius = '5px';
+aiResponse.style.fontSize = '0.9rem';
+aiResponse.style.color = '#fff';
+aiResponse.style.lineHeight = '1.4';
+
+sendBtn.addEventListener('click', async ()=>{
+    const prompt = aiTextarea.value.trim();
+    if(!prompt) return;
+
+    aiResponse.innerHTML += `<p><strong>You:</strong> ${prompt}</p>`;
+    aiTextarea.value = '';
+    
+    const thinkingPara = document.createElement('p');
+    thinkingPara.innerHTML = '<strong>AI:</strong> Thinking...';
+    aiResponse.appendChild(thinkingPara);
+    aiResponse.scrollTop = aiResponse.scrollHeight;
+
+    try{
+        const res = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer YOUR_OPENAI_API_KEY' // Replace with your key
+            },
+            body: JSON.stringify({
+                model: 'gpt-3.5-turbo',
+                messages: [{ role: 'user', content: prompt }]
+            })
+        });
+        const data = await res.json();
+        thinkingPara.innerHTML = `<strong>AI:</strong> ${data.choices[0].message.content}`;
+        aiResponse.scrollTop = aiResponse.scrollHeight;
+    } catch(err){
+        thinkingPara.innerHTML = '<strong>AI:</strong> Error connecting to AI.';
+        aiResponse.scrollTop = aiResponse.scrollHeight;
+    }
 });
 </script>
-
-</body>
-</html>
