@@ -2,230 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Print Care</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Print Care - Landing & Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
 <style>
-body { font-family:'Roboto',sans-serif; margin:0; padding:0; background:#f5f5f5; color:#111; scroll-behavior:smooth;}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #111;
+}
+
 header {
-  background:#222; color:white; text-align:center; padding:30px 10px;
+  background: #000;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-#logo {
-  max-width:180px; margin-bottom:15px; cursor:pointer;
-  border: 3px solid #e53935; border-radius: 15px; box-shadow:0 5px 20px rgba(0,0,0,0.3);
-  transition: transform 0.5s, box-shadow 0.5s, border-color 0.5s;
+
+header h1 {
+  font-size: 42px;
+  margin: 0;
 }
-#logo:hover {
-  transform: scale(1.1) rotate(-3deg);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  border-color: #1e88e5;
-  animation: pulse 1.2s infinite;
+
+header p {
+  margin: 0;
+  font-size: 14px;
+  color: #ccc;
 }
-@keyframes pulse {
-  0% { transform: scale(1.1) rotate(-3deg); }
-  50% { transform: scale(1.15) rotate(-3deg); }
-  100% { transform: scale(1.1) rotate(-3deg); }
+
+#siteLogo {
+  height: 80px;
+  display: none;
+  cursor: pointer;
 }
-#siteTitle { font-size:3.5em; margin:0; }
-#slogan { font-size:1.5em; color:#e53935; margin-top:5px; }
 
-section{padding:40px 20px; max-width:1200px; margin:auto;}
-.products,.works{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
-.product-card,.work-card,.tool{background:white;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);width:280px;text-align:center;transition:0.3s;}
-.product-card img,.work-card img{width:100%;border-radius:12px; cursor:pointer;}
-footer{text-align:center;padding:25px;background:#222;color:white;}
+section {
+  padding: 30px;
+}
 
-/* Right-side fixed menu */
-#rightMenu { position: fixed; top: 50%; right: 0; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; background: rgba(0,0,0,0.6); padding: 10px; border-radius: 10px 0 0 10px; z-index: 1000;}
-#rightMenu a { color: white; font-size: 20px; padding: 12px; background: #222; border-radius: 5px; display:flex; justify-content:center; align-items:center; transition: 0.3s;}
-#rightMenu a:hover { background: #e53935; }
+button {
+  padding: 10px 18px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
 
-/* Floating contact buttons */
-#contactButtons { position:fixed; bottom:20px; left:20px; z-index:10000; display:flex; flex-direction:column; gap:10px; }
-#contactButtons a { color:white; padding:12px 15px; border-radius:50px; display:flex; align-items:center; gap:8px; text-decoration:none; font-weight:bold; font-size:16px;}
-#contactButtons a i { font-size:20px; }
-#contactButtons a.whatsapp { background:#25d366;}
-#contactButtons a.messenger { background:#0084FF; }
-#contactButtons a:hover { opacity:0.85; }
+button:hover {
+  background: #333;
+}
 
-/* AI Assistant */
-#aiAssistant { position:fixed; bottom:20px; right:20px; z-index:10000; }
-#aiToggle { background:#e53935;color:white;border:none;padding:15px;border-radius:50%;cursor:pointer;font-size:20px; }
-#aiChat { display:none; width:300px; height:400px; background:white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.3); margin-bottom:10px; display:flex; flex-direction:column; }
-#aiMessages { flex:1; padding:10px; overflow-y:auto; }
-#aiInput { padding:10px; border:none; border-top:1px solid #ccc; width:100%; }
-#aiSend { padding:10px; background:#222; color:white; border:none; cursor:pointer; }
+input[type="file"], input[type="text"], input[type="password"] {
+  padding: 8px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.admin {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+.hidden {
+  display: none;
+}
 </style>
 </head>
+
 <body>
 
+<!-- HEADER -->
 <header>
-  <img id="logo" src="images/default-logo.png" alt="Print Care Logo">
-  <h1 id="siteTitle">Print Care</h1>
-  <p id="slogan">Where Design Comes To Life</p>
+  <img id="siteLogo" alt="Print Care Logo">
+  <div>
+    <h1>Print Care</h1>
+    <p>Your Complete Printing Solution</p>
+  </div>
 </header>
 
-<!-- Right-side icon menu -->
-<div id="rightMenu">
-  <a href="#services" title="Our Services"><i class="fas fa-print"></i></a>
-  <a href="#featured" title="Featured Products"><i class="fas fa-star"></i></a>
-  <a href="#customPrinting" title="Custom Printing"><i class="fas fa-cogs"></i></a>
-  <a href="#works" title="Photo Gallery"><i class="fas fa-images"></i></a>
-  <a href="#whyChooseUs" title="Why Choose Us"><i class="fas fa-thumbs-up"></i></a>
-  <a href="#tools" title="Tools"><i class="fas fa-toolbox"></i></a>
-  <a href="#upload" title="Upload Design"><i class="fas fa-upload"></i></a>
-  <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
-</div>
+<!-- MAIN -->
+<section>
+  <h2>Welcome to Print Care</h2>
+  <p>Click any image or logo to upload (Admin only).</p>
+</section>
 
-<!-- Floating WhatsApp & Messenger buttons -->
-<div id="contactButtons">
-  <a href="https://wa.me/9779811809093" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-  <a href="https://m.me/prntcare" target="_blank" class="messenger"><i class="fab fa-facebook-messenger"></i> Messenger</a>
-</div>
+<!-- GALLERY -->
+<section>
+  <h2>Gallery</h2>
+  <div class="gallery" id="gallery"></div>
+</section>
 
-<!-- AI Assistant -->
-<div id="aiAssistant">
-  <button id="aiToggle"><i class="fas fa-robot"></i></button>
-  <div id="aiChat">
-    <div id="aiMessages"></div>
-    <input type="text" id="aiInput" placeholder="Ask me anything...">
-    <button id="aiSend">Send</button>
+<!-- ADMIN LOGIN -->
+<section id="loginSection">
+  <div class="admin">
+    <h3>Admin Login</h3>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
   </div>
-</div>
-
-<!-- Sections -->
-<section id="services">
-<h2>Our Printing Services</h2>
-<div class="products">
-  <div class="product-card"><img src="images/service1.jpg" alt="Business Cards"><h3>Business Cards</h3></div>
-  <div class="product-card"><img src="images/service2.jpg" alt="Flyers"><h3>Flyers & Brochures</h3></div>
-  <div class="product-card"><img src="images/service3.jpg" alt="Banners"><h3>Banners & Posters</h3></div>
-</div>
 </section>
 
-<section id="featured">
-<h2>Featured Products</h2>
-<div class="products">
-  <div class="product-card"><img src="images/product1.jpg" alt="Product 1"><h3>Product 1</h3></div>
-  <div class="product-card"><img src="images/product2.jpg" alt="Product 2"><h3>Product 2</h3></div>
-</div>
-</section>
+<!-- ADMIN DASHBOARD -->
+<section id="adminPanel" class="hidden">
+  <div class="admin">
+    <h3>Admin Panel</h3>
 
-<section id="customPrinting">
-<h2>Custom Printing Solutions</h2>
-<p>We provide tailor-made printing solutions for businesses and individuals. Upload your design, choose your material, and get high-quality prints delivered fast.</p>
-</section>
+    <label><b>Upload Logo</b></label>
+    <input type="file" id="logoUpload" accept="image/*">
 
-<section id="works">
-<h2>Photo Gallery</h2>
-<div class="works">
-  <div class="work-card"><img src="images/work1.jpg" alt="Work 1"></div>
-  <div class="work-card"><img src="images/work2.jpg" alt="Work 2"></div>
-  <div class="work-card"><img src="images/logo-gallery.jpg" alt="Logo Image"></div>
-</div>
+    <br><br>
+    <label><b>Upload Gallery Image</b></label>
+    <input type="file" id="galleryUpload" accept="image/*">
+  </div>
 </section>
-
-<section id="whyChooseUs">
-<h2>Why Choose Print Care?</h2>
-<ul>
-  <li>High-quality printing materials</li>
-  <li>Fast turnaround and delivery</li>
-  <li>Affordable prices for every business</li>
-  <li>Expert support for custom designs</li>
-</ul>
-</section>
-
-<section id="tools">
-<h2>Online Tools</h2>
-<p>Tools are available, but editing is disabled for public.</p>
-</section>
-
-<section id="upload">
-<h2>Upload Your Design</h2>
-<div id="uploadSection">
-<p>Click any logo, slider, or gallery image to upload a new image.</p>
-<input type="file" id="imgUploader" multiple style="display:none;">
-<button onclick="uploadMultiple()">Upload & Save</button>
-</div>
-</section>
-
-<section id="location">
-<h2>Our Location</h2>
-<iframe
-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.123456!2d85.121234!3d27.012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb123456789abc%3A0xabcdef1234567890!2sNijgadh%20Municipality%2C%20Bara%2C%20Nepal!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp"
-width="100%" height="250" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
-</section>
-
-<section id="contact">
-<h2>Contact Us</h2>
-<p>Email: prntcare@gmail.com</p>
-<p>Phone: +9779811809093</p>
-</section>
-
-<footer>&copy; 2025 Print Care</footer>
 
 <script>
-// Load logo from gallery or default
-window.addEventListener('DOMContentLoaded', ()=>{
-  const galleryImages = document.querySelectorAll('.works img');
-  const logoImg = document.getElementById('logo');
+// -------- LOGO FIX --------
+const logoImg = document.getElementById("siteLogo");
+const logoInput = document.getElementById("logoUpload");
 
-  if(galleryImages.length > 0){
-    let loaded = false;
-    galleryImages.forEach(img=>{
-      img.addEventListener('load', ()=>{
-        if(!loaded){ 
-          logoImg.src = img.src; loaded = true;
-        }
-      });
-      if(img.complete && !loaded){ logoImg.src = img.src; loaded = true; }
-    });
+// Load saved logo
+window.addEventListener("load", () => {
+  const savedLogo = localStorage.getItem("printcare_logo");
+  if (savedLogo) {
+    logoImg.src = savedLogo;
+    logoImg.style.display = "block";
   }
 
-  // Make all images clickable for upload
-  document.querySelectorAll('img').forEach(img=>{
-    img.addEventListener('click', ()=>{
-      document.getElementById('uploadSection').scrollIntoView({behavior:'smooth'});
-      document.getElementById('imgUploader').click();
-    });
-  });
+  loadGallery();
 });
 
-// Upload simulation
-function uploadMultiple(){
-  const files=document.getElementById('imgUploader').files;
-  if(files.length===0){ alert("No files selected!"); return; }
-  alert(files.length + " file(s) ready to upload.");
+// Upload logo
+if (logoInput) {
+  logoInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      localStorage.setItem("printcare_logo", e.target.result);
+      logoImg.src = e.target.result;
+      logoImg.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
-// AI Assistant
-const aiToggle=document.getElementById('aiToggle');
-const aiChat=document.getElementById('aiChat');
-const aiMessages=document.getElementById('aiMessages');
-const aiInput=document.getElementById('aiInput');
-const aiSend=document.getElementById('aiSend');
+// -------- ADMIN LOGIN --------
+function login() {
+  const u = document.getElementById("username").value;
+  const p = document.getElementById("password").value;
 
-aiToggle.addEventListener('click',()=>{ aiChat.style.display = aiChat.style.display==='flex'?'none':'flex'; });
-aiSend.addEventListener('click',()=>{ sendAI(); });
-
-function sendAI(){
-  const userText=aiInput.value.trim();
-  if(!userText) return;
-  const userMsg=document.createElement('div'); userMsg.style.textAlign='right'; userMsg.style.margin='5px';
-  userMsg.innerHTML=`<strong>You:</strong> ${userText}`; aiMessages.appendChild(userMsg);
-  aiInput.value='';
-  const aiMsg=document.createElement('div'); aiMsg.style.textAlign='left'; aiMsg.style.margin='5px';
-  aiMsg.innerHTML=`<strong>AI:</strong> ${getAIResponse(userText)}`; aiMessages.appendChild(aiMsg);
-  aiMessages.scrollTop=aiMessages.scrollHeight;
+  if (u === "admin" && p === "password123") {
+    document.getElementById("adminPanel").classList.remove("hidden");
+    document.getElementById("loginSection").classList.add("hidden");
+    alert("Admin Logged In");
+  } else {
+    alert("Wrong login");
+  }
 }
 
-function getAIResponse(text){
-  text=text.toLowerCase();
-  if(text.includes("help")) return "Sure! I can help you with printing services or tools.";
-  if(text.includes("service")) return "We provide business cards, flyers, banners, and custom printing.";
-  if(text.includes("upload")) return "Click on any image or the Upload Design section to add your design.";
-  return "I am here to assist you. You can ask about services, tools, or uploading designs.";
+// -------- GALLERY --------
+const galleryDiv = document.getElementById("gallery");
+const galleryUpload = document.getElementById("galleryUpload");
+
+function loadGallery() {
+  const images = JSON.parse(localStorage.getItem("printcare_gallery") || "[]");
+  galleryDiv.innerHTML = "";
+  images.forEach(img => {
+    const i = document.createElement("img");
+    i.src = img;
+    galleryDiv.appendChild(i);
+  });
+}
+
+if (galleryUpload) {
+  galleryUpload.addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const images = JSON.parse(localStorage.getItem("printcare_gallery") || "[]");
+      images.push(e.target.result);
+      localStorage.setItem("printcare_gallery", JSON.stringify(images));
+      loadGallery();
+    };
+    reader.readAsDataURL(file);
+  });
 }
 </script>
 
