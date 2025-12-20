@@ -5,91 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PrintCare</title>
 <style>
-/* Global Styles */
-body { margin:0; font-family: Arial, sans-serif; background-color:#fff; color:#111; scroll-behavior:smooth; }
-a { color:#111; text-decoration:none; }
-button { cursor:pointer; }
+  body { margin:0; font-family: Arial, sans-serif; background-color:#fff; color:#111; scroll-behavior:smooth; }
+  a { color:#111; text-decoration:none; }
+  nav { position:sticky; top:0; display:flex; justify-content:center; gap:20px; background-color:#fff; padding:15px 0; z-index:1000; border-bottom:1px solid #ddd; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
+  nav a { padding:10px 20px; border-radius:5px; transition:0.3s; font-weight:bold; }
+  nav a:hover { background-color:#f39c12; color:#fff; }
 
-/* Navigation */
-nav { position:sticky; top:0; display:flex; justify-content:center; gap:20px; background-color:#fff; padding:15px 0; z-index:1000; border-bottom:1px solid #ddd; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
-nav a { padding:10px 20px; border-radius:5px; transition:0.3s; font-weight:bold; }
-nav a:hover { background-color:#f39c12; color:#fff; }
+  /* Hero */
+  .hero { position:relative; overflow:hidden; height:80vh; }
+  .hero-slider img { width:100%; height:100%; object-fit:cover; display:none; }
+  .hero-text { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; color:#111; opacity:0; transition:1s ease; }
+  .hero-text.show { opacity:1; }
+  .hero-text small { font-size:1.2rem; display:block; margin-bottom:10px; font-weight:500; }
+  .hero-text h1 { font-size:3rem; margin:0; font-weight:700; }
+  .hero-text button { margin-top:20px; padding:15px 30px; font-size:1rem; border:none; border-radius:5px; background-color:#f39c12; color:#fff; cursor:pointer; transition:0.3s; }
+  .hero-text button:hover { background-color:#e67e22; }
 
-/* Hero Section */
-.hero { position:relative; overflow:hidden; height:80vh; }
-.hero-slider img { width:100%; height:100%; object-fit:cover; display:none; }
-.hero-text { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; color:#111; opacity:0; transition:1s ease; }
-.hero-text.show { opacity:1; }
-.hero-text small { font-size:1.2rem; display:block; margin-bottom:10px; font-weight:500; }
-.hero-text h1 { font-size:3rem; margin:0; font-weight:700; }
-.hero-text button { margin-top:20px; padding:15px 30px; font-size:1rem; border:none; border-radius:5px; background-color:#f39c12; color:#fff; transition:0.3s; }
-.hero-text button:hover { background-color:#e67e22; }
+  section { padding:80px 20px; max-width:1200px; margin:0 auto; opacity:0; transform:translateY(50px); transition:1s ease; }
+  section.show { opacity:1; transform:translateY(0); }
+  h2 { font-size:2rem; color:#111; border-bottom:2px solid #f39c12; display:inline-block; margin-bottom:30px; }
 
-/* Sections */
-section { padding:80px 20px; max-width:1200px; margin:0 auto; opacity:0; transform:translateY(50px); transition:1s ease; }
-section.show { opacity:1; transform:translateY(0); }
-h2 { font-size:2rem; color:#111; border-bottom:2px solid #f39c12; display:inline-block; margin-bottom:30px; }
+  .cards { display:flex; flex-wrap:wrap; gap:30px; justify-content:center; }
+  .card { background-color:#f9f9f9; padding:25px; border-radius:15px; flex:1 1 250px; text-align:center; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:0.5s; cursor:pointer; transform:translateY(0); }
+  .card img { max-width:80px; margin-bottom:15px; }
+  .card:hover { transform:translateY(-10px) scale(1.03); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
 
-.cards { display:flex; flex-wrap:wrap; gap:30px; justify-content:center; }
-.card { background-color:#f9f9f9; padding:25px; border-radius:15px; flex:1 1 250px; text-align:center; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:0.5s; cursor:pointer; }
-.card img { max-width:80px; margin-bottom:15px; }
-.card:hover { transform:translateY(-10px) scale(1.03); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
+  .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; }
+  .gallery img { width:100%; border-radius:15px; cursor:pointer; transition:0.3s; }
+  .gallery img:hover { transform:scale(1.05); }
 
-.gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; }
-.gallery img { width:100%; border-radius:15px; cursor:pointer; transition:0.3s; }
-.gallery img:hover { transform:scale(1.05); }
+  .testimonials { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+  .testimonial { background-color:#f9f9f9; padding:20px; border-radius:15px; flex:1 1 250px; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:0.5s; }
+  .testimonial:hover { transform:translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.15); }
 
-.testimonials { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-.testimonial { background-color:#f9f9f9; padding:20px; border-radius:15px; flex:1 1 250px; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:0.5s; }
-.testimonial:hover { transform:translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.15); }
+  .contact { display:flex; flex-direction:column; gap:15px; align-items:center; }
+  .contact a { display:inline-block; background-color:#f9f9f9; padding:12px 20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:0.3s; }
+  .contact a:hover { background-color:#f39c12; color:#fff; }
+  .contact iframe { border:0; border-radius:10px; margin-top:20px; width:300px; height:200px; }
 
-.contact { display:flex; flex-direction:column; gap:15px; align-items:center; }
-.contact a { display:inline-block; background-color:#f9f9f9; padding:12px 20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:0.3s; }
-.contact a:hover { background-color:#f39c12; color:#fff; }
-.contact iframe { border:0; border-radius:10px; margin-top:20px; width:300px; height:200px; }
+  .admin { display:none; flex-direction:column; gap:15px; background-color:#f9f9f9; padding:20px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+  .admin input, .admin button { padding:10px; border-radius:5px; border:1px solid #ccc; width:100%; }
+  .admin button { background-color:#f39c12; color:#fff; cursor:pointer; border:none; }
 
-/* Admin */
-.admin { display:none; flex-direction:column; gap:15px; background-color:#f9f9f9; padding:20px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
-.admin input, .admin button { padding:10px; border-radius:5px; border:1px solid #ccc; width:100%; }
-.admin button { background-color:#f39c12; color:#fff; cursor:pointer; border:none; }
+  #ai-widget { position:fixed; bottom:20px; right:20px; background-color:#f9f9f9; padding:15px; border-radius:10px; width:250px; display:flex; flex-direction:column; gap:10px; color:#111; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+  #ai-widget textarea { width:100%; height:80px; padding:5px; border-radius:5px; border:1px solid #ccc; resize:none; }
+  #ai-widget button { padding:8px; border-radius:5px; border:none; background-color:#f39c12; color:#fff; cursor:pointer; }
+  #ai-response { max-height:200px; overflow-y:auto; padding:5px; background-color:#fff; border-radius:5px; font-size:0.9rem; color:#111; line-height:1.4; }
 
-/* AI Widget */
-#ai-widget { position:fixed; bottom:20px; right:20px; background-color:#f9f9f9; padding:15px; border-radius:10px; width:250px; display:flex; flex-direction:column; gap:10px; color:#111; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
-#ai-widget textarea { width:100%; height:80px; padding:5px; border-radius:5px; border:1px solid #ccc; resize:none; }
-#ai-widget button { padding:8px; border-radius:5px; border:none; background-color:#f39c12; color:#fff; cursor:pointer; }
-#ai-response { max-height:200px; overflow-y:auto; padding:5px; background-color:#fff; border-radius:5px; font-size:0.9rem; color:#111; line-height:1.4; }
+  footer { background-color:#f2f2f2; color:#111; padding:40px 20px; display:flex; flex-wrap:wrap; justify-content:space-between; }
+  footer .footer-section { flex:1 1 200px; margin-bottom:20px; }
+  footer a { display:block; color:#111; margin-bottom:10px; }
+  footer a:hover { color:#f39c12; }
 
-/* Footer */
-footer { background-color:#f2f2f2; color:#111; padding:40px 20px; display:flex; flex-wrap:wrap; justify-content:space-between; }
-footer .footer-section { flex:1 1 200px; margin-bottom:20px; }
-footer a { display:block; color:#111; margin-bottom:10px; }
-footer a:hover { color:#f39c12; }
-
-/* Right-side popup slider */
-#right-slider { position:fixed; top:50%; right:0; transform:translateY(-50%); z-index:1000; font-family:Arial, sans-serif; }
-.slider-tab { position:relative; }
-.slider-handle { display:block; background-color:#f39c12; color:#fff; padding:10px 12px; border-radius:5px 0 0 5px; cursor:pointer; font-weight:bold; transition:0.3s; }
-.slider-content { position:absolute; right:100%; top:0; display:flex; flex-direction:column; gap:10px; background-color:#f39c12; padding:10px; border-radius:5px 0 0 5px; transform:translateX(100%); transition:transform 0.3s ease; white-space:nowrap; }
-.slider-tab.active .slider-content { transform:translateX(0); }
-.slider-btn { background-color:#fff; color:#f39c12; border:none; border-radius:5px; padding:8px 12px; cursor:pointer; font-weight:bold; }
-.slider-btn:hover { background-color:#e67e22; color:#fff; }
-
-/* Mobile Responsive */
-@media(max-width:768px){
-  nav { flex-direction:column; }
-  .hero-text h1 { font-size:2rem; }
-  section { padding:50px 15px; }
-  footer { flex-direction:column; }
-  #right-slider { top:auto; bottom:20px; right:20px; transform:none; display:flex; flex-direction:row; }
-  .slider-tab { flex-direction:row; }
-  .slider-handle { border-radius:5px; }
-  .slider-content { position:relative; right:auto; top:auto; transform:none; flex-direction:row; gap:10px; padding:5px; border-radius:5px; display:none; }
-  .slider-tab.active .slider-content { display:flex; }
-  .cards { flex-direction:column; gap:20px; }
-  .gallery { grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); }
-  .contact form { width:100%; }
-  .hero-text small { font-size:1rem; }
-}
+  @media(max-width:768px){
+    nav { flex-direction:column; }
+    .hero-text h1 { font-size:2rem; }
+    section { padding:50px 15px; }
+    footer { flex-direction:column; }
+  }
 </style>
 </head>
 <body>
@@ -117,39 +90,41 @@ footer a:hover { color:#f39c12; }
   </div>
 </div>
 
-<!-- Services Section -->
+<!-- Services -->
 <section id="services">
   <h2>Our Services</h2>
   <div class="cards">
-    <div class="card"><img src="service1.jpg" alt=""><h3>Printing</h3><p>High-quality printing for all your business and personal needs.</p></div>
-    <div class="card"><img src="service2.jpg" alt=""><h3>Designing</h3><p>Professional design services to bring your ideas to life.</p></div>
-    <div class="card"><img src="service3.jpg" alt=""><h3>Packaging</h3><p>Custom packaging solutions for products of any size.</p></div>
-    <div class="card"><img src="service4.jpg" alt=""><h3>Custom Solutions</h3><p>Tailored printing solutions to match your unique requirements.</p></div>
+    <div class="card"><img src="service1.jpg" alt="Printing"><h3>Printing</h3><p>High-quality printing for all your business and personal needs.</p></div>
+    <div class="card"><img src="service2.jpg" alt="Designing"><h3>Designing</h3><p>Professional design services to bring your ideas to life.</p></div>
+    <div class="card"><img src="service3.jpg" alt="Packaging"><h3>Packaging</h3><p>Custom packaging solutions for products of any size.</p></div>
+    <div class="card"><img src="service4.jpg" alt="Custom Solutions"><h3>Custom Solutions</h3><p>Tailored printing solutions to match your unique requirements.</p></div>
   </div>
 </section>
 
-<!-- Tools Section -->
+<!-- Tools -->
 <section id="tools">
   <h2>Our Tools</h2>
   <div class="cards">
-    <div class="card"><img src="tool1.png" alt=""><h3>Preeti ↔ Unicode</h3><p>Quick Nepali font conversion tool.</p></div>
-    <div class="card"><img src="tool2.png" alt=""><h3>Image → PDF</h3><p>Convert images to high-quality PDFs easily.</p></div>
-    <div class="card"><img src="tool3.png" alt=""><h3>Word → PDF</h3><p>Instantly convert Word documents to PDF format.</p></div>
-    <div class="card"><img src="tool4.png" alt=""><h3>Image Compressor</h3><p>Reduce image sizes without losing quality.</p></div>
+    <div class="card"><img src="tool1.png" alt="Preeti Unicode"><h3>Preeti ↔ Unicode</h3><p>Quick Nepali font conversion tool.</p></div>
+    <div class="card"><img src="tool2.png" alt="Image to PDF"><h3>Image → PDF</h3><p>Convert images to high-quality PDFs easily.</p></div>
+    <div class="card"><img src="tool3.png" alt="Word to PDF"><h3>Word → PDF</h3><p>Instantly convert Word documents to PDF format.</p></div>
+    <div class="card"><img src="tool4.png" alt="Image Compressor"><h3>Image Compressor</h3><p>Reduce image sizes without losing quality.</p></div>
+    <div class="card"><img src="tool5.png" alt="CV Builder"><h3>CV Builder</h3><p>Create professional resumes in minutes.</p></div>
+    <div class="card"><img src="tool6.png" alt="Date Converter"><h3>Date Converter</h3><p>Convert dates between Nepali and English formats.</p></div>
   </div>
 </section>
 
-<!-- Gallery Section -->
+<!-- Gallery -->
 <section id="gallery">
   <h2>Gallery</h2>
   <div class="gallery" id="gallery-container">
-    <img src="gallery1.jpg" alt="">
-    <img src="gallery2.jpg" alt="">
-    <img src="gallery3.jpg" alt="">
+    <img src="gallery1.jpg" alt="Gallery 1">
+    <img src="gallery2.jpg" alt="Gallery 2">
+    <img src="gallery3.jpg" alt="Gallery 3">
   </div>
 </section>
 
-<!-- Testimonials Section -->
+<!-- Testimonials -->
 <section id="testimonials">
   <h2>Testimonials</h2>
   <div class="testimonials">
@@ -159,7 +134,7 @@ footer a:hover { color:#f39c12; }
   </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Contact -->
 <section id="contact">
   <h2>Contact Us</h2>
   <div class="contact">
@@ -176,7 +151,7 @@ footer a:hover { color:#f39c12; }
   </div>
 </section>
 
-<!-- Admin Section -->
+<!-- Admin -->
 <section class="admin" id="admin-panel">
   <h2>Admin Dashboard</h2>
   <input type="file" id="upload-logo" accept="image/*">
@@ -191,18 +166,6 @@ footer a:hover { color:#f39c12; }
   <div id="ai-response"></div>
 </div>
 
-<!-- Right-side popup slider -->
-<div id="right-slider">
-  <div class="slider-tab">
-    <span class="slider-handle">▶</span>
-    <div class="slider-content">
-      <button class="slider-btn" data-target="services">Services</button>
-      <button class="slider-btn" data-target="tools">Tools</button>
-      <button class="slider-btn" data-target="ai-widget">AI Chatbot</button>
-    </div>
-  </div>
-</div>
-
 <!-- Footer -->
 <footer>
   <div class="footer-section">
@@ -214,9 +177,9 @@ footer a:hover { color:#f39c12; }
   </div>
   <div class="footer-section">
     <h4>Contact Info</h4>
-    <p>Email: info@printcare.com.np</p>
-    <p>Phone: +977 1234567890</p>
-    <p>Address: Kathmandu, Nepal</p>
+    <p>Email: prntcare@gmail.com</p>
+    <p>Phone: +977 9811809093</p>
+    <p>Address: Nijgadh, Nepal</p>
   </div>
   <div class="footer-section">
     <h4>Follow Us</h4>
@@ -230,14 +193,8 @@ footer a:hover { color:#f39c12; }
 // Hero Slider
 let slideIndex=0;
 const slides=document.querySelectorAll('.hero-slider img');
-function showSlides(){slides.forEach(s=>s.style.display='none'); slideIndex++; if(slideIndex>slides.length) slideIndex=1; slides[slideIndex-1].style.display='block'; setTimeout(showSlides,4000);}
+function showSlides(){slides.forEach(s=>s.style.display='none'); slideIndex++; if(slideIndex>slides.length)slideIndex=1; slides[slideIndex-1].style.display='block'; setTimeout(showSlides,4000);}
 showSlides();
-
-// Swipe support
-let startX=0,endX=0;
-const heroSlider=document.querySelector('.hero-slider');
-heroSlider.addEventListener('touchstart', e=>{startX=e.touches[0].clientX;});
-heroSlider.addEventListener('touchend', e=>{endX=e.changedTouches[0].clientX; if(startX-endX>50){slideIndex++; if(slideIndex>slides.length) slideIndex=1;} else if(endX-startX>50){slideIndex--; if(slideIndex<1) slideIndex=slides.length;} slides.forEach(s=>s.style.display='none'); slides[slideIndex-1].style.display='block';});
 
 // Animate Hero Text
 window.addEventListener('load',()=>{document.getElementById('hero-text').classList.add('show');});
@@ -245,7 +202,9 @@ window.addEventListener('load',()=>{document.getElementById('hero-text').classLi
 // Fade-in Sections on Scroll
 const sections=document.querySelectorAll('section');
 const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{ if(entry.isIntersecting){entry.target.classList.add('show'); } });
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('show');}
+  });
 },{threshold:0.2});
 sections.forEach(sec=>observer.observe(sec));
 
@@ -261,4 +220,23 @@ const galleryInput=document.getElementById('upload-gallery');
 galleryInput.addEventListener('change',e=>{Array.from(e.target.files).forEach(file=>{const reader=new FileReader();reader.onload=evt=>{const img=document.createElement('img'); img.src=evt.target.result; galleryContainer.appendChild(img); img.addEventListener('click',()=>window.open(img.src,'_blank'));};reader.readAsDataURL(file);});});
 
 // AI Widget
-const sendBtn=document.getElementById('
+const sendBtn=document.getElementById('send-ai');
+const aiTextarea=document.querySelector('#ai-widget textarea');
+const aiResponse=document.getElementById('ai-response');
+sendBtn.addEventListener('click',async()=>{
+  const prompt=aiTextarea.value.trim();
+  if(!prompt) return;
+  aiResponse.innerHTML+=`<p><strong>You:</strong> ${prompt}</p>`;
+  aiTextarea.value='';
+  const thinkingPara=document.createElement('p'); thinkingPara.innerHTML='<strong>AI:</strong> Thinking...'; aiResponse.appendChild(thinkingPara); aiResponse.scrollTop=aiResponse.scrollHeight;
+  try{
+    const res=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt})});
+    const data=await res.json();
+    const reply=data.choices?.[0]?.message?.content||'No response';
+    thinkingPara.innerHTML=`<strong>AI:</strong> ${reply}`;
+    aiResponse.scrollTop=aiResponse.scrollHeight;
+  }catch(err){thinkingPara.innerHTML='<strong>AI:</strong> Error connecting to AI.'; aiResponse.scrollTop=aiResponse.scrollHeight;}
+});
+</script>
+</body>
+</html>
