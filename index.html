@@ -4,293 +4,114 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PrintCare - Where Design Comes to Life</title>
-<meta name="description" content="PrintCare provides professional printing, designing, and packaging services. Convert fonts, images, and build your CV.">
-<meta name="keywords" content="PrintCare, Printing, Designing, Packaging, Tools, Gallery">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.printcare.com.np">
-<style>
-body { margin:0; font-family: Arial, sans-serif; background-color:#fff; color:#111; scroll-behavior:smooth; }
-a { color:#111; text-decoration:none; }
-nav { position:sticky; top:0; display:flex; justify-content:center; gap:20px; background-color:#fff; padding:15px 0; z-index:1000; border-bottom:1px solid #ddd; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
-nav a { padding:10px 20px; border-radius:5px; transition:0.3s; font-weight:bold; }
-nav a:hover { background-color:#f39c12; color:#fff; }
-.hero { position:relative; overflow:hidden; height:80vh; }
-.hero-slider img { width:100%; height:100%; object-fit:cover; display:none; }
-.hero-text { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; color:#111; opacity:0; transition:1s ease; }
-.hero-text.show { opacity:1; }
-.hero-text small { font-size:1.2rem; display:block; margin-bottom:10px; font-weight:500; }
-.hero-text h1 { font-size:3rem; margin:0; font-weight:700; }
-.hero-text button { margin-top:20px; padding:15px 30px; font-size:1rem; border:none; border-radius:5px; background-color:#f39c12; color:#fff; cursor:pointer; transition:0.3s; }
-.hero-text button:hover { background-color:#e67e22; }
-section { padding:80px 20px; max-width:1200px; margin:0 auto; opacity:0; transform:translateY(50px); transition:1s ease; }
-section.show { opacity:1; transform:translateY(0); }
-h2 { font-size:2rem; color:#111; border-bottom:2px solid #f39c12; display:inline-block; margin-bottom:30px; }
-.cards { display:flex; flex-wrap:wrap; gap:30px; justify-content:center; }
-.card { background-color:#f9f9f9; padding:25px; border-radius:15px; flex:1 1 250px; text-align:center; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:0.5s; cursor:pointer; transform:translateY(0); }
-.card img { max-width:80px; margin-bottom:15px; }
-.card:hover { transform:translateY(-10px) scale(1.03); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-.gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; }
-.gallery img { width:100%; border-radius:15px; cursor:pointer; transition:0.3s; }
-.gallery img:hover { transform:scale(1.05); }
-.testimonials { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-.testimonial { background-color:#f9f9f9; padding:20px; border-radius:15px; flex:1 1 250px; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:0.5s; }
-.testimonial:hover { transform:translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.15); }
-.contact { display:flex; flex-direction:column; gap:15px; align-items:center; }
-.contact a { display:inline-block; background-color:#f9f9f9; padding:12px 20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:0.3s; }
-.contact a:hover { background-color:#f39c12; color:#fff; }
-.contact iframe { border:0; border-radius:10px; margin-top:20px; width:300px; height:200px; }
-.admin { display:none; flex-direction:column; gap:15px; background-color:#f9f9f9; padding:20px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
-.admin input, .admin button { padding:10px; border-radius:5px; border:1px solid #ccc; width:100%; }
-.admin button { background-color:#f39c12; color:#fff; cursor:pointer; border:none; }
-#logo { height:60px; margin-right:15px; }
-#ai-widget { position:fixed; bottom:20px; right:20px; background-color:#f9f9f9; padding:15px; border-radius:10px; width:250px; display:flex; flex-direction:column; gap:10px; color:#111; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
-#ai-widget textarea { width:100%; height:80px; padding:5px; border-radius:5px; border:1px solid #ccc; resize:none; }
-#ai-widget button { padding:8px; border-radius:5px; border:none; background-color:#f39c12; color:#fff; cursor:pointer; }
-#ai-response { max-height:200px; overflow-y:auto; padding:5px; background-color:#fff; border-radius:5px; font-size:0.9rem; color:#111; line-height:1.4; }
-footer { background-color:#f2f2f2; color:#111; padding:40px 20px; display:flex; flex-wrap:wrap; justify-content:space-between; }
-footer .footer-section { flex:1 1 200px; margin-bottom:20px; }
-footer a { display:block; color:#111; margin-bottom:10px; }
-footer a:hover { color:#f39c12; }
-@media(max-width:768px){
-nav { flex-direction:column; }
-.hero-text h1 { font-size:2rem; }
-section { padding:50px 15px; }
-footer { flex-direction:column; }
-}
-</style>
+<meta name="description" content="PrintCare provides professional printing, designing, packaging, and custom solutions. Contact us for high-quality prints and services.">
+<meta name="keywords" content="PrintCare, printing, designing, packaging, Nepal, services, gallery, tools">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- Navigation -->
 <nav>
-  <img id="logo" src="default-logo.png" alt="PrintCare Logo">
-  <a href="index.html">Home</a>
-  <a href="gallery.html">Gallery</a>
   <a href="#services">Services</a>
   <a href="#tools">Tools</a>
+  <a href="gallery.html">Gallery</a>
   <a href="#contact">Contact</a>
-  <a href="#" id="admin-login-link">Admin Login</a>
+  <a href="#" id="admin-toggle">Admin</a>
 </nav>
 
 <!-- Hero Section -->
 <div class="hero">
+  <img id="logo" src="images/logo.png" alt="PrintCare Logo" style="height:80px;">
   <div class="hero-slider">
-    <img src="slider1.jpg" alt="Slide 1">
-    <img src="slider2.jpg" alt="Slide 2">
-    <img src="slider3.jpg" alt="Slide 3">
+    <img src="images/slider1.jpg" alt="Slide 1">
+    <img src="images/slider2.jpg" alt="Slide 2">
+    <img src="images/slider3.jpg" alt="Slide 3">
   </div>
-  <div class="hero-text" id="hero-text">
+  <div class="hero-text">
     <small>Where Design Comes to Life</small>
     <h1>Make Your Ideas Look Perfect on Print</h1>
     <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
   </div>
 </div>
 
-<!-- Services Section -->
+<!-- Services -->
 <section id="services">
-<h2>Our Services</h2>
-<div class="cards">
-<div class="card"><img src="service1.jpg" alt="Printing"><h3>Printing</h3><p>High-quality printing for all your business and personal needs.</p></div>
-<div class="card"><img src="service2.jpg" alt="Designing"><h3>Designing</h3><p>Professional design services to bring your ideas to life.</p></div>
-<div class="card"><img src="service3.jpg" alt="Packaging"><h3>Packaging</h3><p>Custom packaging solutions for products of any size.</p></div>
-<div class="card"><img src="service4.jpg" alt="Custom Solutions"><h3>Custom Solutions</h3><p>Tailored printing solutions to match your unique requirements.</p></div>
-</div>
+  <h2>Our Services</h2>
+  <div class="cards">
+    <div class="card"><h3>Printing</h3><p>High-quality printing for business and personal needs.</p></div>
+    <div class="card"><h3>Designing</h3><p>Professional design services to bring your ideas to life.</p></div>
+    <div class="card"><h3>Packaging</h3><p>Custom packaging solutions for products of any size.</p></div>
+    <div class="card"><h3>Custom Solutions</h3><p>Tailored printing solutions to match your unique requirements.</p></div>
+  </div>
 </section>
 
-<!-- Tools Section -->
+<!-- Tools -->
 <section id="tools">
-<h2>Our Tools</h2>
-<div class="cards">
-<div class="card"><img src="tool1.png" alt="Preeti Unicode"><h3>Preeti ↔ Unicode</h3><p>Quick Nepali font conversion tool.</p></div>
-<div class="card"><img src="tool2.png" alt="Image to PDF"><h3>Image → PDF</h3><p>Convert images to high-quality PDFs easily.</p></div>
-<div class="card"><img src="tool3.png" alt="Word to PDF"><h3>Word → PDF</h3><p>Instantly convert Word documents to PDF format.</p></div>
-<div class="card"><img src="tool4.png" alt="Image Compressor"><h3>Image Compressor</h3><p>Reduce image sizes without losing quality.</p></div>
-<div class="card"><img src="tool5.png" alt="CV Builder"><h3>CV Builder</h3><p>Create professional resumes in minutes.</p></div>
-<div class="card"><img src="tool6.png" alt="Date Converter"><h3>Date Converter</h3><p>Convert dates between Nepali and English formats.</p></div>
-</div>
+  <h2>Our Tools</h2>
+  <div class="cards">
+    <div class="card"><h3>Preeti ↔ Unicode</h3><p>Quick Nepali font conversion tool.</p></div>
+    <div class="card"><h3>Image → PDF</h3><p>Convert images to high-quality PDFs easily.</p></div>
+    <div class="card"><h3>Word → PDF</h3><p>Instantly convert Word documents to PDF format.</p></div>
+    <div class="card"><h3>Image Compressor</h3><p>Reduce image sizes without losing quality.</p></div>
+    <div class="card"><h3>CV Builder</h3><p>Create professional resumes in minutes.</p></div>
+    <div class="card"><h3>Date Converter</h3><p>Convert dates between Nepali and English formats.</p></div>
+  </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Gallery Preview -->
+<section id="gallery-preview">
+  <h2>Gallery</h2>
+  <div id="gallery-container" class="gallery"></div>
+  <a href="gallery.html">View Full Gallery</a>
+</section>
+
+<!-- Contact -->
 <section id="contact">
-<h2>Contact Us</h2>
-<div class="contact">
-<a href="https://wa.me/1234567890" target="_blank">WhatsApp Us</a>
-<a href="https://m.me/yourpage" target="_blank">Messenger</a>
-<a href="mailto:info@printcare.com.np">Email Us</a>
-<form style="display:flex; flex-direction:column; gap:10px; width:100%; max-width:400px;">
-<input type="text" placeholder="Your Name" required>
-<input type="email" placeholder="Your Email" required>
-<textarea placeholder="Your Message" rows="4" required></textarea>
-<button type="submit">Send Message</button>
-</form>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.9121532217676!2d85.18553731507261!3d27.181337183160056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb59a9cda0ece5%3A0x35b2367e38096b08!2sPrint%20Care!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" allowfullscreen loading="lazy"></iframe>
-</div>
+  <h2>Contact Us</h2>
+  <div class="contact">
+    <a href="mailto:info@printcare.com.np">Email Us</a>
+    <a href="https://wa.me/1234567890">WhatsApp</a>
+    <a href="https://m.me/yourpage">Messenger</a>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.9121532217676!2d85.18553731507261!3d27.181337183160056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb59a9cda0ece5%3A0x35b2367e38096b08!2sPrint%20Care!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" allowfullscreen="" loading="lazy"></iframe>
+  </div>
 </section>
 
 <!-- Admin Panel -->
-<section class="admin" id="admin-panel">
-<h2>Admin Dashboard</h2>
-<label>Upload Logo</label>
-<input type="file" id="upload-logo" accept="image/*">
-<label>Upload Gallery Photos</label>
-<input type="file" id="upload-gallery" accept="image/*" multiple>
-<button id="save-changes">Save Changes</button>
-<div id="gallery-admin" class="gallery"></div>
+<section id="admin-panel" style="display:none;">
+  <h2>Admin Panel</h2>
+  <input type="password" id="admin-password" placeholder="Enter Admin Password">
+  <button id="login-btn">Login</button>
+  <hr>
+  <input type="file" id="upload-logo">
+  <button id="logo-upload-btn">Upload Logo</button>
+  <br>
+  <input type="file" id="upload-gallery" multiple>
+  <button id="gallery-upload-btn">Upload Gallery Images</button>
+  <p>Drag & drop gallery images to reorder (admin only)</p>
 </section>
 
-<!-- AI Widget -->
-<div id="ai-widget">
-<textarea placeholder="Ask me anything..."></textarea>
-<button id="send-ai">Send</button>
-<div id="ai-response"></div>
-</div>
-
-<!-- Footer -->
 <footer>
-<div class="footer-section">
-<h4>Quick Links</h4>
-<a href="#services">Services</a>
-<a href="#tools">Tools</a>
-<a href="gallery.html">Gallery</a>
-<a href="#contact">Contact</a>
-</div>
-<div class="footer-section">
-<h4>Contact Info</h4>
-<p>Email: prntcare@gmail.com</p>
-<p>Phone: +977 9811809093</p>
-<p>Address: Nijgadh, Nepal</p>
-</div>
-<div class="footer-section">
-<h4>Follow Us</h4>
-<a href="#">Facebook</a>
-<a href="#">Instagram</a>
-<a href="#">LinkedIn</a>
-</div>
+  <div class="footer-section">
+    <h4>Quick Links</h4>
+    <a href="#services">Services</a>
+    <a href="#tools">Tools</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-section">
+    <h4>Contact Info</h4>
+    <p>Email: info@printcare.com.np</p>
+    <p>Phone: +977 9811809093</p>
+    <p>Address: Nijgadh, Nepal</p>
+  </div>
+  <div class="footer-section">
+    <h4>Follow Us</h4>
+    <a href="#">Facebook</a>
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+  </div>
 </footer>
 
-<script>
-// Hero Slider
-let slideIndex=0;
-const slides=document.querySelectorAll('.hero-slider img');
-function showSlides(){slides.forEach(s=>s.style.display='none'); slideIndex++; if(slideIndex>slides.length)slideIndex=1; slides[slideIndex-1].style.display='block'; setTimeout(showSlides,4000);}
-showSlides();
-
-// Hero Text Animation
-window.addEventListener('load',()=>{document.getElementById('hero-text').classList.add('show');});
-
-// Fade-in Sections
-const sections=document.querySelectorAll('section');
-const observer=new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');}});
-},{threshold:0.2});
-sections.forEach(sec=>observer.observe(sec));
-
-// Admin Login
-const adminPassword="admin123"; // Change password
-document.getElementById('admin-login-link').addEventListener('click',()=>{
-let pass=prompt("Enter Admin Password:");
-if(pass===adminPassword){document.getElementById('admin-panel').style.display='flex'; alert("Welcome Admin");} else{alert("Incorrect Password");}
-});
-
-// Gallery persistence using localStorage
-const galleryAdmin=document.getElementById('gallery-admin');
-const galleryContainer=document.createElement('div');
-galleryContainer.className="gallery";
-document.getElementById('admin-panel').appendChild(galleryContainer);
-
-function loadGallery(){
-let photos=JSON.parse(localStorage.getItem('galleryPhotos')||"[]");
-galleryContainer.innerHTML='';
-photos.forEach((src,index)=>{
-let div=document.createElement('div');
-div.style.position="relative";
-let img=document.createElement('img');
-img.src=src;
-img.style.width="100%";
-img.style.borderRadius="15px";
-img.draggable=true;
-img.dataset.index=index;
-img.addEventListener('dragstart',dragStart);
-img.addEventListener('dragover',dragOver);
-img.addEventListener('drop',drop);
-div.appendChild(img);
-// Delete button
-let del=document.createElement('button');
-del.innerText="Delete";
-del.style.position="absolute";
-del.style.top="5px";
-del.style.right="5px";
-del.style.background="red";
-del.style.color="#fff";
-del.addEventListener('click',()=>{deletePhoto(index)});
-div.appendChild(del);
-galleryContainer.appendChild(div);
-});
-}
-function deletePhoto(idx){
-let photos=JSON.parse(localStorage.getItem('galleryPhotos')||"[]");
-photos.splice(idx,1);
-localStorage.setItem('galleryPhotos',JSON.stringify(photos));
-loadGallery();
-}
-
-// Drag & Drop Reorder
-let dragStartIndex;
-function dragStart(e){dragStartIndex=parseInt(e.target.dataset.index);}
-function dragOver(e){e.preventDefault();}
-function drop(e){
-let dragEndIndex=parseInt(e.target.dataset.index);
-let photos=JSON.parse(localStorage.getItem('galleryPhotos')||"[]");
-[photos[dragStartIndex],photos[dragEndIndex]]=[photos[dragEndIndex],photos[dragStartIndex]];
-localStorage.setItem('galleryPhotos',JSON.stringify(photos));
-loadGallery();
-}
-
-// Upload Logo
-document.getElementById('upload-logo').addEventListener('change',e=>{
-const file=e.target.files[0];
-if(file){
-const reader=new FileReader();
-reader.onload=evt=>{
-document.getElementById('logo').src=evt.target.result;
-localStorage.setItem('logo',evt.target.result);
-};
-reader.readAsDataURL(file);
-}
-});
-
-// Upload Gallery
-document.getElementById('upload-gallery').addEventListener('change',e=>{
-const files=Array.from(e.target.files);
-let photos=JSON.parse(localStorage.getItem('galleryPhotos')||"[]");
-files.forEach(file=>{
-const reader=new FileReader();
-reader.onload=evt=>{photos.push(evt.target.result); localStorage.setItem('galleryPhotos',JSON.stringify(photos)); loadGallery();}
-reader.readAsDataURL(file);
-});
-});
-
-// Load logo & gallery on page load
-window.addEventListener('load',()=>{
-let logo=localStorage.getItem('logo');
-if(logo) document.getElementById('logo').src=logo;
-loadGallery();
-});
-
-// AI Widget
-const sendBtn=document.getElementById('send-ai');
-const aiTextarea=document.querySelector('#ai-widget textarea');
-const aiResponse=document.getElementById('ai-response');
-sendBtn.addEventListener('click',async()=>{
-const prompt=aiTextarea.value.trim();
-if(!prompt) return;
-aiResponse.innerHTML+=`<p><strong>You:</strong> ${prompt}</p>`;
-aiTextarea.value='';
-const thinkingPara=document.createElement('p'); thinkingPara.innerHTML='<strong>AI:</strong> Thinking...'; aiResponse.appendChild(thinkingPara); aiResponse.scrollTop=aiResponse.scrollHeight;
-try{
-const res=await fetch('/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt})});
-const data=await res.json();
-const reply=data.choices?.[0]?.message?.content||'No response';
-thinkingPara.innerHTML=`<strong>AI:</strong> ${reply}`;
-aiResponse.scrollTop=aiResponse.scrollHeight;
-}catch(err){thinkingPara.innerHTML='<strong>AI:</strong> Error connecting to AI.'; aiResponse.scrollTop=aiResponse
+<script src="js/main.js"></script>
+</body>
+</html>
