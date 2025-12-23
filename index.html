@@ -4,52 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PrintCare - Your Printing & Design Solution</title>
-<meta name="description" content="PrintCare provides professional printing, designing, packaging, and custom solutions. Contact us for high-quality prints and services.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-body{background:#fff;color:#111;overflow:hidden;}
+body{overflow:hidden;color:#111;}
+
+/* Colors */
+:root{
+--blue:#007bff; /* Logo blue */
+--red:#dc3545;  /* Logo red */
+--white:#fff;
+--light:#f9f9f9;
+}
+
+/* Full-screen container */
+.fullscreen{display:flex;flex-direction:column;width:100vw;height:100vh;}
 
 /* Navigation */
-nav{position:absolute;top:5px;left:50%;transform:translateX(-50%);display:flex;gap:12px;background:rgba(255,255,255,0.95);padding:5px 12px;border-radius:8px;z-index:10;font-size:0.8rem;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-nav a{text-decoration:none;color:#111;font-weight:bold;padding:4px 8px;border-radius:5px;transition:0.3s;}
+nav{
+position:absolute;top:10px;left:50%;transform:translateX(-50%);
+display:flex;gap:12px;background:rgba(255,255,255,0.9);padding:6px 12px;
+border-radius:8px;z-index:20;font-size:0.85rem;box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+nav a{text-decoration:none;color:#fff;font-weight:bold;padding:4px 8px;border-radius:5px;transition:0.3s;}
 nav a:hover{background:#f39c12;color:#fff;}
 
-/* Hero */
-.hero{width:100vw;height:35%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
-.hero img#logo{height:60px;margin-bottom:5px;animation:float 3s ease-in-out infinite;z-index:5;position:relative;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));}
-.hero-slider{width:70%;max-width:500px;height:120px;overflow:hidden;border-radius:8px;margin-bottom:5px;position:relative;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-.hero-slider img{width:100%;height:100%;object-fit:cover;display:none;border-radius:8px;transition:0.5s;}
-.hero-slider img.active{display:block;}
-.hero-text h1{font-size:1.2rem;margin-bottom:6px;animation:float 3s ease-in-out infinite;text-shadow:1px 1px 2px rgba(0,0,0,0.1);}
-.hero-text button{padding:4px 8px;border:none;background:#f39c12;color:#fff;border-radius:5px;cursor:pointer;font-size:0.75rem;transition:0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.2);}
-.hero-text button:hover{background:#d87e00;transform:translateY(-2px);}
+/* Sections */
+.section{width:100%;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
 
-/* Floating animation */
-@keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-5px);}100%{transform:translateY(0);}}
+/* Top - Hero */
+.top-section{background:var(--blue);position:relative;}
+/* Particle canvas */
+#particles{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;}
+.hero img#logo{height:60px;margin-bottom:5px;position:relative;z-index:5;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));}
+.hero-slider{width:70%;max-width:400px;height:120px;overflow:hidden;border-radius:8px;margin-bottom:5px;position:relative;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+.hero-slider img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;border-radius:8px;opacity:0;transition:opacity 1s ease-in-out;}
+.hero-slider img.active{opacity:1;}
+.hero-text h1{font-size:1.2rem;margin-bottom:6px;text-shadow:1px 1px 2px rgba(0,0,0,0.2);}
+.hero-text button{padding:6px 10px;border:none;background:#f39c12;color:#fff;border-radius:5px;cursor:pointer;font-size:0.8rem;transition:0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.2);}
+.hero-text button:hover{background:#d87e00;transform:translateY(-2px) scale(1.05);}
 
-/* About */
-#about{position:absolute;top:35%;width:100%;display:flex;justify-content:center;text-align:center;}
-#about p{max-width:500px;font-size:0.75rem;line-height:1.3;margin-top:5px;}
+/* About text */
+#about p{max-width:450px;font-size:0.8rem;line-height:1.3;margin-top:5px;color:#fff;z-index:5;position:relative;}
 
-/* Services */
-#services{position:absolute;top:50%;width:100%;display:flex;justify-content:center;}
+/* Middle - Services & Gallery */
+.middle-section{background:var(--light);padding:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:auto;}
 .accordion{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
-.accordion-item{background:#f9f9f9;padding:6px;border-radius:6px;width:140px;cursor:pointer;transition:0.3s;font-size:0.65rem;text-align:left;animation:float 3s ease-in-out infinite;box-shadow:0 1px 4px rgba(0,0,0,0.1);}
+.accordion-item{background:#fff;padding:6px;border-radius:6px;width:140px;cursor:pointer;transition:0.3s;font-size:0.65rem;text-align:left;animation:bounce 3s ease-in-out infinite;box-shadow:0 1px 4px rgba(0,0,0,0.15);}
 .accordion-item h3{font-size:0.7rem;margin-bottom:3px;color:#333;}
 .accordion-item ul{list-style:disc;margin-left:12px;display:none;font-size:0.65rem;color:#555;}
 .accordion-item.active ul{display:block;}
+.accordion-item:hover{transform:scale(1.05);transition:0.3s;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
 
 /* Gallery */
-#gallery-preview{position:absolute;top:65%;width:100%;display:flex;justify-content:center;}
-#gallery-container{display:grid;grid-template-columns:repeat(2,100px);gap:4px;justify-items:center;}
+#gallery-container{display:grid;grid-template-columns:repeat(2,100px);gap:6px;justify-items:center;margin-top:10px;}
 .gallery-image{width:100%;height:70px;object-fit:cover;border-radius:4px;transition:0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.1);}
 .gallery-image:hover{transform:scale(1.05);}
 
-/* Contact */
-#contact{position:absolute;top:80%;width:100%;display:flex;justify-content:center;}
-.contact-line{display:flex;gap:6px;flex-wrap:wrap;}
-.contact-line a{display:flex;align-items:center;gap:4px;text-decoration:none;color:#111;font-weight:bold;background:#f9f9f9;padding:4px 6px;border-radius:5px;font-size:0.7rem;transition:0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.1);}
-.contact-line a:hover{background:#f39c12;color:#fff;transform:translateY(-1px);}
+/* Bottom - Contact */
+.bottom-section{background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;}
+.contact-line{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.contact-line a{display:flex;align-items:center;gap:4px;text-decoration:none;color:#fff;font-weight:bold;padding:6px 8px;border-radius:5px;font-size:0.8rem;transition:0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.1);}
+.contact-line a:hover{background:#f39c12;color:#fff;transform:translateY(-1px) scale(1.05);}
 
 /* Responsive */
 @media(max-width:500px){
@@ -57,22 +73,23 @@ nav a:hover{background:#f39c12;color:#fff;}
 .accordion-item{width:120px;}
 #gallery-container{grid-template-columns:repeat(2,80px);}
 .hero-text h1{font-size:1rem;}
-.hero-text button{font-size:0.65rem;}
+.hero-text button{font-size:0.7rem;}
 #about p{font-size:0.7rem;max-width:90%;}
-.contact-line a{font-size:0.65rem;padding:3px 5px;}
+.contact-line a{font-size:0.7rem;padding:4px 6px;}
 }
 </style>
 </head>
 <body>
 
-<!-- Navigation -->
+<div class="fullscreen">
+<!-- Top Section -->
+<div class="section top-section">
+<canvas id="particles"></canvas>
 <nav>
 <a href="#services">Services</a>
 <a href="#gallery-preview">Gallery</a>
 <a href="#contact">Contact</a>
 </nav>
-
-<!-- Hero -->
 <div class="hero">
 <img id="logo" src="logo.png" alt="PrintCare Logo">
 <div class="hero-slider">
@@ -85,13 +102,13 @@ nav a:hover{background:#f39c12;color:#fff;}
 <button onclick="window.location.href='mailto:prntcare@gmail.com'">Contact Us</button>
 </div>
 </div>
-
-<!-- About -->
 <section id="about">
 <p>PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs.</p>
 </section>
+</div>
 
-<!-- Services -->
+<!-- Middle Section -->
+<div class="section middle-section">
 <section id="services">
 <div class="accordion">
 <div class="accordion-item">
@@ -127,9 +144,7 @@ nav a:hover{background:#f39c12;color:#fff;}
 </ul>
 </div>
 </div>
-</section>
 
-<!-- Gallery -->
 <section id="gallery-preview">
 <div id="gallery-container">
 <img src="gallery1.jpg" class="gallery-image" alt="Gallery1">
@@ -138,14 +153,16 @@ nav a:hover{background:#f39c12;color:#fff;}
 <img src="gallery4.jpg" class="gallery-image" alt="Gallery4">
 </div>
 </section>
+</div>
 
-<!-- Contact -->
-<section id="contact">
+<!-- Bottom Section -->
+<div class="section bottom-section" id="contact">
 <div class="contact-line">
 <a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
 <a href="https://wa.me/9811809093">💬 +977 9811809093</a>
 </div>
-</section>
+</div>
+</div>
 
 <script>
 // Accordion toggle
@@ -153,14 +170,40 @@ document.querySelectorAll('.accordion-item').forEach(item=>{
 item.addEventListener('click',()=>{item.classList.toggle('active');});
 });
 
-// Hero slider auto
+// Hero slider fade
 let slides = document.querySelectorAll('.hero-slider img');
 let current = 0;
 setInterval(()=>{
-slides[current].classList.remove('active');
+slides.forEach(s=>s.classList.remove('active'));
 current = (current+1)%slides.length;
 slides[current].classList.add('active');
-},3000);
+},4000);
+
+// Particle animation
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particles = [];
+for(let i=0;i<50;i++){
+  particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,radius:Math.random()*3+1,speed:Math.random()*0.5+0.2});
+}
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.y-=p.speed;
+    if(p.y<0)p.y=canvas.height;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.6)';
+    ctx.fill();
+  });
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// Adjust canvas on resize
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
 </script>
 </body>
 </html>
