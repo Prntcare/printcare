@@ -3,156 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PrintCare – Where Design Comes to Life</title>
 
-<title>Print Care – Where Design Comes to Life</title>
+<meta name="description" content="PrintCare Nepal – Professional printing, design, packaging & custom print solutions.">
+<meta name="keywords" content="PrintCare, printing Nepal, design, packaging, Nijgadh">
 
-<meta name="description" content="Print Care provides professional printing, design, and packaging services in Nepal. Quality prints that bring your ideas to life.">
-<meta name="keywords" content="Print Care, printing Nepal, flex print, design, packaging">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#111;scroll-behavior:smooth}
 
-<link rel="stylesheet" href="style.css">
+/* NAV */
+nav{
+position:sticky;top:0;z-index:1000;
+display:flex;justify-content:center;gap:25px;
+background:#fff;padding:15px;
+box-shadow:0 2px 8px rgba(0,0,0,.08)
+}
+nav a{font-weight:600;text-decoration:none;color:#111}
+nav a:hover{color:#f39c12}
+
+/* HERO */
+.hero{height:90vh;position:relative;overflow:hidden;text-align:center}
+.hero-slider img{
+position:absolute;width:100%;height:100%;object-fit:cover;
+animation:fade 15s infinite;opacity:0
+}
+.hero-slider img:nth-child(1){animation-delay:0s}
+.hero-slider img:nth-child(2){animation-delay:5s}
+.hero-slider img:nth-child(3){animation-delay:10s}
+
+@keyframes fade{
+0%{opacity:0}10%{opacity:1}
+30%{opacity:1}40%{opacity:0}100%{opacity:0}
+}
+
+#logo{
+position:absolute;top:20px;left:50%;
+transform:translateX(-50%);
+height:90px;
+animation:float 3s ease-in-out infinite
+}
+
+@keyframes float{
+0%,100%{transform:translate(-50%,0)}
+50%{transform:translate(-50%,-10px)}
+}
+
+.hero-text{
+position:absolute;top:50%;left:50%;
+transform:translate(-50%,-50%);
+color:#fff;
+animation:jump 1.2s ease
+}
+
+@keyframes jump{
+0%{transform:translate(-50%,60%)}
+60%{transform:translate(-50%,-55%)}
+100%{transform:translate(-50%,-50%)}
+}
+
+.hero-text h1{font-size:42px;margin:15px 0}
+.hero-text button{
+padding:12px 28px;
+border:none;background:#f39c12;
+color:#fff;font-size:16px;
+cursor:pointer;border-radius:25px
+}
+.hero-text button:hover{background:#111}
+
+/* SECTIONS */
+section{padding:70px 8%;text-align:center}
+h2{font-size:34px;margin-bottom:35px}
+
+/* CARDS */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px
+}
+.card{
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+animation:float 4s ease-in-out infinite
+}
+.card:hover{transform:translateY(-10px)}
+
+/* CONTACT */
+.contact a{
+display:inline-block;margin:10px 15px;
+color:#f39c12;font-weight:bold;text-decoration:none
+}
+iframe{width:100%;height:300px;border:0;margin-top:20px}
+
+/* FOOTER */
+footer{
+background:#111;color:#fff;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:25px;padding:40px
+}
+footer a{color:#f39c12;text-decoration:none;display:block;margin:5px 0}
+</style>
 </head>
+
 <body>
 
-<!-- Navigation -->
 <nav>
-  <a href="#services">Services</a>
-  <a href="#tools">Tools</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#contact">Contact</a>
+<a href="#services">Services</a>
+<a href="#tools">Tools</a>
+<a href="#contact">Contact</a>
 </nav>
 
-<!-- Hero Section -->
-<section class="hero">
-  <img src="logo.png" alt="Print Care Logo" class="logo">
+<div class="hero">
+<img id="logo" src="images/logo.png" alt="PrintCare Logo">
 
-  <div class="hero-slider">
-    <img src="slider1.jpg" alt="Print Care Work" loading="lazy">
-    <img src="slider2.jpg" alt="Print Care Design" loading="lazy">
-    <img src="slider3.jpg" alt="Print Care Printing" loading="lazy">
-  </div>
+<div class="hero-slider">
+<img src="images/slider1.jpg">
+<img src="images/slider2.jpg">
+<img src="images/slider3.jpg">
+</div>
 
-  <div class="hero-text">
-    <small>Where Design Comes to Life</small>
-    <h1>Make Your Ideas Look Perfect on Print</h1>
-    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      Contact Us
-    </button>
-  </div>
-</section>
+<div class="hero-text">
+<small>Where Design Comes to Life</small>
+<h1>Make Your Ideas Look Perfect on Print</h1>
+<button onclick="document.getElementById('contact').scrollIntoView()">Contact Us</button>
+</div>
+</div>
 
-<!-- Services -->
 <section id="services">
-  <h2>Our Services</h2>
-
-  <div class="cards">
-    <div class="card">
-      <h3>Printing</h3>
-      <p>High-quality digital & offset printing for all needs.</p>
-    </div>
-
-    <div class="card">
-      <h3>Designing</h3>
-      <p>Creative designs that make your brand stand out.</p>
-    </div>
-
-    <div class="card">
-      <h3>Packaging</h3>
-      <p>Custom packaging solutions for every product.</p>
-    </div>
-
-    <div class="card">
-      <h3>Custom Solutions</h3>
-      <p>Tailored print solutions as per your requirement.</p>
-    </div>
-  </div>
+<h2>Our Services</h2>
+<div class="cards">
+<div class="card"><h3>Printing</h3><p>High-quality business & personal printing.</p></div>
+<div class="card"><h3>Designing</h3><p>Creative design that stands out.</p></div>
+<div class="card"><h3>Packaging</h3><p>Custom packaging solutions.</p></div>
+<div class="card"><h3>Custom Solutions</h3><p>Tailored print services.</p></div>
+</div>
 </section>
 
-<!-- Tools -->
 <section id="tools">
-  <h2>Our Tools</h2>
-
-  <div class="cards">
-    <div class="card">
-      <h3>Image → PDF</h3>
-      <p>Convert images into high-quality PDF files.</p>
-    </div>
-
-    <div class="card">
-      <h3>Word → PDF</h3>
-      <p>Instant Word document to PDF conversion.</p>
-    </div>
-
-    <div class="card">
-      <h3>Image Compressor</h3>
-      <p>Reduce image size without losing quality.</p>
-    </div>
-
-    <div class="card">
-      <h3>CV Builder</h3>
-      <p>Create professional CVs easily.</p>
-    </div>
-  </div>
+<h2>Our Tools</h2>
+<div class="cards">
+<div class="card"><h3>Image → PDF</h3><p>Convert images to PDF.</p></div>
+<div class="card"><h3>Word → PDF</h3><p>Convert documents easily.</p></div>
+<div class="card"><h3>Image Compressor</h3><p>Reduce image size.</p></div>
+<div class="card"><h3>CV Builder</h3><p>Create professional CVs.</p></div>
+</div>
 </section>
 
-<!-- Gallery -->
-<section id="gallery">
-  <h2>Gallery</h2>
-
-  <div class="gallery">
-    <img src="gallery1.jpg" alt="Print Care Gallery" loading="lazy">
-    <img src="gallery2.jpg" alt="Print Care Gallery" loading="lazy">
-    <img src="gallery3.jpg" alt="Print Care Gallery" loading="lazy">
-    <img src="gallery4.jpg" alt="Print Care Gallery" loading="lazy">
-  </div>
-</section>
-
-<!-- Contact -->
 <section id="contact">
-  <h2>Contact Us</h2>
+<h2>Contact Us</h2>
+<div class="contact">
+<a href="mailto:prntcare@gmail.com">prntcare@gmail.com</a>
+<a href="https://wa.me/9779811809093">WhatsApp</a>
+<a href="https://m.me/">Messenger</a>
+</div>
 
-  <div class="contact">
-    <a href="mailto:info@printcare.com.np">📧 Email</a>
-    <a href="https://wa.me/9779811809093">💬 WhatsApp</a>
-    <a href="https://m.me/yourpage">📘 Messenger</a>
-
-    <iframe
-      loading="lazy"
-      allowfullscreen
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.9121532217676!2d85.1855373!3d27.1813371">
-    </iframe>
-  </div>
+<iframe loading="lazy"
+src="https://www.google.com/maps?q=Nijgadh,Nepal&output=embed">
+</iframe>
 </section>
 
-<!-- Footer -->
 <footer>
-  <div class="footer-grid">
-    <div>
-      <h4>Quick Links</h4>
-      <a href="#services">Services</a>
-      <a href="#tools">Tools</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </div>
-
-    <div>
-      <h4>Contact Info</h4>
-      <p>Email: info@printcare.com.np</p>
-      <p>Phone: +977 9811809093</p>
-      <p>Nijgadh, Nepal</p>
-    </div>
-
-    <div>
-      <h4>Follow Us</h4>
-      <a href="#">Facebook</a>
-      <a href="#">Instagram</a>
-    </div>
-  </div>
-
-  <p class="copyright">
-    © 2025 Print Care. All rights reserved.
-  </p>
+<div>
+<h4>PrintCare</h4>
+<p>Professional Printing & Design Solutions</p>
+</div>
+<div>
+<h4>Contact</h4>
+<p>Email: prntcare@gmail.com</p>
+<p>Phone: +977 9811809093</p>
+<p>Nijgadh, Nepal</p>
+</div>
+<div>
+<h4>Social</h4>
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+</div>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
