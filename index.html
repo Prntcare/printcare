@@ -8,85 +8,85 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 body{overflow:hidden;color:#111;background:#f9f9f9;}
 
-/* Full-screen container */
-.fullscreen{display:flex;flex-direction:column;width:100vw;height:100vh;}
-
-/* Top Section - Logo left, Nav right */
+/* Top Section: Logo + Nav */
 .top-section{
 display:flex;
-align-items:flex-start;
 justify-content:space-between;
-height:auto;
-padding:15px 20px;
-position:relative;
-background:#ffffff;
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
-z-index:10;
-flex-wrap:wrap;
-}
-.top-section img#logo{
-height:70px;
-margin-bottom:10px;
-}
-
-/* Navigation */
-nav{
-display:flex;
-gap:12px;
-flex-wrap:wrap;
 align-items:center;
-margin-top:10px;
+padding:10px 20px;
+background:#fff;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
-nav a{text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:4px;transition:0.3s;font-size:1rem;}
+.top-section img#logo{height:70px;}
+nav a{margin-left:15px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:4px;transition:0.3s;}
 nav a:hover{color:#007bff;}
 
-/* Logo Description */
-.logo-description p{
-font-size:0.9rem;
-line-height:1.4;
-max-width:400px;
-margin-top:5px;
+/* Slider */
+.slider{
+position:relative;
+width:100%;
+height:200px;
+overflow:hidden;
+border-radius:10px;
+margin:10px 0;
+}
+.slider img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none;
+border-radius:10px;
+}
+.slider img.active{display:block;transition:0.5s;}
+
+/* Slider controls */
+.slider-controls{
+position:absolute;
+top:50%;
+width:100%;
+display:flex;
+justify-content:space-between;
+transform:translateY(-50%);
+padding:0 10px;
+}
+.slider-controls span{
+background:rgba(0,0,0,0.4);
+color:#fff;
+padding:5px 10px;
+cursor:pointer;
+border-radius:4px;
+font-weight:bold;
 }
 
-/* Middle Section - split layout */
-.middle-section{
-flex:1;display:flex;width:100%;
-flex-direction:row;justify-content:space-between;align-items:flex-start;padding:10px 20px;
-gap:10px;
+/* Main Section */
+.main-section{
+display:flex;
+justify-content:space-between;
+gap:15px;
+padding:0 20px;
+flex-wrap:wrap;
 }
 
-/* Left - Services */
+/* Left Services */
 .left-services{
-flex:1;background:#fff;padding:15px;border-radius:8px;overflow:auto;font-size:0.85rem;display:flex;flex-direction:column;
+flex:1;
+background:#fff;
+padding:10px;
+border-radius:8px;
 box-shadow:0 2px 8px rgba(0,0,0,0.1);
-}
-.left-services h3{
-text-align:left;margin-bottom:5px;color:#007bff;
-font-size:1rem;
-}
-.left-services ul{
-margin-left:15px;
-list-style:disc;
+font-size:0.85rem;
 line-height:1.3;
 }
-.left-services ul li{
-background:rgba(0,123,255,0.05);
-margin:2px 0;
-padding:4px 6px;
-border-radius:4px;
-}
+.left-services h3{color:#007bff;margin-bottom:5px;}
+.left-services ul{margin-left:15px;list-style:disc;}
+.left-services ul li{margin:3px 0;padding:3px 5px;background:rgba(0,123,255,0.05);border-radius:4px;}
 
-/* Center - About */
-.center-about{
-flex:1;background:#fff;padding:15px;border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
-font-size:0.9rem;
-line-height:1.4;
-}
-
-/* Right - Gallery */
+/* Right Gallery */
 .right-gallery{
-flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:8px;
+flex:1;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:6px;
 }
 .right-gallery img{
 width:100%;height:100px;object-fit:cover;border-radius:6px;transition:0.3s;
@@ -94,44 +94,53 @@ box-shadow:0 2px 6px rgba(0,0,0,0.15);
 }
 .right-gallery img:hover{transform:scale(1.05);box-shadow:0 6px 15px rgba(0,0,0,0.3);}
 
-/* Bottom Section */
-.bottom-section{
-display:flex;align-items:center;justify-content:center;height:auto;background:#f0f0f0;box-shadow:0 -2px 6px rgba(0,0,0,0.1);
-padding:10px 0;
+/* Description below slider */
+.description{
+background:#fff;
+padding:10px;
+border-radius:8px;
+margin-bottom:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+font-size:0.9rem;
+line-height:1.4;
+text-align:center;
 }
-.contact-line{
-display:flex;gap:20px;flex-wrap:wrap;justify-content:center;
+
+/* Compact contact below logo */
+.top-contact{
+display:flex;
+gap:10px;
+margin-top:5px;
 }
-.contact-line a{
-display:flex;align-items:center;gap:5px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;background:rgba(255,0,0,0.05);
+.top-contact a{
+display:flex;align-items:center;gap:4px;text-decoration:none;color:#111;font-weight:bold;
+padding:4px 6px;border-radius:4px;background:rgba(0,123,255,0.1);
+transition:0.3s;font-size:0.8rem;
 }
-.contact-line a:hover{color:#ff0000;transform:scale(1.05);background:rgba(255,0,0,0.15);}
+.top-contact a:hover{background:rgba(0,123,255,0.2);color:#007bff;}
 
 /* Responsive */
 @media(max-width:1200px){
-.middle-section{flex-direction:column;align-items:center;}
-.left-services,.right-gallery,.center-about{width:90%;margin-bottom:10px;height:auto;}
+.main-section{flex-direction:column;align-items:center;}
+.left-services,.right-gallery{width:90%;margin-bottom:10px;height:auto;}
 .right-gallery img{height:80px;}
-.top-section{flex-direction:column;align-items:flex-start;gap:10px;}
-nav{justify-content:flex-start;margin-top:5px;}
 }
 @media(max-width:500px){
-nav a{font-size:0.8rem;}
-.left-services{font-size:0.75rem;}
-.center-about{font-size:0.75rem;}
-.contact-line a{font-size:0.7rem;padding:4px 6px;}
+nav a{font-size:0.75rem;}
+.left-services{font-size:0.7rem;}
+.description{font-size:0.75rem;}
+.top-contact a{font-size:0.7rem;padding:3px 5px;}
 }
 </style>
 </head>
 <body>
 
-<div class="fullscreen">
-
 <!-- Top Section -->
 <div class="top-section">
 <img id="logo" src="logo.png" alt="PrintCare Logo">
-<div class="logo-description">
-<p>PrintCare delivers high-quality printing, design, packaging, and promotional solutions for businesses and individuals in Nepal. We help turn ideas into professional outputs with precision and creativity.</p>
+<div class="top-contact">
+<a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
+<a href="https://wa.me/9811809093">💬 +977 9811809093</a>
 </div>
 <nav>
 <a href="#services">Services</a>
@@ -140,9 +149,25 @@ nav a{font-size:0.8rem;}
 </nav>
 </div>
 
-<!-- Middle Section -->
-<div class="middle-section">
-<!-- Left: Services -->
+<!-- Slider -->
+<div class="slider">
+<img src="slider1.jpg" class="active" alt="Slide1">
+<img src="slider2.jpg" alt="Slide2">
+<img src="slider3.jpg" alt="Slide3">
+<img src="slider4.jpg" alt="Slide4">
+<div class="slider-controls">
+<span onclick="prevSlide()">‹</span>
+<span onclick="nextSlide()">›</span>
+</div>
+</div>
+
+<!-- Description -->
+<div class="description">
+PrintCare delivers high-quality printing, design, packaging, and promotional solutions in Nepal. We help businesses and individuals turn ideas into professional outputs.
+</div>
+
+<!-- Main Section: Services Left / Gallery Right -->
+<div class="main-section">
 <div class="left-services" id="services">
 <h3>Printing Services</h3>
 <ul>
@@ -174,12 +199,6 @@ nav a{font-size:0.8rem;}
 </ul>
 </div>
 
-<!-- Center: About Us -->
-<div class="center-about">
-<p>PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs. Your brand identity and marketing materials are handled with precision and creativity.</p>
-</div>
-
-<!-- Right: Gallery -->
 <div class="right-gallery" id="gallery">
 <img src="gallery1.jpg" alt="Gallery1">
 <img src="gallery2.jpg" alt="Gallery2">
@@ -188,15 +207,29 @@ nav a{font-size:0.8rem;}
 </div>
 </div>
 
-<!-- Bottom Section -->
-<div class="bottom-section" id="contact">
-<div class="contact-line">
-<a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
-<a href="https://wa.me/9811809093">💬 +977 9811809093</a>
-</div>
-</div>
+<script>
+// Simple JS Slider
+let slides = document.querySelectorAll('.slider img');
+let current = 0;
 
-</div>
+function showSlide(index){
+slides.forEach((img,i)=>{img.classList.remove('active');});
+slides[index].classList.add('active');
+}
+
+function nextSlide(){
+current = (current + 1) % slides.length;
+showSlide(current);
+}
+
+function prevSlide(){
+current = (current - 1 + slides.length) % slides.length;
+showSlide(current);
+}
+
+// Auto-slide every 4s
+setInterval(nextSlide,4000);
+</script>
 
 </body>
 </html>
