@@ -3,184 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PrintCare – Where Design Comes to Life</title>
-<meta name="description" content="PrintCare Nepal – Professional Printing, Designing & Packaging Solutions">
-<meta name="theme-color" content="#000000">
-
+<title>PrintCare - Where Design Comes to Life</title>
+<meta name="description" content="PrintCare provides professional printing, designing, packaging, and custom solutions. Contact us for high-quality prints and services.">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{background:#fff;color:#111;scroll-behavior:smooth}
+  /* Reset */
+  * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif;}
+  body {scroll-behavior:smooth; background:#fff; color:#111;}
+  a {text-decoration:none; color:inherit;}
+  img {max-width:100%; display:block;}
 
-/* NAV */
-nav{
-position:sticky;top:0;z-index:1000;
-display:flex;justify-content:center;gap:18px;
-background:#fff;padding:14px;
-border-bottom:1px solid #eee
-}
-nav a{font-weight:bold;color:#111;text-decoration:none}
-nav a:hover{color:#f39c12}
+  /* Navigation */
+  nav {position:sticky; top:0; display:flex; justify-content:center; gap:30px; background:#fff; padding:15px 0; border-bottom:1px solid #ddd; z-index:1000; box-shadow:0 2px 5px rgba(0,0,0,0.05);}
+  nav a {font-weight:bold; padding:10px 20px; border-radius:5px; transition:0.3s;}
+  nav a:hover {background:#f39c12; color:#fff;}
 
-/* HERO */
-.hero{position:relative;height:90vh;overflow:hidden}
-.hero-slider img{
-position:absolute;width:100%;height:100%;
-object-fit:cover;opacity:0;
-animation:slide 15s infinite
-}
-.hero-slider img:nth-child(1){animation-delay:0s}
-.hero-slider img:nth-child(2){animation-delay:5s}
-.hero-slider img:nth-child(3){animation-delay:10s}
+  /* Hero */
+  .hero {position:relative; height:70vh; display:flex; justify-content:center; align-items:center; flex-direction:column; overflow:hidden; text-align:center; background:#f1f1f1;}
+  .hero #logo {height:80px; margin-bottom:15px; animation: jump 2s infinite;}
+  .hero-slider {position:relative; width:100%; max-width:900px; height:300px; overflow:hidden; border-radius:10px; margin-bottom:15px;}
+  .hero-slider img {position:absolute; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s ease;}
+  .hero-slider img.active {opacity:1;}
+  .hero-text small {display:block; margin-bottom:5px; font-size:16px; color:#555;}
+  .hero-text h1 {font-size:2rem; margin-bottom:15px;}
+  .hero-text button {padding:10px 20px; border:none; border-radius:5px; background:#f39c12; color:#fff; cursor:pointer; transition:0.3s;}
+  .hero-text button:hover {background:#e67e22;}
 
-@keyframes slide{
-0%{opacity:0}10%{opacity:1}
-30%{opacity:1}40%{opacity:0}
-100%{opacity:0}
-}
+  @keyframes jump {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 
-.hero-content{
-position:absolute;top:50%;left:50%;
-transform:translate(-50%,-50%);
-text-align:center;color:#fff;
-animation:float 4s ease-in-out infinite
-}
+  /* Sections */
+  section {padding:50px 15px; max-width:1200px; margin:0 auto;}
+  section h2 {text-align:center; margin-bottom:30px; font-size:2rem; color:#333;}
 
-@keyframes float{
-0%,100%{transform:translate(-50%,-50%)}
-50%{transform:translate(-50%,-56%)}
-}
+  /* About Us */
+  #about p {max-width:800px; margin:0 auto; line-height:1.6; text-align:center;}
 
-.hero-content img{height:80px;margin-bottom:10px}
-.hero-content h1{font-size:36px;margin-bottom:10px}
-.hero-content small{letter-spacing:2px}
-.hero-content button{
-margin-top:15px;padding:12px 26px;
-border:none;background:#f39c12;color:#fff;
-font-size:16px;border-radius:30px;
-cursor:pointer
-}
+  /* Accordion Services */
+  .accordion {max-width:900px; margin:0 auto;}
+  .accordion-item {border:1px solid #ddd; border-radius:5px; margin-bottom:10px; overflow:hidden;}
+  .accordion-header {background:#f9f9f9; padding:15px; cursor:pointer; font-weight:bold; transition:0.3s;}
+  .accordion-header:hover {background:#f39c12; color:#fff;}
+  .accordion-content {max-height:0; overflow:hidden; transition:max-height 0.3s ease; padding:0 15px;}
+  .accordion-content ul {margin:15px 0 15px 20px;}
 
-/* SECTION */
-section{padding:60px 20px;text-align:center}
-h2{margin-bottom:25px}
+  /* Gallery */
+  #gallery-container {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px;}
+  #gallery-container img {border-radius:10px; cursor:pointer; transition:transform 0.3s;}
+  #gallery-container img:hover {transform:scale(1.05);}
 
-/* CARDS */
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;max-width:1100px;margin:auto
-}
-.card{
-padding:25px;border-radius:12px;
-background:#f7f7f7;
-transition:.3s;
-animation:pop 1.2s ease
-}
-.card:hover{transform:translateY(-8px)}
-@keyframes pop{
-from{opacity:0;transform:scale(.9)}
-to{opacity:1;transform:scale(1)}
-}
+  /* Contact */
+  .contact-line {display:flex; justify-content:center; align-items:center; gap:25px; flex-wrap:wrap; margin-top:20px;}
+  .contact-line a {display:flex; align-items:center; gap:8px; text-decoration:none; color:#111; font-weight:bold; background:#f1f1f1; padding:10px 15px; border-radius:5px; transition:0.3s;}
+  .contact-line a:hover {background:#f39c12; color:#fff; transform:translateY(-3px);}
+  .icon {width:20px; height:20px;}
 
-/* GALLERY */
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:12px;max-width:1000px;margin:auto
-}
-.gallery img{
-width:100%;border-radius:10px;
-transition:.3s
-}
-.gallery img:hover{transform:scale(1.05)}
-
-/* CONTACT */
-.contact a{
-display:inline-block;margin:10px;
-padding:12px 22px;border-radius:30px;
-background:#111;color:#fff;text-decoration:none
-}
-.contact iframe{
-width:100%;height:280px;border:0;margin-top:20px
-}
-
-/* FOOTER */
-footer{
-background:#111;color:#fff;
-padding:30px;text-align:center
-}
-footer a{color:#f39c12;text-decoration:none}
-
-/* MOBILE TUNING */
-@media(max-width:600px){
-.hero-content h1{font-size:26px}
-.hero-content img{height:60px}
-.hero{height:80vh}
-}
+  /* Footer */
+  footer {background:#111; color:#fff; padding:30px 15px; text-align:center;}
+  footer a {color:#fff; margin:0 10px; display:inline-flex; align-items:center; gap:5px;}
+  footer a:hover {color:#f39c12;}
 </style>
 </head>
-
 <body>
 
+<!-- Navigation -->
 <nav>
-<a href="#services">Services</a>
-<a href="#gallery">Gallery</a>
-<a href="#contact">Contact</a>
+  <a href="#services">Services</a>
+  <a href="#gallery-preview">Gallery</a>
+  <a href="#contact">Contact</a>
 </nav>
 
+<!-- Hero Section -->
 <div class="hero">
-<div class="hero-slider">
-<img src="slider1.jpg">
-<img src="slider2.jpg">
-<img src="slider3.jpg">
+  <img id="logo" src="logo.png" alt="PrintCare Logo">
+  <div class="hero-slider">
+    <img src="slider1.jpg" class="active" alt="Slide 1">
+    <img src="slider2.jpg" alt="Slide 2">
+    <img src="slider3.jpg" alt="Slide 3">
+  </div>
+  <div class="hero-text">
+    <small>Where Design Comes to Life</small>
+    <h1>Make Your Ideas Look Perfect on Print</h1>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+  </div>
 </div>
 
-<div class="hero-content">
-<img src="logo.png" alt="PrintCare">
-<small>WHERE DESIGN COMES TO LIFE</small>
-<h1>Make Your Ideas Look Perfect on Print</h1>
-<button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-Contact Us
-</button>
-</div>
-</div>
+<!-- About Us -->
+<section id="about">
+  <h2>About Us</h2>
+  <p>Print Care is your one-stop solution for professional printing, graphic design, packaging, and promotional products. With years of experience in delivering high-quality prints and tailored design services, we help businesses and individuals bring their ideas to life. Our dedication to excellence ensures that every project, from business cards to large-format banners, is handled with care and precision.</p>
+</section>
 
+<!-- Services Accordion -->
 <section id="services">
-<h2>Our Services</h2>
-<div class="cards">
-<div class="card"><h3>Printing</h3><p>High quality digital & offset printing</p></div>
-<div class="card"><h3>Designing</h3><p>Creative designs for brand identity</p></div>
-<div class="card"><h3>Packaging</h3><p>Custom product packaging solutions</p></div>
-<div class="card"><h3>Custom Work</h3><p>Tailored printing for any requirement</p></div>
-</div>
+  <h2>Our Services</h2>
+  <div class="accordion">
+
+    <div class="accordion-item">
+      <div class="accordion-header">Printing Services</div>
+      <div class="accordion-content">
+        <ul>
+          <li>Business Cards – Standard or premium finishes (matte, glossy, embossed).</li>
+          <li>Flyers & Brochures – For marketing campaigns, events, or product catalogs.</li>
+          <li>Posters & Banners – Large-format printing for promotions, exhibitions, or outdoor ads.</li>
+          <li>Books & Magazines – Professional publishing with binding options.</li>
+          <li>Certificates & Invitations – High-quality paper with decorative borders and foil stamping.</li>
+          <li>Calendars – Wall or desk calendars with custom designs.</li>
+          <li>Packaging Prints – Labels, stickers, and branded packaging materials.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">Graphic Design Services</div>
+      <div class="accordion-content">
+        <ul>
+          <li>Logo Design – Unique brand identity creation.</li>
+          <li>Layout Design – Book, magazine, and newspaper layouts.</li>
+          <li>Advertising Design – Posters, social media graphics, and promotional materials.</li>
+          <li>Corporate Identity – Letterheads, envelopes, and branded stationery.</li>
+          <li>Custom Artwork – Tailored illustrations or digital graphics for clients.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">Specialized Solutions</div>
+      <div class="accordion-content">
+        <ul>
+          <li>Digital Printing – Quick turnaround for small batches.</li>
+          <li>Offset Printing – Cost-effective for bulk orders.</li>
+          <li>Large Format Printing – Billboards, signage, and exhibition backdrops.</li>
+          <li>Packaging & Labeling – Custom boxes, bags, and product labels.</li>
+          <li>Promotional Items – T-shirts, mugs, pens, and other merchandise with branding.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section id="gallery">
-<h2>Our Work</h2>
-<div class="gallery">
-<img src="gallery1.jpg">
-<img src="gallery2.jpg">
-<img src="gallery3.jpg">
-</div>
+<!-- Gallery Preview -->
+<section id="gallery-preview">
+  <h2>Gallery</h2>
+  <div id="gallery-container">
+    <img src="gallery1.jpg" alt="Gallery Image 1">
+    <img src="gallery2.jpg" alt="Gallery Image 2">
+    <img src="gallery3.jpg" alt="Gallery Image 3">
+    <img src="gallery4.jpg" alt="Gallery Image 4">
+  </div>
 </section>
 
+<!-- Contact -->
 <section id="contact">
-<h2>Contact Us</h2>
-<div class="contact">
-<a href="mailto:prntcare@gmail.com">Email Us</a>
-<a href="https://wa.me/9779811809093" target="_blank">WhatsApp</a>
-<a href="https://m.me/" target="_blank">Messenger</a>
-
-<iframe loading="lazy"
-src="https://www.google.com/maps?q=Nijgadh+Nepal&output=embed">
-</iframe>
-</div>
+  <h2>Contact Us</h2>
+  <div class="contact-line">
+    <a href="mailto:prntcare@gmail.com">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="#111" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      prntcare@gmail.com
+    </a>
+    <a href="https://wa.me/9811809093">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="#25D366" viewBox="0 0 24 24"><path d="M16.6 14.8c-.3-.1-1.7-.8-2-1-.3-.2-.5-.1-.7.1-.2.2-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.1-1-1-1.2-1.3-.1-.3 0-.5.2-.7.2-.2 1-.5 1.2-.7.2-.2.3-.3.5-.5.2-.2.1-.4 0-.5-.1-.1-1.4-3-1.5-3.3-.1-.3-.2-.3-.5-.3-.3 0-.6 0-.9 0-.3 0-.7.1-1 .5-.3.3-1 1.3-1 3.1s1 3.6 1.1 3.9c.1.3 1.8 2.8 4.3 3.8 2.5 1 2.5.7 2.9.6.4-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.1-1.1-.2-1.4-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 2.1.6 4.1 1.6 5.8L2 22l4.4-1.6c1.7 1 3.7 1.6 5.6 1.6 5.5 0 10-4.5 10-10S17.5 2 12 2zM12 20c-1.9 0-3.8-.5-5.4-1.5l-.4-.3-2.6 1 1-2.5-.3-.4C4.5 15.8 4 13.9 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg>
+      +977 9811809093
+    </a>
+  </div>
 </section>
 
+<!-- Footer -->
 <footer>
-<p>© 2025 PrintCare – Nijgadh, Nepal</p>
-<p>Email: prntcare@gmail.com | Phone: +977 9811809093</p>
+  <p>© 2025 PrintCare | Nijgadh, Nepal</p>
+  <div class="footer-line">
+    <a href="mailto:prntcare@gmail.com">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      prntcare@gmail.com
+    </a>
+    <a href="https://wa.me/9811809093">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="#25D366" viewBox="0 0 24 24"><path d="M16.6 14.8c-.3-.1-1.7-.8-2-1-.3-.2-.5-.1-.7.1-.2.2-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.1-1-1-1.2-1.3-.1-.3 0-.5.2-.7.2-.2 1-.5 1.2-.7.2-.2.3-.3.5-.5.2-.2.1-.4 0-.5-.1-.1-1.4-3-1.5-3.3-.1-.3-.2-.3-.5-.3-.3 0-.6 0-.9 0-.3 0-.7.1-1 .5-.3.3-1 1.3-1 3.1s1 3.6 1.1 3.9c.1.3 1.8 2.8 4.3 3.8 2.5 1 2.5.7 2.9.6.4-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.1-1.1-.2-1.4-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 2.1.6 4.1 1.6 5.8L2 22l4.4-1.6c1.7 1 3.7 1.6 5.6 1.6 5.5 0 10-4.5 10-10S17.5 2 12 2zM12 20c-1.9 0-3.8-.5-5.4-1.5l-.4-.3-2.6 1 1-2.5-.3-.4C4.5 15.8 4 13.9 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg>
+      +977 9811809093
+    </a>
+  </div>
 </footer>
 
+<script>
+  // Hero Slider
+  let slides = document.querySelectorAll('.hero-slider img');
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current +1)%slides.length;
+    slides[current].classList.add('active');
+  },3000);
+
+  // Accordion
+  const accHeaders = document.querySelectorAll('.accordion-header');
+  accHeaders.forEach(header => {
+    header.addEventListener('click', ()=>{
+      const content = header.nextElementSibling;
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+      accHeaders.forEach(h => h.nextElementSibling.style.maxHeight = null);
+      if(!isOpen) content.style.maxHeight = content.scrollHeight + "px";
+    });
+  });
+</script>
 </body>
 </html>
