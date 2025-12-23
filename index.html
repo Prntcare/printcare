@@ -3,187 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PrintCare - Your Printing & Design Solution</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-body{overflow:hidden;color:#111;background:#f9f9f9;}
-
-/* Full-screen container */
-.fullscreen{display:flex;flex-direction:column;width:100vw;height:100vh;}
-
-/* Top Section - Logo left, Nav right */
-.top-section{
-display:flex;
-align-items:center;
-justify-content:space-between;
-height:12%;
-padding:0 20px;
-position:relative;
-background:#ffffff;
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
-z-index:10;
-}
-.top-section img#logo{
-height:60px;
-animation: floatLogo 3s ease-in-out infinite;
-}
-
-/* Logo float animation */
-@keyframes floatLogo{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-5px);}
-}
-
-/* Navigation */
-nav{
-display:flex;
-gap:12px;
-}
-nav a{text-decoration:none;color:#111;font-weight:bold;padding:4px 8px;border-radius:4px;transition:0.3s;font-size:1rem;}
-nav a:hover{color:#007bff;}
-
-/* Middle Section - split layout */
-.middle-section{
-flex:1;display:flex;width:100%;
-flex-direction:row;justify-content:space-between;align-items:center;padding:10px 20px;
-gap:10px;
-}
-
-/* Left - Services */
-.left-services{flex:1;background:#fff;padding:10px;border-radius:8px;overflow:auto;height:95%;font-size:0.85rem;display:flex;flex-direction:column;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-.left-services h3{text-align:center;margin-bottom:5px;color:#007bff;}
-.left-services ul{margin-left:15px;list-style:disc;line-height:1.4;}
-.left-services ul li{
-background:rgba(0,123,255,0.05);
-margin:4px 0;
-padding:4px 6px;
-border-radius:4px;
-animation: floatItem 3s ease-in-out infinite;
-}
-
-/* Services float animation */
-@keyframes floatItem{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-3px);}
-}
-
-/* Right - Gallery */
-.right-gallery{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:6px;overflow:hidden;height:95%;}
-.right-gallery img{
-width:100%;height:100px;object-fit:cover;border-radius:6px;transition:0.3s;
-animation: floatGallery 4s ease-in-out infinite;
-box-shadow:0 2px 6px rgba(0,0,0,0.15);
-}
-.right-gallery img:hover{transform:scale(1.1);box-shadow:0 6px 15px rgba(0,0,0,0.3);}
-
-/* Gallery float animation */
-@keyframes floatGallery{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-4px);}
-}
-
-/* Center - About */
-.center-about{
-flex:1;background:#fff;padding:10px;border-radius:8px;display:flex;align-items:center;justify-content:center;height:95%;text-align:center;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
-transition:0.3s;
-}
-.center-about:hover{box-shadow:0 6px 15px rgba(0,0,0,0.2);}
-.center-about p{font-size:0.85rem;line-height:1.4;}
-
-/* Bottom Section */
-.bottom-section{display:flex;align-items:center;justify-content:center;height:10%;background:#f0f0f0;box-shadow:0 -2px 6px rgba(0,0,0,0.1);}
-.contact-line{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
-.contact-line a{display:flex;align-items:center;gap:5px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;background:rgba(255,0,0,0.05);}
-.contact-line a:hover{color:#ff0000;transform:scale(1.05);background:rgba(255,0,0,0.15);}
-
-/* Responsive */
-@media(max-width:1200px){
-.middle-section{flex-direction:column;align-items:center;}
-.left-services,.right-gallery,.center-about{width:90%;margin-bottom:10px;height:auto;}
-.right-gallery img{height:80px;}
-.top-section{flex-direction:column;align-items:center;gap:10px;}
-nav{justify-content:center;}
-}
-@media(max-width:500px){
-nav a{font-size:0.8rem;}
-.left-services{font-size:0.75rem;}
-.center-about p{font-size:0.75rem;}
-.contact-line a{font-size:0.7rem;padding:4px 6px;}
-}
-</style>
+<title>PrintCare - Your One-Stop Printing & Design Solution</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="fullscreen">
-
-<!-- Top Section -->
-<div class="top-section">
-<img id="logo" src="logo.png" alt="PrintCare Logo">
+<!-- Navigation -->
 <nav>
-<a href="#services">Services</a>
-<a href="#gallery">Gallery</a>
-<a href="#contact">Contact</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
 </nav>
+
+<!-- Top Section: Logo + Description + Services + Gallery -->
+<div class="top-section">
+
+    <!-- Left: Logo + Description + Services -->
+    <div style="display:flex; flex-direction:column; gap:20px; flex:1 1 45%;">
+
+        <!-- Logo + Description -->
+        <div class="logo-description">
+            <img id="logo" src="logo.png" alt="PrintCare Logo">
+            <p>PrintCare is your trusted partner for professional printing, creative design, packaging solutions, and promotional products. We help businesses and individuals bring ideas to life with high-quality, customized materials.</p>
+        </div>
+
+        <!-- Services -->
+        <div class="services" id="services">
+
+            <div class="service-item">
+                <h3>Printing Services</h3>
+                <ul>
+                    <li>Business Cards – Standard or premium finishes (matte, glossy, embossed)</li>
+                    <li>Flyers & Brochures – For marketing campaigns, events, or catalogs</li>
+                    <li>Posters & Banners – Large-format printing for promotions or outdoor ads</li>
+                    <li>Books & Magazines – Professional publishing with binding options</li>
+                    <li>Certificates & Invitations – High-quality paper with decorative borders</li>
+                    <li>Calendars – Wall or desk calendars with custom designs</li>
+                    <li>Packaging Prints – Labels, stickers, and branded materials</li>
+                </ul>
+            </div>
+
+            <div class="service-item">
+                <h3>Graphic Design Services</h3>
+                <ul>
+                    <li>Logo Design – Unique brand identity creation</li>
+                    <li>Layout Design – Book, magazine, newspaper layouts</li>
+                    <li>Advertising Design – Posters, social media graphics, and promotional materials</li>
+                    <li>Corporate Identity – Letterheads, envelopes, branded stationery</li>
+                    <li>Custom Artwork – Tailored illustrations or digital graphics</li>
+                </ul>
+            </div>
+
+            <div class="service-item">
+                <h3>Specialized Solutions</h3>
+                <ul>
+                    <li>Digital Printing – Quick turnaround for small batches</li>
+                    <li>Offset Printing – Cost-effective for bulk orders</li>
+                    <li>Large Format Printing – Billboards, signage, exhibition backdrops</li>
+                    <li>Packaging & Labeling – Custom boxes, bags, product labels</li>
+                    <li>Promotional Items – T-shirts, mugs, pens with branding</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right: Gallery -->
+    <div class="gallery" id="gallery">
+        <img src="gallery1.jpg" alt="Gallery Image 1">
+        <img src="gallery2.jpg" alt="Gallery Image 2">
+        <img src="gallery3.jpg" alt="Gallery Image 3">
+        <img src="gallery4.jpg" alt="Gallery Image 4">
+    </div>
+
 </div>
 
-<!-- Middle Section -->
-<div class="middle-section">
-<!-- Left: Services -->
-<div class="left-services" id="services">
-<h3>Printing Services</h3>
-<ul>
-<li>Business Cards – Standard/premium finishes</li>
-<li>Flyers & Brochures – Marketing campaigns</li>
-<li>Posters & Banners – Large-format printing</li>
-<li>Books & Magazines – Professional publishing</li>
-<li>Certificates & Invitations</li>
-<li>Calendars</li>
-<li>Packaging Prints</li>
-</ul>
-
-<h3>Graphic Design Services</h3>
-<ul>
-<li>Logo Design</li>
-<li>Layout Design</li>
-<li>Advertising Design</li>
-<li>Corporate Identity</li>
-<li>Custom Artwork</li>
-</ul>
-
-<h3>Specialized Solutions</h3>
-<ul>
-<li>Digital Printing</li>
-<li>Offset Printing</li>
-<li>Large Format Printing</li>
-<li>Packaging & Labeling</li>
-<li>Promotional Items</li>
-</ul>
+<!-- Contact Section at Bottom -->
+<div class="contact-line" id="contact">
+    <a href="mailto:prntcare@gmail.com">
+        <img src="email-icon.png" alt="Email" style="width:20px;"> prntcare@gmail.com
+    </a>
+    <a href="https://wa.me/9811809093">
+        <img src="whatsapp-icon.png" alt="WhatsApp" style="width:20px;"> +977 9811809093
+    </a>
 </div>
 
-<!-- Center: About Us -->
-<div class="center-about">
-<p>PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs. Your brand identity and marketing materials are handled with precision and creativity.</p>
-</div>
-
-<!-- Right: Gallery -->
-<div class="right-gallery" id="gallery">
-<img src="gallery1.jpg" alt="Gallery1">
-<img src="gallery2.jpg" alt="Gallery2">
-<img src="gallery3.jpg" alt="Gallery3">
-<img src="gallery4.jpg" alt="Gallery4">
-</div>
-</div>
-
-<!-- Bottom Section -->
-<div class="bottom-section" id="contact">
-<div class="contact-line">
-<a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
-<a href="https://wa.me/9811809093">💬 +977 9811809093</a>
-</div>
-</div>
-
-</div>
+<!-- Footer -->
+<footer>
+    <div>
+        <h4>Quick Links</h4>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div>
+        <h4>Contact Info</h4>
+        <p>Email: prntcare@gmail.com</p>
+        <p>Phone: +977 9811809093</p>
+        <p>Address: Nijgadh, Nepal</p>
+    </div>
+    <div>
+        <h4>Follow Us</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+    </div>
+</footer>
 
 </body>
 </html>
