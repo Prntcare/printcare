@@ -10,8 +10,8 @@ body{overflow:hidden;color:#111;}
 
 /* Colors */
 :root{
---blue:#007bff; /* Logo blue */
---red:#dc3545;  /* Logo red */
+--blue:#007bff; /* top section */
+--red:#dc3545;   /* bottom section */
 --white:#fff;
 --light:#f9f9f9;
 }
@@ -21,60 +21,57 @@ body{overflow:hidden;color:#111;}
 
 /* Navigation */
 nav{
-position:absolute;top:10px;left:50%;transform:translateX(-50%);
-display:flex;gap:12px;background:rgba(255,255,255,0.9);padding:6px 12px;
-border-radius:8px;z-index:20;font-size:0.85rem;box-shadow:0 2px 5px rgba(0,0,0,0.1);
+position:absolute;top:0;left:50%;transform:translateX(-50%);
+display:flex;gap:12px;background:var(--blue);padding:8px 16px;
+border-radius:0 0 8px 8px;z-index:20;font-size:1rem;color:#fff;
 }
-nav a{text-decoration:none;color:#fff;font-weight:bold;padding:4px 8px;border-radius:5px;transition:0.3s;}
+nav a{text-decoration:none;color:#fff;font-weight:bold;padding:4px 8px;border-radius:4px;transition:0.3s;}
 nav a:hover{background:#f39c12;color:#fff;}
 
-/* Sections */
-.section{width:100%;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+/* Top Section */
+.top-section{background:var(--blue);display:flex;flex-direction:column;align-items:center;justify-content:center;height:15%;position:relative;}
+.top-section img#logo{height:60px;z-index:10;margin-top:5px;}
 
-/* Top - Hero */
-.top-section{background:var(--blue);position:relative;}
-/* Particle canvas */
-#particles{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;}
-.hero img#logo{height:60px;margin-bottom:5px;position:relative;z-index:5;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));}
-.hero-slider{width:70%;max-width:400px;height:120px;overflow:hidden;border-radius:8px;margin-bottom:5px;position:relative;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-.hero-slider img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;border-radius:8px;opacity:0;transition:opacity 1s ease-in-out;}
-.hero-slider img.active{opacity:1;}
-.hero-text h1{font-size:1.2rem;margin-bottom:6px;text-shadow:1px 1px 2px rgba(0,0,0,0.2);}
-.hero-text button{padding:6px 10px;border:none;background:#f39c12;color:#fff;border-radius:5px;cursor:pointer;font-size:0.8rem;transition:0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.2);}
-.hero-text button:hover{background:#d87e00;transform:translateY(-2px) scale(1.05);}
+/* Middle Section - split layout */
+.middle-section{
+flex:1;display:flex;width:100%;background:var(--light);
+flex-direction:row;justify-content:center;align-items:center;padding:10px;
+gap:10px;
+}
 
-/* About text */
-#about p{max-width:450px;font-size:0.8rem;line-height:1.3;margin-top:5px;color:#fff;z-index:5;position:relative;}
+/* Left - Services */
+.left-services{flex:1;background:#fff;padding:10px;border-radius:8px;overflow:auto;height:95%;font-size:0.8rem;}
+.left-services h3{text-align:center;margin-bottom:5px;}
+.left-services .accordion-item{margin-bottom:8px;cursor:pointer;transition:0.3s;}
+.left-services .accordion-item:hover{transform:scale(1.02);}
+.left-services ul{margin-left:15px;display:none;list-style:disc;}
+.left-services .accordion-item.active ul{display:block;}
 
-/* Middle - Services & Gallery */
-.middle-section{background:var(--light);padding:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:auto;}
-.accordion{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
-.accordion-item{background:#fff;padding:6px;border-radius:6px;width:140px;cursor:pointer;transition:0.3s;font-size:0.65rem;text-align:left;animation:bounce 3s ease-in-out infinite;box-shadow:0 1px 4px rgba(0,0,0,0.15);}
-.accordion-item h3{font-size:0.7rem;margin-bottom:3px;color:#333;}
-.accordion-item ul{list-style:disc;margin-left:12px;display:none;font-size:0.65rem;color:#555;}
-.accordion-item.active ul{display:block;}
-.accordion-item:hover{transform:scale(1.05);transition:0.3s;}
-@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+/* Right - Gallery */
+.right-gallery{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:6px;overflow:hidden;height:95%;}
+.right-gallery img{width:100%;height:100px;object-fit:cover;border-radius:6px;transition:0.3s;}
+.right-gallery img:hover{transform:scale(1.05);}
 
-/* Gallery */
-#gallery-container{display:grid;grid-template-columns:repeat(2,100px);gap:6px;justify-items:center;margin-top:10px;}
-.gallery-image{width:100%;height:70px;object-fit:cover;border-radius:4px;transition:0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.1);}
-.gallery-image:hover{transform:scale(1.05);}
+/* Center - About */
+.center-about{flex:1;background:#fff;padding:10px;border-radius:8px;margin:0 5px;overflow:auto;height:95%;display:flex;align-items:center;justify-content:center;}
+.center-about p{font-size:0.8rem;text-align:center;line-height:1.3;}
 
-/* Bottom - Contact */
-.bottom-section{background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;}
-.contact-line{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
-.contact-line a{display:flex;align-items:center;gap:4px;text-decoration:none;color:#fff;font-weight:bold;padding:6px 8px;border-radius:5px;font-size:0.8rem;transition:0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.1);}
-.contact-line a:hover{background:#f39c12;color:#fff;transform:translateY(-1px) scale(1.05);}
+/* Bottom Section */
+.bottom-section{background:var(--red);color:#fff;height:10%;display:flex;align-items:center;justify-content:center;}
+.contact-line{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+.contact-line a{display:flex;align-items:center;gap:5px;text-decoration:none;color:#fff;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;}
+.contact-line a:hover{background:#f39c12;transform:scale(1.05);}
 
 /* Responsive */
+@media(max-width:1000px){
+.middle-section{flex-direction:column;align-items:center;}
+.left-services,.right-gallery,.center-about{width:90%;margin-bottom:10px;height:auto;}
+.right-gallery img{height:80px;}
+}
 @media(max-width:500px){
-.hero-slider{width:90%;height:100px;}
-.accordion-item{width:120px;}
-#gallery-container{grid-template-columns:repeat(2,80px);}
-.hero-text h1{font-size:1rem;}
-.hero-text button{font-size:0.7rem;}
-#about p{font-size:0.7rem;max-width:90%;}
+nav{font-size:0.8rem;}
+.left-services{font-size:0.7rem;}
+.center-about p{font-size:0.7rem;}
 .contact-line a{font-size:0.7rem;padding:4px 6px;}
 }
 </style>
@@ -82,37 +79,23 @@ nav a:hover{background:#f39c12;color:#fff;}
 <body>
 
 <div class="fullscreen">
+
 <!-- Top Section -->
-<div class="section top-section">
-<canvas id="particles"></canvas>
+<div class="top-section">
+<img id="logo" src="logo.png" alt="PrintCare Logo">
 <nav>
 <a href="#services">Services</a>
-<a href="#gallery-preview">Gallery</a>
+<a href="#gallery">Gallery</a>
 <a href="#contact">Contact</a>
 </nav>
-<div class="hero">
-<img id="logo" src="logo.png" alt="PrintCare Logo">
-<div class="hero-slider">
-<img src="slider1.jpg" class="active" alt="Slide1">
-<img src="slider2.jpg" alt="Slide2">
-<img src="slider3.jpg" alt="Slide3">
-</div>
-<div class="hero-text">
-<h1>Make Your Ideas Look Perfect on Print</h1>
-<button onclick="window.location.href='mailto:prntcare@gmail.com'">Contact Us</button>
-</div>
-</div>
-<section id="about">
-<p>PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs.</p>
-</section>
 </div>
 
 <!-- Middle Section -->
-<div class="section middle-section">
-<section id="services">
-<div class="accordion">
-<div class="accordion-item">
+<div class="middle-section">
+<!-- Left: Services -->
+<div class="left-services" id="services">
 <h3>Printing Services</h3>
+<div class="accordion-item">
 <ul>
 <li>Business Cards – Standard/premium finishes</li>
 <li>Flyers & Brochures – Marketing campaigns</li>
@@ -123,8 +106,8 @@ nav a:hover{background:#f39c12;color:#fff;}
 <li>Packaging Prints</li>
 </ul>
 </div>
-<div class="accordion-item">
 <h3>Graphic Design Services</h3>
+<div class="accordion-item">
 <ul>
 <li>Logo Design</li>
 <li>Layout Design</li>
@@ -133,8 +116,8 @@ nav a:hover{background:#f39c12;color:#fff;}
 <li>Custom Artwork</li>
 </ul>
 </div>
-<div class="accordion-item">
 <h3>Specialized Solutions</h3>
+<div class="accordion-item">
 <ul>
 <li>Digital Printing</li>
 <li>Offset Printing</li>
@@ -145,23 +128,28 @@ nav a:hover{background:#f39c12;color:#fff;}
 </div>
 </div>
 
-<section id="gallery-preview">
-<div id="gallery-container">
-<img src="gallery1.jpg" class="gallery-image" alt="Gallery1">
-<img src="gallery2.jpg" class="gallery-image" alt="Gallery2">
-<img src="gallery3.jpg" class="gallery-image" alt="Gallery3">
-<img src="gallery4.jpg" class="gallery-image" alt="Gallery4">
+<!-- Center: About Us -->
+<div class="center-about">
+<p>PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs. Your brand identity and marketing materials are handled with precision and creativity.</p>
 </div>
-</section>
+
+<!-- Right: Gallery -->
+<div class="right-gallery" id="gallery">
+<img src="gallery1.jpg" alt="Gallery1">
+<img src="gallery2.jpg" alt="Gallery2">
+<img src="gallery3.jpg" alt="Gallery3">
+<img src="gallery4.jpg" alt="Gallery4">
+</div>
 </div>
 
 <!-- Bottom Section -->
-<div class="section bottom-section" id="contact">
+<div class="bottom-section" id="contact">
 <div class="contact-line">
 <a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
 <a href="https://wa.me/9811809093">💬 +977 9811809093</a>
 </div>
 </div>
+
 </div>
 
 <script>
@@ -169,41 +157,6 @@ nav a:hover{background:#f39c12;color:#fff;}
 document.querySelectorAll('.accordion-item').forEach(item=>{
 item.addEventListener('click',()=>{item.classList.toggle('active');});
 });
-
-// Hero slider fade
-let slides = document.querySelectorAll('.hero-slider img');
-let current = 0;
-setInterval(()=>{
-slides.forEach(s=>s.classList.remove('active'));
-current = (current+1)%slides.length;
-slides[current].classList.add('active');
-},4000);
-
-// Particle animation
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let particles = [];
-for(let i=0;i<50;i++){
-  particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,radius:Math.random()*3+1,speed:Math.random()*0.5+0.2});
-}
-function animateParticles(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{
-    p.y-=p.speed;
-    if(p.y<0)p.y=canvas.height;
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
-    ctx.fillStyle='rgba(255,255,255,0.6)';
-    ctx.fill();
-  });
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
-
-// Adjust canvas on resize
-window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
 </script>
 </body>
 </html>
