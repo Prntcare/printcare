@@ -5,281 +5,181 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PrintCare - Where Design Comes to Life</title>
 <meta name="description" content="PrintCare provides professional printing, designing, packaging, and custom solutions. Contact us for high-quality prints and services.">
-<meta name="keywords" content="PrintCare, printing, designing, packaging, Nepal, services, gallery, tools">
 <style>
-/* General Reset */
-* {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
-body {background:#fff; color:#111; line-height:1.6;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#fff;color:#111;line-height:1.6;}
+nav{position:sticky;top:0;display:flex;justify-content:center;gap:20px;background:#fff;padding:15px 0;border-bottom:1px solid #ddd;z-index:1000;}
+nav a{text-decoration:none;color:#111;font-weight:bold;padding:10px 15px;border-radius:5px;transition:0.3s;}
+nav a:hover{background:#f39c12;color:#fff;}
 
-/* Navigation */
-nav {
-  position: sticky;
-  top:0;
-  background:#fff;
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  padding:15px 0;
-  border-bottom:1px solid #ddd;
-  z-index:1000;
-}
-nav a {
-  text-decoration:none;
-  color:#111;
-  font-weight:bold;
-  padding:10px 15px;
-  border-radius:5px;
-  transition:0.3s;
-}
-nav a:hover {background:#f39c12; color:#fff;}
+/* Hero */
+.hero{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;overflow:hidden;}
+.hero img#logo{height:100px;margin-bottom:20px;animation:float 3s ease-in-out infinite;z-index:2;position:relative;}
+.hero-slider{width:100%;max-width:900px;overflow:hidden;border-radius:10px;margin-bottom:20px;position:relative;}
+.hero-slider img{width:100%;object-fit:cover;display:none;border-radius:10px;}
+.hero-slider img.active{display:block;}
+.hero-text small{display:block;font-size:18px;margin-bottom:10px;animation:float 3s ease-in-out infinite;}
+.hero-text h1{font-size:2rem;animation:float 3s ease-in-out infinite;text-align:center;}
+.hero-text button{padding:10px 20px;border:none;background:#f39c12;color:#fff;border-radius:5px;cursor:pointer;transition:0.3s;}
+.hero-text button:hover{background:#d87e00;}
+@keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-8px);}100%{transform:translateY(0);}}
 
-/* Hero Section */
-.hero {
-  position:relative;
-  overflow:hidden;
-  height:80vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
-}
-.hero img#logo {
-  height:100px;
-  margin-bottom:20px;
-  animation: float-up-down 3s ease-in-out infinite;
-}
-.hero-slider img {
-  width:100%;
-  max-height:300px;
-  object-fit:cover;
-  border-radius:10px;
-  margin-bottom:15px;
-}
-.hero-text small {display:block; font-size:18px; margin-bottom:10px; animation: float-up-down 3s ease-in-out infinite;}
-.hero-text h1 {font-size:2.5rem; animation: float-up-down 3s ease-in-out infinite;}
-.hero-text button {
-  padding:10px 20px;
-  border:none;
-  background:#f39c12;
-  color:#fff;
-  border-radius:5px;
-  cursor:pointer;
-  transition:0.3s;
-}
-.hero-text button:hover {background:#d87e00;}
-
-/* Floating animation */
-@keyframes float-up-down {
-  0% {transform: translateY(0);}
-  50% {transform: translateY(-8px);}
-  100% {transform: translateY(0);}
-}
-
-/* Sections */
-section {padding:50px 20px; max-width:1200px; margin:auto;}
-h2 {font-size:2rem; margin-bottom:20px; text-align:center;}
-
-/* Services Accordion */
-.accordion {display:flex; flex-wrap:wrap; gap:20px; justify-content:center;}
-.accordion-item {background:#f1f1f1; padding:15px; border-radius:10px; width:280px; cursor:pointer; transition:0.3s; opacity:0; transform:translateY(20px);}
-.accordion-item.visible {opacity:1; transform:translateY(0);}
-.accordion-item:hover {background:#f39c12; color:#fff;}
-.accordion-item h3 {margin-bottom:10px;}
-.accordion-item ul {list-style: disc; margin-left:20px; display:none;}
-.accordion-item.active ul {display:block;}
-
-/* Gallery */
-#gallery-container {display:flex; flex-wrap:wrap; gap:15px; justify-content:center;}
-.gallery-image {width:calc(33% - 10px); max-width:300px; border-radius:10px; opacity:0; transform:translateY(20px); transition:0.6s ease-out;}
-.gallery-image.visible {opacity:1; transform:translateY(0);}
-.gallery-image:hover {transform:translateY(-5px) scale(1.05); box-shadow:0 12px 25px rgba(0,0,0,0.15);}
+/* Section */
+section{padding:30px 15px;max-width:1200px;margin:auto;}
+h2{text-align:center;margin-bottom:20px;font-size:2rem;}
 
 /* About */
-#about p {max-width:900px; margin:auto; text-align:center; font-size:1.1rem; line-height:1.7;}
+#about p{text-align:center;max-width:900px;margin:auto;font-size:1.1rem;line-height:1.7;}
 
-/* Contact Buttons */
-.contact-line {display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap; margin-top:20px;}
-.contact-line a {
-  display:flex; align-items:center; gap:8px; text-decoration:none; color:#111; font-weight:bold; background:#f1f1f1; padding:10px 15px; border-radius:8px; transition:0.3s;
-}
-.contact-line a:hover {background:#f39c12; color:#fff; transform:translateY(-3px);}
+/* Accordion Services */
+.accordion{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;}
+.accordion-item{background:#f1f1f1;padding:15px;border-radius:10px;width:280px;cursor:pointer;transition:0.3s;}
+.accordion-item h3{margin-bottom:10px;font-size:1.2rem;}
+.accordion-item ul{list-style:disc;margin-left:20px;display:none;font-size:0.95rem;}
+.accordion-item.active ul{display:block;}
+
+/* Gallery */
+#gallery-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;justify-items:center;}
+.gallery-image{width:100%;max-width:250px;border-radius:10px;transition:0.3s;}
+.gallery-image:hover{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,0.15);}
+
+/* Contact */
+.contact-line{display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;margin-top:15px;}
+.contact-line a{display:flex;align-items:center;gap:8px;text-decoration:none;color:#111;font-weight:bold;background:#f1f1f1;padding:8px 12px;border-radius:8px;transition:0.3s;font-size:0.95rem;}
+.contact-line a:hover{background:#f39c12;color:#fff;transform:translateY(-2px);}
 
 /* Footer */
-footer {background:#111; color:#fff; padding:25px 15px; text-align:center; display:flex; justify-content:center; flex-wrap:wrap; gap:15px;}
-footer a {color:#fff; text-decoration:none; display:flex; align-items:center; gap:5px; transition:0.3s;}
-footer a:hover {color:#f39c12;}
-.footer-section {min-width:200px;}
-
-/* Fade-in for sections */
-.fade-in {opacity:0; transform:translateY(20px); transition:opacity 0.8s ease-out, transform 0.8s ease-out;}
-.fade-in.visible {opacity:1; transform:translateY(0);}
+footer{background:#111;color:#fff;padding:20px 10px;text-align:center;display:flex;justify-content:center;flex-wrap:wrap;gap:15px;}
+footer a{color:#fff;text-decoration:none;display:flex;align-items:center;gap:5px;transition:0.3s;}
+footer a:hover{color:#f39c12;}
+.footer-section{min-width:150px;}
 </style>
 </head>
 <body>
 
 <!-- Navigation -->
 <nav>
-  <a href="#services">Services</a>
-  <a href="#gallery-preview">Gallery</a>
-  <a href="#contact">Contact</a>
+<a href="#services">Services</a>
+<a href="#gallery-preview">Gallery</a>
+<a href="#contact">Contact</a>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero -->
 <div class="hero">
-  <img id="logo" src="images/logo.png" alt="PrintCare Logo">
-  <div class="hero-slider">
-    <img src="images/slider1.jpg" alt="Slide 1">
-    <img src="images/slider2.jpg" alt="Slide 2">
-    <img src="images/slider3.jpg" alt="Slide 3">
-  </div>
-  <div class="hero-text">
-    <small>Where Design Comes to Life</small>
-    <h1>Make Your Ideas Look Perfect on Print</h1>
-    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
-  </div>
+<img id="logo" src="logo.png" alt="PrintCare Logo">
+<div class="hero-slider">
+<img src="slider1.jpg" class="active" alt="Slide1">
+<img src="slider2.jpg" alt="Slide2">
+<img src="slider3.jpg" alt="Slide3">
+</div>
+<div class="hero-text">
+<small>Where Design Comes to Life</small>
+<h1>Make Your Ideas Look Perfect on Print</h1>
+<button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+</div>
 </div>
 
-<!-- About Us -->
-<section id="about" class="fade-in">
-  <h2>About PrintCare</h2>
-  <p>PrintCare is your one-stop solution for all printing and design needs in Nepal. We specialize in business identity, marketing materials, publishing, packaging, and promotional products. With professional design services, high-quality printing, and custom solutions, we help bring your ideas to life. Our mission is to deliver excellence, creativity, and reliability in every project.</p>
+<!-- About -->
+<section id="about">
+<h2>About PrintCare</h2>
+<p>PrintCare is your one-stop solution for all printing and design needs in Nepal. We specialize in business identity, marketing materials, publishing, packaging, and promotional products. With professional design services, high-quality printing, and custom solutions, we help bring your ideas to life.</p>
 </section>
 
 <!-- Services -->
-<section id="services" class="fade-in">
-  <h2>Our Services</h2>
-  <div class="accordion">
-    <div class="accordion-item">
-      <h3>Printing Services</h3>
-      <ul>
-        <li class="service-card">Business Cards – Standard or premium finishes (matte, glossy, embossed).</li>
-        <li class="service-card">Flyers & Brochures – For marketing campaigns, events, or product catalogs.</li>
-        <li class="service-card">Posters & Banners – Large-format printing for promotions, exhibitions, or outdoor ads.</li>
-        <li class="service-card">Books & Magazines – Professional publishing with binding options.</li>
-        <li class="service-card">Certificates & Invitations – High-quality paper with decorative borders and foil stamping.</li>
-        <li class="service-card">Calendars – Wall or desk calendars with custom designs.</li>
-        <li class="service-card">Packaging Prints – Labels, stickers, and branded packaging materials.</li>
-      </ul>
-    </div>
-    <div class="accordion-item">
-      <h3>Graphic Design Services</h3>
-      <ul>
-        <li class="service-card">Logo Design – Unique brand identity creation.</li>
-        <li class="service-card">Layout Design – Book, magazine, and newspaper layouts.</li>
-        <li class="service-card">Advertising Design – Posters, social media graphics, and promotional materials.</li>
-        <li class="service-card">Corporate Identity – Letterheads, envelopes, and branded stationery.</li>
-        <li class="service-card">Custom Artwork – Tailored illustrations or digital graphics for clients.</li>
-      </ul>
-    </div>
-    <div class="accordion-item">
-      <h3>Specialized Solutions</h3>
-      <ul>
-        <li class="service-card">Digital Printing – Quick turnaround for small batches.</li>
-        <li class="service-card">Offset Printing – Cost-effective for bulk orders.</li>
-        <li class="service-card">Large Format Printing – Billboards, signage, and exhibition backdrops.</li>
-        <li class="service-card">Packaging & Labeling – Custom boxes, bags, and product labels.</li>
-        <li class="service-card">Promotional Items – T-shirts, mugs, pens, and other merchandise with branding.</li>
-      </ul>
-    </div>
-  </div>
+<section id="services">
+<h2>Our Services</h2>
+<div class="accordion">
+<div class="accordion-item">
+<h3>Printing Services</h3>
+<ul>
+<li>Business Cards – Standard or premium finishes.</li>
+<li>Flyers & Brochures – Marketing campaigns or product catalogs.</li>
+<li>Posters & Banners – Large-format printing.</li>
+<li>Books & Magazines – Professional publishing.</li>
+<li>Certificates & Invitations – High-quality paper with decorative borders.</li>
+<li>Calendars – Wall or desk calendars with custom designs.</li>
+<li>Packaging Prints – Labels, stickers, branded packaging.</li>
+</ul>
+</div>
+<div class="accordion-item">
+<h3>Graphic Design Services</h3>
+<ul>
+<li>Logo Design – Unique brand identity.</li>
+<li>Layout Design – Book, magazine layouts.</li>
+<li>Advertising Design – Posters, social media graphics.</li>
+<li>Corporate Identity – Letterheads, envelopes.</li>
+<li>Custom Artwork – Tailored illustrations or digital graphics.</li>
+</ul>
+</div>
+<div class="accordion-item">
+<h3>Specialized Solutions</h3>
+<ul>
+<li>Digital Printing – Quick turnaround for small batches.</li>
+<li>Offset Printing – Cost-effective for bulk orders.</li>
+<li>Large Format Printing – Billboards, signage, exhibition backdrops.</li>
+<li>Packaging & Labeling – Custom boxes, bags, product labels.</li>
+<li>Promotional Items – T-shirts, mugs, pens with branding.</li>
+</ul>
+</div>
+</div>
 </section>
 
 <!-- Gallery -->
-<section id="gallery-preview" class="fade-in">
-  <h2>Gallery</h2>
-  <div id="gallery-container">
-    <img src="images/gallery1.jpg" alt="Gallery 1" class="gallery-image">
-    <img src="images/gallery2.jpg" alt="Gallery 2" class="gallery-image">
-    <img src="images/gallery3.jpg" alt="Gallery 3" class="gallery-image">
-    <img src="images/gallery4.jpg" alt="Gallery 4" class="gallery-image">
-  </div>
+<section id="gallery-preview">
+<h2>Gallery</h2>
+<div id="gallery-container">
+<img src="gallery1.jpg" class="gallery-image" alt="Gallery1">
+<img src="gallery2.jpg" class="gallery-image" alt="Gallery2">
+<img src="gallery3.jpg" class="gallery-image" alt="Gallery3">
+<img src="gallery4.jpg" class="gallery-image" alt="Gallery4">
+</div>
 </section>
 
 <!-- Contact -->
-<section id="contact" class="fade-in">
-  <h2>Contact Us</h2>
-  <div class="contact-line">
-    <a href="mailto:prntcare@gmail.com">
-      📧 prntcare@gmail.com
-    </a>
-    <a href="https://wa.me/9811809093">
-      💬 +977 9811809093
-    </a>
-  </div>
+<section id="contact">
+<h2>Contact Us</h2>
+<div class="contact-line">
+<a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
+<a href="https://wa.me/9811809093">💬 +977 9811809093</a>
+</div>
 </section>
 
 <!-- Footer -->
 <footer>
-  <div class="footer-section">
-    <h4>Quick Links</h4>
-    <a href="#services">Services</a>
-    <a href="#gallery-preview">Gallery</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <div class="footer-section">
-    <h4>Contact Info</h4>
-    <p>Email: prntcare@gmail.com</p>
-    <p>Phone: +977 9811809093</p>
-    <p>Address: Nijgadh, Nepal</p>
-  </div>
-  <div class="footer-section">
-    <h4>Follow Us</h4>
-    <a href="#">Facebook</a>
-    <a href="#">Instagram</a>
-    <a href="#">LinkedIn</a>
-  </div>
+<div class="footer-section">
+<h4>Quick Links</h4>
+<a href="#services">Services</a>
+<a href="#gallery-preview">Gallery</a>
+<a href="#contact">Contact</a>
+</div>
+<div class="footer-section">
+<h4>Contact Info</h4>
+<p>Email: prntcare@gmail.com</p>
+<p>Phone: +977 9811809093</p>
+<p>Address: Nijgadh, Nepal</p>
+</div>
+<div class="footer-section">
+<h4>Follow Us</h4>
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+<a href="#">LinkedIn</a>
+</div>
 </footer>
 
 <script>
-// Accordion toggle
-const accItems = document.querySelectorAll('.accordion-item');
-accItems.forEach(item => {
-  item.addEventListener('click', () => {
-    item.classList.toggle('active');
-  });
+// Accordion
+document.querySelectorAll('.accordion-item').forEach(item=>{
+item.addEventListener('click',()=>{item.classList.toggle('active');});
 });
 
-// Scroll fade-in
-const faders = document.querySelectorAll('.fade-in');
-const appearOnScroll = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.2 });
-faders.forEach(fader => appearOnScroll.observe(fader));
-
-// Staggered reveal for service cards
-const serviceCards = document.querySelectorAll('.service-card');
-const revealCards = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      serviceCards.forEach((card, index) => {
-        setTimeout(() => card.classList.add('visible'), index * 150);
-      });
-      observer.disconnect();
-    }
-  });
-}, { threshold: 0.2 });
-serviceCards.forEach(card => revealCards.observe(card));
-
-// Staggered reveal for gallery images
-const galleryImages = document.querySelectorAll('.gallery-image');
-const revealGallery = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      galleryImages.forEach((img, index) => {
-        setTimeout(() => img.classList.add('visible'), index * 150);
-      });
-      observer.disconnect();
-    }
-  });
-}, { threshold: 0.2 });
-galleryImages.forEach(img => revealGallery.observe(img));
+// Hero Slider Auto
+let slides = document.querySelectorAll('.hero-slider img');
+let current = 0;
+setInterval(()=>{
+slides[current].classList.remove('active');
+current = (current+1)%slides.length;
+slides[current].classList.add('active');
+},4000);
 </script>
 </body>
 </html>
