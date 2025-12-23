@@ -6,142 +6,52 @@
 <title>PrintCare - Your Printing & Design Solution</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-body{color:#111;background:#f9f9f9;overflow-x:hidden;}
+body{background:#f9f9f9;color:#111;overflow-x:hidden;}
 
-/* Top Section */
-.top-section{
-display:flex;justify-content:space-between;align-items:flex-start;padding:10px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);flex-wrap:wrap;
-}
-.top-section img#logo{height:70px;}
-.top-contact{display:flex;gap:10px;margin-top:5px;flex-wrap:wrap;}
-.top-contact a{display:flex;align-items:center;gap:4px;text-decoration:none;color:#111;font-weight:bold;padding:4px 6px;border-radius:4px;background:rgba(0,123,255,0.1);transition:0.3s;font-size:0.8rem;}
-.top-contact a:hover{background:rgba(0,123,255,0.2);color:#007bff;}
-nav a{margin-left:15px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:4px;transition:0.3s;}
+/* Top Panel */
+.top-panel{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:#ffffff;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+.top-panel img#logo{height:60px;}
+nav a{text-decoration:none;color:#111;font-weight:bold;padding:6px 12px;border-radius:4px;transition:0.3s;}
 nav a:hover{color:#007bff;}
 
-/* Main Section */
-.main-section{
-display:flex;
-gap:15px;
-padding:10px 20px;
-flex-wrap:wrap;
-align-items:stretch; /* ensures left and right equal height */
-}
+/* Main layout */
+.main-section{display:flex;width:100%;height:calc(100vh - 80px);padding:10px 20px;gap:10px;}
+.left-panel{flex:1;overflow:auto;padding:10px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.left-panel h3{color:#007bff;margin:8px 0;}
+.left-panel ul{margin-left:15px;list-style:disc;line-height:1.4;}
+.left-panel ul li{margin:3px 0;padding:3px 6px;border-radius:4px;background:rgba(0,123,255,0.05);}
+.right-panel{flex:1;display:flex;flex-direction:column;gap:8px;}
+.slider{height:120px;display:flex;overflow:hidden;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.15);}
+.slider img{width:100%;object-fit:cover;}
+.description{background:#fff;padding:10px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center;font-size:0.85rem;}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:5px;}
+.gallery img{width:100%;height:80px;object-fit:cover;border-radius:6px;}
 
-/* Left Services */
-.left-services{
-flex:1;
-background:#fff;
-padding:10px;
-border-radius:8px;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
-font-size:0.85rem;
-line-height:1.3;
-display:flex;
-flex-direction:column;
-justify-content:flex-start;
-}
-.left-services h3{color:#007bff;margin-bottom:3px;}
-.left-services ul{margin-left:15px;list-style:disc;}
-.left-services ul li{margin:2px 0;padding:3px 5px;background:rgba(0,123,255,0.05);border-radius:4px;}
+/* Bottom Panel */
+.bottom-panel{display:flex;justify-content:center;align-items:center;padding:10px;background:#f0f0f0;gap:20px;flex-wrap:wrap;}
+.bottom-panel a{display:flex;align-items:center;gap:5px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;background:rgba(255,0,0,0.05);}
+.bottom-panel a:hover{color:#ff0000;transform:scale(1.05);background:rgba(255,0,0,0.15);}
 
-/* Right Side */
-.right-content{
-flex:1;
-display:flex;
-flex-direction:column;
-gap:8px;
-height:100%;
-}
+/* Mini Google Map */
+.map-container{margin-top:10px;height:120px;border-radius:8px;overflow:hidden;}
 
-/* Slider */
-.slider{
-position:relative;
-width:100%;
-height:120px;
-overflow:hidden;
-border-radius:10px;
-}
-.slider img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:none;
-border-radius:10px;
-}
-.slider img.active{display:block;}
-.slider-controls{
-position:absolute;
-top:50%;
-width:100%;
-display:flex;
-justify-content:space-between;
-transform:translateY(-50%);
-padding:0 10px;
-}
-.slider-controls span{
-background:rgba(0,0,0,0.4);
-color:#fff;
-padding:4px 8px;
-cursor:pointer;
-border-radius:4px;
-font-weight:bold;
-font-size:1rem;
-}
-
-/* Description */
-.description{
-background:#fff;
-padding:8px;
-border-radius:8px;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
-font-size:0.85rem;
-line-height:1.4;
-text-align:center;
-}
-
-/* Gallery */
-.right-gallery{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:6px;
-flex-grow:1;
-}
-.right-gallery img{
-width:100%;
-height:80px;
-object-fit:cover;
-border-radius:6px;
-box-shadow:0 2px 6px rgba(0,0,0,0.15);
-transition:0.3s;
-}
-.right-gallery img:hover{transform:scale(1.05);box-shadow:0 6px 15px rgba(0,0,0,0.3);}
-
-/* Responsive */
-@media(max-width:1200px){
-.main-section{flex-direction:column;align-items:center;}
-.left-services,.right-content{width:90%;margin-bottom:10px;}
-.right-gallery img{height:70px;}
-}
-@media(max-width:500px){
-nav a{font-size:0.75rem;}
-.left-services{font-size:0.7rem;}
-.description{font-size:0.75rem;}
-.top-contact a{font-size:0.7rem;padding:3px 5px;}
-}
+/* Mini Chatbot */
+.chatbot{position:fixed;bottom:20px;right:20px;width:250px;background:#fff;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.25);overflow:hidden;font-size:0.85rem;}
+.chat-header{background:#007bff;color:#fff;padding:8px;text-align:center;font-weight:bold;}
+.chat-messages{height:150px;overflow-y:auto;padding:5px;display:flex;flex-direction:column;gap:5px;}
+.message.user{background:rgba(0,123,255,0.1);padding:4px 6px;border-radius:4px;align-self:flex-end;}
+.message.bot{background:rgba(0,123,255,0.2);padding:4px 6px;border-radius:4px;align-self:flex-start;}
+.chat-input{display:flex;flex-direction:column;padding:5px;}
+.chat-input input, .chat-input textarea{margin-bottom:5px;padding:4px 6px;border-radius:4px;border:1px solid #ccc;width:100%;resize:none;}
+.chat-input button{padding:6px 10px;background:#007bff;color:#fff;border:none;border-radius:4px;cursor:pointer;transition:0.3s;}
+.chat-input button:hover{background:#0056b3;}
 </style>
 </head>
 <body>
 
-<!-- Top Section -->
-<div class="top-section">
-<div>
+<!-- Top Panel -->
+<div class="top-panel">
 <img id="logo" src="logo.png" alt="PrintCare Logo">
-<div class="top-contact">
-<a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
-<a href="https://wa.me/9811809093">💬 +977 9811809093</a>
-</div>
-</div>
 <nav>
 <a href="#services">Services</a>
 <a href="#gallery">Gallery</a>
@@ -151,8 +61,8 @@ nav a{font-size:0.75rem;}
 
 <!-- Main Section -->
 <div class="main-section">
-<!-- Left Services -->
-<div class="left-services" id="services">
+<!-- Left Panel: Services -->
+<div class="left-panel" id="services">
 <h3>Printing Services</h3>
 <ul>
 <li>Business Cards – Standard/premium finishes</li>
@@ -163,7 +73,6 @@ nav a{font-size:0.75rem;}
 <li>Calendars</li>
 <li>Packaging Prints</li>
 </ul>
-
 <h3>Graphic Design Services</h3>
 <ul>
 <li>Logo Design</li>
@@ -172,7 +81,6 @@ nav a{font-size:0.75rem;}
 <li>Corporate Identity</li>
 <li>Custom Artwork</li>
 </ul>
-
 <h3>Specialized Solutions</h3>
 <ul>
 <li>Digital Printing</li>
@@ -183,24 +91,18 @@ nav a{font-size:0.75rem;}
 </ul>
 </div>
 
-<!-- Right Side -->
-<div class="right-content">
+<!-- Right Panel: Slider + Description + Gallery -->
+<div class="right-panel">
 <div class="slider">
-<img src="slider1.jpg" class="active" alt="Slide1">
+<img src="slider1.jpg" alt="Slide1">
 <img src="slider2.jpg" alt="Slide2">
 <img src="slider3.jpg" alt="Slide3">
 <img src="slider4.jpg" alt="Slide4">
-<div class="slider-controls">
-<span onclick="prevSlide()">‹</span>
-<span onclick="nextSlide()">›</span>
 </div>
-</div>
-
 <div class="description">
-PrintCare delivers high-quality printing, design, packaging, and promotional solutions in Nepal. We help businesses and individuals turn ideas into professional outputs.
+PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs.
 </div>
-
-<div class="right-gallery" id="gallery">
+<div class="gallery" id="gallery">
 <img src="gallery1.jpg" alt="Gallery1">
 <img src="gallery2.jpg" alt="Gallery2">
 <img src="gallery3.jpg" alt="Gallery3">
@@ -209,18 +111,73 @@ PrintCare delivers high-quality printing, design, packaging, and promotional sol
 </div>
 </div>
 
-<script>
-// Slider JS
-let slides = document.querySelectorAll('.slider img');
-let current = 0;
-function showSlide(index){
-slides.forEach((img)=>img.classList.remove('active'));
-slides[index].classList.add('active');
-}
-function nextSlide(){current = (current + 1) % slides.length; showSlide(current);}
-function prevSlide(){current = (current - 1 + slides.length) % slides.length; showSlide(current);}
-setInterval(nextSlide,4000);
-</script>
+<!-- Bottom Panel: Contact -->
+<div class="bottom-panel" id="contact">
+<a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
+<a href="https://wa.me/9811809093">💬 +977 9811809093</a>
+</div>
 
+<!-- Mini Google Map -->
+<div class="map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.9121532217676!2d85.18553731507261!3d27.181337183160056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb59a9cda0ece5%3A0x35b2367e38096b08!2sPrint%20Care!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<!-- Mini Chatbot -->
+<div class="chatbot">
+<div class="chat-header">Assistant</div>
+<div class="chat-messages" id="chat-messages"></div>
+<div class="chat-input">
+<input type="text" id="user-name" placeholder="Your Name">
+<textarea id="user-msg" rows="2" placeholder="Your Question"></textarea>
+<button id="send-btn">Send to WhatsApp</button>
+</div>
+</div>
+
+<script>
+// Slider auto change
+let slides = document.querySelectorAll('.slider img');
+let currentSlide = 0;
+slides.forEach((s,i)=>i!==0?s.style.display='none':s.style.display='block');
+setInterval(()=>{
+slides[currentSlide].style.display='none';
+currentSlide = (currentSlide+1)%slides.length;
+slides[currentSlide].style.display='block';
+},3000);
+
+// Chatbot WhatsApp forward
+const chatMessages = document.getElementById('chat-messages');
+const userNameInput = document.getElementById('user-name');
+const userMsgInput = document.getElementById('user-msg');
+document.getElementById('send-btn').addEventListener('click',()=>{
+  const name = userNameInput.value || 'Guest';
+  const msg = userMsgInput.value;
+  if(msg.trim() === '') return;
+
+  const userDiv = document.createElement('div');
+  userDiv.classList.add('message','user');
+  userDiv.textContent = name + ': ' + msg;
+  chatMessages.appendChild(userDiv);
+
+  userMsgInput.value = '';
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  const botDiv = document.createElement('div');
+  botDiv.classList.add('message','bot');
+  botDiv.textContent = 'Click below to send your message to WhatsApp:';
+
+  const waLink = document.createElement('a');
+  waLink.href = `https://wa.me/9779811809093?text=${encodeURIComponent(name + ': ' + msg)}`;
+  waLink.target = "_blank";
+  waLink.textContent = 'Send to WhatsApp';
+  waLink.style.display='block';
+  waLink.style.marginTop='5px';
+  waLink.style.color='#25D366';
+  waLink.style.fontWeight='bold';
+
+  botDiv.appendChild(waLink);
+  chatMessages.appendChild(botDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+</script>
 </body>
 </html>
