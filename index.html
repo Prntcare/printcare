@@ -6,46 +6,34 @@
 <title>PrintCare - Your Printing & Design Solution</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-body{overflow:hidden;color:#111;}
-
-/* Colors */
-:root{
---blue:#007bff; /* top section */
---red:#dc3545;   /* bottom section */
---white:#fff;
---light:#f9f9f9;
-}
+body{overflow:hidden;color:#111;background:#f9f9f9;}
 
 /* Full-screen container */
 .fullscreen{display:flex;flex-direction:column;width:100vw;height:100vh;}
 
 /* Navigation */
 nav{
-position:absolute;top:0;left:50%;transform:translateX(-50%);
-display:flex;gap:12px;background:var(--blue);padding:8px 16px;
-border-radius:0 0 8px 8px;z-index:20;font-size:1rem;color:#fff;
+position:absolute;top:10px;left:50%;transform:translateX(-50%);
+display:flex;gap:12px;padding:6px 12px;z-index:20;font-size:1rem;
 }
-nav a{text-decoration:none;color:#fff;font-weight:bold;padding:4px 8px;border-radius:4px;transition:0.3s;}
-nav a:hover{background:#f39c12;color:#fff;}
+nav a{text-decoration:none;color:#111;font-weight:bold;padding:4px 8px;border-radius:4px;transition:0.3s;}
+nav a:hover{color:#007bff;}
 
 /* Top Section */
-.top-section{background:var(--blue);display:flex;flex-direction:column;align-items:center;justify-content:center;height:15%;position:relative;}
-.top-section img#logo{height:60px;z-index:10;margin-top:5px;}
+.top-section{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:12%;position:relative;}
+.top-section img#logo{height:60px;z-index:10;margin-bottom:5px;}
 
 /* Middle Section - split layout */
 .middle-section{
-flex:1;display:flex;width:100%;background:var(--light);
-flex-direction:row;justify-content:center;align-items:center;padding:10px;
+flex:1;display:flex;width:100%;
+flex-direction:row;justify-content:space-between;align-items:center;padding:10px 20px;
 gap:10px;
 }
 
 /* Left - Services */
-.left-services{flex:1;background:#fff;padding:10px;border-radius:8px;overflow:auto;height:95%;font-size:0.8rem;}
+.left-services{flex:1;background:#fff;padding:10px;border-radius:8px;overflow:auto;height:95%;font-size:0.85rem;display:flex;flex-direction:column;justify-content:center;}
 .left-services h3{text-align:center;margin-bottom:5px;}
-.left-services .accordion-item{margin-bottom:8px;cursor:pointer;transition:0.3s;}
-.left-services .accordion-item:hover{transform:scale(1.02);}
-.left-services ul{margin-left:15px;display:none;list-style:disc;}
-.left-services .accordion-item.active ul{display:block;}
+.left-services ul{margin-left:15px;list-style:disc;line-height:1.4;}
 
 /* Right - Gallery */
 .right-gallery{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:6px;overflow:hidden;height:95%;}
@@ -53,25 +41,25 @@ gap:10px;
 .right-gallery img:hover{transform:scale(1.05);}
 
 /* Center - About */
-.center-about{flex:1;background:#fff;padding:10px;border-radius:8px;margin:0 5px;overflow:auto;height:95%;display:flex;align-items:center;justify-content:center;}
-.center-about p{font-size:0.8rem;text-align:center;line-height:1.3;}
+.center-about{flex:1;background:#fff;padding:10px;border-radius:8px;display:flex;align-items:center;justify-content:center;height:95%;text-align:center;}
+.center-about p{font-size:0.85rem;line-height:1.4;}
 
 /* Bottom Section */
-.bottom-section{background:var(--red);color:#fff;height:10%;display:flex;align-items:center;justify-content:center;}
+.bottom-section{display:flex;align-items:center;justify-content:center;height:10%;}
 .contact-line{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
-.contact-line a{display:flex;align-items:center;gap:5px;text-decoration:none;color:#fff;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;}
-.contact-line a:hover{background:#f39c12;transform:scale(1.05);}
+.contact-line a{display:flex;align-items:center;gap:5px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;}
+.contact-line a:hover{color:#007bff;transform:scale(1.05);}
 
 /* Responsive */
-@media(max-width:1000px){
+@media(max-width:1200px){
 .middle-section{flex-direction:column;align-items:center;}
 .left-services,.right-gallery,.center-about{width:90%;margin-bottom:10px;height:auto;}
 .right-gallery img{height:80px;}
 }
 @media(max-width:500px){
 nav{font-size:0.8rem;}
-.left-services{font-size:0.7rem;}
-.center-about p{font-size:0.7rem;}
+.left-services{font-size:0.75rem;}
+.center-about p{font-size:0.75rem;}
 .contact-line a{font-size:0.7rem;padding:4px 6px;}
 }
 </style>
@@ -95,7 +83,6 @@ nav{font-size:0.8rem;}
 <!-- Left: Services -->
 <div class="left-services" id="services">
 <h3>Printing Services</h3>
-<div class="accordion-item">
 <ul>
 <li>Business Cards – Standard/premium finishes</li>
 <li>Flyers & Brochures – Marketing campaigns</li>
@@ -105,9 +92,8 @@ nav{font-size:0.8rem;}
 <li>Calendars</li>
 <li>Packaging Prints</li>
 </ul>
-</div>
+
 <h3>Graphic Design Services</h3>
-<div class="accordion-item">
 <ul>
 <li>Logo Design</li>
 <li>Layout Design</li>
@@ -115,9 +101,8 @@ nav{font-size:0.8rem;}
 <li>Corporate Identity</li>
 <li>Custom Artwork</li>
 </ul>
-</div>
+
 <h3>Specialized Solutions</h3>
-<div class="accordion-item">
 <ul>
 <li>Digital Printing</li>
 <li>Offset Printing</li>
@@ -125,7 +110,6 @@ nav{font-size:0.8rem;}
 <li>Packaging & Labeling</li>
 <li>Promotional Items</li>
 </ul>
-</div>
 </div>
 
 <!-- Center: About Us -->
@@ -152,11 +136,5 @@ nav{font-size:0.8rem;}
 
 </div>
 
-<script>
-// Accordion toggle
-document.querySelectorAll('.accordion-item').forEach(item=>{
-item.addEventListener('click',()=>{item.classList.toggle('active');});
-});
-</script>
 </body>
 </html>
