@@ -4,156 +4,280 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PrintCare - Your Printing & Design Solution</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 body{background:#f9f9f9;color:#111;overflow-x:hidden;}
 
 /* Fullscreen container */
-.fullscreen{display:flex;flex-direction:column;width:100vw;height:100vh;}
+.fullscreen{
+    display:flex;
+    flex-direction:column;
+    width:100vw;
+    min-height:100vh;
+}
 
 /* Top Section */
 .top-section{
-display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 20px;
+    background:#fff;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    z-index:10;
 }
-.top-section img#logo{height:60px;}
-nav{display:flex;gap:12px;}
-nav a{text-decoration:none;color:#111;font-weight:bold;padding:6px 12px;border-radius:4px;transition:0.3s;font-size:1rem;}
+
+.top-section img#logo{
+    height:60px;
+}
+
+nav{
+    display:flex;
+    gap:12px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#111;
+    font-weight:bold;
+    padding:6px 12px;
+    border-radius:4px;
+    transition:0.3s;
+    font-size:1rem;
+}
+
 nav a:hover{color:#007bff;}
 
-/* Email & WhatsApp under logo */
-.contact-buttons{display:flex;gap:12px;margin-top:10px;}
-.contact-buttons a{display:flex;align-items:center;gap:6px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;background:rgba(0,123,255,0.1);}
-.contact-buttons a:hover{background:rgba(0,123,255,0.2);color:#007bff;}
+/* Email & WhatsApp */
+.contact-buttons{
+    display:flex;
+    gap:12px;
+    padding:10px 20px;
+}
+
+.contact-buttons a{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    text-decoration:none;
+    color:#111;
+    font-weight:bold;
+    padding:6px 10px;
+    border-radius:5px;
+    transition:0.3s;
+    background:rgba(0,123,255,0.1);
+}
+
+.contact-buttons a:hover{
+    background:rgba(0,123,255,0.2);
+    color:#007bff;
+}
 
 /* Middle Section */
 .middle-section{
-flex:1;display:flex;justify-content:space-between;align-items:flex-start;padding:10px 20px;gap:10px;
+    flex:1;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:10px 20px;
+    gap:10px;
 }
 
-/* Left: Services */
+/* Left Services */
 .left-services{
-flex:1;background:#fff;padding:10px;border-radius:8px;overflow:auto;box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    flex:1;
+    background:#fff;
+    padding:10px;
+    border-radius:8px;
+    overflow:auto;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
-.left-services h3{color:#007bff;margin-bottom:5px;font-size:1rem;}
-.left-services ul{margin-left:15px;line-height:1.4;margin-bottom:10px;}
-.left-services ul li{margin:2px 0;padding:4px 6px;background:rgba(0,123,255,0.05);border-radius:4px;font-size:0.85rem;}
 
-/* Right: Slider + Description + Gallery */
-.right-panel{flex:1;display:flex;flex-direction:column;gap:10px;align-items:center;}
+.left-services h3{
+    color:#007bff;
+    margin-bottom:5px;
+    font-size:1rem;
+}
+
+.left-services ul{
+    margin-left:15px;
+    line-height:1.4;
+    margin-bottom:10px;
+}
+
+.left-services ul li{
+    margin:2px 0;
+    padding:4px 6px;
+    background:rgba(0,123,255,0.05);
+    border-radius:4px;
+    font-size:0.85rem;
+}
+
+/* Right Panel */
+.right-panel{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+}
 
 /* Slider */
-.slider{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;}
-.slider img{width:calc(50% - 5px);height:100px;object-fit:cover;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.15);}
+.slider{
+    display:flex;
+    justify-content:center;
+    gap:5px;
+    flex-wrap:wrap;
+}
+
+.slider img{
+    width:calc(50% - 5px);
+    height:100px;
+    object-fit:cover;
+    border-radius:6px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
 
 /* Description */
-.description{background:#fff;padding:8px;border-radius:6px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-.description p{font-size:0.85rem;line-height:1.4;}
+.description{
+    background:#fff;
+    padding:8px;
+    border-radius:6px;
+    text-align:center;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.description p{
+    font-size:0.85rem;
+    line-height:1.4;
+}
 
 /* Gallery */
-.gallery{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
-.gallery img{width:calc(50% - 6px);height:100px;object-fit:cover;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.15);}
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    justify-content:center;
+}
 
-/* Bottom Section */
-.bottom-section{display:flex;justify-content:center;align-items:center;background:#f0f0f0;padding:8px;gap:12px;}
-.bottom-section a{display:flex;align-items:center;gap:5px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;background:rgba(255,0,0,0.05);}
-.bottom-section a:hover{background:rgba(255,0,0,0.15);color:#ff0000;}
+.gallery img{
+    width:calc(50% - 6px);
+    height:100px;
+    object-fit:cover;
+    border-radius:6px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
 
 /* Responsive */
 @media(max-width:1200px){
-.middle-section{flex-direction:column;align-items:center;}
-.left-services,.right-panel{width:90%;margin-bottom:10px;}
-.slider img,.gallery img{height:80px;}
+    .middle-section{
+        flex-direction:column;
+        align-items:center;
+    }
+    .left-services,.right-panel{
+        width:90%;
+        margin-bottom:10px;
+    }
+    .slider img,.gallery img{height:80px;}
 }
+
 @media(max-width:500px){
-nav a{font-size:0.8rem;}
-.left-services ul li,.description p{font-size:0.75rem;}
-.contact-buttons a,.bottom-section a{font-size:0.7rem;padding:4px 6px;}
-.slider img,.gallery img{height:60px;}
+    nav a{font-size:0.8rem;}
+    .left-services ul li,.description p{font-size:0.75rem;}
+    .contact-buttons a{font-size:0.7rem;padding:4px 6px;}
+    .slider img,.gallery img{height:60px;}
 }
 </style>
 </head>
+
 <body>
 
 <div class="fullscreen">
 
-<!-- Top Section -->
-<div class="top-section">
-<img id="logo" src="logo.png" alt="PrintCare Logo">
-<nav>
-<a href="#services">Services</a>
-<a href="#gallery">Gallery</a>
-<a href="#contact">Contact</a>
-</nav>
+    <!-- Top Section -->
+    <div class="top-section">
+        <img id="logo" src="assets/logo.png" alt="PrintCare Logo">
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Contact Buttons -->
+    <div class="contact-buttons" id="contact">
+        <a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
+        <a href="https://wa.me/9779811809093" target="_blank">💬 +977 9811809093</a>
+    </div>
+
+    <!-- Middle Section -->
+    <div class="middle-section">
+
+        <!-- Left Services -->
+        <div class="left-services" id="services">
+            <h3>Printing Services</h3>
+            <ul>
+                <li>Business Cards – Standard & Premium</li>
+                <li>Flyers & Brochures</li>
+                <li>Posters & Banners</li>
+                <li>Books & Magazines</li>
+                <li>Certificates & Invitations</li>
+                <li>Calendars</li>
+                <li>Packaging Prints</li>
+            </ul>
+
+            <h3>Graphic Design Services</h3>
+            <ul>
+                <li>Logo Design</li>
+                <li>Layout Design</li>
+                <li>Advertising Design</li>
+                <li>Corporate Identity</li>
+                <li>Custom Artwork</li>
+            </ul>
+
+            <h3>Specialized Solutions</h3>
+            <ul>
+                <li>Digital Printing</li>
+                <li>Offset Printing</li>
+                <li>Large Format Printing</li>
+                <li>Packaging & Labeling</li>
+                <li>Promotional Items</li>
+            </ul>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel" id="gallery">
+
+            <!-- Slider -->
+            <div class="slider">
+                <img src="assets/slides/slide1.jpg" alt="Slide 1">
+                <img src="assets/slides/slide2.jpg" alt="Slide 2">
+                <img src="assets/slides/slide3.jpg" alt="Slide 3">
+                <img src="assets/slides/slide4.jpg" alt="Slide 4">
+            </div>
+
+            <!-- Description -->
+            <div class="description">
+                <p>
+                    PrintCare delivers high-quality printing, design, and packaging
+                    solutions in Nepal. We turn your ideas into professional,
+                    eye-catching results with precision and creativity.
+                </p>
+            </div>
+
+            <!-- Gallery -->
+            <div class="gallery">
+                <img src="assets/gallery/gallery1.jpg" alt="Gallery 1">
+                <img src="assets/gallery/gallery2.jpg" alt="Gallery 2">
+                <img src="assets/gallery/gallery3.jpg" alt="Gallery 3">
+                <img src="assets/gallery/gallery4.jpg" alt="Gallery 4">
+            </div>
+
+        </div>
+    </div>
+
 </div>
-
-<!-- Email & WhatsApp below logo -->
-<div class="contact-buttons">
-<a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
-<a href="https://wa.me/9811809093">💬 +977 9811809093</a>
-</div>
-
-<!-- Middle Section -->
-<div class="middle-section">
-
-<!-- Left: Services -->
-<div class="left-services" id="services">
-<h3>Printing Services</h3>
-<ul>
-<li>Business Cards – Standard/premium finishes</li>
-<li>Flyers & Brochures – Marketing campaigns</li>
-<li>Posters & Banners – Large-format printing</li>
-<li>Books & Magazines – Professional publishing</li>
-<li>Certificates & Invitations</li>
-<li>Calendars</li>
-<li>Packaging Prints</li>
-</ul>
-
-<h3>Graphic Design Services</h3>
-<ul>
-<li>Logo Design</li>
-<li>Layout Design</li>
-<li>Advertising Design</li>
-<li>Corporate Identity</li>
-<li>Custom Artwork</li>
-</ul>
-
-<h3>Specialized Solutions</h3>
-<ul>
-<li>Digital Printing</li>
-<li>Offset Printing</li>
-<li>Large Format Printing</li>
-<li>Packaging & Labeling</li>
-<li>Promotional Items</li>
-</ul>
-</div>
-
-<!-- Right Panel: Slider + Description + Gallery -->
-<div class="right-panel" id="gallery">
-<!-- Slider -->
-<div class="slider">
-<img src="slide1.jpg" alt="Slide1">
-<img src="slide2.jpg" alt="Slide2">
-<img src="slide3.jpg" alt="Slide3">
-<img src="slide4.jpg" alt="Slide4">
-</div>
-
-<!-- Description -->
-<div class="description">
-<p>PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs. Your brand identity and marketing materials are handled with precision and creativity.</p>
-</div>
-
-<!-- Gallery -->
-<div class="gallery">
-<img src="gallery1.jpg" alt="Gallery1">
-<img src="gallery2.jpg" alt="Gallery2">
-<img src="gallery3.jpg" alt="Gallery3">
-<img src="gallery4.jpg" alt="Gallery4">
-</div>
-</div>
-
-</div> <!-- End Middle Section -->
-
-</div> <!-- End Fullscreen -->
 
 </body>
 </html>
