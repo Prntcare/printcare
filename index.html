@@ -5,240 +5,176 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Design and Printing Solution</title>
 <style>
-/* Global */
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 body{background:#f9f9f9;color:#111;overflow-x:hidden;}
-html{scroll-behavior:smooth;}
-
-/* Scroll progress bar */
-#scrollBar{position:fixed;top:0;left:0;height:4px;background:#007bff;width:0%;z-index:9999;transition:width 0.25s;}
 
 /* Top Section */
 .top-section{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);z-index:10;}
-.top-section img#logo{height:60px;object-fit:contain;}
+.top-section img#logo{height:60px;}
 nav{display:flex;gap:12px;}
 nav a{text-decoration:none;color:#111;font-weight:bold;padding:6px 12px;border-radius:4px;transition:0.3s;font-size:1rem;}
 nav a:hover{color:#007bff;}
-nav a.active{color:#ff6600;}
 
-/* Floating buttons with hover animation */
-.floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
-    position:fixed;
-    bottom:20px;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:20px;
-    cursor:pointer;
-    z-index:1000;
-    transition:transform 0.3s,box-shadow 0.3s;
-}
-.floating-whatsapp{right:20px;background:#25D366;color:#fff;}
-.floating-email{right:70px;background:#007bff;color:#fff;}
-.floating-chat{right:120px;background:#ff6600;color:#fff;}
-.floating-logo{right:170px;background:#111;color:#fff;}
-/* Hover effects */
-.floating-whatsapp:hover,
-.floating-email:hover,
-.floating-chat:hover,
-.floating-logo:hover{
-    transform:scale(1.2);
-    box-shadow:0 6px 15px rgba(0,0,0,0.25);
-}
-
-/* Pulse animation for AI chat button */
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,102,0,0.7); }
-  50% { transform: scale(1.2); box-shadow: 0 0 15px rgba(255,102,0,0.7); }
-  100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,102,0,0.7); }
-}
-.floating-chat.pulse {animation: pulse 1s ease-in-out;}
-
-/* Chat popup */
-.chat-popup{position:fixed;bottom:70px;right:120px;width:300px;background:#fff;border-radius:10px;display:flex;flex-direction:column;overflow:hidden;z-index:1000;transform:translateY(100%);opacity:0;transition:transform 0.5s ease,opacity 0.5s ease;}
-.chat-popup.show{transform:translateY(0);opacity:1;}
-.chat-popup .chat-header{background:#ff6600;color:#fff;padding:10px;text-align:center;font-weight:bold;border-top-left-radius:10px;border-top-right-radius:10px;}
-.chat-popup .chat-messages{flex:1;padding:10px;overflow-y:auto;max-height:250px;}
-.chat-popup .chat-input{display:flex;border-top:1px solid #ddd;}
-.chat-popup .chat-input input{flex:1;padding:8px;border:none;outline:none;}
-.chat-popup .chat-input button{background:#ff6600;color:#fff;border:none;padding:8px 12px;cursor:pointer;}
-
-/* Slider below logo */
-.slider {
-    width:90%;
-    max-width:1000px;
-    margin:15px auto 0 auto;
-    overflow:hidden;
-    border-radius:8px;
-    position:relative;
-    aspect-ratio:16/9;
-}
-.slider-track {
-    position:relative;
-    width:100%;
-    height:100%;
-}
-.slider-track img {
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    opacity:0;
-    transition:opacity 1s ease-in-out;
-}
-.slider-track img.active {opacity:1;}
-
-/* Middle Section */
-.middle-section{display:flex;flex-direction:column;align-items:center;width:90%;max-width:1000px;margin:20px auto;gap:20px;}
-
-/* Left Services */
-.left-services{background:#fff;padding:10px;border-radius:8px;overflow:auto;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-.left-services h3{color:#007bff;margin-bottom:5px;font-size:1rem;}
-.left-services ul{margin-left:15px;line-height:1.4;margin-bottom:10px;}
-.left-services ul li{margin:2px 0;padding:4px 6px;background:rgba(0,123,255,0.05);border-radius:4px;font-size:0.85rem;}
+/* Slider */
+.slider-container{position:relative;width:90%;max-width:1000px;margin:20px auto;}
+.slider{width:100%;overflow:hidden;border-radius:8px;}
+.slider-track{display:flex;transition:transform 0.5s ease;}
+.slider img{width:100%;object-fit:cover;border-radius:8px;}
 
 /* Description */
-.description{background:#fff;padding:8px;border-radius:6px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-.description p{font-size:0.85rem;line-height:1.4;}
+.description{background:#fff;padding:12px;margin:10px auto;border-radius:8px;text-align:center;width:90%;max-width:1000px;}
 
-/* Gallery 2x2 grid */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  width: 90%;
-  max-width: 1000px;
-  margin: 20px auto;
-}
-.gallery img {
-  width: 100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  border-radius:8px;
-  cursor:pointer;
-  opacity:0;
-  transform:translateY(30px);
-  transition:transform 0.6s ease,opacity 0.6s ease;
-}
-.gallery img.visible {opacity:1; transform:translateY(0);}
-.gallery img:hover {transform:scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.25);}
+/* Service Sections */
+.service-section{background:#fff;padding:12px;margin:20px auto;border-radius:8px;width:90%;max-width:1000px;}
+.service-section h3{color:#007bff;margin-bottom:10px;}
+.service-section ul{margin-left:15px;line-height:1.5;}
+.service-section ul li{margin:4px 0;padding:4px 6px;background:rgba(0,123,255,0.05);border-radius:4px;font-size:0.9rem;}
 
-/* Lightbox */
-#lightboxOverlay {
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.9);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
-}
-#lightboxOverlay img {max-width:90%; max-height:90%; border-radius:8px;}
-#lightboxOverlay .closeBtn {position:absolute; top:20px; right:30px; font-size:30px; color:#fff; cursor:pointer;}
-#lightboxOverlay .prev, #lightboxOverlay .next {
-  position:absolute; top:50%; transform:translateY(-50%);
-  font-size:40px; color:#fff; cursor:pointer; padding:10px;
-  background:rgba(0,0,0,0.3); border-radius:50%;
-  user-select:none;
-}
-#lightboxOverlay .prev{left:20px;}
-#lightboxOverlay .next{right:20px;}
+/* Gallery */
+.gallery{width:90%;max-width:1000px;margin:20px auto;}
+.gallery img{width:100%;height:auto;object-fit:cover;border-radius:6px;}
+/* For Gallery 3 & 4 side by side */
+.gallery.gallery-2{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;}
 
-/* Back to Top button */
-#backToTop{position:fixed;bottom:120px;right:20px;width:45px;height:45px;background:#007bff;color:#fff;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:22px;cursor:pointer;z-index:1000;transition:transform 0.25s;display:none;}
+/* Floating Buttons Vertical Right */
+.floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
+    position:absolute;right:-50px;width:40px;height:40px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:20px;cursor:pointer;opacity:0.85;transition:transform 0.3s,opacity 0.3s;z-index:1000;
+}
+.floating-whatsapp{top:10px;background:#25D366;color:#fff;animation:slideInRight 0.5s ease forwards 0.2s;}
+.floating-email{top:65px;background:#007bff;color:#fff;animation:slideInRight 0.5s ease forwards 0.4s;}
+.floating-chat{top:120px;background:#ff6600;color:#fff;animation:slideInRight 0.5s ease forwards 0.6s;}
+.floating-logo{top:175px;background:#111;color:#fff;animation:slideInRight 0.5s ease forwards 0.8s;}
+.floating-whatsapp:hover,.floating-email:hover,.floating-chat:hover,.floating-logo:hover{transform:scale(1.3);opacity:1;}
+@keyframes slideInRight{0%{transform:translateX(50px);opacity:0;}100%{transform:translateX(0);opacity:0.85;}}
+
+/* AI Chat Popup */
+.chat-popup{position:fixed;bottom:70px;right:110px;width:300px;background:#fff;border-radius:10px;display:flex;flex-direction:column;overflow:hidden;z-index:1000;transform:translateX(120%);opacity:0;transition:transform 0.5s ease, opacity 0.5s ease;}
+.chat-popup.show{transform:translateX(0);opacity:1;}
+.chat-popup .close-chat{position:absolute;top:5px;right:8px;font-size:18px;color:#fff;background:#ff6600;width:28px;height:28px;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;z-index:1001;transition:transform 0.3s;}
+.chat-popup .close-chat:hover{transform:scale(1.2);}
+.chat-popup .chat-header{background:#007bff;color:#fff;padding:8px;text-align:center;font-weight:bold;}
+.chat-popup .chat-messages{flex:1;padding:8px;overflow:auto;}
+.chat-popup .chat-input{display:flex;padding:6px;gap:5px;}
+.chat-popup .chat-input input{flex:1;padding:6px;border-radius:4px;border:1px solid #ccc;}
+.chat-popup .chat-input button{padding:6px 10px;background:#007bff;color:#fff;border:none;border-radius:4px;cursor:pointer;}
+
+/* Mini Map Section */
+.mini-map-container{width:100%;padding:20px 0;background:#f5f5f5;display:flex;justify-content:center;align-items:center;position:relative;margin-top:30px;}
+.map-content{position:relative;width:90%;max-width:600px;text-align:center;}
+.map-content h3{margin-bottom:10px;font-size:1rem;color:#111;}
+.map-icon{width:40px;height:40px;border-radius:50%;border:none;background:#007bff;color:#fff;cursor:pointer;font-size:20px;transition:transform 0.3s,background 0.3s;}
+.map-icon:hover{transform:scale(1.2);background:#0056b3;}
+.mini-map{width:100%;height:250px;margin-top:10px;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.1);display:none;}
+.mini-map.show{display:block;animation:fadeIn 0.5s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
 /* Responsive */
-@media(max-width:1200px){.middle-section{width:95%;}.slider{aspect-ratio:16/10;}}
-@media(max-width:600px){.gallery {grid-template-columns: 1fr;} nav a{font-size:0.8rem;}.left-services ul li,.description p{font-size:0.75rem;}.slider{aspect-ratio:4/3;}}
+@media(max-width:600px){
+    .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{right:-35px;width:32px;height:32px;font-size:16px;}
+    .floating-whatsapp{top:5px;}
+    .floating-email{top:50px;}
+    .floating-chat{top:95px;}
+    .floating-logo{top:140px;}
+    .chat-popup{width:250px;bottom:80px;right:10px;}
+}
 </style>
 </head>
 <body>
 
-<!-- Scroll progress bar -->
-<div id="scrollBar"></div>
-
 <!-- Top Section -->
 <div class="top-section">
-<img id="logo" src="logo.png" alt="Logo">
-<nav>
-<a href="#services">Services</a>
-<a href="#gallery">Gallery</a>
-<a href="#contact">Contact</a>
-</nav>
+    <img id="logo" src="logo.png" alt="PrintCare Logo">
+    <nav>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
 </div>
 
-<!-- Slider below logo -->
-<div class="slider">
-<div class="slider-track">
-<img src="assets/slides/slide1.jpg" class="active" loading="lazy">
-<img src="assets/slides/slide2.jpg" loading="lazy">
-<img src="assets/slides/slide3.jpg" loading="lazy">
-<img src="assets/slides/slide4.jpg" loading="lazy">
-</div>
-</div>
+<!-- Slider Section -->
+<div class="slider-container">
+    <div class="slider">
+        <div class="slider-track">
+            <img src="assets/slides/slide1.jpg" class="active">
+            <img src="assets/slides/slide2.jpg">
+            <img src="assets/slides/slide3.jpg">
+            <img src="assets/slides/slide4.jpg">
+        </div>
+    </div>
 
-<!-- Middle Section -->
-<div class="middle-section">
-
-<!-- Left Services -->
-<div class="left-services" id="services">
-<h3>Printing Services</h3>
-<ul>
-<li>Business Cards – Standard/premium finishes</li>
-<li>Flyers & Brochures – Marketing campaigns</li>
-<li>Posters & Banners – Large-format printing</li>
-<li>Books & Magazines – Professional publishing</li>
-<li>Certificates & Invitations</li>
-<li>Calendars</li>
-<li>Packaging Prints</li>
-</ul>
-<h3>Graphic Design Services</h3>
-<ul>
-<li>Logo Design</li>
-<li>Layout Design</li>
-<li>Advertising Design</li>
-<li>Corporate Identity</li>
-<li>Custom Artwork</li>
-</ul>
-<h3>Specialized Solutions</h3>
-<ul>
-<li>Digital Printing</li>
-<li>Offset Printing</li>
-<li>Large Format Printing</li>
-<li>Packaging & Labeling</li>
-<li>Promotional Items</li>
-</ul>
+    <!-- Floating Buttons -->
+    <div class="floating-whatsapp">💬</div>
+    <div class="floating-email">📧</div>
+    <div id="chatBtn" class="floating-chat">🤖</div>
+    <div class="floating-logo">🏢</div>
 </div>
 
 <!-- Description -->
 <div class="description">
-<p>We deliver high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs.</p>
+We deliver high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs.
 </div>
 
-<!-- Gallery -->
-<div class="gallery" id="gallery">
-<img src="assets/gallery/gallery1.jpg" loading="lazy">
-<img src="assets/gallery/gallery2.jpg" loading="lazy">
-<img src="assets/gallery/gallery3.jpg" loading="lazy">
-<img src="assets/gallery/gallery4.jpg" loading="lazy">
+<!-- Printing Services + Gallery 1 -->
+<div class="service-section">
+  <h3>Printing Services</h3>
+  <ul>
+    <li>Business Cards – Standard/premium finishes</li>
+    <li>Flyers & Brochures – Marketing campaigns</li>
+    <li>Posters & Banners – Large-format printing</li>
+    <li>Books & Magazines – Professional publishing</li>
+    <li>Certificates & Invitations</li>
+    <li>Calendars</li>
+    <li>Packaging Prints</li>
+  </ul>
+</div>
+<div class="gallery">
+    <img src="assets/gallery/gallery1.jpg" alt="Gallery1">
 </div>
 
-</div> <!-- End Middle Section -->
+<!-- Graphic Design Services + Gallery 2 -->
+<div class="service-section">
+  <h3>Graphic Design Services</h3>
+  <ul>
+    <li>Logo Design</li>
+    <li>Layout Design</li>
+    <li>Advertising Design</li>
+    <li>Corporate Identity</li>
+    <li>Custom Artwork</li>
+  </ul>
+</div>
+<div class="gallery">
+    <img src="assets/gallery/gallery2.jpg" alt="Gallery2">
+</div>
 
-<!-- Floating Buttons -->
-<div class="floating-whatsapp">💬</div>
-<div class="floating-email">📧</div>
-<div id="chatBtn" class="floating-chat">🤖</div>
-<div class="floating-logo">🏢</div>
+<!-- Specialized Solutions + Gallery 3 & 4 -->
+<div class="service-section">
+  <h3>Specialized Solutions</h3>
+  <ul>
+    <li>Digital Printing</li>
+    <li>Offset Printing</li>
+    <li>Large Format Printing</li>
+    <li>Packaging & Labeling</li>
+    <li>Promotional Items</li>
+  </ul>
+</div>
+<div class="gallery gallery-2">
+    <img src="assets/gallery/gallery3.jpg" alt="Gallery3">
+    <img src="assets/gallery/gallery4.jpg" alt="Gallery4">
+</div>
+
+<!-- Mini Map Section -->
+<div class="mini-map-container">
+    <div class="map-content">
+        <h3>Want directions to Print Care?</h3>
+        <button id="mapBtn" class="map-icon">🗺️</button>
+        <div id="miniMap" class="mini-map"></div>
+    </div>
+</div>
 
 <!-- AI Chat Popup -->
 <div class="chat-popup">
   <div class="chat-header">Chat with us</div>
+  <div class="close-chat">×</div>
   <div class="chat-messages"></div>
   <div class="chat-input">
     <input type="text" placeholder="Type your message...">
@@ -246,85 +182,49 @@ nav a.active{color:#ff6600;}
   </div>
 </div>
 
-<!-- Lightbox -->
-<div id="lightboxOverlay">
-  <span class="closeBtn">×</span>
-  <span class="prev">❮</span>
-  <img src="" alt="Lightbox Image">
-  <span class="next">❯</span>
-</div>
-
-<!-- Back to Top Button -->
-<div id="backToTop">⬆</div>
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
 
 <script>
-// Slider auto-fade
-let slideIndex=0;
-const slidesFade=document.querySelectorAll('.slider-track img');
-function showSlide(){slidesFade.forEach((s,i)=>s.classList.remove('active'));slidesFade[slideIndex].classList.add('active');slideIndex=(slideIndex+1)%slidesFade.length;}
-setInterval(showSlide,3000);
-showSlide();
+// Slider placeholder
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slider img');
+setInterval(()=>{slides[currentSlide].classList.remove('active');currentSlide=(currentSlide+1)%slides.length;slides[currentSlide].classList.add('active');},5000);
 
-// AI chat popup toggle
-const chatBtn=document.getElementById('chatBtn');
-const chatPopup=document.querySelector('.chat-popup');
-chatBtn.addEventListener('click',()=>{chatPopup.classList.toggle('show');});
-window.addEventListener('load',()=>{setTimeout(()=>{chatBtn.classList.add('pulse'); setTimeout(()=>{chatBtn.classList.remove('pulse');},1000);},1000);});
+// Floating AI chat draggable
+const chatBtn = document.getElementById('chatBtn');
+const chatPopup = document.querySelector('.chat-popup');
+const closeChatBtn = document.querySelector('.chat-popup .close-chat');
+chatBtn.addEventListener('click', ()=>chatPopup.classList.toggle('show'));
+closeChatBtn.addEventListener('click', ()=>chatPopup.classList.remove('show'));
 
-// Chat input functionality
-const chatMessages=document.querySelector('.chat-messages');
-const chatInput=document.querySelector('.chat-input input');
-const chatSendBtn=document.querySelector('.chat-input button');
-chatSendBtn.addEventListener('click',sendMessage);
-chatInput.addEventListener('keypress',e=>{if(e.key==='Enter') sendMessage();});
-function sendMessage(){
-    const msg=chatInput.value.trim(); if(!msg)return;
-    const userMsg=document.createElement('div'); userMsg.textContent="You: "+msg;
-    userMsg.style.padding="6px 8px"; userMsg.style.marginBottom="6px"; userMsg.style.background="#f0f0f0"; userMsg.style.borderRadius="6px";
-    chatMessages.appendChild(userMsg); chatMessages.scrollTop=chatMessages.scrollHeight; chatInput.value="";
-    const phone="+9779811809093"; const whatsappURL=`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`; window.open(whatsappURL,'_blank');
-    const botMsg=document.createElement('div'); botMsg.style.padding="6px 8px"; botMsg.style.marginBottom="6px";
-    botMsg.style.background="#ff6600"; botMsg.style.color="#fff"; botMsg.style.borderRadius="6px"; botMsg.style.display="flex";
-    botMsg.style.alignItems="center"; botMsg.style.justifyContent="flex-start"; chatMessages.appendChild(botMsg);
-    const dotsSpan=document.createElement('span'); dotsSpan.textContent='   '; botMsg.appendChild(dotsSpan);
-    let dots=0; const typingInterval=setInterval(()=>{dotsSpan.textContent='.'.repeat(dots%4);dots++;},400);
-    setTimeout(()=>{clearInterval(typingInterval); botMsg.textContent="Bot: Thanks for your message! We'll get back to you soon."; chatMessages.scrollTop=chatMessages.scrollHeight;},1500+Math.random()*1000);
-}
+// Dragging desktop
+let isDragging = false, offsetX, offsetY;
+chatPopup.addEventListener('mousedown',(e)=>{isDragging=true;offsetX=e.clientX-chatPopup.getBoundingClientRect().left;offsetY=e.clientY-chatPopup.getBoundingClientRect().top;});
+document.addEventListener('mousemove',(e)=>{if(!isDragging)return;let left=e.clientX-offsetX,top=e.clientY-offsetY;const maxLeft=window.innerWidth-chatPopup.offsetWidth;const maxTop=window.innerHeight-chatPopup.offsetHeight;if(left<0)left=0;if(top<0)top=0;if(left>maxLeft)left=maxLeft;if(top>maxTop)top=maxTop;chatPopup.style.left=left+'px';chatPopup.style.top=top+'px';chatPopup.style.bottom='auto';chatPopup.style.right='auto';});
+document.addEventListener('mouseup',()=>isDragging=false);
 
-// Gallery fade-in
-const galleryImages=document.querySelectorAll('.gallery img');
-function revealGalleryStagger(){const triggerBottom=window.innerHeight-50;galleryImages.forEach((img,index)=>{const imgTop=img.getBoundingClientRect().top;if(imgTop<triggerBottom&&!img.classList.contains('visible')){setTimeout(()=>{img.classList.add('visible');},index*150);}});}
-window.addEventListener('scroll',revealGalleryStagger);
-window.addEventListener('load',revealGalleryStagger);
+// Dragging mobile
+chatPopup.addEventListener('touchstart',(e)=>{isDragging=true;const touch=e.touches[0];offsetX=touch.clientX-chatPopup.getBoundingClientRect().left;offsetY=touch.clientY-chatPopup.getBoundingClientRect().top;});
+chatPopup.addEventListener('touchmove',(e)=>{if(!isDragging)return;const touch=e.touches[0];let left=touch.clientX-offsetX,top=touch.clientY-offsetY;const maxLeft=window.innerWidth-chatPopup.offsetWidth;const maxTop=window.innerHeight-chatPopup.offsetHeight;if(left<0)left=0;if(top<0)top=0;if(left>maxLeft)left=maxLeft;if(top>maxTop)top=maxTop;chatPopup.style.left=left+'px';chatPopup.style.top=top+'px';chatPopup.style.bottom='auto';chatPopup.style.right='auto';});
+chatPopup.addEventListener('touchend',()=>isDragging=false);
 
-// Scroll progress bar
-window.addEventListener('scroll',()=>{const scrollTop=window.pageYOffset; const docHeight=document.documentElement.scrollHeight-window.innerHeight;
-const scrollPercent=(scrollTop/docHeight)*100; document.getElementById('scrollBar').style.width=scrollPercent+'%';});
-
-// Back to Top
-const backToTop=document.getElementById('backToTop');
-window.addEventListener('scroll',()=>{if(window.scrollY>300){backToTop.style.display='flex';}else{backToTop.style.display='none';}});
-backToTop.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
-
-// Lightbox functionality with arrows
-const lightboxOverlay=document.getElementById('lightboxOverlay');
-const lightboxImg=lightboxOverlay.querySelector('img');
-const closeBtn=lightboxOverlay.querySelector('.closeBtn');
-const prevBtn=lightboxOverlay.querySelector('.prev');
-const nextBtn=lightboxOverlay.querySelector('.next');
-let currentIndex=0;
-
-function openLightbox(index){currentIndex=index; lightboxOverlay.style.display='flex'; lightboxImg.src=galleryImages[currentIndex].src;}
-function closeLightbox(){lightboxOverlay.style.display='none';}
-galleryImages.forEach((img,index)=>{img.addEventListener('click',()=>{openLightbox(index);});});
-closeBtn.addEventListener('click',closeLightbox);
-lightboxOverlay.addEventListener('click',(e)=>{if(e.target===lightboxOverlay){closeLightbox();}});
-
-function showPrev(){currentIndex=(currentIndex-1+galleryImages.length)%galleryImages.length; lightboxImg.src=galleryImages[currentIndex].src;}
-function showNext(){currentIndex=(currentIndex+1)%galleryImages.length; lightboxImg.src=galleryImages[currentIndex].src;}
-prevBtn.addEventListener('click',(e)=>{e.stopPropagation(); showPrev();});
-nextBtn.addEventListener('click',(e)=>{e.stopPropagation(); showNext();});
-document.addEventListener('keydown',(e)=>{if(lightboxOverlay.style.display==='flex'){if(e.key==='ArrowLeft'){showPrev();} else if(e.key==='ArrowRight'){showNext();} else if(e.key==='Escape'){closeLightbox();}}});
+// Mini Google Map toggle
+const mapBtn = document.getElementById('mapBtn');
+const miniMap = document.getElementById('miniMap');
+let mapInitialized = false;
+mapBtn.addEventListener('click', ()=>{
+    miniMap.classList.toggle('show');
+    if(!mapInitialized){
+        const map = new google.maps.Map(miniMap,{
+            center:{lat:27.6675,lng:85.3200}, // Replace with Print Care coords
+            zoom:16
+        });
+        const marker = new google.maps.Marker({position:{lat:27.6675,lng:85.3200},map:map,title:"Print Care"});
+        mapInitialized=true;
+    }
+});
 </script>
+
 </body>
 </html>
