@@ -21,30 +21,44 @@ nav a{text-decoration:none;color:#111;font-weight:bold;padding:6px 12px;border-r
 nav a:hover{color:#007bff;}
 nav a.active{color:#ff6600;}
 
-/* Floating buttons aligned like WhatsApp web */
+/* Floating buttons with hover animation */
 .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
     position:fixed;
     bottom:20px;
-    width:45px;
-    height:45px;
+    width:40px;
+    height:40px;
     border-radius:50%;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:22px;
+    font-size:20px;
     cursor:pointer;
     z-index:1000;
-    transition:transform 0.3s,opacity 0.3s;
+    transition:transform 0.3s,box-shadow 0.3s;
 }
 .floating-whatsapp{right:20px;background:#25D366;color:#fff;}
-.floating-email{right:75px;background:#007bff;color:#fff;}
-.floating-chat{right:130px;background:#ff6600;color:#fff;}
-.floating-logo{right:185px;background:#111;color:#fff;}
-.floating-whatsapp.pulse,.floating-email.pulse,.floating-chat.pulse{animation:pulse-subtle 3s infinite;}
-@keyframes pulse-subtle{0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
+.floating-email{right:70px;background:#007bff;color:#fff;}
+.floating-chat{right:120px;background:#ff6600;color:#fff;}
+.floating-logo{right:170px;background:#111;color:#fff;}
+/* Hover effects */
+.floating-whatsapp:hover,
+.floating-email:hover,
+.floating-chat:hover,
+.floating-logo:hover{
+    transform:scale(1.2);
+    box-shadow:0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* Pulse animation for AI chat button */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,102,0,0.7); }
+  50% { transform: scale(1.2); box-shadow: 0 0 15px rgba(255,102,0,0.7); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,102,0,0.7); }
+}
+.floating-chat.pulse {animation: pulse 1s ease-in-out;}
 
 /* Chat popup */
-.chat-popup{position:fixed;bottom:20px;right:130px;width:300px;background:#fff;border-radius:10px;display:flex;flex-direction:column;overflow:hidden;z-index:1000;transform:translateY(100%);opacity:0;transition:transform 0.5s ease,opacity 0.5s ease;}
+.chat-popup{position:fixed;bottom:70px;right:120px;width:300px;background:#fff;border-radius:10px;display:flex;flex-direction:column;overflow:hidden;z-index:1000;transform:translateY(100%);opacity:0;transition:transform 0.5s ease,opacity 0.5s ease;}
 .chat-popup.show{transform:translateY(0);opacity:1;}
 .chat-popup .chat-header{background:#ff6600;color:#fff;padding:10px;text-align:center;font-weight:bold;border-top-left-radius:10px;border-top-right-radius:10px;}
 .chat-popup .chat-messages{flex:1;padding:10px;overflow-y:auto;max-height:250px;}
@@ -92,18 +106,55 @@ nav a.active{color:#ff6600;}
 .description{background:#fff;padding:8px;border-radius:6px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
 .description p{font-size:0.85rem;line-height:1.4;}
 
-/* Gallery vertical responsive */
-.gallery{display:flex;flex-direction:column;gap:15px;align-items:center;margin-top:10px;}
-.gallery img{width:90%;max-width:400px;aspect-ratio:1/1;object-fit:cover;border-radius:8px;cursor:pointer;opacity:0;transform:translateY(30px);transition:transform 0.6s ease,opacity 0.6s ease;}
-.gallery img.visible{opacity:1;transform:translateY(0);}
-.gallery img:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.25);transition:transform 0.3s ease,box-shadow 0.3s ease;}
+/* Gallery 2x2 grid */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+.gallery img {
+  width: 100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(30px);
+  transition:transform 0.6s ease,opacity 0.6s ease;
+}
+.gallery img.visible {opacity:1; transform:translateY(0);}
+.gallery img:hover {transform:scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.25);}
+
+/* Lightbox */
+#lightboxOverlay {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+#lightboxOverlay img {max-width:90%; max-height:90%; border-radius:8px;}
+#lightboxOverlay .closeBtn {position:absolute; top:20px; right:30px; font-size:30px; color:#fff; cursor:pointer;}
+#lightboxOverlay .prev, #lightboxOverlay .next {
+  position:absolute; top:50%; transform:translateY(-50%);
+  font-size:40px; color:#fff; cursor:pointer; padding:10px;
+  background:rgba(0,0,0,0.3); border-radius:50%;
+  user-select:none;
+}
+#lightboxOverlay .prev{left:20px;}
+#lightboxOverlay .next{right:20px;}
 
 /* Back to Top button */
-#backToTop{position:fixed;bottom:90px;right:20px;width:45px;height:45px;background:#007bff;color:#fff;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:22px;cursor:pointer;z-index:1000;transition:transform 0.25s;display:none;}
+#backToTop{position:fixed;bottom:120px;right:20px;width:45px;height:45px;background:#007bff;color:#fff;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:22px;cursor:pointer;z-index:1000;transition:transform 0.25s;display:none;}
 
 /* Responsive */
 @media(max-width:1200px){.middle-section{width:95%;}.slider{aspect-ratio:16/10;}}
-@media(max-width:500px){nav a{font-size:0.8rem;}.left-services ul li,.description p{font-size:0.75rem;}.slider{aspect-ratio:4/3;}.gallery img{width:100%;height:auto;}}
+@media(max-width:600px){.gallery {grid-template-columns: 1fr;} nav a{font-size:0.8rem;}.left-services ul li,.description p{font-size:0.75rem;}.slider{aspect-ratio:4/3;}}
 </style>
 </head>
 <body>
@@ -195,6 +246,14 @@ nav a.active{color:#ff6600;}
   </div>
 </div>
 
+<!-- Lightbox -->
+<div id="lightboxOverlay">
+  <span class="closeBtn">×</span>
+  <span class="prev">❮</span>
+  <img src="" alt="Lightbox Image">
+  <span class="next">❯</span>
+</div>
+
 <!-- Back to Top Button -->
 <div id="backToTop">⬆</div>
 
@@ -209,113 +268,63 @@ showSlide();
 // AI chat popup toggle
 const chatBtn=document.getElementById('chatBtn');
 const chatPopup=document.querySelector('.chat-popup');
-chatBtn.addEventListener('click',()=>{chatPopup.classList.toggle('show');chatBtn.classList.remove('pulse');});
+chatBtn.addEventListener('click',()=>{chatPopup.classList.toggle('show');});
+window.addEventListener('load',()=>{setTimeout(()=>{chatBtn.classList.add('pulse'); setTimeout(()=>{chatBtn.classList.remove('pulse');},1000);},1000);});
 
-// Chat input functionality with bot typing animation
+// Chat input functionality
 const chatMessages=document.querySelector('.chat-messages');
 const chatInput=document.querySelector('.chat-input input');
 const chatSendBtn=document.querySelector('.chat-input button');
-
 chatSendBtn.addEventListener('click',sendMessage);
 chatInput.addEventListener('keypress',e=>{if(e.key==='Enter') sendMessage();});
-
 function sendMessage(){
-    const msg=chatInput.value.trim();
-    if(!msg) return;
-
-    // Display user message
-    const userMsg=document.createElement('div');
-    userMsg.textContent="You: "+msg;
-    userMsg.style.padding="6px 8px";
-    userMsg.style.marginBottom="6px";
-    userMsg.style.background="#f0f0f0";
-    userMsg.style.borderRadius="6px";
-    chatMessages.appendChild(userMsg);
-    chatMessages.scrollTop=chatMessages.scrollHeight;
-    chatInput.value="";
-
-    // Forward to WhatsApp
-    const phone="+9779811809093"; // replace with your number
-    const whatsappURL=`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(whatsappURL,'_blank');
-
-    // Bot response simulation
-    const botMsg=document.createElement('div');
-    botMsg.style.padding="6px 8px";
-    botMsg.style.marginBottom="6px";
-    botMsg.style.background="#ff6600";
-    botMsg.style.color="#fff";
-    botMsg.style.borderRadius="6px";
-    botMsg.style.opacity="0";
-    chatMessages.appendChild(botMsg);
-    
-    // Typing animation
-    let dots=0;
-    const typingInterval=setInterval(()=>{
-        botMsg.textContent="Bot is typing"+'.'.repeat(dots%4);
-        dots++;
-    },400);
-
-    setTimeout(()=>{
-        clearInterval(typingInterval);
-        botMsg.textContent="Bot: Thanks for your message! We'll get back to you soon.";
-        botMsg.style.opacity="1";
-        chatMessages.scrollTop=chatMessages.scrollHeight;
-    },1500 + Math.random()*1000);
+    const msg=chatInput.value.trim(); if(!msg)return;
+    const userMsg=document.createElement('div'); userMsg.textContent="You: "+msg;
+    userMsg.style.padding="6px 8px"; userMsg.style.marginBottom="6px"; userMsg.style.background="#f0f0f0"; userMsg.style.borderRadius="6px";
+    chatMessages.appendChild(userMsg); chatMessages.scrollTop=chatMessages.scrollHeight; chatInput.value="";
+    const phone="+9779811809093"; const whatsappURL=`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`; window.open(whatsappURL,'_blank');
+    const botMsg=document.createElement('div'); botMsg.style.padding="6px 8px"; botMsg.style.marginBottom="6px";
+    botMsg.style.background="#ff6600"; botMsg.style.color="#fff"; botMsg.style.borderRadius="6px"; botMsg.style.display="flex";
+    botMsg.style.alignItems="center"; botMsg.style.justifyContent="flex-start"; chatMessages.appendChild(botMsg);
+    const dotsSpan=document.createElement('span'); dotsSpan.textContent='   '; botMsg.appendChild(dotsSpan);
+    let dots=0; const typingInterval=setInterval(()=>{dotsSpan.textContent='.'.repeat(dots%4);dots++;},400);
+    setTimeout(()=>{clearInterval(typingInterval); botMsg.textContent="Bot: Thanks for your message! We'll get back to you soon."; chatMessages.scrollTop=chatMessages.scrollHeight;},1500+Math.random()*1000);
 }
 
-// Gallery staggered fade-in
+// Gallery fade-in
 const galleryImages=document.querySelectorAll('.gallery img');
 function revealGalleryStagger(){const triggerBottom=window.innerHeight-50;galleryImages.forEach((img,index)=>{const imgTop=img.getBoundingClientRect().top;if(imgTop<triggerBottom&&!img.classList.contains('visible')){setTimeout(()=>{img.classList.add('visible');},index*150);}});}
 window.addEventListener('scroll',revealGalleryStagger);
 window.addEventListener('load',revealGalleryStagger);
 
-// Floating buttons pulse
-window.addEventListener('load',()=>{
-chatBtn.classList.add('pulse');
-document.querySelector('.floating-whatsapp').classList.add('pulse');
-document.querySelector('.floating-email').classList.add('pulse');
-document.querySelector('.floating-whatsapp').addEventListener('click',()=>{document.querySelector('.floating-whatsapp').classList.remove('pulse');});
-document.querySelector('.floating-email').addEventListener('click',()=>{document.querySelector('.floating-email').classList.remove('pulse');});
-});
-
 // Scroll progress bar
-window.addEventListener('scroll',()=>{
-const scrollTop=window.pageYOffset;
-const docHeight=document.documentElement.scrollHeight-window.innerHeight;
-const scrollPercent=(scrollTop/docHeight)*100;
-document.getElementById('scrollBar').style.width=scrollPercent+'%';
-});
+window.addEventListener('scroll',()=>{const scrollTop=window.pageYOffset; const docHeight=document.documentElement.scrollHeight-window.innerHeight;
+const scrollPercent=(scrollTop/docHeight)*100; document.getElementById('scrollBar').style.width=scrollPercent+'%';});
 
-// Smooth active nav highlight
-const sections=document.querySelectorAll('#services, #gallery');
-const navLinks=document.querySelectorAll('nav a');
-window.addEventListener('scroll',()=>{
-let current='';
-sections.forEach(section=>{const sectionTop=section.offsetTop-100;if(pageYOffset>=sectionTop) current=section.getAttribute('id');});
-navLinks.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')==='#'+current) link.classList.add('active');});
-});
-
-// Back to Top button
+// Back to Top
 const backToTop=document.getElementById('backToTop');
-window.addEventListener('scroll',()=>{
-if(window.scrollY>300){backToTop.style.display='flex';}else{backToTop.style.display='none';}
-});
+window.addEventListener('scroll',()=>{if(window.scrollY>300){backToTop.style.display='flex';}else{backToTop.style.display='none';}});
 backToTop.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
 
-// Floating buttons slide in/out on scroll
-let lastScrollTop=0;
-const buttons=[document.querySelector('.floating-whatsapp'),
-               document.querySelector('.floating-email'),
-               document.querySelector('.floating-chat'),
-               document.querySelector('.floating-logo')];
+// Lightbox functionality with arrows
+const lightboxOverlay=document.getElementById('lightboxOverlay');
+const lightboxImg=lightboxOverlay.querySelector('img');
+const closeBtn=lightboxOverlay.querySelector('.closeBtn');
+const prevBtn=lightboxOverlay.querySelector('.prev');
+const nextBtn=lightboxOverlay.querySelector('.next');
+let currentIndex=0;
 
-window.addEventListener('scroll',()=>{
-const st=window.scrollY;
-if(st>lastScrollTop){ buttons.forEach(b=>b.style.transform='translateY(60px)'); }
-else{ buttons.forEach(b=>b.style.transform='translateY(0)'); }
-lastScrollTop=st<=0?0:st;
-});
+function openLightbox(index){currentIndex=index; lightboxOverlay.style.display='flex'; lightboxImg.src=galleryImages[currentIndex].src;}
+function closeLightbox(){lightboxOverlay.style.display='none';}
+galleryImages.forEach((img,index)=>{img.addEventListener('click',()=>{openLightbox(index);});});
+closeBtn.addEventListener('click',closeLightbox);
+lightboxOverlay.addEventListener('click',(e)=>{if(e.target===lightboxOverlay){closeLightbox();}});
+
+function showPrev(){currentIndex=(currentIndex-1+galleryImages.length)%galleryImages.length; lightboxImg.src=galleryImages[currentIndex].src;}
+function showNext(){currentIndex=(currentIndex+1)%galleryImages.length; lightboxImg.src=galleryImages[currentIndex].src;}
+prevBtn.addEventListener('click',(e)=>{e.stopPropagation(); showPrev();});
+nextBtn.addEventListener('click',(e)=>{e.stopPropagation(); showNext();});
+document.addEventListener('keydown',(e)=>{if(lightboxOverlay.style.display==='flex'){if(e.key==='ArrowLeft'){showPrev();} else if(e.key==='ArrowRight'){showNext();} else if(e.key==='Escape'){closeLightbox();}}});
 </script>
 </body>
 </html>
