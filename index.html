@@ -179,6 +179,103 @@ nav a:hover{color:#007bff;}
 /* Footer */
 .footer{padding:20px;text-align:center;background:#f0f0f0;color:#111;}
 
+/* Floating WhatsApp Button */
+.floating-whatsapp{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.3);
+    cursor:pointer;
+    transition:0.3s;
+    z-index:999;
+}
+.floating-whatsapp:hover{
+    background:#128C7E;
+    transform:scale(1.1);
+}
+.floating-whatsapp img{
+    width:35px;
+    height:35px;
+}
+
+/* Tiny AI Chat Button */
+.floating-chat{
+    position:fixed;
+    bottom:110px;
+    right:30px;
+    width:40px;
+    height:40px;
+    background:#007bff;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.3);
+    cursor:pointer;
+    transition:0.3s;
+    z-index:1000;
+}
+.floating-chat:hover{transform:scale(1.1);}
+.floating-chat img{width:22px;height:22px;}
+
+/* Chat Popup */
+.chat-popup{
+    position:fixed;
+    bottom:160px;
+    right:30px;
+    width:300px;
+    max-height:400px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.3);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:1000;
+}
+.chat-popup header{
+    background:#007bff;
+    color:#fff;
+    padding:10px;
+    font-weight:bold;
+    font-size:0.95rem;
+}
+.chat-popup .messages{
+    flex:1;
+    padding:10px;
+    overflow-y:auto;
+    font-size:0.85rem;
+}
+.chat-popup .messages div{
+    margin-bottom:10px;
+    padding:6px 10px;
+    border-radius:6px;
+}
+.chat-popup .messages .user{
+    background:#e8f0ff;
+    align-self:flex-end;
+    text-align:right;
+}
+.chat-popup .messages .bot{
+    background:#f1f1f1;
+    align-self:flex-start;
+}
+.chat-popup input{
+    border:none;
+    border-top:1px solid #ccc;
+    padding:10px;
+    width:100%;
+    box-sizing:border-box;
+    font-size:0.85rem;
+}
+
 /* Responsive */
 @media(max-width:800px){.gallery img{width:100%;}}
 @media(max-width:600px){
@@ -189,7 +286,6 @@ nav a:hover{color:#007bff;}
 }
 </style>
 </head>
-
 <body>
 
 <!-- Header -->
@@ -279,19 +375,34 @@ nav a:hover{color:#007bff;}
     <img src="" alt="Preview">
 </div>
 
+<!-- Floating Buttons -->
+<div class="floating-whatsapp" onclick="window.open('https://wa.me/9779811809093','_blank')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</div>
+
+<div class="floating-chat" id="chatBtn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Robot_icon.svg" alt="Chat">
+</div>
+
+<!-- Chat Popup -->
+<div class="chat-popup" id="chatPopup">
+    <header>Hi! How can I assist you?</header>
+    <div class="messages" id="chatMessages"></div>
+    <input type="text" id="chatInput" placeholder="Type your message...">
+</div>
+
 <!-- Footer -->
 <div class="footer">
     &copy; 2025 PrintCare. All Rights Reserved.
 </div>
 
-<!-- JS: Continuous Slider + Scroll Animations + Lightbox -->
+<!-- JS -->
 <script>
 // Continuous slider
 const track = document.getElementById('slider-track');
 let slides = Array.from(track.children);
 slides.forEach(slide => track.appendChild(slide.cloneNode(true)));
 slides = Array.from(track.children);
-
 let speed = 0.5, pos = 0;
 function animate() {
     pos -= speed;
@@ -325,6 +436,36 @@ document.querySelectorAll('.gallery img').forEach(img=>{
 });
 document.getElementById('close').addEventListener('click',()=>lightbox.style.display='none');
 lightbox.addEventListener('click', e=>{ if(e.target===lightbox) lightbox.style.display='none'; });
+
+// Chat Popup
+const chatBtn = document.getElementById('chatBtn');
+const chatPopup = document.getElementById('chatPopup');
+const chatInput = document.getElementById('chatInput');
+const chatMessages = document.getElementById('chatMessages');
+
+chatBtn.addEventListener('click',()=>{
+    chatPopup.style.display = chatPopup.style.display === 'flex' ? 'none' : 'flex';
+});
+
+chatInput.addEventListener('keypress',function(e){
+    if(e.key==='Enter' && chatInput.value.trim()!==''){
+        const userMsg = document.createElement('div');
+        userMsg.className='user';
+        userMsg.textContent = chatInput.value;
+        chatMessages.appendChild(userMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        setTimeout(()=>{
+            const botMsg = document.createElement('div');
+            botMsg.className='bot';
+            botMsg.textContent = `Hello! You said: "${chatInput.value}"`;
+            chatMessages.appendChild(botMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        },500);
+
+        chatInput.value='';
+    }
+});
 </script>
 
 </body>
