@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PrintCare - Your Printing & Design Solution</title>
+<title>Your Design and Print Solution</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
@@ -41,32 +41,113 @@ nav a:hover{color:#007bff;}
 
 /* Hero Section */
 .hero{
-    display:flex;flex-direction:column;justify-content:center;align-items:center;
-    text-align:center;padding:40px 20px;background:#e8f0ff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:60px 20px;
+    background: linear-gradient(135deg, #e8f0ff, #ffffff);
+    overflow:hidden;
 }
-.hero h1{font-size:2.5rem;color:#007bff;margin-bottom:15px;}
-.hero p{font-size:1.1rem;max-width:700px;line-height:1.5;margin-bottom:20px;}
-.hero .cta-buttons{display:flex;gap:15px;margin-top:15px;}
+
+/* Hero heading with glow + gradient underline + animation */
+.hero h1 {
+    position: relative;
+    display: inline-block;
+    font-size:3rem;
+    font-weight:800;
+    color:#007bff;
+    margin-bottom:20px;
+    line-height:1.2;
+    text-shadow: 0 2px 6px rgba(0,123,255,0.3), 0 4px 12px rgba(0,123,255,0.2);
+    opacity:0;
+    animation: fadeSlideUp 1s forwards;
+}
+.hero h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #007bff, #25D366, #007bff);
+    background-size: 200% 100%;
+    animation: gradientMove 3s linear infinite;
+}
+
+/* Hero Paragraph */
+.hero p{
+    font-size:1.1rem;
+    max-width:700px;
+    line-height:1.5;
+    color:#111;
+    margin-bottom:30px;
+    opacity:0;
+    animation: fadeSlideUp 1s forwards;
+    animation-delay:0.3s;
+}
+
+/* CTA Buttons */
+.hero .cta-buttons{
+    display:flex;
+    gap:20px;
+    margin-top:15px;
+    opacity:0;
+    animation: fadeSlideUp 1s forwards;
+    animation-delay:0.6s;
+}
 .hero .cta-buttons a{
-    padding:10px 20px;border-radius:5px;font-weight:bold;transition:0.3s;
+    padding:14px 25px;
+    border-radius:6px;
+    font-weight:bold;
+    transition:0.3s;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
-.hero .cta-buttons a.email{background:#007bff;color:#fff;}
-.hero .cta-buttons a.email:hover{background:#0056b3;}
-.hero .cta-buttons a.whatsapp{background:#25D366;color:#fff;}
-.hero .cta-buttons a.whatsapp:hover{background:#128C7E;}
+.hero .cta-buttons a.email{
+    background:#007bff;color:#fff;
+}
+.hero .cta-buttons a.email:hover{
+    background:#0056b3;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+.hero .cta-buttons a.whatsapp{
+    background:#25D366;color:#fff;
+}
+.hero .cta-buttons a.whatsapp:hover{
+    background:#128C7E;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Animation Keyframes */
+@keyframes fadeSlideUp {
+    0% {opacity:0; transform:translateY(30px);}
+    100% {opacity:1; transform:translateY(0);}
+}
+@keyframes gradientMove {
+    0% {background-position: 0% 0;}
+    100% {background-position: 200% 0;}
+}
 
 /* Services Section */
-.services{padding:60px 20px;background:#fff;text-align:center;}
-.services h2{font-size:2rem;color:#007bff;margin-bottom:40px;}
+.services{
+    padding:60px 20px;background:#fff;text-align:center;
+}
+.services h2{
+    font-size:2rem;color:#007bff;margin-bottom:40px;
+}
 .service-cards{
     display:flex;flex-wrap:wrap;gap:20px;justify-content:center;
 }
 .card{
     background:#f7f9fc;padding:20px;border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);flex:1 1 250px;max-width:300px;
-    transition:0.3s;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    flex:1 1 250px;max-width:300px;
+    transition:0.5s;
+    opacity:0;transform:translateY(30px);
 }
-.card:hover{transform:translateY(-5px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.card.visible{opacity:1;transform:translateY(0);}
 .card h3{color:#007bff;margin-bottom:10px;}
 .card ul{list-style:none;margin-top:5px;}
 .card ul li{background:rgba(0,123,255,0.05);margin:5px 0;padding:6px 8px;border-radius:4px;}
@@ -74,21 +155,38 @@ nav a:hover{color:#007bff;}
 /* Gallery Section */
 .gallery-section{padding:60px 20px;background:#fff;text-align:center;}
 .gallery-section h2{color:#007bff;font-size:2rem;margin-bottom:30px;}
-.gallery{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
-.gallery img{width:calc(50% - 15px);height:200px;object-fit:cover;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.15);cursor:pointer;transition:0.3s;}
-.gallery img:hover{transform:scale(1.05);}
+.gallery{
+    display:flex;flex-wrap:wrap;gap:15px;justify-content:center;
+}
+.gallery img{
+    width:calc(50% - 15px);height:200px;object-fit:cover;border-radius:8px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);cursor:pointer;transition:0.5s;
+    opacity:0;transform:scale(0.95);
+}
+.gallery img.visible{opacity:1;transform:scale(1);}
 
 /* Lightbox */
-#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:center;z-index:999;}
+#lightbox{
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.85);display:none;
+    justify-content:center;align-items:center;z-index:999;
+}
 #lightbox img{max-width:90%;max-height:80%;border-radius:8px;}
-#lightbox span{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;}
+#lightbox span{
+    position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;
+}
 
 /* Footer */
 .footer{padding:20px;text-align:center;background:#f0f0f0;color:#111;}
 
 /* Responsive */
 @media(max-width:800px){.gallery img{width:100%;}}
-@media(max-width:500px){.hero h1{font-size:2rem;}.hero p{font-size:1rem;}}
+@media(max-width:600px){
+    .hero h1{font-size:2rem;}
+    .hero p{font-size:1rem;}
+    .hero .cta-buttons{flex-direction:column;}
+    .hero .cta-buttons a{width:100%;text-align:center;}
+}
 </style>
 </head>
 
@@ -105,7 +203,7 @@ nav a:hover{color:#007bff;}
     </nav>
 </div>
 
-<!-- Continuous Smooth Slider -->
+<!-- Continuous Slider -->
 <div class="slider-container" id="slider">
     <div class="slider-track" id="slider-track">
         <img src="assets/slides/slide1.jpg" alt="Slide 1">
@@ -117,7 +215,7 @@ nav a:hover{color:#007bff;}
 
 <!-- Hero Section -->
 <div class="hero">
-    <h1>PrintCare - Your Printing & Design Solution</h1>
+    <h1>Your Design and Print Solution</h1>
     <p>We deliver high-quality printing, design, and packaging solutions in Nepal. Turn your ideas into professional outputs with precision and creativity.</p>
     <div class="cta-buttons" id="contact">
         <a class="email" href="mailto:prntcare@gmail.com">📧 Email Us</a>
@@ -186,18 +284,15 @@ nav a:hover{color:#007bff;}
     &copy; 2025 PrintCare. All Rights Reserved.
 </div>
 
-<!-- Continuous Slider JS & Lightbox -->
+<!-- JS: Continuous Slider + Scroll Animations + Lightbox -->
 <script>
+// Continuous slider
 const track = document.getElementById('slider-track');
 let slides = Array.from(track.children);
-
-// Clone slides for seamless scroll
 slides.forEach(slide => track.appendChild(slide.cloneNode(true)));
 slides = Array.from(track.children);
 
-let speed = 0.5; // pixels per frame
-let pos = 0;
-
+let speed = 0.5, pos = 0;
 function animate() {
     pos -= speed;
     if(pos <= -track.scrollWidth/2) pos = 0;
@@ -205,6 +300,19 @@ function animate() {
     requestAnimationFrame(animate);
 }
 animate();
+
+// Scroll animations
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+},{threshold:0.2});
+
+document.querySelectorAll('.card, .gallery img').forEach(el=>{
+    observer.observe(el);
+});
 
 // Lightbox
 const lightbox = document.getElementById('lightbox');
