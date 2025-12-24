@@ -6,13 +6,12 @@
 <title>PrintCare - Your Printing & Design Solution</title>
 
 <style>
-/* Reset & base */
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 body{background:#f9f9f9;color:#111;overflow-x:hidden;}
 a{text-decoration:none;}
 img{display:block;max-width:100%;height:auto;}
 
-/* Top Navigation */
+/* Header */
 .header{
     display:flex;justify-content:space-between;align-items:center;
     padding:20px 40px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;
@@ -23,10 +22,27 @@ nav a{
 }
 nav a:hover{color:#007bff;}
 
+/* Continuous Slider */
+.slider-container{
+    width:100%;overflow:hidden;position:relative;background:#e8f0ff;padding:20px 0;
+}
+.slider-track{
+    display:flex;white-space:nowrap;will-change:transform;
+}
+.slider-track img{
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    object-fit:cover;
+    width:100%;
+    min-width:100%;
+    flex-shrink:0;
+    margin:0 5px;
+}
+
 /* Hero Section */
 .hero{
     display:flex;flex-direction:column;justify-content:center;align-items:center;
-    text-align:center;padding:80px 20px;background:#e8f0ff;
+    text-align:center;padding:40px 20px;background:#e8f0ff;
 }
 .hero h1{font-size:2.5rem;color:#007bff;margin-bottom:15px;}
 .hero p{font-size:1.1rem;max-width:700px;line-height:1.5;margin-bottom:20px;}
@@ -55,17 +71,6 @@ nav a:hover{color:#007bff;}
 .card ul{list-style:none;margin-top:5px;}
 .card ul li{background:rgba(0,123,255,0.05);margin:5px 0;padding:6px 8px;border-radius:4px;}
 
-/* Slider Section */
-.slider-section{padding:60px 0;background:#e8f0ff;text-align:center;}
-.slider-section h2{color:#007bff;font-size:2rem;margin-bottom:30px;}
-.slider-container{width:90%;max-width:900px;margin:0 auto;overflow:hidden;border-radius:10px;position:relative;}
-.slider-track{display:flex;transition:transform 0.5s ease-in-out;}
-.slider-track img{border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.15);object-fit:cover;width:100%;}
-.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:#fff;background:rgba(0,0,0,0.3);padding:10px;border-radius:50%;cursor:pointer;user-select:none;}
-.slider-arrow:hover{background:rgba(0,0,0,0.5);}
-#prev{left:10px;}#next{right:10px;}
-.slider-description{margin-top:20px;max-width:800px;margin-left:auto;margin-right:auto;font-size:1rem;line-height:1.5;background:#fff;padding:15px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-
 /* Gallery Section */
 .gallery-section{padding:60px 20px;background:#fff;text-align:center;}
 .gallery-section h2{color:#007bff;font-size:2rem;margin-bottom:30px;}
@@ -93,11 +98,21 @@ nav a:hover{color:#007bff;}
 <div class="header">
     <img id="logo" src="logo.png" alt="PrintCare Logo">
     <nav>
-        <a href="#services">Services</a>
         <a href="#slider">Portfolio</a>
+        <a href="#services">Services</a>
         <a href="#gallery-section">Gallery</a>
         <a href="#contact">Contact</a>
     </nav>
+</div>
+
+<!-- Continuous Smooth Slider -->
+<div class="slider-container" id="slider">
+    <div class="slider-track" id="slider-track">
+        <img src="assets/slides/slide1.jpg" alt="Slide 1">
+        <img src="assets/slides/slide2.jpg" alt="Slide 2">
+        <img src="assets/slides/slide3.jpg" alt="Slide 3">
+        <img src="assets/slides/slide4.jpg" alt="Slide 4">
+    </div>
 </div>
 
 <!-- Hero Section -->
@@ -149,24 +164,6 @@ nav a:hover{color:#007bff;}
     </div>
 </div>
 
-<!-- Slider Section -->
-<div class="slider-section" id="slider">
-    <h2>Our Portfolio</h2>
-    <div class="slider-container" id="slider-container">
-        <div class="slider-track" id="slider-track">
-            <img src="assets/slides/slide1.jpg" alt="Slide 1">
-            <img src="assets/slides/slide2.jpg" alt="Slide 2">
-            <img src="assets/slides/slide3.jpg" alt="Slide 3">
-            <img src="assets/slides/slide4.jpg" alt="Slide 4">
-        </div>
-        <div class="slider-arrow" id="prev">&#10094;</div>
-        <div class="slider-arrow" id="next">&#10095;</div>
-    </div>
-    <div class="slider-description">
-        PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. Your brand identity and marketing materials are handled with precision and creativity.
-    </div>
-</div>
-
 <!-- Gallery Section -->
 <div class="gallery-section" id="gallery-section">
     <h2>Our Work</h2>
@@ -189,71 +186,25 @@ nav a:hover{color:#007bff;}
     &copy; 2025 PrintCare. All Rights Reserved.
 </div>
 
-<!-- Slider & Lightbox JS -->
+<!-- Continuous Slider JS & Lightbox -->
 <script>
 const track = document.getElementById('slider-track');
-const container = document.getElementById('slider-container');
 let slides = Array.from(track.children);
 
-// Clone slides for infinite scroll
+// Clone slides for seamless scroll
 slides.forEach(slide => track.appendChild(slide.cloneNode(true)));
 slides = Array.from(track.children);
 
-let index = 0;
-let slideWidth;
+let speed = 0.5; // pixels per frame
+let pos = 0;
 
-function updateSlideWidth() {
-    slideWidth = container.clientWidth; // 1 slide fills container
-    slides.forEach(s => s.style.width = slideWidth + 'px');
-    moveSlider();
+function animate() {
+    pos -= speed;
+    if(pos <= -track.scrollWidth/2) pos = 0;
+    track.style.transform = `translateX(${pos}px)`;
+    requestAnimationFrame(animate);
 }
-
-function moveSlider() {
-    track.style.transition = 'transform 0.5s ease-in-out';
-    track.style.transform = `translateX(-${index * slideWidth}px)`;
-}
-
-function nextSlide() {
-    index++;
-    moveSlider();
-    if(index >= slides.length/2){
-        setTimeout(()=>{
-            track.style.transition = 'none';
-            index = 0;
-            track.style.transform = `translateX(0px)`;
-        }, 500);
-    }
-}
-
-function prevSlide() {
-    if(index <= 0){
-        track.style.transition = 'none';
-        index = slides.length/2;
-        track.style.transform = `translateX(-${index * slideWidth}px)`;
-        setTimeout(()=>{
-            index--;
-            track.style.transition = 'transform 0.5s ease-in-out';
-            track.style.transform = `translateX(-${index * slideWidth}px)`;
-        },50);
-    } else {
-        index--;
-        moveSlider();
-    }
-}
-
-let interval = setInterval(nextSlide, 3000);
-document.getElementById('next').addEventListener('click', ()=>{
-    nextSlide();
-    clearInterval(interval); interval = setInterval(nextSlide,3000);
-});
-document.getElementById('prev').addEventListener('click', ()=>{
-    prevSlide();
-    clearInterval(interval); interval = setInterval(nextSlide,3000);
-});
-container.addEventListener('mouseenter', ()=>clearInterval(interval));
-container.addEventListener('mouseleave', ()=>interval=setInterval(nextSlide,3000));
-window.addEventListener('resize', updateSlideWidth);
-updateSlideWidth();
+animate();
 
 // Lightbox
 const lightbox = document.getElementById('lightbox');
