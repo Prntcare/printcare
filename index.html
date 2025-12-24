@@ -13,9 +13,6 @@ html{scroll-behavior:smooth;}
 /* Scroll progress bar */
 #scrollBar{position:fixed;top:0;left:0;height:4px;background:#007bff;width:0%;z-index:9999;transition:width 0.25s;}
 
-/* Fullscreen container */
-.fullscreen{display:flex;flex-direction:column;width:100vw;}
-
 /* Top Section */
 .top-section{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);z-index:10;}
 .top-section img#logo{height:60px;object-fit:contain;}
@@ -24,65 +21,95 @@ nav a{text-decoration:none;color:#111;font-weight:bold;padding:6px 12px;border-r
 nav a:hover{color:#007bff;}
 nav a.active{color:#ff6600;}
 
-/* Floating buttons */
+/* Floating buttons aligned like WhatsApp web */
 .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
-    position:fixed;bottom:20px;right:20px;width:50px;height:50px;border-radius:50%;background:#fff;display:flex;justify-content:center;align-items:center;font-size:24px;cursor:pointer;z-index:1000;transition:transform 0.25s,box-shadow 0.25s,background 0.25s;
+    position:fixed;
+    bottom:20px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    cursor:pointer;
+    z-index:1000;
+    transition:transform 0.3s,opacity 0.3s;
 }
-.floating-whatsapp{right:80px;background:#25D366;color:#fff;}
-.floating-email{right:140px;background:#007bff;color:#fff;}
-.floating-chat{right:200px;background:#ff6600;color:#fff;}
-.floating-logo{right:20px;background:#111;color:#fff;}
-.floating-whatsapp.pulse,.floating-email.pulse,.floating-chat.pulse{animation: pulse-subtle 3s infinite;}
+.floating-whatsapp{right:20px;background:#25D366;color:#fff;}
+.floating-email{right:75px;background:#007bff;color:#fff;}
+.floating-chat{right:130px;background:#ff6600;color:#fff;}
+.floating-logo{right:185px;background:#111;color:#fff;}
+.floating-whatsapp.pulse,.floating-email.pulse,.floating-chat.pulse{animation:pulse-subtle 3s infinite;}
 @keyframes pulse-subtle{0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
-.floating-chat:hover,.floating-whatsapp:hover,.floating-email:hover,.floating-logo:hover{transform:scale(1.15);box-shadow:0 4px 15px rgba(0,0,0,0.2);}
 
 /* Chat popup */
-.chat-popup{position:fixed;bottom:20px;right:200px;width:300px;max-height:400px;background:#fff;border-radius:10px;display:none;flex-direction:column;overflow:hidden;z-index:1000;transform:translateY(100%);opacity:0;transition:transform 0.5s ease,opacity 0.5s ease;}
-.chat-popup.show{display:flex;transform:translateY(0);opacity:1;}
+.chat-popup{position:fixed;bottom:20px;right:130px;width:300px;background:#fff;border-radius:10px;display:flex;flex-direction:column;overflow:hidden;z-index:1000;transform:translateY(100%);opacity:0;transition:transform 0.5s ease,opacity 0.5s ease;}
+.chat-popup.show{transform:translateY(0);opacity:1;}
+.chat-popup .chat-header{background:#ff6600;color:#fff;padding:10px;text-align:center;font-weight:bold;border-top-left-radius:10px;border-top-right-radius:10px;}
+.chat-popup .chat-messages{flex:1;padding:10px;overflow-y:auto;max-height:250px;}
+.chat-popup .chat-input{display:flex;border-top:1px solid #ddd;}
+.chat-popup .chat-input input{flex:1;padding:8px;border:none;outline:none;}
+.chat-popup .chat-input button{background:#ff6600;color:#fff;border:none;padding:8px 12px;cursor:pointer;}
+
+/* Slider below logo */
+.slider {
+    width:90%;
+    max-width:1000px;
+    margin:15px auto 0 auto;
+    overflow:hidden;
+    border-radius:8px;
+    position:relative;
+    aspect-ratio:16/9;
+}
+.slider-track {
+    position:relative;
+    width:100%;
+    height:100%;
+}
+.slider-track img {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
+.slider-track img.active {opacity:1;}
 
 /* Middle Section */
-.middle-section{flex:1;display:flex;justify-content:space-between;align-items:flex-start;padding:10px 20px;gap:10px;}
-.left-services{flex:1;background:#fff;padding:10px;border-radius:8px;overflow:auto;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.middle-section{display:flex;flex-direction:column;align-items:center;width:90%;max-width:1000px;margin:20px auto;gap:20px;}
+
+/* Left Services */
+.left-services{background:#fff;padding:10px;border-radius:8px;overflow:auto;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
 .left-services h3{color:#007bff;margin-bottom:5px;font-size:1rem;}
 .left-services ul{margin-left:15px;line-height:1.4;margin-bottom:10px;}
 .left-services ul li{margin:2px 0;padding:4px 6px;background:rgba(0,123,255,0.05);border-radius:4px;font-size:0.85rem;}
-.card:hover{transform:translateY(-8px);box-shadow:0 10px 25px rgba(0,0,0,0.15);transition:0.3s;}
-
-/* Right Panel: Slider + Description + Gallery */
-.right-panel{flex:1;display:flex;flex-direction:column;gap:10px;align-items:center;position:relative;}
-
-/* Slider */
-.slider{position:relative;width:100%;height:250px;overflow:hidden;border-radius:8px;}
-.slider-track{position:relative;width:100%;height:100%;}
-.slider-track img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out;}
-.slider-track img.active{opacity:1;}
 
 /* Description */
 .description{background:#fff;padding:8px;border-radius:6px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
 .description p{font-size:0.85rem;line-height:1.4;}
 
-/* Gallery */
+/* Gallery vertical responsive */
 .gallery{display:flex;flex-direction:column;gap:15px;align-items:center;margin-top:10px;}
-.gallery img{width:90%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;cursor:pointer;opacity:0;transform:translateY(30px);transition:transform 0.6s ease,opacity 0.6s ease;}
+.gallery img{width:90%;max-width:400px;aspect-ratio:1/1;object-fit:cover;border-radius:8px;cursor:pointer;opacity:0;transform:translateY(30px);transition:transform 0.6s ease,opacity 0.6s ease;}
 .gallery img.visible{opacity:1;transform:translateY(0);}
 .gallery img:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.25);transition:transform 0.3s ease,box-shadow 0.3s ease;}
 
-/* Bottom Section */
-.bottom-section{display:flex;justify-content:center;align-items:center;background:#f0f0f0;padding:8px;gap:12px;}
-.bottom-section a{display:flex;align-items:center;gap:5px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;background:rgba(255,0,0,0.05);}
-.bottom-section a:hover{background:rgba(255,0,0,0.15);color:#ff0000;}
+/* Back to Top button */
+#backToTop{position:fixed;bottom:90px;right:20px;width:45px;height:45px;background:#007bff;color:#fff;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:22px;cursor:pointer;z-index:1000;transition:transform 0.25s;display:none;}
 
 /* Responsive */
-@media(max-width:1200px){.middle-section{flex-direction:column;align-items:center;}.left-services,.right-panel{width:90%;margin-bottom:10px;}}
-@media(max-width:500px){nav a{font-size:0.8rem;}.left-services ul li,.description p{font-size:0.75rem;}.contact-buttons a,.bottom-section a{font-size:0.7rem;padding:4px 6px;}.slider img,.gallery img{height:60px;}}
+@media(max-width:1200px){.middle-section{width:95%;}.slider{aspect-ratio:16/10;}}
+@media(max-width:500px){nav a{font-size:0.8rem;}.left-services ul li,.description p{font-size:0.75rem;}.slider{aspect-ratio:4/3;}.gallery img{width:100%;height:auto;}}
 </style>
 </head>
 <body>
 
 <!-- Scroll progress bar -->
 <div id="scrollBar"></div>
-
-<div class="fullscreen">
 
 <!-- Top Section -->
 <div class="top-section">
@@ -92,6 +119,16 @@ nav a.active{color:#ff6600;}
 <a href="#gallery">Gallery</a>
 <a href="#contact">Contact</a>
 </nav>
+</div>
+
+<!-- Slider below logo -->
+<div class="slider">
+<div class="slider-track">
+<img src="assets/slides/slide1.jpg" class="active" loading="lazy">
+<img src="assets/slides/slide2.jpg" loading="lazy">
+<img src="assets/slides/slide3.jpg" loading="lazy">
+<img src="assets/slides/slide4.jpg" loading="lazy">
+</div>
 </div>
 
 <!-- Middle Section -->
@@ -127,19 +164,6 @@ nav a.active{color:#ff6600;}
 </ul>
 </div>
 
-<!-- Right Panel -->
-<div class="right-panel">
-
-<!-- Slider -->
-<div class="slider">
-<div class="slider-track">
-<img src="assets/slides/slide1.jpg" class="active">
-<img src="assets/slides/slide2.jpg">
-<img src="assets/slides/slide3.jpg">
-<img src="assets/slides/slide4.jpg">
-</div>
-</div>
-
 <!-- Description -->
 <div class="description">
 <p>We deliver high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs.</p>
@@ -147,15 +171,13 @@ nav a.active{color:#ff6600;}
 
 <!-- Gallery -->
 <div class="gallery" id="gallery">
-<img src="assets/gallery/gallery1.jpg">
-<img src="assets/gallery/gallery2.jpg">
-<img src="assets/gallery/gallery3.jpg">
-<img src="assets/gallery/gallery4.jpg">
+<img src="assets/gallery/gallery1.jpg" loading="lazy">
+<img src="assets/gallery/gallery2.jpg" loading="lazy">
+<img src="assets/gallery/gallery3.jpg" loading="lazy">
+<img src="assets/gallery/gallery4.jpg" loading="lazy">
 </div>
 
-</div> <!-- End Right Panel -->
 </div> <!-- End Middle Section -->
-</div> <!-- End fullscreen -->
 
 <!-- Floating Buttons -->
 <div class="floating-whatsapp">💬</div>
@@ -163,39 +185,88 @@ nav a.active{color:#ff6600;}
 <div id="chatBtn" class="floating-chat">🤖</div>
 <div class="floating-logo">🏢</div>
 
-<!-- Chat Popup -->
+<!-- AI Chat Popup -->
 <div class="chat-popup">
-<p>Hi! How can I assist you today?</p>
+  <div class="chat-header">Chat with us</div>
+  <div class="chat-messages"></div>
+  <div class="chat-input">
+    <input type="text" placeholder="Type your message...">
+    <button>Send</button>
+  </div>
 </div>
+
+<!-- Back to Top Button -->
+<div id="backToTop">⬆</div>
 
 <script>
 // Slider auto-fade
-let slideIndex = 0;
-const slidesFade = document.querySelectorAll('.slider-track img');
-function showSlide(){
-slidesFade.forEach((s,i)=>s.classList.remove('active'));
-slidesFade[slideIndex].classList.add('active');
-slideIndex=(slideIndex+1)%slidesFade.length;
-}
+let slideIndex=0;
+const slidesFade=document.querySelectorAll('.slider-track img');
+function showSlide(){slidesFade.forEach((s,i)=>s.classList.remove('active'));slidesFade[slideIndex].classList.add('active');slideIndex=(slideIndex+1)%slidesFade.length;}
 setInterval(showSlide,3000);
 showSlide();
 
-// AI chat popup
+// AI chat popup toggle
 const chatBtn=document.getElementById('chatBtn');
 const chatPopup=document.querySelector('.chat-popup');
 chatBtn.addEventListener('click',()=>{chatPopup.classList.toggle('show');chatBtn.classList.remove('pulse');});
 
+// Chat input functionality with bot typing animation
+const chatMessages=document.querySelector('.chat-messages');
+const chatInput=document.querySelector('.chat-input input');
+const chatSendBtn=document.querySelector('.chat-input button');
+
+chatSendBtn.addEventListener('click',sendMessage);
+chatInput.addEventListener('keypress',e=>{if(e.key==='Enter') sendMessage();});
+
+function sendMessage(){
+    const msg=chatInput.value.trim();
+    if(!msg) return;
+
+    // Display user message
+    const userMsg=document.createElement('div');
+    userMsg.textContent="You: "+msg;
+    userMsg.style.padding="6px 8px";
+    userMsg.style.marginBottom="6px";
+    userMsg.style.background="#f0f0f0";
+    userMsg.style.borderRadius="6px";
+    chatMessages.appendChild(userMsg);
+    chatMessages.scrollTop=chatMessages.scrollHeight;
+    chatInput.value="";
+
+    // Forward to WhatsApp
+    const phone="+9779811809093"; // replace with your number
+    const whatsappURL=`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(whatsappURL,'_blank');
+
+    // Bot response simulation
+    const botMsg=document.createElement('div');
+    botMsg.style.padding="6px 8px";
+    botMsg.style.marginBottom="6px";
+    botMsg.style.background="#ff6600";
+    botMsg.style.color="#fff";
+    botMsg.style.borderRadius="6px";
+    botMsg.style.opacity="0";
+    chatMessages.appendChild(botMsg);
+    
+    // Typing animation
+    let dots=0;
+    const typingInterval=setInterval(()=>{
+        botMsg.textContent="Bot is typing"+'.'.repeat(dots%4);
+        dots++;
+    },400);
+
+    setTimeout(()=>{
+        clearInterval(typingInterval);
+        botMsg.textContent="Bot: Thanks for your message! We'll get back to you soon.";
+        botMsg.style.opacity="1";
+        chatMessages.scrollTop=chatMessages.scrollHeight;
+    },1500 + Math.random()*1000);
+}
+
 // Gallery staggered fade-in
 const galleryImages=document.querySelectorAll('.gallery img');
-function revealGalleryStagger(){
-const triggerBottom=window.innerHeight-50;
-galleryImages.forEach((img,index)=>{
-const imgTop=img.getBoundingClientRect().top;
-if(imgTop<triggerBottom&&!img.classList.contains('visible')){
-setTimeout(()=>{img.classList.add('visible');},index*150);
-}
-});
-}
+function revealGalleryStagger(){const triggerBottom=window.innerHeight-50;galleryImages.forEach((img,index)=>{const imgTop=img.getBoundingClientRect().top;if(imgTop<triggerBottom&&!img.classList.contains('visible')){setTimeout(()=>{img.classList.add('visible');},index*150);}});}
 window.addEventListener('scroll',revealGalleryStagger);
 window.addEventListener('load',revealGalleryStagger);
 
@@ -223,6 +294,27 @@ window.addEventListener('scroll',()=>{
 let current='';
 sections.forEach(section=>{const sectionTop=section.offsetTop-100;if(pageYOffset>=sectionTop) current=section.getAttribute('id');});
 navLinks.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')==='#'+current) link.classList.add('active');});
+});
+
+// Back to Top button
+const backToTop=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{
+if(window.scrollY>300){backToTop.style.display='flex';}else{backToTop.style.display='none';}
+});
+backToTop.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
+
+// Floating buttons slide in/out on scroll
+let lastScrollTop=0;
+const buttons=[document.querySelector('.floating-whatsapp'),
+               document.querySelector('.floating-email'),
+               document.querySelector('.floating-chat'),
+               document.querySelector('.floating-logo')];
+
+window.addEventListener('scroll',()=>{
+const st=window.scrollY;
+if(st>lastScrollTop){ buttons.forEach(b=>b.style.transform='translateY(60px)'); }
+else{ buttons.forEach(b=>b.style.transform='translateY(0)'); }
+lastScrollTop=st<=0?0:st;
 });
 </script>
 </body>
