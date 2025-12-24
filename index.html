@@ -14,31 +14,54 @@ img{display:block;max-width:100%;height:auto;}
 /* Header */
 .header{
     display:flex;justify-content:space-between;align-items:center;
-    padding:20px 40px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;
+    padding:15px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    position:sticky;top:0;z-index:100;
 }
 .header img#logo{height:60px;}
+nav{
+    display:flex;gap:15px;
+}
 nav a{
-    margin-left:20px;font-weight:bold;color:#111;transition:0.3s;
+    font-weight:bold;color:#111;transition:0.3s;font-size:1rem;
+    padding:6px 8px;
 }
 nav a:hover{color:#007bff;}
 
-/* Slider Container - smaller and centered */
-.slider-container{
+/* Hamburger */
+.hamburger{
+    display:none;
+    flex-direction:column;
+    justify-content:space-around;
+    width:25px;
+    height:20px;
+    cursor:pointer;
+}
+.hamburger div{
     width:100%;
+    height:3px;
+    background:#111;
+    border-radius:2px;
+    transition:0.3s;
+}
+
+/* Slider */
+.slider-container{
+    width:105%;
+    margin-left:-2.5%;
     overflow:hidden;
     position:relative;
     background:#e8f0ff;
-    padding:10px 0;
-    height:150px; /* 50% smaller */
+    padding:20px 0;
+    height:195px;
 }
 .slider-track{
     display:flex;
     transition:transform 0.5s ease;
 }
 .slider-track img{
-    flex:0 0 80%;
-    margin:0 10%;
-    height:150px;
+    flex:0 0 85%;
+    margin:0 7.5%;
+    height:195px;
     object-fit:cover;
     border-radius:10px;
     box-shadow:0 2px 6px rgba(0,0,0,0.15);
@@ -56,8 +79,6 @@ nav a:hover{color:#007bff;}
     background: linear-gradient(135deg, #e8f0ff, #ffffff);
     overflow:hidden;
 }
-
-/* Hero heading with glow + gradient underline + animation */
 .hero h1 {
     position: relative;
     display: inline-block;
@@ -82,8 +103,6 @@ nav a:hover{color:#007bff;}
     background-size: 200% 100%;
     animation: gradientMove 3s linear infinite;
 }
-
-/* Hero Paragraph */
 .hero p{
     font-size:1.1rem;
     max-width:700px;
@@ -94,8 +113,6 @@ nav a:hover{color:#007bff;}
     animation: fadeSlideUp 1s forwards;
     animation-delay:0.3s;
 }
-
-/* CTA Buttons */
 .hero .cta-buttons{
     display:flex;
     gap:20px;
@@ -111,48 +128,20 @@ nav a:hover{color:#007bff;}
     transition:0.3s;
     box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
-.hero .cta-buttons a.email{
-    background:#007bff;color:#fff;
-}
-.hero .cta-buttons a.email:hover{
-    background:#0056b3;
-    box-shadow:0 4px 12px rgba(0,0,0,0.2);
-}
-.hero .cta-buttons a.whatsapp{
-    background:#25D366;color:#fff;
-}
-.hero .cta-buttons a.whatsapp:hover{
-    background:#128C7E;
-    box-shadow:0 4px 12px rgba(0,0,0,0.2);
-}
+.hero .cta-buttons a.email{background:#007bff;color:#fff;}
+.hero .cta-buttons a.email:hover{background:#0056b3;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
+.hero .cta-buttons a.whatsapp{background:#25D366;color:#fff;}
+.hero .cta-buttons a.whatsapp:hover{background:#128C7E;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
 
-/* Animation Keyframes */
-@keyframes fadeSlideUp {
-    0% {opacity:0; transform:translateY(30px);}
-    100% {opacity:1; transform:translateY(0);}
-}
-@keyframes gradientMove {
-    0% {background-position: 0% 0;}
-    100% {background-position: 200% 0;}
-}
+/* Animation */
+@keyframes fadeSlideUp {0% {opacity:0; transform:translateY(30px);}100% {opacity:1; transform:translateY(0);}}
+@keyframes gradientMove {0% {background-position: 0% 0;}100% {background-position: 200% 0;}}
 
 /* Services Section */
-.services{
-    padding:60px 20px;background:#fff;text-align:center;
-}
-.services h2{
-    font-size:2rem;color:#007bff;margin-bottom:40px;
-}
-.service-cards{
-    display:flex;flex-wrap:wrap;gap:20px;justify-content:center;
-}
-.card{
-    background:#f7f9fc;padding:20px;border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
-    flex:1 1 250px;max-width:300px;
-    transition:0.5s;
-    opacity:0;transform:translateY(30px);
-}
+.services{padding:60px 20px;background:#fff;text-align:center;}
+.services h2{font-size:2rem;color:#007bff;margin-bottom:40px;}
+.service-cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+.card{background:#f7f9fc;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);flex:1 1 250px;max-width:300px;transition:0.5s;opacity:0;transform:translateY(30px);}
 .card.visible{opacity:1;transform:translateY(0);}
 .card h3{color:#007bff;margin-bottom:10px;}
 .card ul{list-style:none;margin-top:5px;}
@@ -161,100 +150,48 @@ nav a:hover{color:#007bff;}
 /* Gallery Section */
 .gallery-section{padding:60px 20px;background:#fff;text-align:center;}
 .gallery-section h2{color:#007bff;font-size:2rem;margin-bottom:30px;}
-.gallery{
-    display:flex;flex-wrap:wrap;gap:15px;justify-content:center;
-}
-.gallery img{
-    width:calc(50% - 15px);height:200px;object-fit:cover;border-radius:8px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.15);cursor:pointer;transition:0.5s;
-    opacity:0;transform:scale(0.95);
-}
+.gallery{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
+.gallery img{width:calc(50% - 15px);height:200px;object-fit:cover;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.15);cursor:pointer;transition:0.5s;opacity:0;transform:scale(0.95);}
 .gallery img.visible{opacity:1;transform:scale(1);}
 
 /* Lightbox */
-#lightbox{
-    position:fixed;top:0;left:0;width:100%;height:100%;
-    background:rgba(0,0,0,0.85);display:none;
-    justify-content:center;align-items:center;z-index:999;
-}
+#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:center;z-index:999;}
 #lightbox img{max-width:90%;max-height:80%;border-radius:8px;}
-#lightbox span{
-    position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;
-}
+#lightbox span{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;}
 
 /* Footer */
 .footer{padding:20px;text-align:center;background:#f0f0f0;color:#111;}
 
 /* Floating Buttons */
-.floating-whatsapp,.floating-email,.floating-chat{
-    position:fixed;right:30px;display:flex;justify-content:center;align-items:center;
-    border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.3);cursor:pointer;transition:0.3s;z-index:999;
-}
+.floating-whatsapp,.floating-email,.floating-chat{position:fixed;right:30px;display:flex;justify-content:center;align-items:center;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.3);cursor:pointer;transition:0.3s;z-index:999;}
 .floating-whatsapp{bottom:30px;width:60px;height:60px;background:#25D366;}
 .floating-whatsapp:hover{background:#128C7E;transform:scale(1.1);}
 .floating-whatsapp img{width:35px;height:35px;}
-
 .floating-email{bottom:100px;width:60px;height:60px;background:#007bff;}
 .floating-email:hover{background:#0056b3;transform:scale(1.1);}
 .floating-email img{width:30px;height:30px;}
-
 .floating-chat{bottom:170px;width:40px;height:40px;background:#007bff;}
 .floating-chat:hover{transform:scale(1.1);}
 .floating-chat img{width:22px;height:22px;}
 
 /* Chat Popup */
-.chat-popup{
-    position:fixed;
-    bottom:220px;
-    right:30px;
-    width:300px;
-    max-height:400px;
-    background:#fff;
-    border-radius:10px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.3);
-    display:none;
-    flex-direction:column;
-    overflow:hidden;
-    z-index:1000;
-}
-.chat-popup header{
-    background:#007bff;
-    color:#fff;
-    padding:10px;
-    font-weight:bold;
-    font-size:0.95rem;
-}
-.chat-popup .messages{
-    flex:1;
-    padding:10px;
-    overflow-y:auto;
-    font-size:0.85rem;
-}
-.chat-popup .messages div{
-    margin-bottom:10px;
-    padding:6px 10px;
-    border-radius:6px;
-}
-.chat-popup .messages .user{
-    background:#e8f0ff;
-    align-self:flex-end;
-    text-align:right;
-}
-.chat-popup .messages .bot{
-    background:#f1f1f1;
-    align-self:flex-start;
-}
-.chat-popup input{
-    border:none;
-    border-top:1px solid #ccc;
-    padding:10px;
-    width:100%;
-    box-sizing:border-box;
-    font-size:0.85rem;
-}
+.chat-popup{position:fixed;bottom:220px;right:30px;width:300px;max-height:400px;background:#fff;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.3);display:none;flex-direction:column;overflow:hidden;z-index:1000;}
+.chat-popup header{background:#007bff;color:#fff;padding:10px;font-weight:bold;font-size:0.95rem;}
+.chat-popup .messages{flex:1;padding:10px;overflow-y:auto;font-size:0.85rem;}
+.chat-popup .messages div{margin-bottom:10px;padding:6px 10px;border-radius:6px;}
+.chat-popup .messages .user{background:#e8f0ff;align-self:flex-end;text-align:right;}
+.chat-popup .messages .bot{background:#f1f1f1;align-self:flex-start;}
+.chat-popup input{border:none;border-top:1px solid #ccc;padding:10px;width:100%;box-sizing:border-box;font-size:0.85rem;}
 
 /* Responsive */
-@media(max-width:800px){.gallery img{width:100%;}}
+@media(max-width:900px){
+    .header nav a{font-size:0.9rem; padding:5px 6px;}
+}
+@media(max-width:768px){
+    nav{display:none;flex-direction:column;width:100%;background:#fff;position:absolute;top:60px;left:0;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+    nav.active{display:flex;}
+    .hamburger{display:flex;}
+}
 @media(max-width:600px){
     .hero h1{font-size:2rem;}
     .hero p{font-size:1rem;}
@@ -268,7 +205,12 @@ nav a:hover{color:#007bff;}
 <!-- Header -->
 <div class="header">
     <img id="logo" src="logo.png" alt="PrintCare Logo">
-    <nav>
+    <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <nav id="nav">
         <a href="#slider">Portfolio</a>
         <a href="#services">Services</a>
         <a href="#gallery-section">Gallery</a>
@@ -356,32 +298,30 @@ nav a:hover{color:#007bff;}
 <div class="floating-whatsapp" onclick="window.open('https://wa.me/9779811809093','_blank')">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
 </div>
-
 <div class="floating-email" onclick="window.location.href='mailto:prntcare@gmail.com'">
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_Icon.png" alt="Email">
 </div>
-
 <div class="floating-chat" id="chatBtn">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Robot_icon.svg" alt="Chat">
 </div>
-
 <div class="chat-popup" id="chatPopup">
     <header>Hi! How can I assist you?</header>
     <div class="messages" id="chatMessages"></div>
     <input type="text" id="chatInput" placeholder="Type your message...">
 </div>
 
-<div class="footer">
-    &copy; 2025 PrintCare. All Rights Reserved.
-</div>
+<div class="footer">&copy; 2025 PrintCare. All Rights Reserved.</div>
 
-<!-- JS -->
 <script>
-// Slider auto-scroll - centered one slide
+// Hamburger toggle
+const hamburger = document.getElementById('hamburger');
+const nav = document.getElementById('nav');
+hamburger.addEventListener('click', ()=>{nav.classList.toggle('active');});
+
+// Slider
 const track = document.getElementById('slider-track');
 const slides = Array.from(track.children);
 let current = 0;
-
 function showSlide(index){
     const offset = index * track.clientWidth;
     track.style.transform = `translateX(-${offset}px)`;
@@ -395,9 +335,7 @@ setInterval(()=>{
 // Scroll animations
 const observer = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add('visible');
-        }
+        if(entry.isIntersecting) entry.target.classList.add('visible');
     });
 },{threshold:0.2});
 document.querySelectorAll('.card, .gallery img').forEach(el=>observer.observe(el));
@@ -406,70 +344,33 @@ document.querySelectorAll('.card, .gallery img').forEach(el=>observer.observe(el
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 document.querySelectorAll('.gallery img').forEach(img=>{
-    img.addEventListener('click',()=>{
-        lightbox.style.display='flex';
-        lightboxImg.src = img.src;
-    });
+    img.addEventListener('click',()=>{lightbox.style.display='flex';lightboxImg.src = img.src;});
 });
 document.getElementById('close').addEventListener('click',()=>lightbox.style.display='none');
-lightbox.addEventListener('click', e=>{ if(e.target===lightbox) lightbox.style.display='none'; });
+lightbox.addEventListener('click', e=>{if(e.target===lightbox) lightbox.style.display='none';});
 
-// Chat popup
+// Chat
 const chatBtn = document.getElementById('chatBtn');
 const chatPopup = document.getElementById('chatPopup');
 const chatInput = document.getElementById('chatInput');
 const chatMessages = document.getElementById('chatMessages');
-
-chatBtn.addEventListener('click',()=>{
-    chatPopup.style.display = chatPopup.style.display === 'flex' ? 'none' : 'flex';
-});
+chatBtn.addEventListener('click',()=>{chatPopup.style.display = chatPopup.style.display==='flex'?'none':'flex';});
 chatInput.addEventListener('keypress',function(e){
     if(e.key==='Enter' && chatInput.value.trim()!==''){
-        const userMsg = document.createElement('div');
-        userMsg.className='user';
-        userMsg.textContent = chatInput.value;
-        chatMessages.appendChild(userMsg);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        setTimeout(()=>{
-            const botMsg = document.createElement('div');
-            botMsg.className='bot';
-            botMsg.textContent = `Hello! You said: "${chatInput.value}"`;
-            chatMessages.appendChild(botMsg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        },500);
+        const userMsg = document.createElement('div'); userMsg.className='user'; userMsg.textContent = chatInput.value;
+        chatMessages.appendChild(userMsg); chatMessages.scrollTop = chatMessages.scrollHeight;
+        setTimeout(()=>{const botMsg = document.createElement('div'); botMsg.className='bot'; botMsg.textContent = `Hello! You said: "${chatInput.value}"`;
+            chatMessages.appendChild(botMsg); chatMessages.scrollTop = chatMessages.scrollHeight;},500);
         chatInput.value='';
     }
 });
 
 // Mobile swipe for slider
-let startX = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
-let isDragging = false;
-
+let startX=0,isDragging=false,prevTranslate=0;
 const sliderContainer = document.querySelector('.slider-container');
-
-sliderContainer.addEventListener('touchstart', touchStart);
-sliderContainer.addEventListener('touchmove', touchMove);
-sliderContainer.addEventListener('touchend', touchEnd);
-
-function touchStart(e){
-    startX = e.touches[0].clientX;
-    isDragging = true;
-}
-
-function touchMove(e){
-    if(!isDragging) return;
-    const currentX = e.touches[0].clientX;
-    const deltaX = currentX - startX;
-    track.style.transform = `translateX(${prevTranslate + deltaX}px)`;
-}
-
-function touchEnd(){
-    isDragging = false;
-    prevTranslate = parseInt(track.style.transform.replace('translateX(','').replace('px)','')) || 0;
-}
+sliderContainer.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;isDragging=true;});
+sliderContainer.addEventListener('touchmove',e=>{if(!isDragging) return;const deltaX=e.touches[0].clientX-startX;track.style.transform=`translateX(${prevTranslate+deltaX}px)`;});
+sliderContainer.addEventListener('touchend',()=>{isDragging=false;prevTranslate=parseInt(track.style.transform.replace('translateX(','').replace('px)',''))||0;});
 </script>
 
 </body>
