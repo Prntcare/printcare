@@ -38,15 +38,16 @@ nav a:hover{color:#007bff;}
     width:100%;height:3px;background:#111;border-radius:2px;transition:0.3s;
 }
 
-/* Slider Responsive */
+/* Slider */
 .slider-container{
-    width:100%;
-    max-width:1200px;
-    margin:0 auto;
+    width:95%;
+    max-width:1000px;
+    margin:20px auto;
     overflow:hidden;
     position:relative;
     background:#e8f0ff;
-    padding:20px 0;
+    padding:10px 0;
+    border-radius:10px;
 }
 .slider-track{
     display:flex;
@@ -57,11 +58,17 @@ nav a:hover{color:#007bff;}
     flex:0 0 auto;
     width:calc(100% - 20px);
     max-width:95%;
-    height:auto;
-    aspect-ratio:16/9; /* responsive aspect ratio */
+    height:180px;
+    object-fit:cover;
     border-radius:10px;
     box-shadow:0 2px 6px rgba(0,0,0,0.15);
     transition:transform 0.3s;
+}
+@media(max-width:768px){
+    .slider-track img{height:140px;}
+}
+@media(max-width:480px){
+    .slider-track img{height:120px;}
 }
 
 /* Hero Section */
@@ -123,10 +130,25 @@ nav a:hover{color:#007bff;}
 .floating-logo img{width:80%;height:80%;object-fit:contain;}
 
 /* Chat Popup */
-.chat-popup{position:fixed;bottom:290px;right:30px;width:300px;max-height:400px;background:#fff;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.3);display:none;flex-direction:column;overflow:hidden;z-index:1000;}
-.chat-popup header{background:#007bff;color:#fff;padding:10px;font-weight:bold;font-size:0.95rem;}
-.chat-popup .messages{flex:1;padding:10px;overflow-y:auto;font-size:0.85rem;}
-.chat-popup .messages div{margin-bottom:10px;padding:6px 10px;border-radius:6px;}
+.chat-popup{
+    position:fixed;
+    bottom:290px;
+    right:30px;
+    width:300px;
+    max-height:400px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.3);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:1000;
+    animation:fadeIn 0.3s;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.chat-popup header{background:#007bff;color:#fff;padding:10px;font-weight:bold;font-size:0.95rem;cursor:default;}
+.chat-popup .messages{flex:1;padding:10px;overflow-y:auto;font-size:0.85rem;display:flex;flex-direction:column;gap:6px;}
+.chat-popup .messages div{padding:6px 10px;border-radius:6px;max-width:85%;}
 .chat-popup .messages .user{background:#e8f0ff;align-self:flex-end;text-align:right;}
 .chat-popup .messages .bot{background:#f1f1f1;align-self:flex-start;}
 .chat-popup input{border:none;border-top:1px solid #ccc;padding:10px;width:100%;box-sizing:border-box;font-size:0.85rem;}
@@ -142,9 +164,6 @@ nav a:hover{color:#007bff;}
     .hero p{font-size:1rem;}
     .hero .cta-buttons{flex-direction:column;}
     .hero .cta-buttons a{width:100%;text-align:center;}
-}
-@media(max-width:480px){
-    .slider-track img{width:95%;aspect-ratio:4/3;}
 }
 </style>
 </head>
@@ -263,12 +282,64 @@ const hamburger = document.getElementById('hamburger');
 const nav = document.getElementById('nav');
 hamburger.addEventListener('click', ()=>{nav.classList.toggle('active');});
 
-// Slider auto
+// Slider auto + drag/swipe
 const track = document.getElementById('slider-track');
 const slides = Array.from(track.children);
 let current = 0;
-function showSlide(index){const offset = index*track.clientWidth;track.style.transform=`translateX(-${offset}px)`;}
-setInterval(()=>{current++; if(current>=slides.length) current=0; showSlide(current);},3000);
+let isDragging = false;
+let startX = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+
+function showSlide(index){
+    const offset = index * track.clientWidth;
+    track.style.transition = 'transform 0.5s ease';
+    track.style.transform = `translateX(-${offset}px)`;
+}
+
+// Auto slide every 3s
+let autoSlide = setInterval(()=>{
+    current++;
+    if(current >= slides.length) current = 0;
+    showSlide(current);
+},3000);
+
+// Drag/Swipe
+track.addEventListener('mousedown', dragStart);
+track.addEventListener('mouseup', dragEnd);
+track.addEventListener('mouseleave', dragEnd);
+track.addEventListener('mousemove', dragAction);
+track.addEventListener('touchstart', dragStart);
+track.addEventListener('touchend', dragEnd);
+track.addEventListener('touchmove', dragAction);
+
+function dragStart(e){
+    clearInterval(autoSlide);
+    isDragging = true;
+    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    prevTranslate = -current*track.clientWidth;
+    track.style.transition = 'none';
+}
+function dragAction(e){
+    if(!isDragging) return;
+    const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    const deltaX = currentX - startX;
+    currentTranslate = prevTranslate + -deltaX;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+}
+function dragEnd(){
+    if(!isDragging) return;
+    isDragging = false;
+    const movedBy = currentTranslate - prevTranslate;
+    if(movedBy < -50 && current < slides.length-1) current++;
+    if(movedBy > 50 && current > 0) current--;
+    showSlide(current);
+    autoSlide = setInterval(()=>{
+        current++;
+        if(current >= slides.length) current = 0;
+        showSlide(current);
+    },3000);
+}
 
 // Scroll animations
 const observer = new IntersectionObserver((entries)=>{
@@ -279,11 +350,13 @@ document.querySelectorAll('.card, .gallery img').forEach(el=>observer.observe(el
 // Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
-document.querySelectorAll('.gallery img').forEach(img=>{img.addEventListener('click',()=>{lightbox.style.display='flex';lightboxImg.src=img.src;});});
+document.querySelectorAll('.gallery img').forEach(img=>{
+    img.addEventListener('click',()=>{lightbox.style.display='flex';lightboxImg.src = img.src;});
+});
 document.getElementById('close').addEventListener('click',()=>lightbox.style.display='none');
 lightbox.addEventListener('click', e=>{if(e.target===lightbox) lightbox.style.display='none';});
 
-// Chat
+// Chat popup
 const chatBtn = document.getElementById('chatBtn');
 const chatPopup = document.getElementById('chatPopup');
 const chatInput = document.getElementById('chatInput');
@@ -293,11 +366,4 @@ chatInput.addEventListener('keypress',function(e){
     if(e.key==='Enter' && chatInput.value.trim()!==''){
         const userMsg = document.createElement('div'); userMsg.className='user'; userMsg.textContent = chatInput.value;
         chatMessages.appendChild(userMsg); chatMessages.scrollTop = chatMessages.scrollHeight;
-        setTimeout(()=>{const botMsg = document.createElement('div'); botMsg.className='bot'; botMsg.textContent = `Hello! You said: "${chatInput.value}"`;
-            chatMessages.appendChild(botMsg); chatMessages.scrollTop = chatMessages.scrollHeight;},500);
-        chatInput.value='';
-    }
-});
-</script>
-</body>
-</html>
+        setTimeout(()=>{const botMsg = document
