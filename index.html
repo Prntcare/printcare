@@ -25,13 +25,10 @@ nav a:hover{color:#007bff;}
 .right-panel{flex:1;display:flex;flex-direction:column;gap:10px;align-items:center;}
 .slider-container{width:100%;overflow:hidden;border-radius:6px;position:relative;}
 .slider-track{display:flex;transition:transform 0.5s ease-in-out;}
-.slider-track img{margin-right:5px;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.15);object-fit:cover;}
+.slider-track img{border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.15);object-fit:cover;}
 .slider-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:#fff;background:rgba(0,0,0,0.3);padding:5px 10px;border-radius:50%;cursor:pointer;user-select:none;z-index:10;}
 .slider-arrow:hover{background:rgba(0,0,0,0.5);}
 #prev{left:10px;}#next{right:10px;}
-.slider-dots{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10;}
-.slider-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;}
-.slider-dots .active{background:#007bff;}
 .description{background:#fff;padding:8px;border-radius:6px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
 .description p{font-size:0.85rem;line-height:1.4;}
 .gallery{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
@@ -39,10 +36,11 @@ nav a:hover{color:#007bff;}
 #lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:center;z-index:999;}
 #lightbox img{max-width:90%;max-height:80%;border-radius:8px;box-shadow:0 2px 10px rgba(255,255,255,0.3);}
 #lightbox span{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;}
-@media(max-width:1200px){.middle-section{flex-direction:column;align-items:center;}.left-services,.right-panel{width:90%;margin-bottom:10px;}.slider-track img,.gallery img{height:80px;}}
-@media(max-width:500px){nav a{font-size:0.8rem;}.left-services ul li,.description p{font-size:0.75rem;}.contact-buttons a{font-size:0.7rem;padding:4px 6px;}.slider-track img{height:120px;}.gallery img{width:100%;height:120px;}}
+@media(max-width:1200px){.middle-section{flex-direction:column;align-items:center;}.left-services,.right-panel{width:90%;margin-bottom:10px;}.gallery img{height:80px;}}
+@media(max-width:500px){nav a{font-size:0.8rem;}.left-services ul li,.description p{font-size:0.75rem;}.contact-buttons a{font-size:0.7rem;padding:4px 6px;}.gallery img{width:100%;height:120px;}}
 </style>
 </head>
+
 <body>
 <div class="fullscreen">
 
@@ -73,6 +71,7 @@ nav a:hover{color:#007bff;}
                 <li>Calendars</li>
                 <li>Packaging Prints</li>
             </ul>
+
             <h3>Graphic Design Services</h3>
             <ul>
                 <li>Logo Design</li>
@@ -81,6 +80,7 @@ nav a:hover{color:#007bff;}
                 <li>Corporate Identity</li>
                 <li>Custom Artwork</li>
             </ul>
+
             <h3>Specialized Solutions</h3>
             <ul>
                 <li>Digital Printing</li>
@@ -126,72 +126,71 @@ nav a:hover{color:#007bff;}
 
 <script>
 const track = document.getElementById('slider-track');
+const container = document.getElementById('slider-container');
 let slides = Array.from(track.children);
 
-// Clone for seamless infinite
-slides.forEach(slide=>{
-    const clone = slide.cloneNode(true);
-    track.appendChild(clone);
-});
+// Clone slides for infinite scroll
+slides.forEach(slide => track.appendChild(slide.cloneNode(true)));
 slides = Array.from(track.children);
 
 let index = 0;
 let slideWidth;
 
-function getSlidesPerView(){
-    return window.innerWidth <= 500 ? 1 : 2;
+function updateSlideWidth() {
+    slideWidth = container.clientWidth; // 1 slide fills container
+    slides.forEach(s => s.style.width = slideWidth + 'px');
+    moveSlider();
 }
-function updateSlideWidth(){
-    const perView = getSlidesPerView();
-    slideWidth = track.clientWidth / perView - 5;
-    slides.forEach(s=>s.style.width = slideWidth + 'px');
-}
-updateSlideWidth();
-window.addEventListener('resize', updateSlideWidth);
 
-function moveSlider(){
-    track.style.transition='transform 0.5s ease-in-out';
-    track.style.transform = `translateX(-${index*slideWidth}px)`;
+function moveSlider() {
+    track.style.transition = 'transform 0.5s ease-in-out';
+    track.style.transform = `translateX(-${index * slideWidth}px)`;
 }
-function nextSlide(){
+
+function nextSlide() {
     index++;
     moveSlider();
     if(index >= slides.length/2){
         setTimeout(()=>{
-            track.style.transition='none';
-            index=0;
+            track.style.transition = 'none';
+            index = 0;
             track.style.transform = `translateX(0px)`;
-        },500);
+        }, 500);
     }
 }
-function prevSlide(){
-    if(index<=0){
-        track.style.transition='none';
+
+function prevSlide() {
+    if(index <= 0){
+        track.style.transition = 'none';
         index = slides.length/2;
-        track.style.transform = `translateX(-${index*slideWidth}px)`;
+        track.style.transform = `translateX(-${index * slideWidth}px)`;
         setTimeout(()=>{
             index--;
-            track.style.transition='transform 0.5s ease-in-out';
-            track.style.transform = `translateX(-${index*slideWidth}px)`;
+            track.style.transition = 'transform 0.5s ease-in-out';
+            track.style.transform = `translateX(-${index * slideWidth}px)`;
         },50);
-    }else{
+    } else {
         index--;
         moveSlider();
     }
 }
-let interval = setInterval(nextSlide,3000);
 
-document.getElementById('next').addEventListener('click',()=>{
-    nextSlide(); clearInterval(interval); interval=setInterval(nextSlide,3000);
+let interval = setInterval(nextSlide, 3000);
+
+document.getElementById('next').addEventListener('click', ()=>{
+    nextSlide();
+    clearInterval(interval); interval = setInterval(nextSlide,3000);
 });
-document.getElementById('prev').addEventListener('click',()=>{
-    prevSlide(); clearInterval(interval); interval=setInterval(nextSlide,3000);
+document.getElementById('prev').addEventListener('click', ()=>{
+    prevSlide();
+    clearInterval(interval); interval = setInterval(nextSlide,3000);
 });
 
-// Hover pause
-const container = document.getElementById('slider-container');
-container.addEventListener('mouseenter',()=>clearInterval(interval));
-container.addEventListener('mouseleave',()=>interval=setInterval(nextSlide,3000));
+container.addEventListener('mouseenter', ()=>clearInterval(interval));
+container.addEventListener('mouseleave', ()=>interval=setInterval(nextSlide,3000));
+
+window.addEventListener('resize', updateSlideWidth);
+updateSlideWidth();
 
 // Lightbox
 const lightbox = document.getElementById('lightbox');
@@ -203,7 +202,8 @@ document.querySelectorAll('.gallery img').forEach(img=>{
     });
 });
 document.getElementById('close').addEventListener('click',()=>lightbox.style.display='none');
-lightbox.addEventListener('click',e=>{ if(e.target===lightbox) lightbox.style.display='none'; });
+lightbox.addEventListener('click', e=>{ if(e.target===lightbox) lightbox.style.display='none'; });
 </script>
+
 </body>
 </html>
