@@ -6,64 +6,118 @@
 <title>PrintCare - Your Printing & Design Solution</title>
 
 <style>
+/* Reset & base */
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 body{background:#f9f9f9;color:#111;overflow-x:hidden;}
-.fullscreen{display:flex;flex-direction:column;width:100vw;min-height:100vh;}
-.top-section{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);z-index:10;}
-.top-section img#logo{height:60px;}
-nav{display:flex;gap:12px;}
-nav a{text-decoration:none;color:#111;font-weight:bold;padding:6px 12px;border-radius:4px;transition:0.3s;font-size:1rem;}
+a{text-decoration:none;}
+img{display:block;max-width:100%;height:auto;}
+
+/* Top Navigation */
+.header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 40px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;
+}
+.header img#logo{height:60px;}
+nav a{
+    margin-left:20px;font-weight:bold;color:#111;transition:0.3s;
+}
 nav a:hover{color:#007bff;}
-.contact-buttons{display:flex;gap:12px;padding:10px 20px;}
-.contact-buttons a{display:flex;align-items:center;gap:6px;text-decoration:none;color:#111;font-weight:bold;padding:6px 10px;border-radius:5px;transition:0.3s;background:rgba(0,123,255,0.1);}
-.contact-buttons a:hover{background:rgba(0,123,255,0.2);color:#007bff;}
-.middle-section{flex:1;display:flex;justify-content:space-between;align-items:flex-start;padding:10px 20px;gap:10px;}
-.left-services{flex:1;background:#fff;padding:10px;border-radius:8px;overflow:auto;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-.left-services h3{color:#007bff;margin-bottom:5px;font-size:1rem;}
-.left-services ul{margin-left:15px;line-height:1.4;margin-bottom:10px;}
-.left-services ul li{margin:2px 0;padding:4px 6px;background:rgba(0,123,255,0.05);border-radius:4px;font-size:0.85rem;}
-.right-panel{flex:1;display:flex;flex-direction:column;gap:10px;align-items:center;}
-.slider-container{width:100%;overflow:hidden;border-radius:6px;position:relative;}
+
+/* Hero Section */
+.hero{
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;padding:80px 20px;background:#e8f0ff;
+}
+.hero h1{font-size:2.5rem;color:#007bff;margin-bottom:15px;}
+.hero p{font-size:1.1rem;max-width:700px;line-height:1.5;margin-bottom:20px;}
+.hero .cta-buttons{display:flex;gap:15px;margin-top:15px;}
+.hero .cta-buttons a{
+    padding:10px 20px;border-radius:5px;font-weight:bold;transition:0.3s;
+}
+.hero .cta-buttons a.email{background:#007bff;color:#fff;}
+.hero .cta-buttons a.email:hover{background:#0056b3;}
+.hero .cta-buttons a.whatsapp{background:#25D366;color:#fff;}
+.hero .cta-buttons a.whatsapp:hover{background:#128C7E;}
+
+/* Services Section */
+.services{padding:60px 20px;background:#fff;text-align:center;}
+.services h2{font-size:2rem;color:#007bff;margin-bottom:40px;}
+.service-cards{
+    display:flex;flex-wrap:wrap;gap:20px;justify-content:center;
+}
+.card{
+    background:#f7f9fc;padding:20px;border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);flex:1 1 250px;max-width:300px;
+    transition:0.3s;
+}
+.card:hover{transform:translateY(-5px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.card h3{color:#007bff;margin-bottom:10px;}
+.card ul{list-style:none;margin-top:5px;}
+.card ul li{background:rgba(0,123,255,0.05);margin:5px 0;padding:6px 8px;border-radius:4px;}
+
+/* Slider Section */
+.slider-section{padding:60px 0;background:#e8f0ff;text-align:center;}
+.slider-section h2{color:#007bff;font-size:2rem;margin-bottom:30px;}
+.slider-container{width:90%;max-width:900px;margin:0 auto;overflow:hidden;border-radius:10px;position:relative;}
 .slider-track{display:flex;transition:transform 0.5s ease-in-out;}
-.slider-track img{border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.15);object-fit:cover;}
-.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:#fff;background:rgba(0,0,0,0.3);padding:5px 10px;border-radius:50%;cursor:pointer;user-select:none;z-index:10;}
+.slider-track img{border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.15);object-fit:cover;width:100%;}
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:#fff;background:rgba(0,0,0,0.3);padding:10px;border-radius:50%;cursor:pointer;user-select:none;}
 .slider-arrow:hover{background:rgba(0,0,0,0.5);}
 #prev{left:10px;}#next{right:10px;}
-.description{background:#fff;padding:8px;border-radius:6px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-.description p{font-size:0.85rem;line-height:1.4;}
-.gallery{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
-.gallery img{width:calc(50% - 6px);height:100px;object-fit:cover;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.15);cursor:pointer;}
+.slider-description{margin-top:20px;max-width:800px;margin-left:auto;margin-right:auto;font-size:1rem;line-height:1.5;background:#fff;padding:15px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+
+/* Gallery Section */
+.gallery-section{padding:60px 20px;background:#fff;text-align:center;}
+.gallery-section h2{color:#007bff;font-size:2rem;margin-bottom:30px;}
+.gallery{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
+.gallery img{width:calc(50% - 15px);height:200px;object-fit:cover;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.15);cursor:pointer;transition:0.3s;}
+.gallery img:hover{transform:scale(1.05);}
+
+/* Lightbox */
 #lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:center;z-index:999;}
-#lightbox img{max-width:90%;max-height:80%;border-radius:8px;box-shadow:0 2px 10px rgba(255,255,255,0.3);}
+#lightbox img{max-width:90%;max-height:80%;border-radius:8px;}
 #lightbox span{position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;cursor:pointer;}
-@media(max-width:1200px){.middle-section{flex-direction:column;align-items:center;}.left-services,.right-panel{width:90%;margin-bottom:10px;}.gallery img{height:80px;}}
-@media(max-width:500px){nav a{font-size:0.8rem;}.left-services ul li,.description p{font-size:0.75rem;}.contact-buttons a{font-size:0.7rem;padding:4px 6px;}.gallery img{width:100%;height:120px;}}
+
+/* Footer */
+.footer{padding:20px;text-align:center;background:#f0f0f0;color:#111;}
+
+/* Responsive */
+@media(max-width:800px){.gallery img{width:100%;}}
+@media(max-width:500px){.hero h1{font-size:2rem;}.hero p{font-size:1rem;}}
 </style>
 </head>
 
 <body>
-<div class="fullscreen">
 
-    <div class="top-section">
-        <img id="logo" src="logo.png" alt="PrintCare Logo">
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
-        </nav>
+<!-- Header -->
+<div class="header">
+    <img id="logo" src="logo.png" alt="PrintCare Logo">
+    <nav>
+        <a href="#services">Services</a>
+        <a href="#slider">Portfolio</a>
+        <a href="#gallery-section">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</div>
+
+<!-- Hero Section -->
+<div class="hero">
+    <h1>PrintCare - Your Printing & Design Solution</h1>
+    <p>We deliver high-quality printing, design, and packaging solutions in Nepal. Turn your ideas into professional outputs with precision and creativity.</p>
+    <div class="cta-buttons" id="contact">
+        <a class="email" href="mailto:prntcare@gmail.com">📧 Email Us</a>
+        <a class="whatsapp" href="https://wa.me/9779811809093" target="_blank">💬 WhatsApp</a>
     </div>
+</div>
 
-    <div class="contact-buttons" id="contact">
-        <a href="mailto:prntcare@gmail.com">📧 prntcare@gmail.com</a>
-        <a href="https://wa.me/9779811809093" target="_blank">💬 +977 9811809093</a>
-    </div>
-
-    <div class="middle-section">
-
-        <div class="left-services" id="services">
+<!-- Services Section -->
+<div class="services" id="services">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+        <div class="card">
             <h3>Printing Services</h3>
             <ul>
-                <li>Business Cards – Standard & Premium</li>
+                <li>Business Cards</li>
                 <li>Flyers & Brochures</li>
                 <li>Posters & Banners</li>
                 <li>Books & Magazines</li>
@@ -71,8 +125,9 @@ nav a:hover{color:#007bff;}
                 <li>Calendars</li>
                 <li>Packaging Prints</li>
             </ul>
-
-            <h3>Graphic Design Services</h3>
+        </div>
+        <div class="card">
+            <h3>Graphic Design</h3>
             <ul>
                 <li>Logo Design</li>
                 <li>Layout Design</li>
@@ -80,7 +135,8 @@ nav a:hover{color:#007bff;}
                 <li>Corporate Identity</li>
                 <li>Custom Artwork</li>
             </ul>
-
+        </div>
+        <div class="card">
             <h3>Specialized Solutions</h3>
             <ul>
                 <li>Digital Printing</li>
@@ -90,40 +146,50 @@ nav a:hover{color:#007bff;}
                 <li>Promotional Items</li>
             </ul>
         </div>
-
-        <div class="right-panel" id="gallery">
-
-            <div class="slider-container" id="slider-container">
-                <div class="slider-track" id="slider-track">
-                    <img src="assets/slides/slide1.jpg" alt="Slide 1">
-                    <img src="assets/slides/slide2.jpg" alt="Slide 2">
-                    <img src="assets/slides/slide3.jpg" alt="Slide 3">
-                    <img src="assets/slides/slide4.jpg" alt="Slide 4">
-                </div>
-                <div class="slider-arrow" id="prev">&#10094;</div>
-                <div class="slider-arrow" id="next">&#10095;</div>
-            </div>
-
-            <div class="description">
-                <p>PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. We turn ideas into professional outputs.</p>
-            </div>
-
-            <div class="gallery">
-                <img src="assets/gallery/gallery1.jpg" alt="Gallery 1">
-                <img src="assets/gallery/gallery2.jpg" alt="Gallery 2">
-                <img src="assets/gallery/gallery3.jpg" alt="Gallery 3">
-                <img src="assets/gallery/gallery4.jpg" alt="Gallery 4">
-            </div>
-
-        </div>
     </div>
 </div>
 
+<!-- Slider Section -->
+<div class="slider-section" id="slider">
+    <h2>Our Portfolio</h2>
+    <div class="slider-container" id="slider-container">
+        <div class="slider-track" id="slider-track">
+            <img src="assets/slides/slide1.jpg" alt="Slide 1">
+            <img src="assets/slides/slide2.jpg" alt="Slide 2">
+            <img src="assets/slides/slide3.jpg" alt="Slide 3">
+            <img src="assets/slides/slide4.jpg" alt="Slide 4">
+        </div>
+        <div class="slider-arrow" id="prev">&#10094;</div>
+        <div class="slider-arrow" id="next">&#10095;</div>
+    </div>
+    <div class="slider-description">
+        PrintCare delivers high-quality printing, design, and packaging solutions in Nepal. Your brand identity and marketing materials are handled with precision and creativity.
+    </div>
+</div>
+
+<!-- Gallery Section -->
+<div class="gallery-section" id="gallery-section">
+    <h2>Our Work</h2>
+    <div class="gallery">
+        <img src="assets/gallery/gallery1.jpg" alt="Gallery 1">
+        <img src="assets/gallery/gallery2.jpg" alt="Gallery 2">
+        <img src="assets/gallery/gallery3.jpg" alt="Gallery 3">
+        <img src="assets/gallery/gallery4.jpg" alt="Gallery 4">
+    </div>
+</div>
+
+<!-- Lightbox -->
 <div id="lightbox">
     <span id="close">&times;</span>
     <img src="" alt="Preview">
 </div>
 
+<!-- Footer -->
+<div class="footer">
+    &copy; 2025 PrintCare. All Rights Reserved.
+</div>
+
+<!-- Slider & Lightbox JS -->
 <script>
 const track = document.getElementById('slider-track');
 const container = document.getElementById('slider-container');
@@ -176,7 +242,6 @@ function prevSlide() {
 }
 
 let interval = setInterval(nextSlide, 3000);
-
 document.getElementById('next').addEventListener('click', ()=>{
     nextSlide();
     clearInterval(interval); interval = setInterval(nextSlide,3000);
@@ -185,10 +250,8 @@ document.getElementById('prev').addEventListener('click', ()=>{
     prevSlide();
     clearInterval(interval); interval = setInterval(nextSlide,3000);
 });
-
 container.addEventListener('mouseenter', ()=>clearInterval(interval));
 container.addEventListener('mouseleave', ()=>interval=setInterval(nextSlide,3000));
-
 window.addEventListener('resize', updateSlideWidth);
 updateSlideWidth();
 
