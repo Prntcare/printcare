@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Design and Print Solution</title>
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 body{background:#f9f9f9;color:#111;overflow-x:hidden;}
@@ -17,7 +16,7 @@ img{display:block;max-width:100%;height:auto;}
     padding:15px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);
     position:sticky;top:0;z-index:100;
 }
-.header img#logo{height:60px;}
+.header img#logo{height:60px;max-width:100%;object-fit:contain;}
 nav{
     display:flex;gap:15px;
 }
@@ -32,37 +31,34 @@ nav a:hover{color:#007bff;}
     display:none;
     flex-direction:column;
     justify-content:space-around;
-    width:25px;
-    height:20px;
+    width:25px;height:20px;
     cursor:pointer;
 }
 .hamburger div{
-    width:100%;
-    height:3px;
-    background:#111;
-    border-radius:2px;
-    transition:0.3s;
+    width:100%;height:3px;background:#111;border-radius:2px;transition:0.3s;
 }
 
-/* Slider */
+/* Slider Responsive */
 .slider-container{
-    width:105%;
-    margin-left:-2.5%;
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
     overflow:hidden;
     position:relative;
     background:#e8f0ff;
     padding:20px 0;
-    height:195px;
 }
 .slider-track{
     display:flex;
     transition:transform 0.5s ease;
+    gap:10px;
 }
 .slider-track img{
-    flex:0 0 85%;
-    margin:0 7.5%;
-    height:195px;
-    object-fit:cover;
+    flex:0 0 auto;
+    width:calc(100% - 20px);
+    max-width:95%;
+    height:auto;
+    aspect-ratio:16/9; /* responsive aspect ratio */
     border-radius:10px;
     box-shadow:0 2px 6px rgba(0,0,0,0.15);
     transition:transform 0.3s;
@@ -70,72 +66,18 @@ nav a:hover{color:#007bff;}
 
 /* Hero Section */
 .hero{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:60px 20px;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center; padding:60px 20px;
     background: linear-gradient(135deg, #e8f0ff, #ffffff);
-    overflow:hidden;
 }
-.hero h1 {
-    position: relative;
-    display: inline-block;
-    font-size:3rem;
-    font-weight:800;
-    color:#007bff;
-    margin-bottom:20px;
-    line-height:1.2;
-    text-shadow: 0 2px 6px rgba(0,123,255,0.3), 0 4px 12px rgba(0,123,255,0.2);
-    opacity:0;
-    animation: fadeSlideUp 1s forwards;
-}
-.hero h1::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, #007bff, #25D366, #007bff);
-    background-size: 200% 100%;
-    animation: gradientMove 3s linear infinite;
-}
-.hero p{
-    font-size:1.1rem;
-    max-width:700px;
-    line-height:1.5;
-    color:#111;
-    margin-bottom:30px;
-    opacity:0;
-    animation: fadeSlideUp 1s forwards;
-    animation-delay:0.3s;
-}
-.hero .cta-buttons{
-    display:flex;
-    gap:20px;
-    margin-top:15px;
-    opacity:0;
-    animation: fadeSlideUp 1s forwards;
-    animation-delay:0.6s;
-}
-.hero .cta-buttons a{
-    padding:14px 25px;
-    border-radius:6px;
-    font-weight:bold;
-    transition:0.3s;
-    box-shadow:0 2px 6px rgba(0,0,0,0.1);
-}
+.hero h1{font-size:3rem;font-weight:800;color:#007bff;margin-bottom:20px;line-height:1.2;text-shadow: 0 2px 6px rgba(0,123,255,0.3), 0 4px 12px rgba(0,123,255,0.2);}
+.hero p{font-size:1.1rem;max-width:700px;line-height:1.5;margin-bottom:30px;}
+.hero .cta-buttons{display:flex;gap:20px;}
+.hero .cta-buttons a{padding:14px 25px;border-radius:6px;font-weight:bold;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
 .hero .cta-buttons a.email{background:#007bff;color:#fff;}
-.hero .cta-buttons a.email:hover{background:#0056b3;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
+.hero .cta-buttons a.email:hover{background:#0056b3;}
 .hero .cta-buttons a.whatsapp{background:#25D366;color:#fff;}
-.hero .cta-buttons a.whatsapp:hover{background:#128C7E;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
-
-/* Animation */
-@keyframes fadeSlideUp {0% {opacity:0; transform:translateY(30px);}100% {opacity:1; transform:translateY(0);}}
-@keyframes gradientMove {0% {background-position: 0% 0;}100% {background-position: 200% 0;}}
+.hero .cta-buttons a.whatsapp:hover{background:#128C7E;}
 
 /* Services Section */
 .services{padding:60px 20px;background:#fff;text-align:center;}
@@ -163,7 +105,10 @@ nav a:hover{color:#007bff;}
 .footer{padding:20px;text-align:center;background:#f0f0f0;color:#111;}
 
 /* Floating Buttons */
-.floating-whatsapp,.floating-email,.floating-chat{position:fixed;right:30px;display:flex;justify-content:center;align-items:center;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.3);cursor:pointer;transition:0.3s;z-index:999;}
+.floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
+    position:fixed;display:flex;justify-content:center;align-items:center;
+    border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.3);cursor:pointer;transition:0.3s;z-index:999;
+}
 .floating-whatsapp{bottom:30px;width:60px;height:60px;background:#25D366;}
 .floating-whatsapp:hover{background:#128C7E;transform:scale(1.1);}
 .floating-whatsapp img{width:35px;height:35px;}
@@ -173,9 +118,12 @@ nav a:hover{color:#007bff;}
 .floating-chat{bottom:170px;width:40px;height:40px;background:#007bff;}
 .floating-chat:hover{transform:scale(1.1);}
 .floating-chat img{width:22px;height:22px;}
+.floating-logo{bottom:240px; right:30px; width:60px; height:60px; background:#fff;}
+.floating-logo:hover{transform:scale(1.1);}
+.floating-logo img{width:80%;height:80%;object-fit:contain;}
 
 /* Chat Popup */
-.chat-popup{position:fixed;bottom:220px;right:30px;width:300px;max-height:400px;background:#fff;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.3);display:none;flex-direction:column;overflow:hidden;z-index:1000;}
+.chat-popup{position:fixed;bottom:290px;right:30px;width:300px;max-height:400px;background:#fff;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.3);display:none;flex-direction:column;overflow:hidden;z-index:1000;}
 .chat-popup header{background:#007bff;color:#fff;padding:10px;font-weight:bold;font-size:0.95rem;}
 .chat-popup .messages{flex:1;padding:10px;overflow-y:auto;font-size:0.85rem;}
 .chat-popup .messages div{margin-bottom:10px;padding:6px 10px;border-radius:6px;}
@@ -184,9 +132,6 @@ nav a:hover{color:#007bff;}
 .chat-popup input{border:none;border-top:1px solid #ccc;padding:10px;width:100%;box-sizing:border-box;font-size:0.85rem;}
 
 /* Responsive */
-@media(max-width:900px){
-    .header nav a{font-size:0.9rem; padding:5px 6px;}
-}
 @media(max-width:768px){
     nav{display:none;flex-direction:column;width:100%;background:#fff;position:absolute;top:60px;left:0;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
     nav.active{display:flex;}
@@ -198,6 +143,9 @@ nav a:hover{color:#007bff;}
     .hero .cta-buttons{flex-direction:column;}
     .hero .cta-buttons a{width:100%;text-align:center;}
 }
+@media(max-width:480px){
+    .slider-track img{width:95%;aspect-ratio:4/3;}
+}
 </style>
 </head>
 <body>
@@ -205,11 +153,7 @@ nav a:hover{color:#007bff;}
 <!-- Header -->
 <div class="header">
     <img id="logo" src="logo.png" alt="PrintCare Logo">
-    <div class="hamburger" id="hamburger">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+    <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
     <nav id="nav">
         <a href="#slider">Portfolio</a>
         <a href="#services">Services</a>
@@ -289,10 +233,7 @@ nav a:hover{color:#007bff;}
 </div>
 
 <!-- Lightbox -->
-<div id="lightbox">
-    <span id="close">&times;</span>
-    <img src="" alt="Preview">
-</div>
+<div id="lightbox"><span id="close">&times;</span><img src="" alt="Preview"></div>
 
 <!-- Floating Buttons -->
 <div class="floating-whatsapp" onclick="window.open('https://wa.me/9779811809093','_blank')">
@@ -304,6 +245,10 @@ nav a:hover{color:#007bff;}
 <div class="floating-chat" id="chatBtn">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Robot_icon.svg" alt="Chat">
 </div>
+<div class="floating-logo" onclick="window.location.href='index.html'">
+    <img src="logo.png" alt="Logo">
+</div>
+
 <div class="chat-popup" id="chatPopup">
     <header>Hi! How can I assist you?</header>
     <div class="messages" id="chatMessages"></div>
@@ -318,34 +263,23 @@ const hamburger = document.getElementById('hamburger');
 const nav = document.getElementById('nav');
 hamburger.addEventListener('click', ()=>{nav.classList.toggle('active');});
 
-// Slider
+// Slider auto
 const track = document.getElementById('slider-track');
 const slides = Array.from(track.children);
 let current = 0;
-function showSlide(index){
-    const offset = index * track.clientWidth;
-    track.style.transform = `translateX(-${offset}px)`;
-}
-setInterval(()=>{
-    current++;
-    if(current >= slides.length) current = 0;
-    showSlide(current);
-},3000);
+function showSlide(index){const offset = index*track.clientWidth;track.style.transform=`translateX(-${offset}px)`;}
+setInterval(()=>{current++; if(current>=slides.length) current=0; showSlide(current);},3000);
 
 // Scroll animations
 const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting) entry.target.classList.add('visible');
-    });
+    entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('visible');});
 },{threshold:0.2});
 document.querySelectorAll('.card, .gallery img').forEach(el=>observer.observe(el));
 
 // Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
-document.querySelectorAll('.gallery img').forEach(img=>{
-    img.addEventListener('click',()=>{lightbox.style.display='flex';lightboxImg.src = img.src;});
-});
+document.querySelectorAll('.gallery img').forEach(img=>{img.addEventListener('click',()=>{lightbox.style.display='flex';lightboxImg.src=img.src;});});
 document.getElementById('close').addEventListener('click',()=>lightbox.style.display='none');
 lightbox.addEventListener('click', e=>{if(e.target===lightbox) lightbox.style.display='none';});
 
@@ -364,14 +298,6 @@ chatInput.addEventListener('keypress',function(e){
         chatInput.value='';
     }
 });
-
-// Mobile swipe for slider
-let startX=0,isDragging=false,prevTranslate=0;
-const sliderContainer = document.querySelector('.slider-container');
-sliderContainer.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;isDragging=true;});
-sliderContainer.addEventListener('touchmove',e=>{if(!isDragging) return;const deltaX=e.touches[0].clientX-startX;track.style.transform=`translateX(${prevTranslate+deltaX}px)`;});
-sliderContainer.addEventListener('touchend',()=>{isDragging=false;prevTranslate=parseInt(track.style.transform.replace('translateX(','').replace('px)',''))||0;});
 </script>
-
 </body>
 </html>
