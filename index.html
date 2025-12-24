@@ -13,63 +13,33 @@ img{display:block;max-width:100%;height:auto;}
 /* Header */
 .header{
     display:flex;justify-content:space-between;align-items:center;
-    padding:15px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    position:sticky;top:0;z-index:100;
+    padding:15px 20px;background:#fff;z-index:100;position:sticky;top:0;
 }
 .header img#logo{height:60px;max-width:100%;object-fit:contain;}
-nav{
-    display:flex;gap:15px;
-}
-nav a{
-    font-weight:bold;color:#111;transition:0.3s;font-size:1rem;
-    padding:6px 8px;
-}
+nav{display:flex;gap:15px;}
+nav a{font-weight:bold;color:#111;transition:0.3s;font-size:1rem;padding:6px 8px;}
 nav a:hover{color:#007bff;}
 
 /* Hamburger */
-.hamburger{
-    display:none;
-    flex-direction:column;
-    justify-content:space-around;
-    width:25px;height:20px;
-    cursor:pointer;
-}
-.hamburger div{
-    width:100%;height:3px;background:#111;border-radius:2px;transition:0.3s;
-}
+.hamburger{display:none;flex-direction:column;justify-content:space-around;width:25px;height:20px;cursor:pointer;}
+.hamburger div{width:100%;height:3px;background:#111;border-radius:2px;transition:0.3s;}
 
 /* Slider */
 .slider-container{
-    width:95%;
-    max-width:1000px;
-    margin:20px auto;
-    overflow:hidden;
-    position:relative;
-    background:#e8f0ff;
-    padding:10px 0;
-    border-radius:10px;
+    width:95%;max-width:1000px;margin:20px auto;overflow:hidden;position:relative;
+    background:#e8f0ff;padding:10px 0;border-radius:10px;
 }
-.slider-track{
-    display:flex;
-    transition:transform 0.5s ease;
-    gap:10px;
-}
+.slider-track{display:flex;transition:transform 0.5s ease;gap:10px;}
 .slider-track img{
     flex:0 0 auto;
     width:calc(100% - 20px);
     max-width:95%;
-    height:220px;
+    height:250px;
     object-fit:cover;
     border-radius:10px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.15);
-    transition:transform 0.3s;
 }
-@media(max-width:768px){
-    .slider-track img{height:160px;}
-}
-@media(max-width:480px){
-    .slider-track img{height:120px;}
-}
+@media(max-width:768px){.slider-track img{height:180px;}}
+@media(max-width:480px){.slider-track img{height:130px;}}
 
 /* Hero Section */
 .hero{
@@ -77,10 +47,13 @@ nav a:hover{color:#007bff;}
     text-align:center; padding:60px 20px;
     background: linear-gradient(135deg, #e8f0ff, #ffffff);
 }
-.hero h1{font-size:3rem;font-weight:800;color:#007bff;margin-bottom:20px;line-height:1.2;text-shadow: 0 2px 6px rgba(0,123,255,0.3), 0 4px 12px rgba(0,123,255,0.2);}
+.hero h1{
+    font-size:3rem;font-weight:800;color:#007bff;margin-bottom:20px;
+    line-height:1.2; /* remove shadow */
+}
 .hero p{font-size:1.1rem;max-width:700px;line-height:1.5;margin-bottom:30px;}
 .hero .cta-buttons{display:flex;gap:20px;}
-.hero .cta-buttons a{padding:14px 25px;border-radius:6px;font-weight:bold;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+.hero .cta-buttons a{padding:14px 25px;border-radius:6px;font-weight:bold;}
 .hero .cta-buttons a.email{background:#007bff;color:#fff;}
 .hero .cta-buttons a.email:hover{background:#0056b3;}
 .hero .cta-buttons a.whatsapp{background:#25D366;color:#fff;}
@@ -90,7 +63,7 @@ nav a:hover{color:#007bff;}
 .services{padding:60px 20px;background:#fff;text-align:center;}
 .services h2{font-size:2rem;color:#007bff;margin-bottom:40px;}
 .service-cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
-.card{background:#f7f9fc;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);flex:1 1 250px;max-width:300px;transition:0.5s;opacity:0;transform:translateY(30px);}
+.card{background:#f7f9fc;padding:20px;border-radius:10px;flex:1 1 250px;max-width:300px;opacity:0;transform:translateY(30px);}
 .card.visible{opacity:1;transform:translateY(0);}
 .card h3{color:#007bff;margin-bottom:10px;}
 .card ul{list-style:none;margin-top:5px;}
@@ -99,8 +72,8 @@ nav a:hover{color:#007bff;}
 /* Gallery Section */
 .gallery-section{padding:60px 20px;background:#fff;text-align:center;}
 .gallery-section h2{color:#007bff;font-size:2rem;margin-bottom:30px;}
-.gallery{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
-.gallery img{width:calc(50% - 15px);height:200px;object-fit:cover;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.15);cursor:pointer;transition:0.5s;opacity:0;transform:scale(0.95);}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;justify-items:center;}
+.gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;cursor:pointer;opacity:0;transform:scale(0.95);}
 .gallery img.visible{opacity:1;transform:scale(1);}
 
 /* Lightbox */
@@ -111,40 +84,26 @@ nav a:hover{color:#007bff;}
 /* Footer */
 .footer{padding:20px;text-align:center;background:#f0f0f0;color:#111;}
 
-/* Floating Buttons */
+/* Floating Buttons (10% smaller & same size) */
 .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
     position:fixed;display:flex;justify-content:center;align-items:center;
-    border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.3);cursor:pointer;transition:0.3s;z-index:999;
+    border-radius:50%;cursor:pointer;z-index:999;
+    width:54px;height:54px; /* 10% smaller than 60px */
 }
-.floating-whatsapp{bottom:30px;right:30px;width:60px;height:60px;background:#25D366;}
+.floating-whatsapp{bottom:30px;right:30px;background:#25D366;}
 .floating-whatsapp:hover{background:#128C7E;transform:scale(1.1);}
-.floating-whatsapp img{width:35px;height:35px;}
-.floating-email{bottom:100px;right:30px;width:60px;height:60px;background:#007bff;}
+.floating-whatsapp img{width:32px;height:32px;}
+.floating-email{bottom:100px;right:30px;background:#007bff;}
 .floating-email:hover{background:#0056b3;transform:scale(1.1);}
-.floating-email img{width:30px;height:30px;}
-.floating-chat{bottom:170px;right:30px;width:40px;height:40px;background:#007bff;}
+.floating-email img{width:32px;height:32px;}
+.floating-chat{bottom:170px;right:30px;background:#007bff;}
 .floating-chat:hover{transform:scale(1.1);}
 .floating-chat img{width:22px;height:22px;}
-.floating-logo{bottom:240px; right:30px; width:60px; height:60px; background:#fff;}
-.floating-logo:hover{transform:scale(1.1);}
+.floating-logo{bottom:240px; right:30px; background:#fff;}
 .floating-logo img{width:80%;height:80%;object-fit:contain;}
 
 /* Chat Popup */
-.chat-popup{
-    position:fixed;
-    bottom:290px;
-    right:30px;
-    width:300px;
-    max-height:400px;
-    background:#fff;
-    border-radius:10px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.3);
-    display:none;
-    flex-direction:column;
-    overflow:hidden;
-    z-index:1000;
-    animation:fadeIn 0.3s;
-}
+.chat-popup{position:fixed;bottom:290px;right:30px;width:300px;max-height:400px;background:#fff;border-radius:10px;display:none;flex-direction:column;overflow:hidden;z-index:1000;animation:fadeIn 0.3s;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .chat-popup header{background:#007bff;color:#fff;padding:10px;font-weight:bold;font-size:0.95rem;cursor:default;}
 .chat-popup .messages{flex:1;padding:10px;overflow-y:auto;font-size:0.85rem;display:flex;flex-direction:column;gap:6px;}
@@ -155,7 +114,7 @@ nav a:hover{color:#007bff;}
 
 /* Responsive */
 @media(max-width:768px){
-    nav{display:none;flex-direction:column;width:100%;background:#fff;position:absolute;top:60px;left:0;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+    nav{display:none;flex-direction:column;width:100%;background:#fff;position:absolute;top:60px;left:0;}
     nav.active{display:flex;}
     .hamburger{display:flex;}
 }
@@ -268,6 +227,7 @@ nav a:hover{color:#007bff;}
     <img src="logo.png" alt="Logo">
 </div>
 
+<!-- Chat Popup -->
 <div class="chat-popup" id="chatPopup">
     <header>Hi! How can I assist you?</header>
     <div class="messages" id="chatMessages"></div>
@@ -285,21 +245,9 @@ hamburger.addEventListener('click', ()=>{nav.classList.toggle('active');});
 // Slider draggable/swipeable
 const track = document.getElementById('slider-track');
 const slides = Array.from(track.children);
-let current = 0;
-let isDragging = false;
-let startPos = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
-let animationID = 0;
-
-// Auto-slide
-let autoSlide = setInterval(() => {
-    current++;
-    if (current >= slides.length) current = 0;
-    setSliderPosition(true);
-}, 3000);
-
-slides.forEach((slide, index) => {
+let current = 0,isDragging=false,startPos=0,currentTranslate=0,prevTranslate=0,animationID=0;
+let autoSlide = setInterval(()=>{current++;if(current>=slides.length) current=0;setSliderPosition(true);},3000);
+slides.forEach((slide,index)=>{
     slide.addEventListener('touchstart', touchStart(index));
     slide.addEventListener('touchend', touchEnd);
     slide.addEventListener('touchmove', touchMove);
@@ -308,59 +256,16 @@ slides.forEach((slide, index) => {
     slide.addEventListener('mouseleave', touchEnd);
     slide.addEventListener('mousemove', touchMove);
 });
-
-function touchStart(index) {
-    return function(event) {
-        clearInterval(autoSlide);
-        current = index;
-        startPos = getPositionX(event);
-        isDragging = true;
-        animationID = requestAnimationFrame(animation);
-        track.style.transition = 'none';
-    }
-}
-
-function touchEnd() {
-    isDragging = false;
-    cancelAnimationFrame(animationID);
-    const movedBy = currentTranslate - prevTranslate;
-    if (movedBy < -50 && current < slides.length - 1) current++;
-    if (movedBy > 50 && current > 0) current--;
-    setSliderPosition(true);
-    autoSlide = setInterval(() => {
-        current++;
-        if (current >= slides.length) current = 0;
-        setSliderPosition(true);
-    }, 3000);
-    prevTranslate = -current * track.clientWidth;
-}
-
-function touchMove(event) {
-    if (isDragging) {
-        const currentPosition = getPositionX(event);
-        currentTranslate = prevTranslate + currentPosition - startPos;
-    }
-}
-
-function getPositionX(event) {
-    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-}
-
-function animation() {
-    setSliderPosition();
-    if (isDragging) requestAnimationFrame(animation);
-}
-
-function setSliderPosition(animate=false) {
-    if(animate) track.style.transition = 'transform 0.5s ease';
-    else track.style.transition = 'none';
-    track.style.transform = `translateX(-${current * track.clientWidth}px)`;
-    prevTranslate = -current * track.clientWidth;
-}
+function touchStart(index){return function(event){clearInterval(autoSlide);current=index;startPos=getPositionX(event);isDragging=true;animationID=requestAnimationFrame(animation);track.style.transition='none';}}
+function touchEnd(){isDragging=false;cancelAnimationFrame(animationID);const movedBy=currentTranslate-prevTranslate;if(movedBy<-50&&current<slides.length-1) current++;if(movedBy>50&&current>0) current--;setSliderPosition(true);autoSlide=setInterval(()=>{current++;if(current>=slides.length) current=0;setSliderPosition(true);},3000);prevTranslate=-current*track.clientWidth;}
+function touchMove(event){if(isDragging){const currentPosition=getPositionX(event);currentTranslate=prevTranslate+currentPosition-startPos;}}
+function getPositionX(event){return event.type.includes('mouse')?event.pageX:event.touches[0].clientX;}
+function animation(){setSliderPosition();if(isDragging) requestAnimationFrame(animation);}
+function setSliderPosition(animate=false){if(animate) track.style.transition='transform 0.5s ease';else track.style.transition='none';track.style.transform=`translateX(-${current*track.clientWidth}px)`;prevTranslate=-current*track.clientWidth;}
 
 // Lightbox
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = lightbox.querySelector('img');
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=lightbox.querySelector('img');
 document.querySelectorAll('.gallery img').forEach(img=>{
     img.addEventListener('click',()=>{lightbox.style.display='flex';lightboxImg.src=img.src;});
 });
@@ -368,38 +273,31 @@ document.getElementById('close').addEventListener('click',()=>lightbox.style.dis
 lightbox.addEventListener('click', e=>{if(e.target===lightbox) lightbox.style.display='none';});
 
 // Chat popup
-const chatBtn = document.getElementById('chatBtn');
-const chatPopup = document.getElementById('chatPopup');
-const chatInput = document.getElementById('chatInput');
-const chatMessages = document.getElementById('chatMessages');
+const chatBtn=document.getElementById('chatBtn');
+const chatPopup=document.getElementById('chatPopup');
+const chatInput=document.getElementById('chatInput');
+const chatMessages=document.getElementById('chatMessages');
 chatBtn.addEventListener('click',()=>{chatPopup.style.display = chatPopup.style.display==='flex'?'none':'flex';});
 chatInput.addEventListener('keypress',function(e){
-    if(e.key==='Enter' && chatInput.value.trim()!==''){
-        const userMsg = document.createElement('div'); userMsg.className='user'; userMsg.textContent = chatInput.value;
-        chatMessages.appendChild(userMsg); chatMessages.scrollTop = chatMessages.scrollHeight;// Simple bot reply
-        const botMsg = document.createElement('div'); botMsg.className='bot';
-        botMsg.textContent = "Thank you for your message! We will get back to you soon.";
-        chatMessages.appendChild(botMsg); chatMessages.scrollTop = chatMessages.scrollHeight;
+    if(e.key==='Enter'&&chatInput.value.trim()!==''){
+        const userMsg=document.createElement('div'); userMsg.className='user'; userMsg.textContent=chatInput.value;
+        chatMessages.appendChild(userMsg); chatMessages.scrollTop=chatMessages.scrollHeight;
+        const botMsg=document.createElement('div'); botMsg.className='bot';
+        botMsg.textContent="Thank you for your message! We will get back to you soon.";
+        chatMessages.appendChild(botMsg); chatMessages.scrollTop=chatMessages.scrollHeight;
         chatInput.value='';
     }
 });
 
-// Services animation on scroll
-const serviceCards = document.querySelectorAll('.card');
-const galleryImages = document.querySelectorAll('.gallery img');
-function reveal() {
-    const triggerBottom = window.innerHeight - 100;
-    serviceCards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        if(cardTop < triggerBottom) card.classList.add('visible');
-    });
-    galleryImages.forEach(img=>{
-        const imgTop = img.getBoundingClientRect().top;
-        if(imgTop < triggerBottom) img.classList.add('visible');
-    });
+// Scroll animations
+const serviceCards=document.querySelectorAll('.card');
+const galleryImages=document.querySelectorAll('.gallery img');
+function reveal(){
+    const triggerBottom=window.innerHeight-100;
+    serviceCards.forEach(card=>{const cardTop=card.getBoundingClientRect().top;if(cardTop<triggerBottom) card.classList.add('visible');});
+    galleryImages.forEach(img=>{const imgTop=img.getBoundingClientRect().top;if(imgTop<triggerBottom) img.classList.add('visible');});
 }
-window.addEventListener('scroll', reveal);
-reveal();
+window.addEventListener('scroll',reveal);reveal();
 </script>
 
 </body>
