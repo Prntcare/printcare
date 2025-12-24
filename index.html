@@ -58,14 +58,14 @@ nav a:hover{color:#007bff;}
     flex:0 0 auto;
     width:calc(100% - 20px);
     max-width:95%;
-    height:180px;
+    height:220px;
     object-fit:cover;
     border-radius:10px;
     box-shadow:0 2px 6px rgba(0,0,0,0.15);
     transition:transform 0.3s;
 }
 @media(max-width:768px){
-    .slider-track img{height:140px;}
+    .slider-track img{height:160px;}
 }
 @media(max-width:480px){
     .slider-track img{height:120px;}
@@ -116,13 +116,13 @@ nav a:hover{color:#007bff;}
     position:fixed;display:flex;justify-content:center;align-items:center;
     border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.3);cursor:pointer;transition:0.3s;z-index:999;
 }
-.floating-whatsapp{bottom:30px;width:60px;height:60px;background:#25D366;}
+.floating-whatsapp{bottom:30px;right:30px;width:60px;height:60px;background:#25D366;}
 .floating-whatsapp:hover{background:#128C7E;transform:scale(1.1);}
 .floating-whatsapp img{width:35px;height:35px;}
-.floating-email{bottom:100px;width:60px;height:60px;background:#007bff;}
+.floating-email{bottom:100px;right:30px;width:60px;height:60px;background:#007bff;}
 .floating-email:hover{background:#0056b3;transform:scale(1.1);}
 .floating-email img{width:30px;height:30px;}
-.floating-chat{bottom:170px;width:40px;height:40px;background:#007bff;}
+.floating-chat{bottom:170px;right:30px;width:40px;height:40px;background:#007bff;}
 .floating-chat:hover{transform:scale(1.1);}
 .floating-chat img{width:22px;height:22px;}
 .floating-logo{bottom:240px; right:30px; width:60px; height:60px; background:#fff;}
@@ -282,76 +282,87 @@ const hamburger = document.getElementById('hamburger');
 const nav = document.getElementById('nav');
 hamburger.addEventListener('click', ()=>{nav.classList.toggle('active');});
 
-// Slider auto + drag/swipe
+// Slider draggable/swipeable
 const track = document.getElementById('slider-track');
 const slides = Array.from(track.children);
 let current = 0;
 let isDragging = false;
-let startX = 0;
+let startPos = 0;
 let currentTranslate = 0;
 let prevTranslate = 0;
+let animationID = 0;
 
-function showSlide(index){
-    const offset = index * track.clientWidth;
-    track.style.transition = 'transform 0.5s ease';
-    track.style.transform = `translateX(-${offset}px)`;
-}
-
-// Auto slide every 3s
-let autoSlide = setInterval(()=>{
+// Auto-slide
+let autoSlide = setInterval(() => {
     current++;
-    if(current >= slides.length) current = 0;
-    showSlide(current);
-},3000);
+    if (current >= slides.length) current = 0;
+    setSliderPosition(true);
+}, 3000);
 
-// Drag/Swipe
-track.addEventListener('mousedown', dragStart);
-track.addEventListener('mouseup', dragEnd);
-track.addEventListener('mouseleave', dragEnd);
-track.addEventListener('mousemove', dragAction);
-track.addEventListener('touchstart', dragStart);
-track.addEventListener('touchend', dragEnd);
-track.addEventListener('touchmove', dragAction);
+slides.forEach((slide, index) => {
+    slide.addEventListener('touchstart', touchStart(index));
+    slide.addEventListener('touchend', touchEnd);
+    slide.addEventListener('touchmove', touchMove);
+    slide.addEventListener('mousedown', touchStart(index));
+    slide.addEventListener('mouseup', touchEnd);
+    slide.addEventListener('mouseleave', touchEnd);
+    slide.addEventListener('mousemove', touchMove);
+});
 
-function dragStart(e){
-    clearInterval(autoSlide);
-    isDragging = true;
-    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-    prevTranslate = -current*track.clientWidth;
-    track.style.transition = 'none';
+function touchStart(index) {
+    return function(event) {
+        clearInterval(autoSlide);
+        current = index;
+        startPos = getPositionX(event);
+        isDragging = true;
+        animationID = requestAnimationFrame(animation);
+        track.style.transition = 'none';
+    }
 }
-function dragAction(e){
-    if(!isDragging) return;
-    const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-    const deltaX = currentX - startX;
-    currentTranslate = prevTranslate + -deltaX;
-    track.style.transform = `translateX(${currentTranslate}px)`;
-}
-function dragEnd(){
-    if(!isDragging) return;
+
+function touchEnd() {
     isDragging = false;
+    cancelAnimationFrame(animationID);
     const movedBy = currentTranslate - prevTranslate;
-    if(movedBy < -50 && current < slides.length-1) current++;
-    if(movedBy > 50 && current > 0) current--;
-    showSlide(current);
-    autoSlide = setInterval(()=>{
+    if (movedBy < -50 && current < slides.length - 1) current++;
+    if (movedBy > 50 && current > 0) current--;
+    setSliderPosition(true);
+    autoSlide = setInterval(() => {
         current++;
-        if(current >= slides.length) current = 0;
-        showSlide(current);
-    },3000);
+        if (current >= slides.length) current = 0;
+        setSliderPosition(true);
+    }, 3000);
+    prevTranslate = -current * track.clientWidth;
 }
 
-// Scroll animations
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('visible');});
-},{threshold:0.2});
-document.querySelectorAll('.card, .gallery img').forEach(el=>observer.observe(el));
+function touchMove(event) {
+    if (isDragging) {
+        const currentPosition = getPositionX(event);
+        currentTranslate = prevTranslate + currentPosition - startPos;
+    }
+}
+
+function getPositionX(event) {
+    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+}
+
+function animation() {
+    setSliderPosition();
+    if (isDragging) requestAnimationFrame(animation);
+}
+
+function setSliderPosition(animate=false) {
+    if(animate) track.style.transition = 'transform 0.5s ease';
+    else track.style.transition = 'none';
+    track.style.transform = `translateX(-${current * track.clientWidth}px)`;
+    prevTranslate = -current * track.clientWidth;
+}
 
 // Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 document.querySelectorAll('.gallery img').forEach(img=>{
-    img.addEventListener('click',()=>{lightbox.style.display='flex';lightboxImg.src = img.src;});
+    img.addEventListener('click',()=>{lightbox.style.display='flex';lightboxImg.src=img.src;});
 });
 document.getElementById('close').addEventListener('click',()=>lightbox.style.display='none');
 lightbox.addEventListener('click', e=>{if(e.target===lightbox) lightbox.style.display='none';});
@@ -365,5 +376,31 @@ chatBtn.addEventListener('click',()=>{chatPopup.style.display = chatPopup.style.
 chatInput.addEventListener('keypress',function(e){
     if(e.key==='Enter' && chatInput.value.trim()!==''){
         const userMsg = document.createElement('div'); userMsg.className='user'; userMsg.textContent = chatInput.value;
-        chatMessages.appendChild(userMsg); chatMessages.scrollTop = chatMessages.scrollHeight;
-        setTimeout(()=>{const botMsg = document
+        chatMessages.appendChild(userMsg); chatMessages.scrollTop = chatMessages.scrollHeight;// Simple bot reply
+        const botMsg = document.createElement('div'); botMsg.className='bot';
+        botMsg.textContent = "Thank you for your message! We will get back to you soon.";
+        chatMessages.appendChild(botMsg); chatMessages.scrollTop = chatMessages.scrollHeight;
+        chatInput.value='';
+    }
+});
+
+// Services animation on scroll
+const serviceCards = document.querySelectorAll('.card');
+const galleryImages = document.querySelectorAll('.gallery img');
+function reveal() {
+    const triggerBottom = window.innerHeight - 100;
+    serviceCards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom) card.classList.add('visible');
+    });
+    galleryImages.forEach(img=>{
+        const imgTop = img.getBoundingClientRect().top;
+        if(imgTop < triggerBottom) img.classList.add('visible');
+    });
+}
+window.addEventListener('scroll', reveal);
+reveal();
+</script>
+
+</body>
+</html>
