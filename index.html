@@ -7,7 +7,6 @@
 <style>
   /* Basic Reset */
   * {margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-
   body {background:#f5f5f5;color:#222;}
   a {text-decoration:none;color:inherit;}
   img {max-width:100%;display:block;}
@@ -38,7 +37,7 @@
   /* Managing Director Section */
   .md-section {padding:50px 20px;background:#fff;text-align:center;}
   .md-section h2 {font-size:2rem;margin-bottom:20px;}
-  .md-section img {width:200px;height:auto;border-radius:50%;margin:20px 0;}
+  .md-section img {width:200px;height:auto;border-radius:50%;margin:20px 0;cursor:pointer;}
   .md-section h3 {margin-bottom:10px;}
   .md-section p {font-size:1rem;color:#555;}
 
@@ -46,7 +45,7 @@
   .gallery-section {padding:50px 20px;}
   .gallery-section h2 {text-align:center;margin-bottom:40px;font-size:2rem;color:#000;}
   .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
-  .gallery img {width:80%;height:auto;margin:0 auto;display:block;border-radius:10px;transition:0.3s;}
+  .gallery img {width:80%;height:auto;margin:0 auto;display:block;border-radius:10px;transition:0.3s;cursor:pointer;}
   .gallery img:hover {transform:scale(1.05);}
 
   /* Contact Section */
@@ -73,6 +72,11 @@
   .ai-chat header {background:#007bff;color:#fff;padding:10px;border-radius:10px 10px 0 0;font-weight:bold;}
   .ai-chat .messages {flex:1;padding:10px;overflow-y:auto;}
   .ai-chat input {padding:10px;border:none;border-top:1px solid #ccc;width:100%;}
+
+  /* Lightbox */
+  .lightbox-overlay {position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;flex-direction:column;justify-content:center;align-items:center;z-index:2000;}
+  .lightbox-overlay img {max-width:90%;max-height:90%;border-radius:10px;}
+  .lightbox-caption {color:#fff;text-align:center;margin-top:10px;font-size:1.1rem;}
 </style>
 </head>
 <body>
@@ -123,7 +127,9 @@
 <!-- Managing Director & Graphic Designer -->
 <section class="md-section" id="managing-director">
   <h2>Managing Director & Graphic Designer</h2>
-  <img src="UnishNeupane.jpg" alt="Unish Neupane">
+  <a href="UnishNeupane.jpg" class="md-lightbox" data-caption="Unish Neupane - Managing Director & Graphic Designer">
+    <img src="UnishNeupane.jpg" alt="Unish Neupane">
+  </a>
   <h3>Unish Neupane</h3>
   <p>Managing Director and Graphic Designer of PrintCare</p>
 </section>
@@ -132,10 +138,10 @@
 <section class="gallery-section" id="gallery">
   <h2>Gallery</h2>
   <div class="gallery">
-    <img src="Gallery1.jpg" alt="Gallery 1">
-    <img src="Gallery2.jpg" alt="Gallery 2">
-    <img src="Gallery3.jpg" alt="Gallery 3">
-    <img src="Gallery4.jpg" alt="Gallery 4">
+    <a href="Gallery1.jpg" class="gallery-lightbox" data-caption="Our printed banners"><img src="Gallery1.jpg" alt="Gallery 1"></a>
+    <a href="Gallery2.jpg" class="gallery-lightbox" data-caption="Creative design samples"><img src="Gallery2.jpg" alt="Gallery 2"></a>
+    <a href="Gallery3.jpg" class="gallery-lightbox" data-caption="High-quality prints"><img src="Gallery3.jpg" alt="Gallery 3"></a>
+    <a href="Gallery4.jpg" class="gallery-lightbox" data-caption="Custom brochures"><img src="Gallery4.jpg" alt="Gallery 4"></a>
   </div>
 </section>
 
@@ -171,6 +177,12 @@
   <input type="text" id="aiInput" placeholder="Type your message...">
 </div>
 
+<!-- Lightbox Overlay -->
+<div class="lightbox-overlay" id="lightbox">
+  <img src="" alt="Enlarged">
+  <div class="lightbox-caption"></div>
+</div>
+
 <script>
   // Slider JS
   const slides = document.querySelector('.slides');
@@ -186,7 +198,6 @@
     slides.style.transform = `translateX(${-index * 100}%)`;
   });
 
-  // Auto slide every 5 sec
   setInterval(() => {
     index = (index + 1) % slideImages.length;
     slides.style.transform = `translateX(${-index * 100}%)`;
@@ -207,7 +218,7 @@
       const msg = document.createElement('div');
       msg.textContent = "You: " + aiInput.value;
       aiMessages.appendChild(msg);
-      
+
       const reply = document.createElement('div');
       reply.textContent = "AI: Thank you! We will contact you shortly.";
       aiMessages.appendChild(reply);
@@ -215,6 +226,24 @@
       aiInput.value = '';
       aiMessages.scrollTop = aiMessages.scrollHeight;
     }
+  });
+
+  // Lightbox JS with captions
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+
+  document.querySelectorAll('.md-lightbox, .gallery-lightbox').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      lightbox.style.display = 'flex';
+      lightboxImg.src = link.href;
+      lightboxCaption.textContent = link.getAttribute('data-caption') || '';
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
   });
 </script>
 
