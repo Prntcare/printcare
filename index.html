@@ -3,275 +3,219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Print Care – Design & Printing Solution</title>
-
+<title>PrintCare - Your Printing & Design Solution</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-html{scroll-behavior:smooth;}
-body{background:#f9f9f9;color:#111;overflow-x:hidden;}
+  /* Basic Reset */
+  * {margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 
-/* TOP BAR */
-.top-section{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:10px 20px;background:#fff;
-    box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    position: sticky; top: 0; z-index: 100;
-}
-#logo{height:60px;}
-nav{display:flex;gap:12px;}
-nav a{text-decoration:none;font-weight:bold;color:#111;}
-nav a:hover{color:#007bff;}
+  body {background:#f5f5f5;color:#222;}
+  a {text-decoration:none;color:inherit;}
+  img {max-width:100%;display:block;}
 
-/* SLIDER */
-.slider-container{position:relative;width:90%;max-width:1000px;margin:20px auto;}
-.slider{overflow:hidden;border-radius:8px;}
-.slider-track{display:flex;transition:transform 0.6s ease;}
-.slider-track img{width:100%;flex-shrink:0;object-fit:cover;}
+  /* Header */
+  header {background:#000;color:#fff;padding:15px 30px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
+  header .logo {font-size:1.5rem;font-weight:bold;}
+  header nav a {margin-left:20px;font-size:1rem;color:#fff;}
 
-/* FLOATING BUTTONS */
-.floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
-    position:fixed;
-    right:10px;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
-    cursor:pointer;
-    opacity:0.85;
-    transition:0.3s;
-    z-index:1000;
-}
-.floating-whatsapp{top:150px;background:#25D366;color:#fff;}
-.floating-email{top:210px;background:#007bff;color:#fff;}
-.floating-chat{top:270px;background:#ff6600;color:#fff;}
-.floating-logo{top:330px;background:#111;color:#fff;}
-.floating-whatsapp:hover,.floating-email:hover,.floating-chat:hover,.floating-logo:hover{
-    transform:scale(1.3);opacity:1;
-}
+  /* Slider */
+  .slider {position:relative;overflow:hidden;height:400px;margin-bottom:50px;}
+  .slides {display:flex;transition:0.5s;}
+  .slides img {width:100%;flex-shrink:0;}
+  .slider button {position:absolute;top:50%;transform:translateY(-50%);background:#000a;color:#fff;border:none;padding:10px;cursor:pointer;font-size:1.5rem;}
+  .slider .prev {left:10px;}
+  .slider .next {right:10px;}
 
-/* CONTENT */
-.description,.service-section{
-    background:#fff;width:90%;max-width:1000px;
-    margin:15px auto;padding:15px;border-radius:8px;
-}
-.service-section h3{color:#007bff;margin-bottom:10px;}
-.service-section li{
-    margin:6px 0;padding:6px;border-radius:4px;
-    background:#eef5ff;font-size:0.9rem;
-}
+  /* Services Section */
+  .services {padding:50px 20px;background:#fff;}
+  .services h2 {text-align:center;margin-bottom:40px;font-size:2rem;color:#000;}
+  .service-list {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+  .service-item {background:#f0f0f0;padding:20px;border-radius:10px;text-align:center;transition:0.3s;}
+  .service-item:hover {transform:scale(1.05);}
+  .service-item img {height:150px;margin-bottom:15px;}
+  .service-item h3 {margin-bottom:10px;}
+  .service-item p {font-size:0.9rem;}
 
-/* GALLERY */
-.gallery{width:90%;max-width:1000px;margin:10px auto;}
-.gallery img{width:100%;border-radius:6px;}
-.gallery-2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  /* Managing Director Section */
+  .md-section {padding:50px 20px;background:#fff;text-align:center;}
+  .md-section h2 {font-size:2rem;margin-bottom:20px;}
+  .md-section img {width:200px;height:auto;border-radius:50%;margin:20px 0;}
+  .md-section h3 {margin-bottom:10px;}
+  .md-section p {font-size:1rem;color:#555;}
 
-/* CHAT */
-.chat-popup{
-    position:fixed;bottom:80px;right:20px;width:280px;
-    background:#fff;border-radius:10px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.2);
-    display:none;flex-direction:column;z-index:1000;
-}
-.chat-popup.show{display:flex;}
-.chat-header{background:#007bff;color:#fff;padding:10px;text-align:center;}
-.close-chat{position:absolute;top:6px;right:10px;cursor:pointer;}
-.chat-messages{flex:1;padding:10px;font-size:0.9rem;max-height:200px;overflow:auto;}
-.chat-input{display:flex;gap:6px;padding:8px;}
-.chat-input input{flex:1;padding:6px;}
-.chat-input button{background:#007bff;color:#fff;border:none;padding:6px 10px;border-radius:4px;}
+  /* Gallery Section */
+  .gallery-section {padding:50px 20px;}
+  .gallery-section h2 {text-align:center;margin-bottom:40px;font-size:2rem;color:#000;}
+  .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+  .gallery img {width:80%;height:auto;margin:0 auto;display:block;border-radius:10px;transition:0.3s;}
+  .gallery img:hover {transform:scale(1.05);}
 
-/* MINI MAP */
-.mini-map-container{background:#f2f2f2;padding:20px;text-align:center;margin-top:30px;}
-.mini-map-container h3{margin-bottom:10px;}
-.mini-map iframe{width:100%;height:250px;border:0;border-radius:8px;}
+  /* Contact Section */
+  .contact {padding:50px 20px;background:#000;color:#fff;}
+  .contact h2 {text-align:center;margin-bottom:40px;font-size:2rem;color:#fff;}
+  .contact form {max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:15px;}
+  .contact input,.contact textarea {padding:10px;border-radius:5px;border:none;font-size:1rem;}
+  .contact button {padding:15px;background:#fff;color:#000;font-weight:bold;border:none;border-radius:5px;cursor:pointer;font-size:1rem;}
 
-/* MOBILE FIXES */
-@media(max-width:600px){
-    nav{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:8px;
-    }
-    nav a{font-size:0.9rem;padding:6px 10px;}
+  /* Mini Map */
+  .mini-map {margin:50px auto;max-width:600px;border-radius:10px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.2);}
+  .mini-map iframe {width:100%;height:300px;border:0;}
 
-    .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
-        width:32px;height:32px;font-size:16px;right:5px;
-    }
-    .floating-whatsapp{top:120px;}
-    .floating-email{top:170px;}
-    .floating-chat{top:220px;}
-    .floating-logo{top:270px;}
+  /* Floating Buttons */
+  .floating-btns {position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:15px;z-index:1000;}
+  .floating-btns a {display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:50%;background:#000;color:#fff;font-size:1.5rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.3);transition:0.3s;}
+  .floating-btns a:hover {transform:scale(1.1);}
+  .floating-btns .ai {background:#007bff;}
+  .floating-btns .email {background:#28a745;}
+  .floating-btns .whatsapp {background:#25d366;}
 
-    .gallery-2{grid-template-columns:1fr;}
-}
+  /* AI Chatbox */
+  .ai-chat {position:fixed;bottom:80px;right:80px;background:#fff;width:300px;height:400px;border-radius:10px;box-shadow:0 0 15px rgba(0,0,0,0.3);display:none;flex-direction:column;z-index:1001;}
+  .ai-chat header {background:#007bff;color:#fff;padding:10px;border-radius:10px 10px 0 0;font-weight:bold;}
+  .ai-chat .messages {flex:1;padding:10px;overflow-y:auto;}
+  .ai-chat input {padding:10px;border:none;border-top:1px solid #ccc;width:100%;}
 </style>
 </head>
-
 <body>
 
-<!-- TOP -->
-<div class="top-section">
-    <img id="logo" src="logo.png">
-    <nav>
-        <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-    </nav>
+<header>
+  <div class="logo">PrintCare</div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#managing-director">Director</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- Slider -->
+<div class="slider">
+  <div class="slides">
+    <img src="Slide1.jpg" alt="Slide 1">
+    <img src="Slide2.jpg" alt="Slide 2">
+    <img src="Slide3.jpg" alt="Slide 3">
+  </div>
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
 </div>
 
-<!-- SLIDER -->
-<div class="slider-container">
-    <div class="slider">
-        <div class="slider-track">
-            <img src="assets/slides/slide1.jpg">
-            <img src="assets/slides/slide2.jpg">
-            <img src="assets/slides/slide3.jpg">
-            <img src="assets/slides/slide4.jpg">
-        </div>
+<!-- Services -->
+<section class="services" id="services">
+  <h2>Our Services</h2>
+  <div class="service-list">
+    <div class="service-item">
+      <img src="service1.jpg" alt="Service 1">
+      <h3>Printing</h3>
+      <p>High-quality printing for all your needs.</p>
     </div>
+    <div class="service-item">
+      <img src="service2.jpg" alt="Service 2">
+      <h3>Design</h3>
+      <p>Creative designs for your brand and projects.</p>
+    </div>
+    <div class="service-item">
+      <img src="service3.jpg" alt="Service 3">
+      <h3>Copy & Scan</h3>
+      <p>Fast and reliable copying and scanning services.</p>
+    </div>
+  </div>
+</section>
 
-    <!-- FLOATING BUTTONS -->
-    <a class="floating-whatsapp" href="https://wa.me/9779811809093" target="_blank">💬</a>
-    <div class="floating-email">📧</div>
-    <div id="chatBtn" class="floating-chat">🤖</div>
-    <div class="floating-logo">🏢</div>
-</div>
+<!-- Managing Director & Graphic Designer -->
+<section class="md-section" id="managing-director">
+  <h2>Managing Director & Graphic Designer</h2>
+  <img src="UnishNeupane.jpg" alt="Unish Neupane">
+  <h3>Unish Neupane</h3>
+  <p>Managing Director and Graphic Designer of PrintCare</p>
+</section>
 
-<div class="description">
-High-quality printing, design, and packaging solutions in Nepal.
-</div>
+<!-- Gallery -->
+<section class="gallery-section" id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="Gallery1.jpg" alt="Gallery 1">
+    <img src="Gallery2.jpg" alt="Gallery 2">
+    <img src="Gallery3.jpg" alt="Gallery 3">
+    <img src="Gallery4.jpg" alt="Gallery 4">
+  </div>
+</section>
 
-<!-- SERVICES -->
-<div id="services" class="service-section">
-<h3>Printing Services</h3>
-<ul>
-<li>Business Cards</li>
-<li>Flyers & Brochures</li>
-<li>Posters & Banners</li>
-<li>Books & Magazines</li>
-<li>Certificates & Invitations</li>
-<li>Calendars</li>
-<li>Packaging Prints</li>
-</ul>
-</div>
+<!-- Contact -->
+<section class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Email" required>
+    <textarea placeholder="Message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
 
-<div id="gallery" class="gallery">
-<img src="assets/gallery/gallery1.jpg">
-</div>
-
-<div class="service-section">
-<h3>Graphic Design</h3>
-<ul>
-<li>Logo Design</li>
-<li>Brand Identity</li>
-<li>Advertising Design</li>
-<li>Corporate Identity</li>
-<li>Custom Artwork</li>
-</ul>
-</div>
-
-<div class="gallery">
-<img src="assets/gallery/gallery2.jpg">
-</div>
-
-<div class="service-section">
-<h3>Specialized Solutions</h3>
-<ul>
-<li>Digital Printing</li>
-<li>Offset Printing</li>
-<li>Large Format Printing</li>
-<li>Packaging & Labeling</li>
-<li>Promotional Items</li>
-</ul>
+<!-- Mini Map -->
+<div class="mini-map">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.123456!2d85.123456!3d27.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb12345abc1234%3A0x123456789abcdef!2sPrintCare!5e0!3m2!1sen!2snp!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
 </div>
 
-<div class="gallery gallery-2">
-<img src="assets/gallery/gallery3.jpg">
-<img src="assets/gallery/gallery4.jpg">
+<!-- Floating Buttons -->
+<div class="floating-btns">
+  <a href="https://wa.me/977981180" class="whatsapp" target="_blank">W</a>
+  <a href="mailto:info@printcare.com.np" class="email">E</a>
+  <a href="#" class="ai" id="aiBtn">A</a>
 </div>
 
-<!-- MINI MAP -->
-<div id="contact" class="mini-map-container">
-  <h3>Find Print Care</h3>
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.742239129597!2d85.3178113150696!3d27.667525982795025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb194d1f027f0d%3A0x45c5a1b5aee7c1!2sPrint%20Care!5e0!3m2!1sen!2snp!4v1703470000000!5m2!1sen!2snp"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</div>
-
-<!-- CHAT -->
-<div class="chat-popup">
-<div class="chat-header">Chat with us</div>
-<div class="close-chat">×</div>
-<div class="chat-messages" id="chatMessages">
-<div><b>Bot:</b> Hi 👋 What’s your name?</div>
-</div>
-<div class="chat-input">
-<input id="chatInput" type="text" placeholder="Type here..." />
-<button id="sendChat">Send</button>
-</div>
+<!-- AI Chatbox -->
+<div class="ai-chat" id="aiChat">
+  <header>AI Assistant</header>
+  <div class="messages" id="aiMessages">
+    <div>Hello! How can I assist you today?</div>
+  </div>
+  <input type="text" id="aiInput" placeholder="Type your message...">
 </div>
 
 <script>
-/* SLIDER */
-let slideIndex=0;
-const track=document.querySelector('.slider-track');
-const slides=document.querySelectorAll('.slider-track img');
-setInterval(()=>{
-    slideIndex=(slideIndex+1)%slides.length;
-    track.style.transform=`translateX(-${slideIndex*100}%)`;
-},5000);
+  // Slider JS
+  const slides = document.querySelector('.slides');
+  const slideImages = document.querySelectorAll('.slides img');
+  let index = 0;
 
-/* CHAT BUTTON */
-const chatBtn=document.getElementById('chatBtn');
-const chatPopup=document.querySelector('.chat-popup');
-const closeChat=document.querySelector('.close-chat');
-chatBtn.onclick=()=>chatPopup.classList.toggle('show');
-closeChat.onclick=()=>chatPopup.classList.remove('show');
+  document.querySelector('.next').addEventListener('click', () => {
+    index = (index + 1) % slideImages.length;
+    slides.style.transform = `translateX(${-index * 100}%)`;
+  });
+  document.querySelector('.prev').addEventListener('click', () => {
+    index = (index - 1 + slideImages.length) % slideImages.length;
+    slides.style.transform = `translateX(${-index * 100}%)`;
+  });
 
-/* DRAG CHAT */
-let drag=false,ox=0,oy=0;
-chatPopup.onmousedown=e=>{
-    drag=true;ox=e.clientX-chatPopup.offsetLeft;oy=e.clientY-chatPopup.offsetTop;
-};
-document.onmousemove=e=>{
-    if(!drag)return;
-    chatPopup.style.left=(e.clientX-ox)+'px';
-    chatPopup.style.top=(e.clientY-oy)+'px';
-    chatPopup.style.right='auto';chatPopup.style.bottom='auto';
-};
-document.onmouseup=()=>drag=false;
+  // Auto slide every 5 sec
+  setInterval(() => {
+    index = (index + 1) % slideImages.length;
+    slides.style.transform = `translateX(${-index * 100}%)`;
+  },5000);
 
-/* CHAT → WHATSAPP FORWARD */
-const sendBtn=document.getElementById('sendChat');
-const chatInput=document.getElementById('chatInput');
-const chatMessages=document.getElementById('chatMessages');
-let step=0,userName="";
-const whatsappNumber="9779811809093"; // real number
-sendBtn.addEventListener('click',sendMessage);
-chatInput.addEventListener('keypress',e=>{if(e.key==="Enter")sendMessage();});
-function sendMessage(){
-    const msg=chatInput.value.trim(); if(!msg)return;
-    chatMessages.innerHTML+=`<div><b>You:</b> ${msg}</div>`; chatInput.value="";
-    if(step===0){
-        userName=msg;
-        chatMessages.innerHTML+=`<div><b>Bot:</b> Nice to meet you ${userName}! What can we help you with?</div>`;
-        step=1;
-    }else{
-        const finalMessage=`Name: ${userName}\nMessage: ${msg}`;
-        const url=`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
-        window.open(url,"_blank");
-        chatMessages.innerHTML+=`<div><b>Bot:</b> Redirecting you to WhatsApp…</div>`;
-        step=2;
+  // AI Chatbox Toggle
+  const aiBtn = document.getElementById('aiBtn');
+  const aiChat = document.getElementById('aiChat');
+  const aiMessages = document.getElementById('aiMessages');
+  const aiInput = document.getElementById('aiInput');
+
+  aiBtn.addEventListener('click', () => {
+    aiChat.style.display = aiChat.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  aiInput.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter' && aiInput.value.trim() !== '') {
+      const msg = document.createElement('div');
+      msg.textContent = "You: " + aiInput.value;
+      aiMessages.appendChild(msg);
+      
+      const reply = document.createElement('div');
+      reply.textContent = "AI: Thank you! We will contact you shortly.";
+      aiMessages.appendChild(reply);
+
+      aiInput.value = '';
+      aiMessages.scrollTop = aiMessages.scrollHeight;
     }
-    chatMessages.scrollTop=chatMessages.scrollHeight;
-}
+  });
 </script>
 
 </body>
