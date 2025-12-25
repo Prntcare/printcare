@@ -1,53 +1,59 @@
-// HERO SLIDER
-let slides=document.querySelectorAll('.slide');let current=0;
-function showSlide(index){
-  slides.forEach(s=>s.classList.remove('active'));
-  slides[index].classList.add('active');
-}
-setInterval(()=>{current=(current+1)%slides.length;showSlide(current)},5000);
+// AOS Init
+AOS.init({ duration: 1000, once: true });
 
-// GALLERY LIGHTBOX
-const gallery=document.getElementById('galleryGrid');
-let galleryImgs=[];
-for(let i=1;i<=10;i++){
-  const img=document.createElement('img');
-  img.src=`assets/gallery/gallery${i}.jpg`;
-  img.loading="lazy";
-  img.dataset.index=i-1;
-  gallery.appendChild(img);
-  galleryImgs.push(img.src);
+// Hero Slider
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+setInterval(() => {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide+1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 5000);
+
+// Scroll to Section
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
-const lightbox=document.getElementById('lightbox');
-const lightboxImg=document.getElementById('lightboxImg');
-let currentImg=0;
-gallery.querySelectorAll('img').forEach(img=>{
-  img.onclick=()=>{
-    currentImg=parseInt(img.dataset.index);
-    lightboxImg.src=galleryImgs[currentImg];
+// Hamburger Menu
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+
+// Gallery Lightbox
+const galleryImages = document.querySelectorAll('.gallery-grid img');
+const lightbox = document.createElement('div');
+lightbox.id = 'lightbox';
+const lightboxImg = document.createElement('img');
+const closeBtn = document.createElement('span');
+closeBtn.innerHTML = '&times;';
+lightbox.appendChild(lightboxImg);
+lightbox.appendChild(closeBtn);
+document.body.appendChild(lightbox);
+
+galleryImages.forEach(img => {
+  img.addEventListener('click', ()=>{
     lightbox.style.display='flex';
-  };
+    lightboxImg.src = img.src;
+  });
 });
+closeBtn.addEventListener('click', ()=> lightbox.style.display='none');
+lightbox.addEventListener('click', e => { if(e.target!==lightboxImg) lightbox.style.display='none'; });
 
-document.querySelector('.lightbox .close').onclick=()=>lightbox.style.display='none';
-document.querySelector('.lightbox .left').onclick=()=>{
-  currentImg=(currentImg-1+galleryImgs.length)%galleryImgs.length;
-  lightboxImg.src=galleryImgs[currentImg];
-};
-document.querySelector('.lightbox .right').onclick=()=>{
-  currentImg=(currentImg+1)%galleryImgs.length;
-  lightboxImg.src=galleryImgs[currentImg];
-};
+// Dark Mode Toggle
+const darkToggle = document.getElementById('darkToggle');
+darkToggle.addEventListener('click', ()=> document.body.classList.toggle('dark'));
 
-// CONTACT FORM → WHATSAPP
-document.getElementById('contactForm').addEventListener('submit',e=>{
+// Contact Form WhatsApp
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', e=>{
   e.preventDefault();
-  const name=document.getElementById('name').value;
-  const msg=document.getElementById('message').value;
-  window.open(`https://wa.me/9779811809093?text=${encodeURIComponent(`Name: ${name}\nMessage: ${msg}`)}`);
+  const name = contactForm.querySelector('input').value;
+  const msg = contactForm.querySelector('textarea').value;
+  const whatsappNumber = '9779811809093'; // your number
+  const url = `https://wa.me/${whatsappNumber}?text=Name:%20${encodeURIComponent(name)}%0AQuery:%20${encodeURIComponent(msg)}`;
+  window.open(url,'_blank');
+  contactForm.reset();
 });
-
-// HAMBURGER MOBILE NAV
-const hamburger=document.querySelector('.hamburger');
-const nav=document.querySelector('.nav');
-hamburger.onclick=()=>nav.classList.toggle('active');
