@@ -31,7 +31,7 @@
 </nav>
 
 <!-- Hero Section with Slider -->
-<section class="hero" id="hero" data-aos="fade-up">
+<section class="hero" id="hero" data-aos="fade-up" style="background:#f8f8f8;">
   <div class="slider">
     <img src="assets/slides/slide1.jpg" class="slide active">
     <img src="assets/slides/slide2.jpg" class="slide">
@@ -48,24 +48,32 @@
 <!-- Services Section -->
 <section class="services" id="services" data-aos="fade-up">
   <h2 style="color:#007bff;">Our Services</h2>
-  <!-- Add service cards here -->
+  <div class="service-cards">
+    <div class="card"><i class="fas fa-print"></i><h3>Printing Services</h3><p>Business Cards, Flyers & Brochures, Posters & Banners, Books & Magazines, Certificates & Invitations, Calendars, Packaging Prints</p></div>
+    <div class="card"><i class="fas fa-pencil-ruler"></i><h3>Graphic Design</h3><p>Logo Design, Brand Identity, Advertising Design, Corporate Identity, Custom Artwork</p></div>
+    <div class="card"><i class="fas fa-cogs"></i><h3>Specialized Solutions</h3><p>Digital Printing, Offset Printing, Large Format Printing, Packaging & Labeling, Promotional Items</p></div>
+  </div>
 </section>
 
 <!-- Pricing Section -->
 <section class="pricing" id="pricing" data-aos="fade-up">
   <h2 style="color:#007bff;">Our Packages</h2>
-  <!-- Pricing cards here -->
+  <div class="pricing-cards">
+    <div class="card">Basic<br>$99</div>
+    <div class="card">Standard<br>$199</div>
+    <div class="card">Premium<br>$299</div>
+  </div>
 </section>
 
 <!-- Gallery Section -->
 <section class="gallery" id="gallery" data-aos="fade-up">
   <h2 style="color:#007bff;">Our Gallery</h2>
-  <!-- Images dynamically inserted via JS -->
+  <!-- Images inserted via JS -->
 </section>
 
 <!-- Managing Director -->
-<section class="md-section" id="director" data-aos="fade-up">
-  <img src="photo unish.jpg" alt="Unish Neupane – Managing Director">
+<section class="md-section" id="director" data-aos="fade-up" style="text-align:center;">
+  <img src="photo unish.jpg" alt="Unish Neupane – Managing Director" style="width:200px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
   <h3>Unish Neupane</h3>
   <p>Managing Director & Graphic Designer</p>
 </section>
@@ -73,22 +81,27 @@
 <!-- Testimonials -->
 <section class="testimonials" id="testimonials" data-aos="fade-up">
   <h2 style="color:#007bff;">What Our Clients Say</h2>
-  <!-- 4 testimonial boxes here -->
+  <div class="testimonial-cards">
+    <div class="card"><img src="assets/gallery/gallery1.jpg"><p>“Amazing work!”</p><span>– Client 1</span></div>
+    <div class="card"><img src="assets/gallery/gallery2.jpg"><p>“Highly professional.”</p><span>– Client 2</span></div>
+    <div class="card"><img src="assets/gallery/gallery3.jpg"><p>“Great design quality.”</p><span>– Client 3</span></div>
+    <div class="card"><img src="assets/gallery/gallery4.jpg"><p>“Excellent service.”</p><span>– Client 4</span></div>
+  </div>
 </section>
 
 <!-- Contact Section -->
-<section class="contact" id="contact" data-aos="fade-up">
-  <h2 style="color:#007bff;">Contact Us</h2>
+<section class="contact" id="contact" data-aos="fade-up" style="background:#007bff; color:#fff;">
+  <h2>Contact Us</h2>
   <form id="contactForm">
     <input type="text" placeholder="Your Name" required>
     <textarea rows="5" placeholder="What do you want?" required></textarea>
     <button type="submit">Send Message</button>
-    <p id="successMsg" style="display:none;">✅ Your message has been sent successfully.</p>
+    <p id="successMsg" style="display:none; color:#fff;">✅ Your message has been sent successfully.</p>
   </form>
 </section>
 
 <!-- Footer -->
-<footer>
+<footer style="background:#f8f8f8; color:#007bff; text-align:center; padding:20px;">
   <p>© 2025 Print Care. All Rights Reserved.</p>
   <div class="social-links">
     <a href="https://www.facebook.com/prntcare" target="_blank"><i class="fab fa-facebook-f"></i></a>
