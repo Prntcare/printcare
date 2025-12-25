@@ -10,124 +10,184 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-  <div class="logo">
-    <img src="logo.png" alt="Print Care">
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-content">
+    <img src="logo.png" alt="Print Care" class="logo">
+    <nav class="nav">
+      <a href="#hero">Home</a>
+      <a href="#value">Why Us</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#director">Director</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hamburger"><i class="fas fa-bars"></i></div>
   </div>
-  <nav>
-    <a href="#hero">Home</a>
-    <a href="#services">Services</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#director">Director</a>
-    <a href="#contact">Contact</a>
-  </nav>
 </header>
 
-<!-- HERO -->
+<!-- HERO SLIDER -->
 <section class="hero" id="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>Bring Your Ideas to Life with Print Care</h1>
-    <p>High-quality prints and creative designs tailored for your business</p>
-    <a href="#contact" class="btn-primary">Get a Quote</a>
+  <div class="slider">
+    <div class="slide active" style="background-image:url('assets/slides/slide1.jpg');">
+      <div class="overlay"></div>
+      <div class="hero-text">
+        <h1>High-Quality Printing</h1>
+        <a href="#services" class="btn">Explore Services</a>
+      </div>
+    </div>
+    <div class="slide" style="background-image:url('assets/slides/slide2.jpg');">
+      <div class="overlay"></div>
+      <div class="hero-text">
+        <h1>Corporate Branding Solutions</h1>
+        <a href="#contact" class="btn">Request a Quote</a>
+      </div>
+    </div>
+    <div class="slide" style="background-image:url('assets/slides/slide3.jpg');">
+      <div class="overlay"></div>
+      <div class="hero-text">
+        <h1>Packaging & Labeling Experts</h1>
+        <a href="#gallery" class="btn">View Portfolio</a>
+      </div>
+    </div>
+    <div class="slide" style="background-image:url('assets/slides/slide4.jpg');">
+      <div class="overlay"></div>
+      <div class="hero-text">
+        <h1>Trusted by Businesses in Nepal</h1>
+        <a href="#contact" class="btn">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE PROPOSITION -->
+<section class="section value" id="value">
+  <div class="container cards">
+    <div class="card">
+      <i class="fas fa-print"></i>
+      <h3>High-Quality Printing</h3>
+      <p>Flawless results for all your printing needs</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-briefcase"></i>
+      <h3>Corporate Branding</h3>
+      <p>Elevate your brand with creative design solutions</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-handshake"></i>
+      <h3>Trusted Partner</h3>
+      <p>Decades of experience delivering professional services</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTOR -->
+<section class="section director-section" id="director">
+  <div class="container director-card">
+    <img src="assets/md/md.jpg" alt="Unish Neupane">
+    <div class="director-text">
+      <h3>Unish Neupane</h3>
+      <p>Managing Director & Graphic Designer</p>
+      <blockquote>"At Print Care, we bring your ideas to life with passion and precision."</blockquote>
+    </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="section" id="services">
+<section class="section services" id="services">
   <h2>Our Services</h2>
-  <div class="cards">
+  <div class="container cards">
     <div class="card">
       <i class="fas fa-print"></i>
-      <h3>Printing</h3>
-      <p>Business cards, brochures, posters, books, packaging & more.</p>
+      <h3>Printing Services</h3>
+      <p>Business Cards, Flyers, Posters, Books, Certificates, Calendars, Packaging Prints</p>
     </div>
     <div class="card">
       <i class="fas fa-pencil-ruler"></i>
       <h3>Graphic Design</h3>
-      <p>Logo design, branding, advertising & creative visuals.</p>
+      <p>Logo Design, Brand Identity, Advertising, Corporate Identity, Custom Artwork</p>
     </div>
     <div class="card">
-      <i class="fas fa-industry"></i>
-      <h3>Custom Solutions</h3>
-      <p>Offset, digital, large format & promotional printing.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="section light" id="pricing">
-  <h2>Our Packages</h2>
-  <div class="pricing">
-    <div class="price-card">
-      <h3>Basic</h3>
-      <p class="price">$99</p>
-      <span>Small business needs</span>
-    </div>
-    <div class="price-card featured">
-      <h3>Standard</h3>
-      <p class="price">$199</p>
-      <span>Most popular</span>
-    </div>
-    <div class="price-card">
-      <h3>Premium</h3>
-      <p class="price">$299</p>
-      <span>Enterprise solutions</span>
+      <i class="fas fa-cogs"></i>
+      <h3>Specialized Solutions</h3>
+      <p>Digital/Offset Printing, Large Format, Packaging & Labeling, Promotional Items</p>
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
-<section class="section" id="gallery">
-  <h2>Our Work</h2>
-  <div class="gallery-grid" id="galleryGrid"></div>
-</section>
-
-<!-- DIRECTOR -->
-<section class="section light" id="director">
-  <div class="director">
-    <img src="assets/md/md.jpg" alt="Unish Neupane">
-    <h3>Unish Neupane</h3>
-    <p>Managing Director & Graphic Designer</p>
-  </div>
+<section class="section gallery" id="gallery">
+  <h2>Gallery</h2>
+  <div class="container gallery-grid" id="galleryGrid"></div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="section">
-  <h2>What Our Clients Say</h2>
-  <div class="testimonials">
-    <div class="testimonial">“Outstanding print quality and fast delivery.”</div>
-    <div class="testimonial">“Professional team with creative solutions.”</div>
-    <div class="testimonial">“Reliable partner for all our branding needs.”</div>
+<section class="section testimonials">
+  <h2>Testimonials</h2>
+  <div class="container testimonial-cards">
+    <div class="testimonial-card">“#PrintCare transformed our corporate identity with unmatched quality.”</div>
+    <div class="testimonial-card">“Reliable and professional team for all printing needs.”</div>
+    <div class="testimonial-card">“Creative solutions with fast turnaround.”</div>
+    <div class="testimonial-card">“High-quality work and excellent customer support.”</div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready to elevate your brand with #PrintCare?</h2>
+    <a href="#contact" class="btn">Request a Quote</a>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact" id="contact">
+<section class="section contact" id="contact">
   <h2>Contact Us</h2>
-  <form id="contactForm">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <textarea id="message" placeholder="What do you need?" required></textarea>
-    <button type="submit">Send via WhatsApp</button>
-  </form>
+  <div class="container contact-card">
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <textarea id="message" placeholder="What do you need?" required></textarea>
+      <button type="submit">Send via WhatsApp</button>
+    </form>
+    <div class="contact-info">
+      <p>📞 9811809093 / 9840545054</p>
+      <p>✉️ prntcare@gmail.com</p>
+      <p>🌐 printcare.com.np</p>
+      <p>📍 Nijgadh‑8, Bank Road (In‑front of Koirala Hardware)</p>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Print Care. All Rights Reserved.</p>
-  <a href="https://www.facebook.com/prntcare" target="_blank">
-    <i class="fab fa-facebook"></i>
-  </a>
+  <div class="container footer-grid">
+    <div>
+      <h4>About</h4>
+      <p>Print Care – Professional printing & design services in Nepal.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <p>Printing, Graphic Design, Packaging, Branding</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>9811809093 / 9840545054</p>
+      <p>prntcare@gmail.com</p>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/prntcare" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
+  <button class="close">&times;</button>
   <img id="lightboxImg">
+  <div class="nav-arrow left">&#10094;</div>
+  <div class="nav-arrow right">&#10095;</div>
 </div>
 
 <script src="js/main.js"></script>
