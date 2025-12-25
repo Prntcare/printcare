@@ -83,9 +83,10 @@ nav a:hover{color:#007bff;}
 .chat-input input{flex:1;padding:6px;}
 .chat-input button{background:#007bff;color:#fff;border:none;padding:6px 10px;border-radius:4px;}
 
-/* MAP */
+/* MINI MAP */
 .mini-map-container{background:#f2f2f2;padding:20px;text-align:center;margin-top:30px;}
-.mini-map{width:100%;height:250px;margin-top:10px;border-radius:8px;}
+.mini-map-container h3{margin-bottom:10px;}
+.mini-map iframe{width:100%;height:250px;border:0;border-radius:8px;}
 
 /* MOBILE FIXES */
 @media(max-width:600px){
@@ -193,10 +194,15 @@ High-quality printing, design, and packaging solutions in Nepal.
 <img src="assets/gallery/gallery4.jpg">
 </div>
 
-<!-- MAP -->
+<!-- MINI MAP -->
 <div id="contact" class="mini-map-container">
-<h3>Find Print Care</h3>
-<div id="miniMap" class="mini-map"></div>
+  <h3>Find Print Care</h3>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.742239129597!2d85.3178113150696!3d27.667525982795025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb194d1f027f0d%3A0x45c5a1b5aee7c1!2sPrint%20Care!5e0!3m2!1sen!2snp!4v1703470000000!5m2!1sen!2snp"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
 </div>
 
 <!-- CHAT -->
@@ -211,9 +217,6 @@ High-quality printing, design, and packaging solutions in Nepal.
 <button id="sendChat">Send</button>
 </div>
 </div>
-
-<!-- GOOGLE MAPS API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_REAL_API_KEY"></script>
 
 <script>
 /* SLIDER */
@@ -269,23 +272,6 @@ function sendMessage(){
     }
     chatMessages.scrollTop=chatMessages.scrollHeight;
 }
-
-/* MINI MAP AUTO LOAD */
-window.addEventListener('load',()=>{
-    const miniMap=document.getElementById('miniMap');
-    miniMap.classList.add('show');
-    if(window.google){
-        const map=new google.maps.Map(miniMap,{
-            center:{lat:27.6675,lng:85.3200}, // replace with Print Care coords if needed
-            zoom:16
-        });
-        new google.maps.Marker({
-            position:{lat:27.6675,lng:85.3200},
-            map:map,
-            title:"Print Care"
-        });
-    }
-});
 </script>
 
 </body>
