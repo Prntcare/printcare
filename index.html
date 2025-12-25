@@ -16,13 +16,13 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
 <style>
-/* Reset & Base */
+/* Base */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#fff;color:#111;transition:background 0.3s, color 0.3s;}
+body{background:#f8f8f8;color:#111;transition:background 0.3s,color 0.3s;}
 a{text-decoration:none;color:inherit;}
 ul{list-style:none;}
 
-/* Sticky Navigation */
+/* Sticky Nav */
 nav{position:sticky;top:0;background:#fff;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
 nav ul{display:flex;justify-content:center;padding:15px;}
 nav ul li{margin:0 15px;}
@@ -32,7 +32,7 @@ nav ul li a.active, nav ul li a:hover{color:#0056b3;}
 /* Sections */
 section{padding:60px 20px;min-height:300px;}
 
-/* Hero Section */
+/* Hero */
 .hero{text-align:center;background:#f8f8f8;padding:100px 20px;}
 .hero h1{font-size:48px;color:#007bff;margin-bottom:20px;}
 .hero p{font-size:20px;color:#111;margin-bottom:30px;}
@@ -42,34 +42,10 @@ section{padding:60px 20px;min-height:300px;}
 /* Services */
 .services{text-align:center;}
 .services h2{font-size:36px;color:#007bff;margin-bottom:40px;}
-.service-box{display:inline-block;width:280px;background:#f8f8f8;margin:15px;padding:25px;border-radius:10px;vertical-align:top;transition:0.3s;box-shadow:0 6px 20px rgba(0,0,0,0.1);}
+.service-box{display:inline-block;width:280px;background:#fff;margin:15px;padding:25px;border-radius:10px;vertical-align:top;transition:0.3s;box-shadow:0 6px 20px rgba(0,0,0,0.1);}
 .service-box:hover{transform:translateY(-5px);box-shadow:0 12px 25px rgba(0,0,0,0.15);}
 .service-icon{font-size:36px;color:#007bff;margin-bottom:10px;}
 .service-box h3{color:#111;margin-bottom:15px;}
-
-/* Gallery */
-.gallery{text-align:center;}
-.gallery h2{font-size:36px;color:#007bff;margin-bottom:40px;}
-.gallery img{width:220px;height:150px;margin:10px;object-fit:cover;cursor:pointer;border-radius:8px;transition:0.3s;}
-
-/* Lightbox */
-#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:9999;}
-#lightbox img{max-width:90%;max-height:90%;border-radius:10px;animation:zoom 0.3s ease;}
-#close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer;}
-@keyframes zoom{from{transform:scale(0.8)}to{transform:scale(1)}}
-
-/* Managing Director */
-.md-section{text-align:center;}
-.md-section img{width:200px;border-radius:50%;margin-bottom:15px;box-shadow:0 8px 20px rgba(0,0,0,0.15);transition:transform 0.3s, box-shadow 0.3s;}
-.md-section img:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 14px 30px rgba(0,0,0,0.25);}
-.md-section h3{color:#007bff;margin-bottom:5px;}
-.md-section p{color:#111;font-size:16px;}
-
-/* Testimonials */
-.testimonials{text-align:center;background:#f8f8f8;}
-.testimonials h2{font-size:36px;color:#007bff;margin-bottom:40px;}
-.testimonial-box{display:inline-block;width:260px;background:#fff;margin:15px;padding:20px;border-radius:10px;vertical-align:top;box-shadow:0 6px 15px rgba(0,0,0,0.1);}
-.testimonial-photo{width:80px;height:80px;background:#111;margin:0 auto 15px;border-radius:50%;}
 
 /* Pricing */
 .pricing{text-align:center;}
@@ -83,6 +59,30 @@ section{padding:60px 20px;min-height:300px;}
 .package-btn{padding:10px 20px;background:#007bff;color:#fff;border:none;border-radius:5px;cursor:pointer;transition:0.3s;}
 .package-btn:hover{background:#0056b3;}
 
+/* Gallery */
+.gallery{text-align:center;}
+.gallery h2{font-size:36px;color:#007bff;margin-bottom:40px;}
+.gallery img{width:220px;height:150px;margin:10px;object-fit:cover;cursor:pointer;border-radius:8px;transition:0.3s;}
+
+/* Lightbox */
+#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:9999;}
+#lightbox img{max-width:90%;max-height:90%;border-radius:10px;animation:zoom 0.3s ease;}
+#close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer;}
+@keyframes zoom{from{transform:scale(0.8)}to{transform:scale(1)}}
+
+/* MD Section */
+.md-section{text-align:center;}
+.md-section img{width:200px;border-radius:50%;margin-bottom:15px;box-shadow:0 8px 20px rgba(0,0,0,0.15);transition:transform 0.3s, box-shadow 0.3s;}
+.md-section img:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 14px 30px rgba(0,0,0,0.25);}
+.md-section h3{color:#007bff;margin-bottom:5px;}
+.md-section p{color:#111;font-size:16px;}
+
+/* Testimonials */
+.testimonials{text-align:center;}
+.testimonials h2{font-size:36px;color:#007bff;margin-bottom:40px;}
+.testimonial-box{display:inline-block;width:260px;background:#fff;margin:15px;padding:20px;border-radius:10px;vertical-align:top;box-shadow:0 6px 15px rgba(0,0,0,0.1);}
+.testimonial-photo{width:80px;height:80px;background:#111;margin:0 auto 15px;border-radius:50%;}
+
 /* Contact */
 .contact{text-align:center;}
 .contact h2{font-size:36px;color:#007bff;margin-bottom:40px;}
@@ -90,6 +90,7 @@ section{padding:60px 20px;min-height:300px;}
 .contact input, .contact textarea{width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:5px;}
 .contact button{padding:12px 25px;background:#007bff;color:#fff;border:none;border-radius:5px;cursor:pointer;transition:0.3s;}
 .contact button:hover{background:#0056b3;}
+#successMsg{color:#007bff;font-weight:500;text-align:center;display:none;}
 
 /* Footer */
 footer{background:#007bff;color:#fff;text-align:center;padding:25px 20px;font-size:14px;}
@@ -216,10 +217,17 @@ footer .social-links a:hover{color:#ccc;transform:scale(1.2);}
 <!-- Gallery Section -->
 <section class="gallery" id="gallery" data-aos="fade-up">
 <h2>Our Gallery</h2>
-<img src="assets/gallery/gallery1.jpg" alt="Gallery 1" loading="lazy">
-<img src="assets/gallery/gallery2.jpg" alt="Gallery 2" loading="lazy">
-<img src="assets/gallery/gallery3.jpg" alt="Gallery 3" loading="lazy">
-<img src="assets/gallery/gallery4.jpg" alt="Gallery 4" loading="lazy">
+<img src="assets/gallery/gallery1.jpg" alt="Gallery 1">
+<img src="assets/gallery/gallery2.jpg" alt="Gallery 2">
+<img src="assets/gallery/gallery3.jpg" alt="Gallery 3">
+<img src="assets/gallery/gallery4.jpg" alt="Gallery 4">
+<!-- placeholders for future 6 images -->
+<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
+<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
+<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
+<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
+<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
+<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
 </section>
 
 <!-- Lightbox -->
@@ -228,14 +236,14 @@ footer .social-links a:hover{color:#ccc;transform:scale(1.2);}
   <img id="lightbox-img">
 </div>
 
-<!-- Managing Director Section -->
+<!-- Managing Director -->
 <section class="md-section" id="director" data-aos="fade-up">
-<img src="photo unish.jpg" alt="Unish Neupane – Managing Director">
+<img src="unishNeupane.jpg" alt="Unish Neupane – Managing Director">
 <h3>Unish Neupane</h3>
 <p>Managing Director & Graphic Designer</p>
 </section>
 
-<!-- Testimonials Section -->
+<!-- Testimonials -->
 <section class="testimonials" id="testimonials" data-aos="fade-up">
 <h2>What Our Clients Say</h2>
 <div class="testimonial-box">
@@ -260,37 +268,32 @@ footer .social-links a:hover{color:#ccc;transform:scale(1.2);}
 </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Contact -->
 <section class="contact" id="contact" data-aos="fade-up">
 <h2>Contact Us</h2>
 <form id="contactForm">
   <input type="text" placeholder="Your Name" required>
-  <input type="email" placeholder="Email" required>
-  <textarea rows="5" placeholder="Message" required></textarea>
+  <textarea rows="5" placeholder="What do you want?" required></textarea>
   <button type="submit">Send Message</button>
-  <p id="successMsg" style="display:none;margin-top:15px;font-weight:500;color:#007bff;text-align:center;">
-    ✅ Thank you! Your message has been sent successfully.
-  </p>
+  <p id="successMsg">✅ Your message has been sent successfully.</p>
 </form>
 </section>
 
 <!-- Footer -->
 <footer>
-  <p>© 2025 Print Care. All Rights Reserved.</p>
-  <div class="social-links">
-    <a href="https://www.facebook.com/printcare" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/printcare" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.linkedin.com/company/printcare" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://wa.me/9779811809093" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  </div>
+<p>© 2025 Print Care. All Rights Reserved.</p>
+<div class="social-links">
+  <a href="https://www.facebook.com/prntcare" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</div>
 </footer>
 
 <!-- Dark Mode Toggle -->
 <button id="darkToggle">🌓</button>
 
 <!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-// Sticky Nav Active Highlight
+// Sticky Nav Highlight
 const sections=document.querySelectorAll('section');
 const navLinks=document.querySelectorAll('nav ul li a');
 window.addEventListener('scroll',()=>{
@@ -317,28 +320,31 @@ galleryImages.forEach(img=>{
 closeBtn.onclick=()=>lightbox.style.display='none';
 lightbox.onclick=e=>{if(e.target!==lightboxImg)lightbox.style.display='none';};
 
-// Contact Form Success
+// Contact Form WhatsApp Integration
 const form=document.getElementById('contactForm');
-const successMsg=document.getElementById('successMsg');
 form.addEventListener('submit',function(e){
   e.preventDefault();
-  successMsg.style.display='block';
+  const name=form.querySelector('input').value;
+  const msg=form.querySelector('textarea').value;
+  const phone='+9779811809093';
+  const url=`https://wa.me/${phone}?text=Name:%20${encodeURIComponent(name)}%0ARequest:%20${encodeURIComponent(msg)}`;
+  window.open(url,'_blank');
   form.reset();
+  document.getElementById('successMsg').style.display='block';
 });
 
 // Dark Mode Toggle
 const darkToggle=document.getElementById('darkToggle');
-if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark-mode');
+if(localStorage.getItem('darkMode')==='enabled'){document.body.classList.add('dark-mode');}
 darkToggle.onclick=()=>{
   document.body.classList.toggle('dark-mode');
-  localStorage.setItem('theme',document.body.classList.contains('dark-mode')?'dark':'light');
+  if(document.body.classList.contains('dark-mode')) localStorage.setItem('darkMode','enabled');
+  else localStorage.setItem('darkMode','disabled');
 };
 
-// AOS Initialization
-AOS.init({duration:800,once:true});
+// Initialize AOS
+AOS.init({duration:800, once:true});
 </script>
 
-<!-- AOS JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </body>
 </html>
