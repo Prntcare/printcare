@@ -5,81 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PrintCare - Your Printing & Design Solution</title>
 <style>
-  /* Basic Reset */
-  * {margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-  body {background:#f5f5f5;color:#222;}
-  a {text-decoration:none;color:inherit;}
-  img {max-width:100%;display:block;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f5f5f5;color:#222;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
 
-  /* Header */
-  header {background:#000;color:#fff;padding:15px 30px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
-  header .logo {font-size:1.5rem;font-weight:bold;}
-  header nav a {margin-left:20px;font-size:1rem;color:#fff;}
+/* Header */
+header{background:#000;color:#fff;padding:15px 30px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
+header .logo{font-size:1.5rem;font-weight:bold;}
+header nav a{margin-left:20px;font-size:1rem;color:#fff;}
 
-  /* Slider */
-  .slider {position:relative;overflow:hidden;height:400px;margin-bottom:50px;}
-  .slides {display:flex;transition:0.5s;}
-  .slides img {width:100%;flex-shrink:0;}
-  .slider button {position:absolute;top:50%;transform:translateY(-50%);background:#000a;color:#fff;border:none;padding:10px;cursor:pointer;font-size:1.5rem;}
-  .slider .prev {left:10px;}
-  .slider .next {right:10px;}
+/* Slider */
+.slider{position:relative;overflow:hidden;height:400px;margin-bottom:50px;}
+.slides{display:flex;transition:0.5s;}
+.slides img{width:100%;flex-shrink:0;}
+.slider button{position:absolute;top:50%;transform:translateY(-50%);background:#000a;color:#fff;border:none;padding:10px;cursor:pointer;font-size:1.5rem;}
+.slider .prev{left:10px;}
+.slider .next{right:10px;}
 
-  /* Services Section */
-  .services {padding:50px 20px;background:#fff;}
-  .services h2 {text-align:center;margin-bottom:40px;font-size:2rem;color:#000;}
-  .service-list {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-  .service-item {background:#f0f0f0;padding:20px;border-radius:10px;text-align:center;transition:0.3s;}
-  .service-item:hover {transform:scale(1.05);}
-  .service-item img {height:150px;margin-bottom:15px;}
-  .service-item h3 {margin-bottom:10px;}
-  .service-item p {font-size:0.9rem;}
+/* Services Section */
+.services{padding:50px 20px;background:#fff;}
+.services h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#000;}
+.service-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.service-item{background:#f0f0f0;padding:20px;border-radius:10px;text-align:center;transition:0.3s;}
+.service-item:hover{transform:scale(1.05);}
+.service-item img{height:150px;margin-bottom:15px;}
+.service-item h3{margin-bottom:10px;}
+.service-item p{font-size:0.9rem;}
 
-  /* Managing Director Section */
-  .md-section {padding:50px 20px;background:#fff;text-align:center;}
-  .md-section h2 {font-size:2rem;margin-bottom:20px;}
-  .md-section img {width:200px;height:auto;border-radius:50%;margin:20px 0;cursor:pointer;}
-  .md-section h3 {margin-bottom:10px;}
-  .md-section p {font-size:1rem;color:#555;}
+/* Managing Director Section */
+.md-section{padding:50px 20px;background:#fff;text-align:center;}
+.md-section h2{font-size:2rem;margin-bottom:20px;}
+.md-section img{width:200px;height:auto;border-radius:50%;margin:20px 0;}
+.md-section h3{margin-bottom:10px;}
+.md-section p{font-size:1rem;color:#555;}
 
-  /* Gallery Section */
-  .gallery-section {padding:50px 20px;}
-  .gallery-section h2 {text-align:center;margin-bottom:40px;font-size:2rem;color:#000;}
-  .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
-  .gallery img {width:80%;height:auto;margin:0 auto;display:block;border-radius:10px;transition:0.3s;cursor:pointer;}
-  .gallery img:hover {transform:scale(1.05);}
+/* Gallery Section */
+.gallery-section{padding:50px 20px;}
+.gallery-section h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#000;}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.gallery img{width:100%;height:auto;border-radius:10px;transition:0.3s;}
+.gallery img:hover{transform:scale(1.05);}
 
-  /* Contact Section */
-  .contact {padding:50px 20px;background:#000;color:#fff;}
-  .contact h2 {text-align:center;margin-bottom:40px;font-size:2rem;color:#fff;}
-  .contact form {max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:15px;}
-  .contact input,.contact textarea {padding:10px;border-radius:5px;border:none;font-size:1rem;}
-  .contact button {padding:15px;background:#fff;color:#000;font-weight:bold;border:none;border-radius:5px;cursor:pointer;font-size:1rem;}
+/* Contact Section */
+.contact{padding:50px 20px;background:#000;color:#fff;}
+.contact h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#fff;}
+.contact form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:15px;}
+.contact input,.contact textarea{padding:10px;border-radius:5px;border:none;font-size:1rem;}
+.contact button{padding:15px;background:#fff;color:#000;font-weight:bold;border:none;border-radius:5px;cursor:pointer;font-size:1rem;}
 
-  /* Mini Map */
-  .mini-map {margin:50px auto;max-width:600px;border-radius:10px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.2);}
-  .mini-map iframe {width:100%;height:300px;border:0;}
+/* Mini Map */
+.mini-map{margin:50px auto;max-width:600px;border-radius:10px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.2);}
+.mini-map iframe{width:100%;height:300px;border:0;}
 
-  /* Floating Buttons */
-  .floating-btns {position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:15px;z-index:1000;}
-  .floating-btns a {display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:50%;background:#000;color:#fff;font-size:1.5rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.3);transition:0.3s;}
-  .floating-btns a:hover {transform:scale(1.1);}
-  .floating-btns .ai {background:#007bff;}
-  .floating-btns .email {background:#28a745;}
-  .floating-btns .whatsapp {background:#25d366;}
+/* Floating Buttons */
+.floating-btns{position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:15px;z-index:1000;}
+.floating-btns a{display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:50%;background:#000;color:#fff;font-size:1.5rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.3);transition:0.3s;}
+.floating-btns a:hover{transform:scale(1.1);}
+.floating-btns .ai{background:#007bff;}
+.floating-btns .email{background:#28a745;}
+.floating-btns .whatsapp{background:#25d366;}
 
-  /* AI Chatbox */
-  .ai-chat {position:fixed;bottom:80px;right:80px;background:#fff;width:300px;height:400px;border-radius:10px;box-shadow:0 0 15px rgba(0,0,0,0.3);display:none;flex-direction:column;z-index:1001;}
-  .ai-chat header {background:#007bff;color:#fff;padding:10px;border-radius:10px 10px 0 0;font-weight:bold;}
-  .ai-chat .messages {flex:1;padding:10px;overflow-y:auto;}
-  .ai-chat input {padding:10px;border:none;border-top:1px solid #ccc;width:100%;}
-
-  /* Lightbox */
-  .lightbox-overlay {position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;flex-direction:column;justify-content:center;align-items:center;z-index:2000;}
-  .lightbox-overlay img {max-width:90%;max-height:90%;border-radius:10px;}
-  .lightbox-caption {color:#fff;text-align:center;margin-top:10px;font-size:1.1rem;}
-  .lightbox-prev, .lightbox-next {position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:#fff;background:none;border:none;cursor:pointer;}
-  .lightbox-prev {left:20px;}
-  .lightbox-next {right:20px;}
+/* AI Chatbox */
+.ai-chat{position:fixed;bottom:80px;right:80px;background:#fff;width:300px;height:400px;border-radius:10px;box-shadow:0 0 15px rgba(0,0,0,0.3);display:none;flex-direction:column;z-index:1001;}
+.ai-chat header{background:#007bff;color:#fff;padding:10px;border-radius:10px 10px 0 0;font-weight:bold;}
+.ai-chat .messages{flex:1;padding:10px;overflow-y:auto;}
+.ai-chat input{padding:10px;border:none;border-top:1px solid #ccc;width:100%;}
 </style>
 </head>
 <body>
@@ -127,12 +118,10 @@
   </div>
 </section>
 
-<!-- Managing Director & Graphic Designer -->
+<!-- Managing Director -->
 <section class="md-section" id="managing-director">
   <h2>Managing Director & Graphic Designer</h2>
-  <a href="UnishNeupane.jpg" class="md-lightbox" data-caption="Unish Neupane - Managing Director & Graphic Designer">
-    <img src="UnishNeupane.jpg" alt="Unish Neupane">
-  </a>
+  <img src="UnishNeupane.jpg" alt="Unish Neupane">
   <h3>Unish Neupane</h3>
   <p>Managing Director and Graphic Designer of PrintCare</p>
 </section>
@@ -141,10 +130,10 @@
 <section class="gallery-section" id="gallery">
   <h2>Gallery</h2>
   <div class="gallery">
-    <a href="Gallery1.jpg" class="gallery-lightbox" data-caption="Our printed banners"><img src="Gallery1.jpg" alt="Gallery 1"></a>
-    <a href="Gallery2.jpg" class="gallery-lightbox" data-caption="Creative design samples"><img src="Gallery2.jpg" alt="Gallery 2"></a>
-    <a href="Gallery3.jpg" class="gallery-lightbox" data-caption="High-quality prints"><img src="Gallery3.jpg" alt="Gallery 3"></a>
-    <a href="Gallery4.jpg" class="gallery-lightbox" data-caption="Custom brochures"><img src="Gallery4.jpg" alt="Gallery 4"></a>
+    <img src="Gallery1.jpg" alt="Gallery 1">
+    <img src="Gallery2.jpg" alt="Gallery 2">
+    <img src="Gallery3.jpg" alt="Gallery 3">
+    <img src="Gallery4.jpg" alt="Gallery 4">
   </div>
 </section>
 
@@ -180,97 +169,50 @@
   <input type="text" id="aiInput" placeholder="Type your message...">
 </div>
 
-<!-- Lightbox Overlay -->
-<div class="lightbox-overlay" id="lightbox">
-  <button class="lightbox-prev">&#10094;</button>
-  <img src="" alt="Enlarged">
-  <button class="lightbox-next">&#10095;</button>
-  <div class="lightbox-caption"></div>
-</div>
-
 <script>
-  // Slider JS
-  const slides = document.querySelector('.slides');
-  const slideImages = document.querySelectorAll('.slides img');
-  let index = 0;
+// Slider JS
+const slides = document.querySelector('.slides');
+const slideImages = document.querySelectorAll('.slides img');
+let index = 0;
 
-  document.querySelector('.next').addEventListener('click', () => {
-    index = (index + 1) % slideImages.length;
-    slides.style.transform = `translateX(${-index * 100}%)`;
-  });
-  document.querySelector('.prev').addEventListener('click', () => {
-    index = (index - 1 + slideImages.length) % slideImages.length;
-    slides.style.transform = `translateX(${-index * 100}%)`;
-  });
+document.querySelector('.next').addEventListener('click', () => {
+  index = (index + 1) % slideImages.length;
+  slides.style.transform = `translateX(${-index * 100}%)`;
+});
+document.querySelector('.prev').addEventListener('click', () => {
+  index = (index - 1 + slideImages.length) % slideImages.length;
+  slides.style.transform = `translateX(${-index * 100}%)`;
+});
 
-  setInterval(() => {
-    index = (index + 1) % slideImages.length;
-    slides.style.transform = `translateX(${-index * 100}%)`;
-  },5000);
+setInterval(() => {
+  index = (index + 1) % slideImages.length;
+  slides.style.transform = `translateX(${-index * 100}%)`;
+},5000);
 
-  // AI Chatbox Toggle
-  const aiBtn = document.getElementById('aiBtn');
-  const aiChat = document.getElementById('aiChat');
-  const aiMessages = document.getElementById('aiMessages');
-  const aiInput = document.getElementById('aiInput');
+// AI Chatbox Toggle
+const aiBtn = document.getElementById('aiBtn');
+const aiChat = document.getElementById('aiChat');
+const aiMessages = document.getElementById('aiMessages');
+const aiInput = document.getElementById('aiInput');
 
-  aiBtn.addEventListener('click', () => {
-    aiChat.style.display = aiChat.style.display === 'flex' ? 'none' : 'flex';
-  });
+aiBtn.addEventListener('click', () => {
+  aiChat.style.display = aiChat.style.display === 'flex' ? 'none' : 'flex';
+});
 
-  aiInput.addEventListener('keypress', (e) => {
-    if(e.key === 'Enter' && aiInput.value.trim() !== '') {
-      const msg = document.createElement('div');
-      msg.textContent = "You: " + aiInput.value;
-      aiMessages.appendChild(msg);
+aiInput.addEventListener('keypress', (e) => {
+  if(e.key === 'Enter' && aiInput.value.trim() !== ''){
+    const msg = document.createElement('div');
+    msg.textContent = "You: " + aiInput.value;
+    aiMessages.appendChild(msg);
 
-      const reply = document.createElement('div');
-      reply.textContent = "AI: Thank you! We will contact you shortly.";
-      aiMessages.appendChild(reply);
+    const reply = document.createElement('div');
+    reply.textContent = "AI: Thank you! We will contact you shortly.";
+    aiMessages.appendChild(reply);
 
-      aiInput.value = '';
-      aiMessages.scrollTop = aiMessages.scrollHeight;
-    }
-  });
-
-  // Lightbox Slideable JS with captions
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox.querySelector('img');
-  const lightboxCaption = lightbox.querySelector('.lightbox-caption');
-  const lightboxLinks = [...document.querySelectorAll('.md-lightbox, .gallery-lightbox')];
-  let currentIndex = 0;
-
-  function openLightbox(index){
-    currentIndex = index;
-    lightbox.style.display = 'flex';
-    lightboxImg.src = lightboxLinks[currentIndex].href;
-    lightboxCaption.textContent = lightboxLinks[currentIndex].getAttribute('data-caption') || '';
+    aiInput.value = '';
+    aiMessages.scrollTop = aiMessages.scrollHeight;
   }
-
-  lightboxLinks.forEach((link,i) => {
-    link.addEventListener('click', e=>{
-      e.preventDefault();
-      openLightbox(i);
-    });
-  });
-
-  document.querySelector('.lightbox-next').addEventListener('click', e=>{
-    e.stopPropagation();
-    currentIndex = (currentIndex + 1) % lightboxLinks.length;
-    openLightbox(currentIndex);
-  });
-
-  document.querySelector('.lightbox-prev').addEventListener('click', e=>{
-    e.stopPropagation();
-    currentIndex = (currentIndex - 1 + lightboxLinks.length) % lightboxLinks.length;
-    openLightbox(currentIndex);
-  });
-
-  lightbox.addEventListener('click', e=>{
-    if(e.target === lightbox){
-      lightbox.style.display = 'none';
-    }
-  });
+});
 </script>
 
 </body>
