@@ -3,242 +3,339 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Print Care – Printing & Design Solution</title>
+<title>Print Care - Your Printing & Design Solution</title>
+<meta name="description" content="Print Care – High-quality printing, graphic design, and packaging solutions in Nepal.">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- AOS CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{background:#fff;color:#000;line-height:1.6}
+/* Reset & Base */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#fff;color:#111;transition:background 0.3s, color 0.3s;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
 
-/* HEADER */
-header{
-  background:#f8f8f8;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 30px;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-header img{height:55px}
-header nav a{
-  margin-left:20px;
-  text-decoration:none;
-  color:#000;
-  font-weight:600;
-}
-header nav a:hover{color:#007bff}
+/* Sticky Navigation */
+nav{position:sticky;top:0;background:#fff;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+nav ul{display:flex;justify-content:center;padding:15px;}
+nav ul li{margin:0 15px;}
+nav ul li a{font-weight:600;color:#007bff;transition:0.3s;}
+nav ul li a.active, nav ul li a:hover{color:#0056b3;}
 
-/* SLIDER */
-.slider{width:100%;height:420px;overflow:hidden}
-.slider img{width:100%;height:100%;object-fit:cover}
+/* Hero Section */
+.hero{background:#f8f8f8;text-align:center;padding:100px 20px;position:relative;}
+.hero h1{font-size:48px;color:#007bff;margin-bottom:20px;}
+.hero p{font-size:20px;color:#111;margin-bottom:30px;}
+.hero .cta-btn{padding:12px 30px;background:#007bff;color:#fff;border:none;border-radius:5px;font-size:18px;cursor:pointer;transition:0.3s;}
+.hero .cta-btn:hover{background:#0056b3;}
 
-/* SECTION COMMON */
-section{padding:60px 20px;max-width:1200px;margin:auto}
-h2{color:#007bff;margin-bottom:15px;text-align:center}
-p{text-align:center;margin-bottom:25px;color:#000}
+/* Services */
+.services{padding:80px 20px;text-align:center;}
+.services h2{font-size:36px;color:#007bff;margin-bottom:40px;}
+.service-box{display:inline-block;width:280px;background:#f8f8f8;margin:15px;padding:25px;border-radius:10px;vertical-align:top;transition:0.3s;box-shadow:0 6px 20px rgba(0,0,0,0.1);}
+.service-box:hover{transform:translateY(-5px);box-shadow:0 12px 25px rgba(0,0,0,0.15);}
+.service-icon{font-size:36px;color:#007bff;margin-bottom:10px;}
+.service-box h3{color:#111;margin-bottom:15px;}
 
-/* SERVICES */
-.service-list{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-}
-.service-box{
-  border:1px solid #ddd;
-  padding:25px;
-  border-radius:10px;
-}
-.service-box h3{margin-bottom:10px;color:#000}
+/* Gallery */
+.gallery{padding:80px 20px;text-align:center;}
+.gallery h2{font-size:36px;color:#007bff;margin-bottom:40px;}
+.gallery img{width:220px;height:150px;margin:10px;object-fit:cover;cursor:pointer;border-radius:8px;transition:0.3s;}
 
-/* MANAGING DIRECTOR */
-.md-section{text-align:center}
-.md-section img{
-  width:200px;
-  border-radius:50%;
-  margin-bottom:15px;
-}
-.md-section h3{margin-bottom:5px}
-.md-section span{color:#555}
+/* Lightbox */
+#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:9999;}
+#lightbox img{max-width:90%;max-height:90%;border-radius:10px;animation:zoom 0.3s ease;}
+#close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer;}
+@keyframes zoom{from{transform:scale(0.8)}to{transform:scale(1)}}
 
-/* GALLERY */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:20px;
-}
-.gallery img{
-  width:80%;
-  margin:auto;
-  display:block;
-  border-radius:10px;
-  transition:0.3s;
-}
-.gallery img:hover{transform:scale(1.05)}
+/* Managing Director */
+.md-section{padding:80px 20px;text-align:center;}
+.md-section img{width:200px;border-radius:50%;margin-bottom:15px;box-shadow:0 8px 20px rgba(0,0,0,0.15);transition:transform 0.3s, box-shadow 0.3s;}
+.md-section img:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 14px 30px rgba(0,0,0,0.25);}
+.md-section h3{color:#007bff;margin-bottom:5px;}
+.md-section p{color:#111;font-size:16px;}
 
-/* CONTACT */
-.contact{
-  background:#007bff;
-  color:#fff;
-  padding:60px 20px;
-}
-.contact h2{color:#fff}
-.contact form{
-  max-width:600px;
-  margin:auto;
-}
-.contact input,.contact textarea{
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border:none;
-  border-radius:5px;
-}
-.contact button{
-  padding:12px 30px;
-  border:none;
-  border-radius:5px;
-  background:#fff;
-  color:#007bff;
-  font-weight:bold;
-  cursor:pointer;
-}
+/* Testimonials */
+.testimonials{padding:80px 20px;text-align:center;background:#f8f8f8;}
+.testimonials h2{font-size:36px;color:#007bff;margin-bottom:40px;}
+.testimonial-box{display:inline-block;width:260px;background:#fff;margin:15px;padding:20px;border-radius:10px;vertical-align:top;box-shadow:0 6px 15px rgba(0,0,0,0.1);}
+.testimonial-photo{width:80px;height:80px;background:#111;margin:0 auto 15px;border-radius:50%;}
 
-/* FLOATING WHATSAPP */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:#fff;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:26px;
-  text-decoration:none;
-  box-shadow:0 4px 10px rgba(0,0,0,0.3);
-}
+/* Pricing */
+.pricing{padding:80px 20px;text-align:center;}
+.pricing h2{font-size:36px;color:#007bff;margin-bottom:40px;}
+.package-box{display:inline-block;width:260px;background:#111;color:#fff;margin:15px;padding:20px;border-radius:10px;vertical-align:top;transition:0.3s;}
+.package-box:hover{transform:translateY(-5px);box-shadow:0 12px 25px rgba(0,0,0,0.15);}
+.package-photo{width:80px;height:80px;background:#555;margin:0 auto 15px;border-radius:50%;}
+.package-title{font-size:22px;margin-bottom:10px;}
+.package-price{font-size:20px;margin-bottom:10px;}
+.package-features{font-size:16px;text-align:left;margin-bottom:15px;}
+.package-btn{padding:10px 20px;background:#007bff;color:#fff;border:none;border-radius:5px;cursor:pointer;transition:0.3s;}
+.package-btn:hover{background:#0056b3;}
 
-/* FOOTER */
-footer{
-  background:#f8f8f8;
-  text-align:center;
-  padding:15px;
-  font-size:14px;
-}
+/* Contact */
+.contact{padding:80px 20px;text-align:center;}
+.contact h2{font-size:36px;color:#007bff;margin-bottom:40px;}
+.contact form{max-width:400px;margin:0 auto;text-align:left;}
+.contact input, .contact textarea{width:100%;padding:10px;margin-bottom:15px;border:1px solid #ccc;border-radius:5px;}
+.contact button{padding:12px 25px;background:#007bff;color:#fff;border:none;border-radius:5px;cursor:pointer;transition:0.3s;}
+.contact button:hover{background:#0056b3;}
 
-/* MOBILE */
-@media(max-width:768px){
-  header{flex-direction:column;align-items:flex-start}
-  header nav{margin-top:10px}
-  .slider{height:250px}
-  .md-section img{width:150px}
-}
+/* Footer */
+footer{background:#007bff;color:#fff;text-align:center;padding:25px 20px;font-size:14px;}
+footer .social-links{margin-top:10px;}
+footer .social-links a{color:#fff;margin:0 10px;font-size:20px;transition:0.3s;}
+footer .social-links a:hover{color:#ccc;transform:scale(1.2);}
+
+/* Dark Mode */
+.dark-mode{background:#111;color:#f8f8f8;}
+.dark-mode .hero{background:#222;color:#f8f8f8;}
+.dark-mode .hero h1{color:#00aaff;}
+.dark-mode .services .service-box{background:#222;color:#f8f8f8;}
+.dark-mode .gallery img{border:2px solid #555;}
+.dark-mode .md-section img{box-shadow:0 8px 20px rgba(255,255,255,0.15);}
+.dark-mode .testimonial-box{background:#222;color:#f8f8f8;}
+.dark-mode .package-box{background:#222;color:#fff;}
+.dark-mode .contact form{background:#222;color:#f8f8f8;border:1px solid #555;}
+.dark-mode footer{background:#0056b3;color:#fff;}
+
+/* Dark Mode Toggle Button */
+#darkToggle{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background:#007bff;color:#fff;border:none;border-radius:50%;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);z-index:9999;font-size:20px;transition:0.3s;}
+#darkToggle:hover{background:#0056b3;}
 </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
-<header>
-  <img src="logo.png" alt="Print Care Logo">
-  <nav>
-    <a href="#services">Services</a>
-    <a href="#director">Director</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+<!-- Navigation -->
+<nav>
+<ul>
+  <li><a href="#hero" class="active">Home</a></li>
+  <li><a href="#services">Services</a></li>
+  <li><a href="#pricing">Pricing</a></li>
+  <li><a href="#gallery">Gallery</a></li>
+  <li><a href="#director">Director</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
 
-<!-- SLIDER -->
-<div class="slider">
-  <img src="assets/slides/slide1.jpg" alt="">
-</div>
+<!-- Hero Section -->
+<section class="hero" id="hero" data-aos="fade-up">
+  <h1>Bring Your Ideas to Life with Print Care</h1>
+  <p>High-quality prints and creative designs tailored for you</p>
+  <button class="cta-btn" onclick="location.href='#contact'">Get a Quote</button>
+</section>
 
-<!-- SERVICES -->
-<section id="services">
+<!-- Services Section -->
+<section class="services" id="services" data-aos="fade-up">
 <h2>Our Services</h2>
-<p>High-quality printing, design, and packaging solution.</p>
-
-<div class="service-list">
-
 <div class="service-box">
-<h3>Printing Services</h3>
-<ul>
-<li>Business Cards</li>
-<li>Flyers & Brochures</li>
-<li>Posters & Banners</li>
-<li>Books & Magazines</li>
-<li>Certificates & Invitations</li>
-<li>Calendars</li>
-<li>Packaging Prints</li>
-</ul>
+  <div class="service-icon"><i class="fa-solid fa-print"></i></div>
+  <h3>Printing Services</h3>
+  <ul>
+    <li>Business Cards</li>
+    <li>Flyers & Brochures</li>
+    <li>Posters & Banners</li>
+    <li>Books & Magazines</li>
+    <li>Certificates & Invitations</li>
+    <li>Calendars</li>
+    <li>Packaging Prints</li>
+  </ul>
 </div>
-
 <div class="service-box">
-<h3>Graphic Design</h3>
-<ul>
-<li>Logo Design</li>
-<li>Brand Identity</li>
-<li>Advertising Design</li>
-<li>Corporate Identity</li>
-<li>Custom Artwork</li>
-</ul>
+  <div class="service-icon"><i class="fa-solid fa-pen-nib"></i></div>
+  <h3>Graphic Design</h3>
+  <ul>
+    <li>Logo Design</li>
+    <li>Brand Identity</li>
+    <li>Advertising Design</li>
+    <li>Corporate Identity</li>
+    <li>Custom Artwork</li>
+  </ul>
 </div>
-
 <div class="service-box">
-<h3>Specialized Solutions</h3>
-<ul>
-<li>Digital Printing</li>
-<li>Offset Printing</li>
-<li>Large Format Printing</li>
-<li>Packaging & Labeling</li>
-<li>Promotional Items</li>
-</ul>
-</div>
-
+  <div class="service-icon"><i class="fa-solid fa-box-open"></i></div>
+  <h3>Specialized Solutions</h3>
+  <ul>
+    <li>Digital Printing</li>
+    <li>Offset Printing</li>
+    <li>Large Format Printing</li>
+    <li>Packaging & Labeling</li>
+    <li>Promotional Items</li>
+  </ul>
 </div>
 </section>
 
-<!-- MANAGING DIRECTOR -->
-<section id="director" class="md-section">
-<h2>Managing Director</h2>
-<img src="photo unish.jpg" alt="Unish Neupane">
+<!-- Pricing Section -->
+<section class="pricing" id="pricing" data-aos="fade-up">
+<h2>Our Packages</h2>
+<div class="package-box">
+  <div class="package-photo"></div>
+  <div class="package-title">Basic</div>
+  <div class="package-price">₨ ___</div>
+  <div class="package-features">
+    - Feature 1<br>
+    - Feature 2<br>
+    - Feature 3
+  </div>
+  <button class="package-btn">Get a Quote</button>
+</div>
+<div class="package-box">
+  <div class="package-photo"></div>
+  <div class="package-title">Standard</div>
+  <div class="package-price">₨ ___</div>
+  <div class="package-features">
+    - Feature 1<br>
+    - Feature 2<br>
+    - Feature 3
+  </div>
+  <button class="package-btn">Get a Quote</button>
+</div>
+<div class="package-box">
+  <div class="package-photo"></div>
+  <div class="package-title">Premium</div>
+  <div class="package-price">₨ ___</div>
+  <div class="package-features">
+    - Feature 1<br>
+    - Feature 2<br>
+    - Feature 3
+  </div>
+  <button class="package-btn">Get a Quote</button>
+</div>
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery" id="gallery" data-aos="fade-up">
+<h2>Our Gallery</h2>
+<img src="assets/gallery/gallery1.jpg" alt="Gallery 1" loading="lazy">
+<img src="assets/gallery/gallery2.jpg" alt="Gallery 2" loading="lazy">
+<img src="assets/gallery/gallery3.jpg" alt="Gallery 3" loading="lazy">
+<img src="assets/gallery/gallery4.jpg" alt="Gallery 4" loading="lazy">
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <span id="close">&times;</span>
+  <img id="lightbox-img">
+</div>
+
+<!-- Managing Director Section -->
+<section class="md-section" id="director" data-aos="fade-up">
+<img src="photo unish.jpg" alt="Unish Neupane – Managing Director">
 <h3>Unish Neupane</h3>
-<span>Managing Director & Graphic Designer</span>
+<p>Managing Director & Graphic Designer</p>
 </section>
 
-<!-- GALLERY -->
-<section id="gallery">
-<h2>Our Works</h2>
-<div class="gallery">
-<img src="assets/gallery/gallery1.jpg">
-<img src="assets/gallery/gallery2.jpg">
-<img src="assets/gallery/gallery3.jpg">
-<img src="assets/gallery/gallery4.jpg">
+<!-- Testimonials Section -->
+<section class="testimonials" id="testimonials" data-aos="fade-up">
+<h2>What Our Clients Say</h2>
+<div class="testimonial-box">
+  <div class="testimonial-photo"></div>
+  <p><strong>Client Name</strong></p>
+  <p>“Sample feedback text. Replace from .dev.”</p>
+</div>
+<div class="testimonial-box">
+  <div class="testimonial-photo"></div>
+  <p><strong>Client Name</strong></p>
+  <p>“Sample feedback text. Replace from .dev.”</p>
+</div>
+<div class="testimonial-box">
+  <div class="testimonial-photo"></div>
+  <p><strong>Client Name</strong></p>
+  <p>“Sample feedback text. Replace from .dev.”</p>
+</div>
+<div class="testimonial-box">
+  <div class="testimonial-photo"></div>
+  <p><strong>Client Name</strong></p>
+  <p>“Sample feedback text. Replace from .dev.”</p>
 </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
+<!-- Contact Section -->
+<section class="contact" id="contact" data-aos="fade-up">
 <h2>Contact Us</h2>
-<form>
-<input type="text" placeholder="Your Name" required>
-<input type="email" placeholder="Email" required>
-<textarea rows="5" placeholder="Message" required></textarea>
-<button type="submit">Send Message</button>
+<form id="contactForm">
+  <input type="text" placeholder="Your Name" required>
+  <input type="email" placeholder="Email" required>
+  <textarea rows="5" placeholder="Message" required></textarea>
+  <button type="submit">Send Message</button>
+  <p id="successMsg" style="display:none;margin-top:15px;font-weight:500;color:#007bff;text-align:center;">
+    ✅ Thank you! Your message has been sent successfully.
+  </p>
 </form>
 </section>
 
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/9779811809093" target="_blank">💬</a>
-
+<!-- Footer -->
 <footer>
-© 2025 Print Care. All Rights Reserved.
+  <p>© 2025 Print Care. All Rights Reserved.</p>
+  <div class="social-links">
+    <a href="https://www.facebook.com/printcare" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/printcare" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/company/printcare" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://wa.me/9779811809093" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
 </footer>
 
+<!-- Dark Mode Toggle -->
+<button id="darkToggle">🌓</button>
+
+<!-- Scripts -->
+<script>
+// Sticky Nav Active Highlight
+const sections=document.querySelectorAll('section');
+const navLinks=document.querySelectorAll('nav ul li a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(section=>{
+    const sectionTop=section.offsetTop-80;
+    if(pageYOffset>=sectionTop) current=section.getAttribute('id');
+  });
+  navLinks.forEach(a=>a.classList.remove('active'));
+  navLinks.forEach(a=>{if(a.getAttribute('href')=='#'+current)a.classList.add('active');});
+});
+
+// Lightbox
+const galleryImages=document.querySelectorAll('.gallery img');
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=document.getElementById('lightbox-img');
+const closeBtn=document.getElementById('close');
+galleryImages.forEach(img=>{
+  img.addEventListener('click',()=>{
+    lightbox.style.display='flex';
+    lightboxImg.src=img.src;
+  });
+});
+closeBtn.onclick=()=>lightbox.style.display='none';
+lightbox.onclick=e=>{if(e.target!==lightboxImg)lightbox.style.display='none';};
+
+// Contact Form Success
+const form=document.getElementById('contactForm');
+const successMsg=document.getElementById('successMsg');
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  successMsg.style.display='block';
+  form.reset();
+});
+
+// Dark Mode Toggle
+const darkToggle=document.getElementById('darkToggle');
+if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark-mode');
+darkToggle.onclick=()=>{
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('theme',document.body.classList.contains('dark-mode')?'dark':'light');
+};
+
+// AOS Initialization
+AOS.init({duration:800,once:true});
+</script>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </body>
 </html>
