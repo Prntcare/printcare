@@ -25,34 +25,35 @@ header nav a{margin-left:20px;font-size:1rem;color:#fff;}
 
 /* Services Section */
 .services{padding:50px 20px;background:#fff;}
-.services h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#000;}
+.services h2{color:#007bff;text-align:center;margin-bottom:20px;font-size:2rem;}
+.services p{color:#000;text-align:center;max-width:800px;margin:0 auto 40px auto;font-size:1rem;}
 .service-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.service-item{background:#f0f0f0;padding:20px;border-radius:10px;text-align:center;transition:0.3s;}
+.service-item{background:#f0f0f0;padding:20px;border-radius:10px;text-align:left;transition:0.3s;}
 .service-item:hover{transform:scale(1.05);}
-.service-item img{height:150px;margin-bottom:15px;}
-.service-item h3{margin-bottom:10px;}
-.service-item p{font-size:0.9rem;}
+.service-item h3{margin-bottom:10px;color:#007bff;}
+.service-item ul li{margin-bottom:5px;color:#000;}
 
 /* Managing Director Section */
 .md-section{padding:50px 20px;background:#fff;text-align:center;}
-.md-section h2{font-size:2rem;margin-bottom:20px;}
+.md-section h2{font-size:2rem;margin-bottom:20px;color:#007bff;}
 .md-section img{width:200px;height:auto;border-radius:50%;margin:20px 0;cursor:pointer;}
-.md-section h3{margin-bottom:10px;}
-.md-section p{font-size:1rem;color:#555;}
+.md-section h3{margin-bottom:10px;color:#000;}
+.md-section p{font-size:1rem;color:#000;}
 
 /* Gallery Section */
 .gallery-section{padding:50px 20px;}
-.gallery-section h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#000;}
+.gallery-section h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#007bff;}
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-.gallery img{width:80%;height:auto;margin:0 auto;display:block;border-radius:10px;transition:0.3s;}
+.gallery img{width:64%;height:auto;margin:0 auto;display:block;border-radius:10px;transition:0.3s;}
 .gallery img:hover{transform:scale(1.05);}
 
 /* Contact Section */
 .contact{padding:50px 20px;background:#000;color:#fff;}
-.contact h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#fff;}
+.contact h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#007bff;}
 .contact form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:15px;}
 .contact input,.contact textarea{padding:10px;border-radius:5px;border:none;font-size:1rem;}
-.contact button{padding:15px;background:#fff;color:#000;font-weight:bold;border:none;border-radius:5px;cursor:pointer;font-size:1rem;}
+.contact button{padding:15px;background:#007bff;color:#fff;font-weight:bold;border:none;border-radius:5px;cursor:pointer;font-size:1rem;}
+.contact button:hover{opacity:0.9;}
 
 /* Mini Map */
 .mini-map{margin:50px auto;max-width:600px;border-radius:10px;overflow:hidden;box-shadow:0 0 10px rgba(0,0,0,0.2);}
@@ -69,7 +70,7 @@ header nav a{margin-left:20px;font-size:1rem;color:#fff;}
 /* AI Chatbox */
 .ai-chat{position:fixed;bottom:80px;right:80px;background:#fff;width:300px;height:400px;border-radius:10px;box-shadow:0 0 15px rgba(0,0,0,0.3);display:none;flex-direction:column;z-index:1001;}
 .ai-chat header{background:#007bff;color:#fff;padding:10px;border-radius:10px 10px 0 0;font-weight:bold;}
-.ai-chat .messages{flex:1;padding:10px;overflow-y:auto;}
+.ai-chat .messages{flex:1;padding:10px;overflow-y:auto;color:#000;}
 .ai-chat input{padding:10px;border:none;border-top:1px solid #ccc;width:100%;}
 </style>
 </head>
@@ -98,22 +99,41 @@ header nav a{margin-left:20px;font-size:1rem;color:#fff;}
 
 <!-- Services -->
 <section class="services" id="services">
-  <h2>Our Services</h2>
+  <h2>These are the services of Print Care</h2>
+  <p>High-quality printing, design, and packaging solutions in Nepal.</p>
+
   <div class="service-list">
     <div class="service-item">
-      <img src="assets/gallery/service1.jpg" alt="Service 1">
-      <h3>Printing</h3>
-      <p>High-quality printing for all your needs.</p>
+      <h3>Printing Services</h3>
+      <ul>
+        <li>Business Cards</li>
+        <li>Flyers & Brochures</li>
+        <li>Posters & Banners</li>
+        <li>Books & Magazines</li>
+        <li>Certificates & Invitations</li>
+        <li>Calendars</li>
+        <li>Packaging Prints</li>
+      </ul>
     </div>
     <div class="service-item">
-      <img src="assets/gallery/service2.jpg" alt="Service 2">
-      <h3>Design</h3>
-      <p>Creative designs for your brand and projects.</p>
+      <h3>Graphic Design</h3>
+      <ul>
+        <li>Logo Design</li>
+        <li>Brand Identity</li>
+        <li>Advertising Design</li>
+        <li>Corporate Identity</li>
+        <li>Custom Artwork</li>
+      </ul>
     </div>
     <div class="service-item">
-      <img src="assets/gallery/service3.jpg" alt="Service 3">
-      <h3>Copy & Scan</h3>
-      <p>Fast and reliable copying and scanning services.</p>
+      <h3>Specialized Solutions</h3>
+      <ul>
+        <li>Digital Printing</li>
+        <li>Offset Printing</li>
+        <li>Large Format Printing</li>
+        <li>Packaging & Labeling</li>
+        <li>Promotional Items</li>
+      </ul>
     </div>
   </div>
 </section>
