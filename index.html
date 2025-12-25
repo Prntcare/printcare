@@ -3,227 +3,298 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Design and Printing Solution</title>
+<title>Print Care – Design & Printing Solution</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 body{background:#f9f9f9;color:#111;overflow-x:hidden;}
 
-/* Top Section */
-.top-section{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.1);z-index:10;}
-.top-section img#logo{height:60px;}
+/* ================= TOP BAR ================= */
+.top-section{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 20px;
+    background:#fff;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+#logo{height:60px;}
 nav{display:flex;gap:12px;}
-nav a{text-decoration:none;color:#111;font-weight:bold;padding:6px 12px;border-radius:4px;transition:0.3s;font-size:1rem;}
+nav a{text-decoration:none;color:#111;font-weight:bold;}
 nav a:hover{color:#007bff;}
 
-/* Slider */
-.slider-container{position:relative;width:90%;max-width:1000px;margin:20px auto;}
-.slider{width:100%;overflow:hidden;border-radius:8px;}
-.slider-track{display:flex;transition:transform 0.5s ease;}
-.slider img{width:100%;object-fit:cover;border-radius:8px;}
-
-/* Description */
-.description{background:#fff;padding:12px;margin:10px auto;border-radius:8px;text-align:center;width:90%;max-width:1000px;}
-
-/* Service Sections */
-.service-section{background:#fff;padding:12px;margin:20px auto;border-radius:8px;width:90%;max-width:1000px;}
-.service-section h3{color:#007bff;margin-bottom:10px;}
-.service-section ul{margin-left:15px;line-height:1.5;}
-.service-section ul li{margin:4px 0;padding:4px 6px;background:rgba(0,123,255,0.05);border-radius:4px;font-size:0.9rem;}
-
-/* Gallery */
-.gallery{width:90%;max-width:1000px;margin:20px auto;}
-.gallery img{width:100%;height:auto;object-fit:cover;border-radius:6px;}
-/* For Gallery 3 & 4 side by side */
-.gallery.gallery-2{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;}
-
-/* Floating Buttons Vertical Right */
-.floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
-    position:absolute;right:-50px;width:40px;height:40px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:20px;cursor:pointer;opacity:0.85;transition:transform 0.3s,opacity 0.3s;z-index:1000;
+/* ================= SLIDER ================= */
+.slider-container{
+    position:relative;
+    width:90%;
+    max-width:1000px;
+    margin:20px auto;
 }
-.floating-whatsapp{top:10px;background:#25D366;color:#fff;animation:slideInRight 0.5s ease forwards 0.2s;}
-.floating-email{top:65px;background:#007bff;color:#fff;animation:slideInRight 0.5s ease forwards 0.4s;}
-.floating-chat{top:120px;background:#ff6600;color:#fff;animation:slideInRight 0.5s ease forwards 0.6s;}
-.floating-logo{top:175px;background:#111;color:#fff;animation:slideInRight 0.5s ease forwards 0.8s;}
-.floating-whatsapp:hover,.floating-email:hover,.floating-chat:hover,.floating-logo:hover{transform:scale(1.3);opacity:1;}
-@keyframes slideInRight{0%{transform:translateX(50px);opacity:0;}100%{transform:translateX(0);opacity:0.85;}}
+.slider{
+    overflow:hidden;
+    border-radius:8px;
+}
+.slider-track{
+    display:flex;
+    transition:transform 0.6s ease-in-out;
+}
+.slider-track img{
+    width:100%;
+    flex-shrink:0;
+    object-fit:cover;
+}
 
-/* AI Chat Popup */
-.chat-popup{position:fixed;bottom:70px;right:110px;width:300px;background:#fff;border-radius:10px;display:flex;flex-direction:column;overflow:hidden;z-index:1000;transform:translateX(120%);opacity:0;transition:transform 0.5s ease, opacity 0.5s ease;}
-.chat-popup.show{transform:translateX(0);opacity:1;}
-.chat-popup .close-chat{position:absolute;top:5px;right:8px;font-size:18px;color:#fff;background:#ff6600;width:28px;height:28px;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;z-index:1001;transition:transform 0.3s;}
-.chat-popup .close-chat:hover{transform:scale(1.2);}
-.chat-popup .chat-header{background:#007bff;color:#fff;padding:8px;text-align:center;font-weight:bold;}
-.chat-popup .chat-messages{flex:1;padding:8px;overflow:auto;}
-.chat-popup .chat-input{display:flex;padding:6px;gap:5px;}
-.chat-popup .chat-input input{flex:1;padding:6px;border-radius:4px;border:1px solid #ccc;}
-.chat-popup .chat-input button{padding:6px 10px;background:#007bff;color:#fff;border:none;border-radius:4px;cursor:pointer;}
+/* ================= FLOATING BUTTONS ================= */
+.floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
+    position:absolute;
+    right:-45px;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:18px;
+    opacity:0.85;
+    transition:0.3s;
+    z-index:10;
+}
+.floating-whatsapp{top:10px;background:#25D366;color:#fff;}
+.floating-email{top:60px;background:#007bff;color:#fff;}
+.floating-chat{top:110px;background:#ff6600;color:#fff;}
+.floating-logo{top:160px;background:#111;color:#fff;}
+.floating-whatsapp:hover,
+.floating-email:hover,
+.floating-chat:hover,
+.floating-logo:hover{transform:scale(1.2);opacity:1;}
 
-/* Mini Map Section */
-.mini-map-container{width:100%;padding:20px 0;background:#f5f5f5;display:flex;justify-content:center;align-items:center;position:relative;margin-top:30px;}
-.map-content{position:relative;width:90%;max-width:600px;text-align:center;}
-.map-content h3{margin-bottom:10px;font-size:1rem;color:#111;}
-.map-icon{width:40px;height:40px;border-radius:50%;border:none;background:#007bff;color:#fff;cursor:pointer;font-size:20px;transition:transform 0.3s,background 0.3s;}
-.map-icon:hover{transform:scale(1.2);background:#0056b3;}
-.mini-map{width:100%;height:250px;margin-top:10px;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.1);display:none;}
-.mini-map.show{display:block;animation:fadeIn 0.5s ease forwards;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+/* ================= DESCRIPTION ================= */
+.description{
+    background:#fff;
+    padding:15px;
+    margin:10px auto;
+    width:90%;
+    max-width:1000px;
+    border-radius:8px;
+    text-align:center;
+}
 
-/* Responsive */
+/* ================= SERVICES ================= */
+.service-section{
+    background:#fff;
+    padding:15px;
+    margin:20px auto;
+    width:90%;
+    max-width:1000px;
+    border-radius:8px;
+}
+.service-section h3{color:#007bff;margin-bottom:10px;}
+.service-section ul{margin-left:15px;}
+.service-section li{
+    margin:6px 0;
+    background:#eef5ff;
+    padding:6px;
+    border-radius:4px;
+    font-size:0.9rem;
+}
+
+/* ================= GALLERY ================= */
+.gallery{
+    width:90%;
+    max-width:1000px;
+    margin:10px auto;
+}
+.gallery img{
+    width:100%;
+    border-radius:6px;
+}
+.gallery-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+}
+
+/* ================= CHAT POPUP ================= */
+.chat-popup{
+    position:fixed;
+    bottom:80px;
+    right:20px;
+    width:280px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    display:none;
+    flex-direction:column;
+    z-index:1000;
+}
+.chat-popup.show{display:flex;}
+.chat-header{
+    background:#007bff;
+    color:#fff;
+    padding:10px;
+    text-align:center;
+}
+.close-chat{
+    position:absolute;
+    top:5px;
+    right:8px;
+    cursor:pointer;
+    font-size:18px;
+}
+.chat-messages{flex:1;padding:10px;overflow:auto;font-size:0.9rem;}
+.chat-input{display:flex;padding:8px;gap:6px;}
+.chat-input input{flex:1;padding:6px;}
+.chat-input button{background:#007bff;color:#fff;border:none;padding:6px 10px;cursor:pointer;}
+
+/* ================= MINI MAP ================= */
+.mini-map-container{
+    background:#f2f2f2;
+    padding:20px;
+    margin-top:30px;
+    text-align:center;
+}
+.map-icon{
+    background:#007bff;
+    color:#fff;
+    border:none;
+    padding:10px;
+    border-radius:50%;
+    cursor:pointer;
+}
+.mini-map{
+    display:none;
+    height:250px;
+    margin-top:10px;
+    border-radius:8px;
+}
+.mini-map.show{display:block;}
+
 @media(max-width:600px){
-    .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{right:-35px;width:32px;height:32px;font-size:16px;}
-    .floating-whatsapp{top:5px;}
-    .floating-email{top:50px;}
-    .floating-chat{top:95px;}
-    .floating-logo{top:140px;}
-    .chat-popup{width:250px;bottom:80px;right:10px;}
+    .gallery-2{grid-template-columns:1fr;}
 }
 </style>
 </head>
+
 <body>
 
-<!-- Top Section -->
+<!-- TOP BAR -->
 <div class="top-section">
-    <img id="logo" src="logo.png" alt="PrintCare Logo">
+    <img id="logo" src="logo.png">
     <nav>
-        <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
+        <a href="#">Services</a>
+        <a href="#">Gallery</a>
+        <a href="#">Contact</a>
     </nav>
 </div>
 
-<!-- Slider Section -->
+<!-- SLIDER -->
 <div class="slider-container">
     <div class="slider">
         <div class="slider-track">
-            <img src="assets/slides/slide1.jpg" class="active">
+            <img src="assets/slides/slide1.jpg">
             <img src="assets/slides/slide2.jpg">
             <img src="assets/slides/slide3.jpg">
             <img src="assets/slides/slide4.jpg">
         </div>
     </div>
 
-    <!-- Floating Buttons -->
     <div class="floating-whatsapp">💬</div>
     <div class="floating-email">📧</div>
     <div id="chatBtn" class="floating-chat">🤖</div>
     <div class="floating-logo">🏢</div>
 </div>
 
-<!-- Description -->
+<!-- DESCRIPTION -->
 <div class="description">
-We deliver high-quality printing, design, and packaging solutions in Nepal. We help businesses and individuals turn ideas into professional outputs.
+    We deliver high-quality printing, design, and packaging solutions in Nepal.
 </div>
 
-<!-- Printing Services + Gallery 1 -->
+<!-- SERVICES + GALLERY -->
 <div class="service-section">
-  <h3>Printing Services</h3>
-  <ul>
-    <li>Business Cards – Standard/premium finishes</li>
-    <li>Flyers & Brochures – Marketing campaigns</li>
-    <li>Posters & Banners – Large-format printing</li>
-    <li>Books & Magazines – Professional publishing</li>
-    <li>Certificates & Invitations</li>
-    <li>Calendars</li>
-    <li>Packaging Prints</li>
-  </ul>
+<h3>Printing Services</h3>
+<ul>
+<li>Business Cards</li>
+<li>Flyers & Brochures</li>
+<li>Posters & Banners</li>
+<li>Books & Magazines</li>
+</ul>
 </div>
-<div class="gallery">
-    <img src="assets/gallery/gallery1.jpg" alt="Gallery1">
-</div>
+<div class="gallery"><img src="assets/gallery/gallery1.jpg"></div>
 
-<!-- Graphic Design Services + Gallery 2 -->
 <div class="service-section">
-  <h3>Graphic Design Services</h3>
-  <ul>
-    <li>Logo Design</li>
-    <li>Layout Design</li>
-    <li>Advertising Design</li>
-    <li>Corporate Identity</li>
-    <li>Custom Artwork</li>
-  </ul>
+<h3>Graphic Design</h3>
+<ul>
+<li>Logo Design</li>
+<li>Brand Identity</li>
+<li>Advertising Design</li>
+</ul>
 </div>
-<div class="gallery">
-    <img src="assets/gallery/gallery2.jpg" alt="Gallery2">
-</div>
+<div class="gallery"><img src="assets/gallery/gallery2.jpg"></div>
 
-<!-- Specialized Solutions + Gallery 3 & 4 -->
 <div class="service-section">
-  <h3>Specialized Solutions</h3>
-  <ul>
-    <li>Digital Printing</li>
-    <li>Offset Printing</li>
-    <li>Large Format Printing</li>
-    <li>Packaging & Labeling</li>
-    <li>Promotional Items</li>
-  </ul>
+<h3>Specialized Solutions</h3>
+<ul>
+<li>Digital Printing</li>
+<li>Offset Printing</li>
+<li>Packaging</li>
+</ul>
 </div>
 <div class="gallery gallery-2">
-    <img src="assets/gallery/gallery3.jpg" alt="Gallery3">
-    <img src="assets/gallery/gallery4.jpg" alt="Gallery4">
+    <img src="assets/gallery/gallery3.jpg">
+    <img src="assets/gallery/gallery4.jpg">
 </div>
 
-<!-- Mini Map Section -->
+<!-- MINI MAP -->
 <div class="mini-map-container">
-    <div class="map-content">
-        <h3>Want directions to Print Care?</h3>
-        <button id="mapBtn" class="map-icon">🗺️</button>
-        <div id="miniMap" class="mini-map"></div>
+    <h3>Find Print Care</h3>
+    <button id="mapBtn" class="map-icon">🗺️</button>
+    <div id="miniMap" class="mini-map"></div>
+</div>
+
+<!-- CHAT -->
+<div class="chat-popup">
+    <div class="chat-header">Chat with us</div>
+    <div class="close-chat">×</div>
+    <div class="chat-messages">Hello 👋 How can we help?</div>
+    <div class="chat-input">
+        <input type="text" placeholder="Type message">
+        <button>Send</button>
     </div>
 </div>
 
-<!-- AI Chat Popup -->
-<div class="chat-popup">
-  <div class="chat-header">Chat with us</div>
-  <div class="close-chat">×</div>
-  <div class="chat-messages"></div>
-  <div class="chat-input">
-    <input type="text" placeholder="Type your message...">
-    <button>Send</button>
-  </div>
-</div>
-
-<!-- Google Maps API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
 
 <script>
-// Slider placeholder
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slider img');
-setInterval(()=>{slides[currentSlide].classList.remove('active');currentSlide=(currentSlide+1)%slides.length;slides[currentSlide].classList.add('active');},5000);
+/* SLIDER */
+let index = 0;
+const track = document.querySelector('.slider-track');
+const slides = document.querySelectorAll('.slider-track img');
+setInterval(()=>{
+    index = (index + 1) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+},5000);
 
-// Floating AI chat draggable
+/* CHAT */
 const chatBtn = document.getElementById('chatBtn');
 const chatPopup = document.querySelector('.chat-popup');
-const closeChatBtn = document.querySelector('.chat-popup .close-chat');
-chatBtn.addEventListener('click', ()=>chatPopup.classList.toggle('show'));
-closeChatBtn.addEventListener('click', ()=>chatPopup.classList.remove('show'));
+const closeChat = document.querySelector('.close-chat');
+chatBtn.onclick = ()=>chatPopup.classList.toggle('show');
+closeChat.onclick = ()=>chatPopup.classList.remove('show');
 
-// Dragging desktop
-let isDragging = false, offsetX, offsetY;
-chatPopup.addEventListener('mousedown',(e)=>{isDragging=true;offsetX=e.clientX-chatPopup.getBoundingClientRect().left;offsetY=e.clientY-chatPopup.getBoundingClientRect().top;});
-document.addEventListener('mousemove',(e)=>{if(!isDragging)return;let left=e.clientX-offsetX,top=e.clientY-offsetY;const maxLeft=window.innerWidth-chatPopup.offsetWidth;const maxTop=window.innerHeight-chatPopup.offsetHeight;if(left<0)left=0;if(top<0)top=0;if(left>maxLeft)left=maxLeft;if(top>maxTop)top=maxTop;chatPopup.style.left=left+'px';chatPopup.style.top=top+'px';chatPopup.style.bottom='auto';chatPopup.style.right='auto';});
-document.addEventListener('mouseup',()=>isDragging=false);
-
-// Dragging mobile
-chatPopup.addEventListener('touchstart',(e)=>{isDragging=true;const touch=e.touches[0];offsetX=touch.clientX-chatPopup.getBoundingClientRect().left;offsetY=touch.clientY-chatPopup.getBoundingClientRect().top;});
-chatPopup.addEventListener('touchmove',(e)=>{if(!isDragging)return;const touch=e.touches[0];let left=touch.clientX-offsetX,top=touch.clientY-offsetY;const maxLeft=window.innerWidth-chatPopup.offsetWidth;const maxTop=window.innerHeight-chatPopup.offsetHeight;if(left<0)left=0;if(top<0)top=0;if(left>maxLeft)left=maxLeft;if(top>maxTop)top=maxTop;chatPopup.style.left=left+'px';chatPopup.style.top=top+'px';chatPopup.style.bottom='auto';chatPopup.style.right='auto';});
-chatPopup.addEventListener('touchend',()=>isDragging=false);
-
-// Mini Google Map toggle
-const mapBtn = document.getElementById('mapBtn');
-const miniMap = document.getElementById('miniMap');
-let mapInitialized = false;
-mapBtn.addEventListener('click', ()=>{
-    miniMap.classList.toggle('show');
-    if(!mapInitialized){
-        const map = new google.maps.Map(miniMap,{
-            center:{lat:27.6675,lng:85.3200}, // Replace with Print Care coords
+/* MAP */
+let mapLoaded=false;
+document.getElementById('mapBtn').onclick=()=>{
+    const mapDiv=document.getElementById('miniMap');
+    mapDiv.classList.toggle('show');
+    if(!mapLoaded){
+        new google.maps.Map(mapDiv,{
+            center:{lat:27.6675,lng:85.3200},
             zoom:16
         });
-        const marker = new google.maps.Marker({position:{lat:27.6675,lng:85.3200},map:map,title:"Print Care"});
-        mapInitialized=true;
+        mapLoaded=true;
     }
-});
+};
 </script>
 
 </body>
