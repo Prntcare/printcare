@@ -1,37 +1,105 @@
-<section id="admin-upload" style="text-align:center; margin:40px 0;">
-  <h3>Upload Gallery Images (.dev Panel)</h3>
-  <input type="file" id="galleryUpload" multiple accept="image/*">
-  <button id="uploadBtn" style="padding:10px 20px; background:#007bff; color:#fff; border:none; border-radius:5px; cursor:pointer;">Upload</button>
-  <p id="uploadMsg" style="color:green; margin-top:10px;"></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print Care - Your Printing & Design Solution</title>
+<meta name="description" content="High-quality printing, graphic design, and packaging solutions in Nepal.">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- AOS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <img src="logo.png" alt="Print Care Logo" style="height:50px;">
+  <ul>
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#director">Director</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section with Slider -->
+<section class="hero" id="hero" data-aos="fade-up">
+  <div class="slider">
+    <img src="assets/slides/slide1.jpg" class="slide active">
+    <img src="assets/slides/slide2.jpg" class="slide">
+    <img src="assets/slides/slide3.jpg" class="slide">
+    <img src="assets/slides/slide4.jpg" class="slide">
+  </div>
+  <div class="hero-text">
+    <h1>Bring Your Ideas to Life with Print Care</h1>
+    <p>High-quality prints and creative designs tailored for you</p>
+    <button class="cta-btn" onclick="location.href='#contact'">Get a Quote <i class="fas fa-arrow-right"></i></button>
+  </div>
 </section>
 
-<script>
-const uploadBtn = document.getElementById('uploadBtn');
-const galleryUpload = document.getElementById('galleryUpload');
-const uploadMsg = document.getElementById('uploadMsg');
+<!-- Services Section -->
+<section class="services" id="services" data-aos="fade-up">
+  <h2 style="color:#007bff;">Our Services</h2>
+  <!-- Add service cards here -->
+</section>
 
-uploadBtn.addEventListener('click', ()=>{
-  const files = galleryUpload.files;
-  if(files.length === 0){ alert('Please select files.'); return; }
+<!-- Pricing Section -->
+<section class="pricing" id="pricing" data-aos="fade-up">
+  <h2 style="color:#007bff;">Our Packages</h2>
+  <!-- Pricing cards here -->
+</section>
 
-  const formData = new FormData();
-  for(let i=0;i<files.length;i++){ formData.append('images', files[i]); }
+<!-- Gallery Section -->
+<section class="gallery" id="gallery" data-aos="fade-up">
+  <h2 style="color:#007bff;">Our Gallery</h2>
+  <!-- Images dynamically inserted via JS -->
+</section>
 
-  fetch('/upload', { method: 'POST', body: formData })
-    .then(res => res.json())
-    .then(data => {
-      uploadMsg.textContent = `${data.files.length} image(s) uploaded successfully!`;
-      // Add newly uploaded images to gallery dynamically
-      data.files.forEach(fileName => {
-        const img = document.createElement('img');
-        img.src = `assets/gallery/${fileName}`;
-        img.alt = fileName;
-        img.addEventListener('click', ()=>{ lightbox.style.display='flex'; lightboxImg.src=img.src; });
-        galleryContainer.appendChild(img);
-        galleryImages.push(fileName);
-      });
-      galleryUpload.value='';
-    })
-    .catch(err => {console.error(err); uploadMsg.textContent='Upload failed!';});
-});
-</script>
+<!-- Managing Director -->
+<section class="md-section" id="director" data-aos="fade-up">
+  <img src="photo unish.jpg" alt="Unish Neupane – Managing Director">
+  <h3>Unish Neupane</h3>
+  <p>Managing Director & Graphic Designer</p>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials" id="testimonials" data-aos="fade-up">
+  <h2 style="color:#007bff;">What Our Clients Say</h2>
+  <!-- 4 testimonial boxes here -->
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact" data-aos="fade-up">
+  <h2 style="color:#007bff;">Contact Us</h2>
+  <form id="contactForm">
+    <input type="text" placeholder="Your Name" required>
+    <textarea rows="5" placeholder="What do you want?" required></textarea>
+    <button type="submit">Send Message</button>
+    <p id="successMsg" style="display:none;">✅ Your message has been sent successfully.</p>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Print Care. All Rights Reserved.</p>
+  <div class="social-links">
+    <a href="https://www.facebook.com/prntcare" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  </div>
+</footer>
+
+<!-- Dark Mode Toggle -->
+<button id="darkToggle">🌓</button>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
