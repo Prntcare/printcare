@@ -3,123 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Print Care - Your Printing & Design Solution</title>
-<meta name="description" content="High-quality printing, graphic design, and packaging solutions in Nepal.">
+<title>Print Care – Printing & Design Solutions</title>
+<meta name="description" content="Professional printing, branding and design services in Nepal.">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!-- AOS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-
 <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<!-- Navigation -->
-<nav>
-  <div class="logo"><img src="logo.png" alt="Print Care Logo"></div>
-  <ul>
-    <li><a href="#hero" class="active">Home</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#director">Director</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="dark-mode-toggle" id="darkToggle">🌓</div>
-</nav>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">
+    <img src="logo.png" alt="Print Care">
+  </div>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#director">Director</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-<!-- Hero Section -->
+<!-- HERO -->
 <section class="hero" id="hero">
-  <div class="slider">
-    <img src="assets/slides/slide1.webp" class="slide active" loading="lazy">
-    <img src="assets/slides/slide2.webp" class="slide" loading="lazy">
-    <img src="assets/slides/slide3.webp" class="slide" loading="lazy">
-    <img src="assets/slides/slide4.webp" class="slide" loading="lazy">
-  </div>
-  <div class="hero-text" data-aos="fade-up">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
     <h1>Bring Your Ideas to Life with Print Care</h1>
-    <p>High-quality prints and creative designs tailored for you</p>
-    <button class="cta-btn" onclick="location.href='#contact'">Get a Quote <i class="fas fa-arrow-right"></i></button>
+    <p>High-quality prints and creative designs tailored for your business</p>
+    <a href="#contact" class="btn-primary">Get a Quote</a>
   </div>
 </section>
 
-<!-- Services Section -->
-<section class="services" id="services">
-  <h2 data-aos="fade-up">Our Services</h2>
-  <div class="service-cards">
-    <div class="card" data-aos="fade-up"><i class="fas fa-print"></i>
-      <h3>Printing Services</h3>
-      <p>Business Cards, Flyers & Brochures, Posters & Banners, Books & Magazines, Certificates & Invitations, Calendars, Packaging Prints</p>
+<!-- SERVICES -->
+<section class="section" id="services">
+  <h2>Our Services</h2>
+  <div class="cards">
+    <div class="card">
+      <i class="fas fa-print"></i>
+      <h3>Printing</h3>
+      <p>Business cards, brochures, posters, books, packaging & more.</p>
     </div>
-    <div class="card" data-aos="fade-up"><i class="fas fa-pencil-ruler"></i>
+    <div class="card">
+      <i class="fas fa-pencil-ruler"></i>
       <h3>Graphic Design</h3>
-      <p>Logo Design, Brand Identity, Advertising Design, Corporate Identity, Custom Artwork</p>
+      <p>Logo design, branding, advertising & creative visuals.</p>
     </div>
-    <div class="card" data-aos="fade-up"><i class="fas fa-cogs"></i>
-      <h3>Specialized Solutions</h3>
-      <p>Digital Printing, Offset Printing, Large Format Printing, Packaging & Labeling, Promotional Items</p>
+    <div class="card">
+      <i class="fas fa-industry"></i>
+      <h3>Custom Solutions</h3>
+      <p>Offset, digital, large format & promotional printing.</p>
     </div>
   </div>
 </section>
 
-<!-- Pricing Section -->
-<section class="pricing" id="pricing">
-  <h2 data-aos="fade-up">Our Packages</h2>
-  <div class="pricing-cards">
-    <div class="card" data-aos="fade-up">Basic<br>$99</div>
-    <div class="card popular" data-aos="fade-up">Standard<br>$199</div>
-    <div class="card" data-aos="fade-up">Premium<br>$299</div>
+<!-- PRICING -->
+<section class="section light" id="pricing">
+  <h2>Our Packages</h2>
+  <div class="pricing">
+    <div class="price-card">
+      <h3>Basic</h3>
+      <p class="price">$99</p>
+      <span>Small business needs</span>
+    </div>
+    <div class="price-card featured">
+      <h3>Standard</h3>
+      <p class="price">$199</p>
+      <span>Most popular</span>
+    </div>
+    <div class="price-card">
+      <h3>Premium</h3>
+      <p class="price">$299</p>
+      <span>Enterprise solutions</span>
+    </div>
   </div>
 </section>
 
-<!-- Gallery Section -->
-<section class="gallery" id="gallery">
-  <h2 data-aos="fade-up">Our Gallery</h2>
+<!-- GALLERY -->
+<section class="section" id="gallery">
+  <h2>Our Work</h2>
   <div class="gallery-grid" id="galleryGrid"></div>
 </section>
 
-<!-- Managing Director -->
-<section class="md-section" id="director">
-  <img src="assets/md/photo_unish.webp" alt="Unish Neupane – Managing Director">
-  <h3>Unish Neupane</h3>
-  <p>Managing Director & Graphic Designer</p>
-</section>
-
-<!-- Testimonials -->
-<section class="testimonials" id="testimonials">
-  <h2 data-aos="fade-up">What Our Clients Say</h2>
-  <div class="testimonial-cards">
-    <div class="card" data-aos="fade-up"><img src="assets/gallery/gallery1.webp" loading="lazy"><p>“Amazing work!”</p><span>– Client 1</span></div>
-    <div class="card" data-aos="fade-up"><img src="assets/gallery/gallery2.webp" loading="lazy"><p>“Highly professional.”</p><span>– Client 2</span></div>
-    <div class="card" data-aos="fade-up"><img src="assets/gallery/gallery3.webp" loading="lazy"><p>“Great design quality.”</p><span>– Client 3</span></div>
-    <div class="card" data-aos="fade-up"><img src="assets/gallery/gallery4.webp" loading="lazy"><p>“Excellent service.”</p><span>– Client 4</span></div>
+<!-- DIRECTOR -->
+<section class="section light" id="director">
+  <div class="director">
+    <img src="assets/md/md.jpg" alt="Unish Neupane">
+    <h3>Unish Neupane</h3>
+    <p>Managing Director & Graphic Designer</p>
   </div>
 </section>
 
-<!-- Contact Section -->
+<!-- TESTIMONIALS -->
+<section class="section">
+  <h2>What Our Clients Say</h2>
+  <div class="testimonials">
+    <div class="testimonial">“Outstanding print quality and fast delivery.”</div>
+    <div class="testimonial">“Professional team with creative solutions.”</div>
+    <div class="testimonial">“Reliable partner for all our branding needs.”</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section class="contact" id="contact">
   <h2>Contact Us</h2>
   <form id="contactForm">
-    <input type="text" placeholder="Your Name" required>
-    <textarea rows="5" placeholder="What do you want?" required></textarea>
-    <button type="submit">Send Message</button>
-    <p id="successMsg" style="display:none;">✅ Your message has been sent successfully.</p>
+    <input type="text" id="name" placeholder="Your Name" required>
+    <textarea id="message" placeholder="What do you need?" required></textarea>
+    <button type="submit">Send via WhatsApp</button>
   </form>
 </section>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
   <p>© 2025 Print Care. All Rights Reserved.</p>
-  <div class="social-links">
-    <a href="https://www.facebook.com/prntcare" target="_blank"><i class="fab fa-facebook-f"></i></a>
-  </div>
+  <a href="https://www.facebook.com/prntcare" target="_blank">
+    <i class="fab fa-facebook"></i>
+  </a>
 </footer>
 
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <img id="lightboxImg">
+</div>
+
 <script src="js/main.js"></script>
 </body>
 </html>
