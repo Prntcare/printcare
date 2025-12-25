@@ -1,107 +1,65 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{color:#111;background:#fff;line-height:1.6}
+body{line-height:1.6;color:#333;background:#f8f9fa}
 
-/* NAV */
-.navbar{
-  display:flex;justify-content:space-between;
-  padding:20px 8%;position:fixed;width:100%;
-  background:#fff;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.05)
-}
-.navbar img{height:45px}
-.navbar nav a{
-  margin-left:25px;text-decoration:none;color:#111;font-weight:500
-}
+/* HEADER */
+.header{position:sticky;top:0;background:#004080;color:#fff;z-index:1000;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.header .container{display:flex;justify-content:space-between;align-items:center;padding:15px 5%}
+.nav a{margin-left:25px;color:#f8f9fa;text-decoration:none;font-weight:500;position:relative}
+.nav a:hover::after{content:'';position:absolute;width:100%;height:2px;background:#007bff;bottom:-4px;left:0}
+.hamburger{display:none;cursor:pointer;color:#fff}
 
-/* HERO */
-.hero{
-  height:100vh;
-  background:url('../assets/slides/slide1.jpg') center/cover no-repeat;
-  position:relative;display:flex;align-items:center
-}
-.hero-overlay{
-  position:absolute;inset:0;background:rgba(0,0,0,.55)
-}
-.hero-content{
-  position:relative;color:#fff;padding-left:8%;max-width:650px
-}
-.hero-content h1{font-size:48px}
-.hero-content p{margin:20px 0}
-.btn-primary{
-  background:#007bff;color:#fff;padding:14px 30px;
-  text-decoration:none;border-radius:30px
-}
+/* HERO SLIDER */
+.hero{position:relative;height:90vh;overflow:hidden}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;transition:opacity 1s}
+.slide.active{opacity:1}
+.hero .overlay{position:absolute;inset:0;background:rgba(0,80,128,0.55)}
+.hero-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;text-align:center}
+.hero-text h1{font-size:48px;margin-bottom:20px}
+.hero-text .btn{padding:14px 30px;border-radius:30px;background:#007bff;color:#fff;text-decoration:none;font-weight:600}
 
-/* SECTIONS */
-.section{padding:100px 8%;text-align:center}
-.section.light{background:#f8f9fb}
-.section h2{margin-bottom:50px;font-size:32px}
-
-/* CARDS */
-.cards{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px
-}
-.card{
-  background:#fff;padding:35px;border-radius:16px;
-  box-shadow:0 10px 40px rgba(0,0,0,.08)
-}
+/* SECTION */
+.section{padding:100px 5%;text-align:center}
+.section h2{font-size:32px;color:#0056b3;margin-bottom:50px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
+.card{background:#fff;padding:30px;border-radius:15px;box-shadow:0 10px 25px rgba(0,0,0,.08);transition:transform .3s}
+.card:hover{transform:translateY(-8px)}
 .card i{font-size:40px;color:#007bff;margin-bottom:15px}
 
-/* PRICING */
-.pricing{display:flex;gap:30px;justify-content:center;flex-wrap:wrap}
-.price-card{
-  background:#fff;padding:40px;width:260px;border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08)
-}
-.price-card.featured{border:3px solid #007bff}
-.price{font-size:32px;color:#007bff}
+/* DIRECTOR */
+.director-section .director-card{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center}
+.director-card img{max-width:300px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.director-text{max-width:500px}
+.director-text blockquote{font-style:italic;color:#007bff;margin-top:10px}
 
 /* GALLERY */
-.gallery-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px
-}
-.gallery-grid img{
-  width:100%;border-radius:12px;cursor:pointer
-}
-
-/* DIRECTOR */
-.director img{
-  width:180px;border-radius:16px;margin-bottom:15px
-}
-
-/* TESTIMONIALS */
-.testimonials{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px
-}
-.testimonial{
-  background:#fff;padding:30px;border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.07)
-}
-
-/* CONTACT */
-.contact{
-  background:#007bff;color:#fff;padding:80px 8%;text-align:center
-}
-.contact input,.contact textarea{
-  width:100%;max-width:500px;margin:10px auto;
-  padding:15px;border-radius:10px;border:none
-}
-.contact button{
-  padding:14px 40px;border:none;border-radius:30px;
-  background:#fff;color:#007bff;font-weight:600
-}
-
-/* FOOTER */
-footer{
-  padding:30px;text-align:center;background:#111;color:#fff
-}
-footer i{margin-left:10px}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.gallery-grid img{width:100%;border-radius:12px;cursor:pointer;transition:transform .3s}
+.gallery-grid img:hover{transform:scale(1.05)}
 
 /* LIGHTBOX */
-.lightbox{
-  position:fixed;inset:0;background:rgba(0,0,0,.8);
-  display:none;align-items:center;justify-content:center
-}
+.lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);display:none;justify-content:center;align-items:center;z-index:2000}
 .lightbox img{max-width:90%;border-radius:12px}
+.lightbox .close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;background:none;border:none;cursor:pointer}
+.lightbox .nav-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:50px;color:#fff;cursor:pointer;user-select:none}
+.lightbox .left{left:30px}.lightbox .right{right:30px}
+
+/* CTA BANNER */
+.cta-banner{background:#004080;color:#f8f9fa;padding:80px 5%;text-align:center}
+.cta-banner .btn{margin-top:20px}
+
+/* TESTIMONIALS */
+.testimonial-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
+.testimonial-card{background:#fff;padding:25px;border-radius:15px;box-shadow:0 10px 25px rgba(0,0,0,.1)}
+
+/* CONTACT */
+.contact-card{display:flex;flex-wrap:wrap;justify-content:center;gap:50px}
+.contact form{display:flex;flex-direction:column;gap:15px}
+.contact input,.contact textarea{padding:15px;border-radius:10px;border:none;width:300px}
+.contact button{padding:12px 30px;background:#007bff;color:#fff;border-radius:30px;border:none;font-weight:600}
+.contact-info p{margin-top:10px}
+
+/* FOOTER */
+footer{background:#004080;color:#f8f9fa;padding:60px 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px}
+footer h4{margin-bottom:15px}
+footer .social-icons a{color:#f8f9fa;font-size:20px;margin-right:10px;transition:.3s}
+footer .social-icons a:hover{color:#007bff}
