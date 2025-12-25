@@ -15,6 +15,7 @@ body{background:#f9f9f9;color:#111;overflow-x:hidden;}
     display:flex;justify-content:space-between;align-items:center;
     padding:10px 20px;background:#fff;
     box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    position: sticky; top: 0; z-index: 100;
 }
 #logo{height:60px;}
 nav{display:flex;gap:12px;}
@@ -29,18 +30,15 @@ nav a:hover{color:#007bff;}
 
 /* FLOATING BUTTONS */
 .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
-    position:absolute;right:-45px;width:36px;height:36px;
+    position:fixed;right:10px;width:40px;height:40px;
     border-radius:50%;display:flex;align-items:center;justify-content:center;
-    font-size:18px;cursor:pointer;opacity:0.85;transition:0.3s;z-index:10;
+    font-size:20px;cursor:pointer;opacity:0.85;transition:0.3s;z-index:1000;
 }
 .floating-whatsapp{top:10px;background:#25D366;color:#fff;}
-.floating-email{top:60px;background:#007bff;color:#fff;}
-.floating-chat{top:110px;background:#ff6600;color:#fff;}
-.floating-logo{top:160px;background:#111;color:#fff;}
-.floating-whatsapp:hover,
-.floating-email:hover,
-.floating-chat:hover,
-.floating-logo:hover{transform:scale(1.2);opacity:1;}
+.floating-email{top:65px;background:#007bff;color:#fff;}
+.floating-chat{top:120px;background:#ff6600;color:#fff;}
+.floating-logo{top:175px;background:#111;color:#fff;}
+.floating-whatsapp:hover,.floating-email:hover,.floating-chat:hover,.floating-logo:hover{transform:scale(1.3);opacity:1;}
 
 /* CONTENT */
 .description,.service-section{
@@ -68,18 +66,35 @@ nav a:hover{color:#007bff;}
 .chat-popup.show{display:flex;}
 .chat-header{background:#007bff;color:#fff;padding:10px;text-align:center;}
 .close-chat{position:absolute;top:6px;right:10px;cursor:pointer;}
-.chat-messages{flex:1;padding:10px;font-size:0.9rem;}
+.chat-messages{flex:1;padding:10px;font-size:0.9rem;max-height:200px;overflow:auto;}
 .chat-input{display:flex;gap:6px;padding:8px;}
 .chat-input input{flex:1;padding:6px;}
-.chat-input button{background:#007bff;color:#fff;border:none;padding:6px 10px;}
+.chat-input button{background:#007bff;color:#fff;border:none;padding:6px 10px;border-radius:4px;}
 
 /* MAP */
 .mini-map-container{background:#f2f2f2;padding:20px;text-align:center;margin-top:30px;}
-.map-icon{background:#007bff;color:#fff;border:none;padding:10px;border-radius:50%;cursor:pointer;}
+.map-icon{background:#007bff;color:#fff;border:none;padding:10px;border-radius:50%;cursor:pointer;font-size:18px;}
 .mini-map{display:none;width:100%;height:250px;margin-top:10px;border-radius:8px;}
 .mini-map.show{display:block;}
 
+/* MOBILE FIXES */
 @media(max-width:600px){
+    nav{
+        display:flex;
+        flex-wrap:wrap; /* wrap links */
+        justify-content:center;
+        gap:8px;
+    }
+    nav a{font-size:0.9rem;padding:6px 10px;}
+
+    .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
+        width:32px;height:32px;font-size:16px;right:5px;
+    }
+    .floating-whatsapp{top:10px;}
+    .floating-email{top:50px;}
+    .floating-chat{top:90px;}
+    .floating-logo{top:130px;}
+
     .gallery-2{grid-template-columns:1fr;}
 }
 </style>
@@ -107,7 +122,9 @@ nav a:hover{color:#007bff;}
             <img src="assets/slides/slide4.jpg">
         </div>
     </div>
-    <div class="floating-whatsapp">💬</div>
+
+    <!-- FLOATING BUTTONS -->
+    <a class="floating-whatsapp" href="https://wa.me/97798XXXXXXXX" target="_blank">💬</a>
     <div class="floating-email">📧</div>
     <div id="chatBtn" class="floating-chat">🤖</div>
     <div class="floating-logo">🏢</div>
@@ -125,6 +142,9 @@ High-quality printing, design, and packaging solutions in Nepal.
 <li>Flyers & Brochures</li>
 <li>Posters & Banners</li>
 <li>Books & Magazines</li>
+<li>Certificates & Invitations</li>
+<li>Calendars</li>
+<li>Packaging Prints</li>
 </ul>
 </div>
 
@@ -138,6 +158,8 @@ High-quality printing, design, and packaging solutions in Nepal.
 <li>Logo Design</li>
 <li>Brand Identity</li>
 <li>Advertising Design</li>
+<li>Corporate Identity</li>
+<li>Custom Artwork</li>
 </ul>
 </div>
 
@@ -150,7 +172,9 @@ High-quality printing, design, and packaging solutions in Nepal.
 <ul>
 <li>Digital Printing</li>
 <li>Offset Printing</li>
-<li>Packaging</li>
+<li>Large Format Printing</li>
+<li>Packaging & Labeling</li>
+<li>Promotional Items</li>
 </ul>
 </div>
 
@@ -170,14 +194,16 @@ High-quality printing, design, and packaging solutions in Nepal.
 <div class="chat-popup">
 <div class="chat-header">Chat with us</div>
 <div class="close-chat">×</div>
-<div class="chat-messages">Hello 👋 How can we help?</div>
+<div class="chat-messages" id="chatMessages">
+<div><b>Bot:</b> Hi 👋 What’s your name?</div>
+</div>
 <div class="chat-input">
-<input type="text" placeholder="Type message">
-<button>Send</button>
+<input id="chatInput" type="text" placeholder="Type here..." />
+<button id="sendChat">Send</button>
 </div>
 </div>
 
-<!-- GOOGLE MAPS -->
+<!-- GOOGLE MAPS API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_REAL_API_KEY"></script>
 
 <script>
@@ -190,7 +216,7 @@ setInterval(()=>{
     track.style.transform=`translateX(-${slideIndex*100}%)`;
 },5000);
 
-/* CHAT */
+/* FLOATING AI CHAT */
 const chatBtn=document.getElementById('chatBtn');
 const chatPopup=document.querySelector('.chat-popup');
 const closeChat=document.querySelector('.close-chat');
@@ -210,7 +236,32 @@ document.onmousemove=e=>{
 };
 document.onmouseup=()=>drag=false;
 
-/* MAP */
+/* CHAT → WHATSAPP FORWARD */
+const sendBtn=document.getElementById('sendChat');
+const chatInput=document.getElementById('chatInput');
+const chatMessages=document.getElementById('chatMessages');
+let step=0,userName="";
+const whatsappNumber="+9779811809093"; // 🔴 replace with your number
+sendBtn.addEventListener('click',sendMessage);
+chatInput.addEventListener('keypress',e=>{if(e.key==="Enter")sendMessage();});
+function sendMessage(){
+    const msg=chatInput.value.trim(); if(!msg)return;
+    chatMessages.innerHTML+=`<div><b>You:</b> ${msg}</div>`; chatInput.value="";
+    if(step===0){
+        userName=msg;
+        chatMessages.innerHTML+=`<div><b>Bot:</b> Nice to meet you ${userName}! What can we help you with?</div>`;
+        step=1;
+    }else{
+        const finalMessage=`Name: ${userName}\nMessage: ${msg}`;
+        const url=`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
+        window.open(url,"_blank");
+        chatMessages.innerHTML+=`<div><b>Bot:</b> Redirecting you to WhatsApp…</div>`;
+        step=2;
+    }
+    chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+
+/* MINI MAP */
 let mapLoaded=false,map;
 document.getElementById('mapBtn').onclick=()=>{
     const m=document.getElementById('miniMap');
