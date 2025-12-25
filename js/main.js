@@ -1,47 +1,48 @@
-AOS.init({duration:800, once:true});
+document.addEventListener("DOMContentLoaded", () => {
+  AOS.init({ once:true });
 
-// Hero Slider
-const slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
-setInterval(()=> {
-  slides[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide+1)%slides.length;
-  slides[currentSlide].classList.add('active');
-},4000);
+  // Hero Slider
+  const slides = document.querySelectorAll(".slide");
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 5000);
 
-// Dark Mode
-document.getElementById('darkToggle').addEventListener('click', ()=>{
-  document.body.classList.toggle('dark-mode');
-});
+  // Gallery Render
+  const galleryGrid = document.getElementById("galleryGrid");
+  for(let i=1;i<=10;i++){
+    const img = document.createElement("img");
+    img.src = `assets/gallery/gallery${i}.webp`;
+    img.alt = `Gallery ${i}`;
+    img.loading = "lazy";
+    img.classList.add("gallery-img");
+    galleryGrid.appendChild(img);
 
-// Dynamic Gallery from server
-const galleryGrid = document.querySelector('.gallery-grid');
-fetch('/api/gallery')
-  .then(res => res.json())
-  .then(images => {
-    images.forEach(img => {
-      const a = document.createElement('a');
-      a.href = `assets/gallery/${img}`;
-      a.className = 'gallery-item';
-      const image = document.createElement('img');
-      image.src = `assets/gallery/${img}`;
-      image.loading = 'lazy';
-      a.appendChild(image);
-      galleryGrid.appendChild(a);
+    img.addEventListener("click", () => {
+      const lightbox = document.createElement("div");
+      lightbox.className = "lightbox";
+      lightbox.innerHTML = `<img src="${img.src}"><span class="close">&times;</span>`;
+      document.body.appendChild(lightbox);
+      lightbox.querySelector(".close").addEventListener("click", ()=>lightbox.remove());
     });
-    new SimpleLightbox('.gallery-grid a');
-  }).catch(err=>console.error('Gallery load error:', err));
+  }
 
-// Contact Form -> WhatsApp
-const contactForm = document.getElementById('contactForm');
-const successMsg = document.getElementById('successMsg');
-contactForm.addEventListener('submit', e=>{
-  e.preventDefault();
-  const name = contactForm.querySelector('input').value;
-  const message = contactForm.querySelector('textarea').value;
-  const url = `https://wa.me/9779811800000?text=Name:%20${encodeURIComponent(name)}%0AMessage:%20${encodeURIComponent(message)}`;
-  window.open(url,'_blank');
-  successMsg.style.display='block';
-  contactForm.reset();
+  // Contact Form -> WhatsApp
+  const contactForm = document.getElementById("contactForm");
+  contactForm.addEventListener("submit", e=>{
+    e.preventDefault();
+    const name = contactForm.querySelector("input").value;
+    const msg = contactForm.querySelector("textarea").value;
+    window.open(`https://wa.me/977981180?text=Name:%20${encodeURIComponent(name)}%0AMessage:%20${encodeURIComponent(msg)}`);
+    document.getElementById("successMsg").style.display = "block";
+    contactForm.reset();
+  });
+
+  // Dark Mode Toggle
+  const toggle = document.getElementById("darkToggle");
+  toggle.addEventListener("click", ()=>{
+    document.body.classList.toggle("dark");
+  });
 });
-
