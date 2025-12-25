@@ -28,9 +28,9 @@ nav a:hover{color:#007bff;}
 .slider-track{display:flex;transition:transform 0.6s ease;}
 .slider-track img{width:100%;flex-shrink:0;object-fit:cover;}
 
-/* FLOATING BUTTONS BELOW HEADER */
+/* FLOATING BUTTONS */
 .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
-    position:fixed; /* fixed while scrolling */
+    position:fixed;
     right:10px;
     width:40px;
     height:40px;
@@ -44,10 +44,10 @@ nav a:hover{color:#007bff;}
     transition:0.3s;
     z-index:1000;
 }
-.floating-whatsapp{top:80px;background:#25D366;color:#fff;}
-.floating-email{top:130px;background:#007bff;color:#fff;}
-.floating-chat{top:180px;background:#ff6600;color:#fff;}
-.floating-logo{top:230px;background:#111;color:#fff;}
+.floating-whatsapp{top:150px;background:#25D366;color:#fff;}
+.floating-email{top:210px;background:#007bff;color:#fff;}
+.floating-chat{top:270px;background:#ff6600;color:#fff;}
+.floating-logo{top:330px;background:#111;color:#fff;}
 .floating-whatsapp:hover,.floating-email:hover,.floating-chat:hover,.floating-logo:hover{
     transform:scale(1.3);opacity:1;
 }
@@ -85,9 +85,7 @@ nav a:hover{color:#007bff;}
 
 /* MAP */
 .mini-map-container{background:#f2f2f2;padding:20px;text-align:center;margin-top:30px;}
-.map-icon{background:#007bff;color:#fff;border:none;padding:10px;border-radius:50%;cursor:pointer;font-size:18px;}
-.mini-map{display:none;width:100%;height:250px;margin-top:10px;border-radius:8px;}
-.mini-map.show{display:block;}
+.mini-map{width:100%;height:250px;margin-top:10px;border-radius:8px;}
 
 /* MOBILE FIXES */
 @media(max-width:600px){
@@ -102,10 +100,10 @@ nav a:hover{color:#007bff;}
     .floating-whatsapp,.floating-email,.floating-chat,.floating-logo{
         width:32px;height:32px;font-size:16px;right:5px;
     }
-    .floating-whatsapp{top:70px;}
-    .floating-email{top:110px;}
-    .floating-chat{top:150px;}
-    .floating-logo{top:190px;}
+    .floating-whatsapp{top:120px;}
+    .floating-email{top:170px;}
+    .floating-chat{top:220px;}
+    .floating-logo{top:270px;}
 
     .gallery-2{grid-template-columns:1fr;}
 }
@@ -136,7 +134,7 @@ nav a:hover{color:#007bff;}
     </div>
 
     <!-- FLOATING BUTTONS -->
-    <a class="floating-whatsapp" href="https://wa.me/97798XXXXXXXX" target="_blank">💬</a>
+    <a class="floating-whatsapp" href="https://wa.me/9779811809093" target="_blank">💬</a>
     <div class="floating-email">📧</div>
     <div id="chatBtn" class="floating-chat">🤖</div>
     <div class="floating-logo">🏢</div>
@@ -198,7 +196,6 @@ High-quality printing, design, and packaging solutions in Nepal.
 <!-- MAP -->
 <div id="contact" class="mini-map-container">
 <h3>Find Print Care</h3>
-<button id="mapBtn" class="map-icon">🗺️</button>
 <div id="miniMap" class="mini-map"></div>
 </div>
 
@@ -253,7 +250,7 @@ const sendBtn=document.getElementById('sendChat');
 const chatInput=document.getElementById('chatInput');
 const chatMessages=document.getElementById('chatMessages');
 let step=0,userName="";
-const whatsappNumber="97798XXXXXXXX"; // replace with your number
+const whatsappNumber="9779811809093"; // real number
 sendBtn.addEventListener('click',sendMessage);
 chatInput.addEventListener('keypress',e=>{if(e.key==="Enter")sendMessage();});
 function sendMessage(){
@@ -273,17 +270,22 @@ function sendMessage(){
     chatMessages.scrollTop=chatMessages.scrollHeight;
 }
 
-/* MINI MAP */
-let mapLoaded=false,map;
-document.getElementById('mapBtn').onclick=()=>{
-    const m=document.getElementById('miniMap');
-    m.classList.toggle('show');
-    if(!mapLoaded && window.google){
-        map=new google.maps.Map(m,{center:{lat:27.6675,lng:85.3200},zoom:16});
-        new google.maps.Marker({position:{lat:27.6675,lng:85.3200},map:map});
-        mapLoaded=true;
+/* MINI MAP AUTO LOAD */
+window.addEventListener('load',()=>{
+    const miniMap=document.getElementById('miniMap');
+    miniMap.classList.add('show');
+    if(window.google){
+        const map=new google.maps.Map(miniMap,{
+            center:{lat:27.6675,lng:85.3200}, // replace with Print Care coords if needed
+            zoom:16
+        });
+        new google.maps.Marker({
+            position:{lat:27.6675,lng:85.3200},
+            map:map,
+            title:"Print Care"
+        });
     }
-};
+});
 </script>
 
 </body>
