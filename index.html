@@ -232,17 +232,7 @@ footer .social-links a:hover{color:#ccc;transform:scale(1.2);}
 <!-- Gallery Section -->
 <section class="gallery" id="gallery" data-aos="fade-up">
 <h2>Our Gallery</h2>
-<img src="assets/gallery/gallery1.jpg" alt="Gallery 1">
-<img src="assets/gallery/gallery2.jpg" alt="Gallery 2">
-<img src="assets/gallery/gallery3.jpg" alt="Gallery 3">
-<img src="assets/gallery/gallery4.jpg" alt="Gallery 4">
-<!-- placeholders for future 6 images -->
-<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
-<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
-<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
-<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
-<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
-<div style="width:220px;height:150px;background:#ccc;display:inline-block;margin:10px;border-radius:8px;"></div>
+<!-- Images will be rendered dynamically by JS -->
 </section>
 
 <!-- Lightbox -->
@@ -336,16 +326,28 @@ setInterval(()=>{
 },4000);
 
 // Lightbox
-const galleryImgs=document.querySelectorAll('.gallery img');
+const galleryContainer=document.querySelector('.gallery');
 const lightbox=document.getElementById('lightbox');
 const lightboxImg=document.getElementById('lightbox-img');
 const closeBtn=document.getElementById('close');
-galleryImgs.forEach(img=>{
-  img.addEventListener('click',()=>{
-    lightbox.style.display='flex';
-    lightboxImg.src=img.src;
+
+// Dynamic gallery images
+let galleryImages=['gallery1.jpg','gallery2.jpg','gallery3.jpg','gallery4.jpg']; // Update dynamically from backend
+function renderGallery(images){
+  galleryContainer.innerHTML='<h2>Our Gallery</h2>';
+  images.forEach(imgName=>{
+    const img=document.createElement('img');
+    img.src=`assets/gallery/${imgName}`;
+    img.alt=imgName;
+    img.addEventListener('click',()=>{
+      lightbox.style.display='flex';
+      lightboxImg.src=img.src;
+    });
+    galleryContainer.appendChild(img);
   });
-});
+}
+renderGallery(galleryImages);
+
 closeBtn.addEventListener('click',()=>{lightbox.style.display='none';});
 
 // Contact Form to WhatsApp
@@ -372,6 +374,5 @@ darkToggle.onclick=()=>{
 // Initialize AOS
 AOS.init({duration:800, once:true});
 </script>
-
 </body>
 </html>
