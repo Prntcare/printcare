@@ -5,163 +5,344 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Print Care - Your Printing & Design Solution</title>
 <meta name="description" content="High-quality printing, graphic design, and packaging solutions in Nepal.">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- AOS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+<style>
+/* ======================
+  General Styles
+====================== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f8f9fa;color:#333;line-height:1.6;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+button{cursor:pointer;border:none;border-radius:5px;transition:0.3s;}
+img{max-width:100%;display:block;}
+
+/* ======================
+  Header & Navigation
+====================== */
+header{background:#004080;position:sticky;top:0;z-index:1000;box-shadow:0 2px 5px rgba(0,0,0,0.2);}
+nav{display:flex;justify-content:space-between;align-items:center;padding:10px 5%;position:relative;}
+nav .logo img{height:50px;}
+.nav-links{display:flex;gap:25px;}
+.nav-links li a{color:#f8f9fa;font-weight:600;padding:5px 0;position:relative;}
+.nav-links li a.active::after,
+.nav-links li a:hover::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:#007bff;border-radius:2px;}
+.hamburger{display:none;color:#fff;font-size:24px;cursor:pointer;}
+
+/* ======================
+  Hero Slider
+====================== */
+.hero{position:relative;height:80vh;overflow:hidden;}
+.hero .slide{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease;}
+.hero .slide.active{opacity:1;}
+.hero .overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;text-align:center;background:rgba(0,80,128,0.5);padding:40px;border-radius:10px;}
+.hero .overlay h1{font-size:36px;margin-bottom:20px;}
+.hero .overlay button{padding:12px 25px;background:#007bff;color:#fff;font-size:16px;}
+
+/* ======================
+  Value Proposition
+====================== */
+.value-prop{display:flex;justify-content:space-around;text-align:center;padding:50px 5%;gap:20px;flex-wrap:wrap;}
+.prop-card{background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);flex:1;min-width:250px;transition:0.3s;}
+.prop-card:hover{transform:translateY(-5px);}
+.prop-card i{font-size:40px;color:#007bff;margin-bottom:15px;}
+.prop-card h3{color:#0056b3;margin-bottom:10px;}
+
+/* ======================
+  Services
+====================== */
+.services{padding:50px 5%;}
+.services h2{text-align:center;color:#0056b3;margin-bottom:40px;}
+.service-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+.service-card{background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.1);flex:1;min-width:250px;transition:0.3s;}
+.service-card:hover{transform:translateY(-5px);}
+.service-card i{font-size:30px;color:#007bff;margin-bottom:15px;}
+.service-card ul{margin-top:10px;padding-left:20px;}
+.service-card li{margin-bottom:8px;}
+
+/* ======================
+  Pricing
+====================== */
+.pricing{padding:50px 5%;text-align:center;}
+.pricing h2{color:#0056b3;margin-bottom:30px;}
+.pricing-cards{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+.pricing-cards .card{background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);flex:1;min-width:200px;transition:0.3s;}
+.pricing-cards .card:hover{transform:translateY(-5px);font-weight:bold;}
+
+/* ======================
+  Gallery
+====================== */
+.gallery{padding:50px 5%;}
+.gallery h2{text-align:center;color:#0056b3;margin-bottom:40px;}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;}
+.gallery-grid img{border-radius:10px;cursor:pointer;transition:0.3s;}
+.gallery-grid img:hover{transform:scale(1.05);}
+
+/* Lightbox */
+#lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;visibility:hidden;opacity:0;transition:0.3s;}
+#lightbox img{max-width:90%;max-height:90%;border-radius:10px;}
+#lightbox.show{visibility:visible;opacity:1;}
+#lightbox span{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer;}
+
+/* ======================
+  Testimonials
+====================== */
+.testimonials{padding:50px 5%;background:#f0f4f8;text-align:center;}
+.testimonials h2{color:#0056b3;margin-bottom:40px;}
+.testimonial-slider{display:flex;overflow-x:auto;gap:20px;padding-bottom:10px;scroll-snap-type:x mandatory;}
+.testimonial-card{min-width:250px;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);scroll-snap-align:center;}
+
+/* ======================
+  CTA Banner
+====================== */
+.cta-banner{background:#004080;color:#fff;text-align:center;padding:50px 20px;}
+.cta-banner button{padding:12px 25px;background:#007bff;color:#fff;font-size:16px;margin-top:15px;}
+
+/* ======================
+  Managing Director
+====================== */
+.md-section{padding:50px 5%;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:center;}
+.md-card{display:flex;flex-wrap:wrap;gap:20px;background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.md-card img{max-width:300px;border-radius:10px;}
+.md-text{max-width:600px;}
+.md-text h3{color:#0056b3;margin-bottom:10px;}
+.md-text blockquote{font-style:italic;color:#007bff;margin-top:15px;}
+
+/* ======================
+  Contact
+====================== */
+.contact{padding:50px 5%;text-align:center;}
+.contact h2{color:#0056b3;margin-bottom:30px;}
+.contact form{display:flex;flex-direction:column;gap:15px;max-width:500px;margin:0 auto;}
+.contact input, .contact textarea{padding:10px;border-radius:5px;border:1px solid #ccc;font-size:16px;}
+.contact button{background:#007bff;color:#fff;padding:12px 20px;font-size:16px;}
+
+/* ======================
+  Footer
+====================== */
+footer{background:#004080;color:#f8f9fa;padding:40px 5%;}
+.footer-content{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;margin-bottom:20px;}
+.footer-content .footer-col h4{margin-bottom:15px;}
+.footer-bottom{text-align:center;border-top:1px solid rgba(255,255,255,0.3);padding-top:15px;}
+.footer-bottom .social-links a{margin:0 10px;color:#f8f9fa;font-size:18px;transition:0.3s;}
+.footer-bottom .social-links a:hover{color:#007bff;}
+
+/* ======================
+  Dark Mode
+====================== */
+#darkToggle{position:fixed;bottom:20px;right:20px;background:#007bff;color:#fff;padding:10px;border-radius:50%;font-size:18px;z-index:1000;}
+
+/* ======================
+  Responsive
+====================== */
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:70px;right:5%;background:#004080;flex-direction:column;width:200px;padding:20px;border-radius:10px;}
+  .nav-links.show{display:flex;}
+  .hamburger{display:block;}
+  .md-section{flex-direction:column;}
+  .hero .overlay h1{font-size:28px;}
+}
+</style>
 </head>
 <body>
 
-<!-- Header / Navbar -->
+<!-- Header / Navigation -->
 <header>
-  <div class="navbar">
-    <img src="assets/logo.png" class="logo" alt="Print Care Logo">
+  <nav>
+    <div class="logo">
+      <img src="logo.png" alt="Print Care Logo">
+    </div>
     <ul class="nav-links">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#director">Director</a></li>
+      <li><a href="#hero" class="active">Home</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#testimonials">Testimonials</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="hamburger"><i class="fas fa-bars"></i></div>
-  </div>
+  </nav>
 </header>
 
 <!-- Hero Slider -->
 <section class="hero" id="hero">
-  <div class="slider">
-    <div class="slide active" style="background-image:url('assets/slides/slide1.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/slides/slide2.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/slides/slide3.jpg')"></div>
-    <div class="slide" style="background-image:url('assets/slides/slide4.jpg')"></div>
+  <div class="slide active" style="background-image:url('assets/slides/slide1.jpg');">
+    <div class="overlay">
+      <h1>High-Quality Printing</h1>
+      <button onclick="location.href='#services'">Explore Services</button>
+    </div>
   </div>
-  <div class="overlay">
-    <h1>High-Quality Printing & Corporate Branding</h1>
-    <button onclick="scrollToSection('services')">Explore Services</button>
+  <div class="slide" style="background-image:url('assets/slides/slide2.jpg');">
+    <div class="overlay">
+      <h1>Corporate Branding Solutions</h1>
+      <button onclick="location.href='#contact'">Request a Quote</button>
+    </div>
+  </div>
+  <div class="slide" style="background-image:url('assets/slides/slide3.jpg');">
+    <div class="overlay">
+      <h1>Packaging & Labeling Experts</h1>
+      <button onclick="location.href='#gallery'">View Portfolio</button>
+    </div>
+  </div>
+  <div class="slide" style="background-image:url('assets/slides/slide4.jpg');">
+    <div class="overlay">
+      <h1>Trusted by Businesses in Nepal</h1>
+      <button onclick="location.href='#contact'">Contact Us</button>
+    </div>
   </div>
 </section>
 
-<!-- Features / Value Proposition -->
-<section class="features" id="features" data-aos="fade-up">
-  <div class="feature-card">
+<!-- Value Proposition -->
+<section class="value-prop">
+  <div class="prop-card">
     <i class="fas fa-print"></i>
     <h3>High-Quality Printing</h3>
-    <p>Flawless results for your business needs.</p>
+    <p>Flawless results every time.</p>
   </div>
-  <div class="feature-card">
-    <i class="fas fa-building"></i>
+  <div class="prop-card">
+    <i class="fas fa-pencil-ruler"></i>
     <h3>Corporate Branding</h3>
-    <p>Elevate your brand identity.</p>
+    <p>Elevate your brand with professional design.</p>
   </div>
-  <div class="feature-card">
+  <div class="prop-card">
     <i class="fas fa-handshake"></i>
     <h3>Trusted Partner</h3>
     <p>Decades of experience in printing solutions.</p>
   </div>
 </section>
 
-<!-- Director Section -->
-<section class="director" id="director" data-aos="fade-up">
-  <img src="assets/photo_unish.jpg" alt="Managing Director" class="md-photo">
-  <div class="md-text">
-    <h2>Unish Neupane</h2>
-    <p>Managing Director & Graphic Designer</p>
-    <blockquote>"Our mission is to bring your ideas to life with premium print and design solutions."</blockquote>
-  </div>
-</section>
-
 <!-- Services Section -->
-<section class="services" id="services" data-aos="fade-up">
+<section class="services" id="services">
   <h2>Our Services</h2>
-  <div class="services-grid">
+  <div class="service-grid">
     <div class="service-card">
       <i class="fas fa-print"></i>
       <h3>Printing Services</h3>
-      <p>Business Cards, Flyers, Posters, Books, Certificates, Calendars, Packaging Prints.</p>
+      <ul>
+        <li>Business Cards</li>
+        <li>Flyers & Brochures</li>
+        <li>Posters & Banners</li>
+        <li>Books & Magazines</li>
+        <li>Certificates & Invitations</li>
+        <li>Calendars</li>
+        <li>Packaging Prints</li>
+      </ul>
     </div>
     <div class="service-card">
       <i class="fas fa-pencil-ruler"></i>
       <h3>Graphic Design</h3>
-      <p>Logo Design, Brand Identity, Advertising Design, Corporate Identity, Custom Artwork.</p>
+      <ul>
+        <li>Logo Design</li>
+        <li>Brand Identity</li>
+        <li>Advertising Design</li>
+        <li>Corporate Identity</li>
+        <li>Custom Artwork</li>
+      </ul>
     </div>
     <div class="service-card">
       <i class="fas fa-cogs"></i>
       <h3>Specialized Solutions</h3>
-      <p>Digital & Offset Printing, Large Format, Packaging & Labeling, Promotional Items.</p>
+      <ul>
+        <li>Digital Printing / Offset Printing</li>
+        <li>Large Format Printing / Packaging & Labeling</li>
+        <li>Promotional Items</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- Gallery Section -->
-<section class="gallery" id="gallery" data-aos="fade-up">
-  <h2>Gallery</h2>
-  <div class="gallery-grid">
-    <img src="assets/gallery/gallery1.jpg" loading="lazy">
-    <img src="assets/gallery/gallery2.jpg" loading="lazy">
-    <img src="assets/gallery/gallery3.jpg" loading="lazy">
-    <img src="assets/gallery/gallery4.jpg" loading="lazy">
-    <img src="assets/gallery/gallery5.jpg" loading="lazy">
-    <img src="assets/gallery/gallery6.jpg" loading="lazy">
-    <img src="assets/gallery/gallery7.jpg" loading="lazy">
-    <img src="assets/gallery/gallery8.jpg" loading="lazy">
-    <img src="assets/gallery/gallery9.jpg" loading="lazy">
-    <img src="assets/gallery/gallery10.jpg" loading="lazy">
+<!-- Pricing Section -->
+<section class="pricing" id="pricing">
+  <h2>Our Packages</h2>
+  <div class="pricing-cards">
+    <div class="card">Basic<br>$99</div>
+    <div class="card">Standard<br>$199</div>
+    <div class="card">Premium<br>$299</div>
   </div>
 </section>
 
-<!-- Testimonials -->
-<section class="testimonials" id="testimonials" data-aos="fade-up">
-  <h2>Testimonials</h2>
+<!-- Gallery Section -->
+<section class="gallery" id="gallery">
+  <h2>Our Gallery</h2>
+  <div class="gallery-grid">
+    <img src="assets/gallery/gallery1.jpg" loading="lazy" alt="Gallery Image 1">
+    <img src="assets/gallery/gallery2.jpg" loading="lazy" alt="Gallery Image 2">
+    <img src="assets/gallery/gallery3.jpg" loading="lazy" alt="Gallery Image 3">
+    <img src="assets/gallery/gallery4.jpg" loading="lazy" alt="Gallery Image 4">
+    <img src="assets/gallery/gallery5.jpg" loading="lazy" alt="Gallery Image 5">
+    <img src="assets/gallery/gallery6.jpg" loading="lazy" alt="Gallery Image 6">
+    <img src="assets/gallery/gallery7.jpg" loading="lazy" alt="Gallery Image 7">
+    <img src="assets/gallery/gallery8.jpg" loading="lazy" alt="Gallery Image 8">
+    <img src="assets/gallery/gallery9.jpg" loading="lazy" alt="Gallery Image 9">
+    <img src="assets/gallery/gallery10.jpg" loading="lazy" alt="Gallery Image 10">
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <span id="closeLightbox">&times;</span>
+  <img src="" alt="Preview">
+</div>
+
+<!-- Testimonials Section -->
+<section class="testimonials" id="testimonials">
+  <h2>What Our Clients Say</h2>
   <div class="testimonial-slider">
-    <div class="testimonial-card"><p>"#PrintCare transformed our corporate identity!"</p><span>- Client 1</span></div>
-    <div class="testimonial-card"><p>"Excellent print and design services."</p><span>- Client 2</span></div>
-    <div class="testimonial-card"><p>"Highly professional team."</p><span>- Client 3</span></div>
-    <div class="testimonial-card"><p>"Outstanding quality and support."</p><span>- Client 4</span></div>
+    <div class="testimonial-card">
+      <p>“Amazing work!”</p>
+      <span>– Client 1</span>
+    </div>
+    <div class="testimonial-card">
+      <p>“Highly professional.”</p>
+      <span>– Client 2</span>
+    </div>
+    <div class="testimonial-card">
+      <p>“Great design quality.”</p>
+      <span>– Client 3</span>
+    </div>
+    <div class="testimonial-card">
+      <p>“Excellent service.”</p>
+      <span>– Client 4</span>
+    </div>
   </div>
 </section>
 
 <!-- CTA Banner -->
-<section class="cta-banner" data-aos="fade-up">
-  <h2>Ready to elevate your brand with #PrintCare?</h2>
-  <button onclick="scrollToSection('contact')">Request a Quote</button>
+<section class="cta-banner">
+  <h2>Ready to elevate your brand with #printcare?</h2>
+  <button onclick="location.href='#contact'">Request a Quote</button>
 </section>
 
-<!-- Contact -->
-<section class="contact" id="contact" data-aos="fade-up">
+<!-- Managing Director Section -->
+<section class="md-section" id="director">
+  <div class="md-card">
+    <img src="photo unish.jpg" alt="Unish Neupane – Managing Director" loading="lazy">
+    <div class="md-text">
+      <h3>Unish Neupane</h3>
+      <p>Managing Director & Graphic Designer</p>
+      <blockquote>“We bring your ideas to life with unmatched creativity and quality.”</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
   <h2>Contact Us</h2>
   <form id="contactForm">
     <input type="text" placeholder="Your Name" required>
     <textarea rows="5" placeholder="What do you want?" required></textarea>
     <button type="submit">Send Message</button>
+    <p id="successMsg" style="display:none;">✅ Your message has been sent successfully.</p>
   </form>
-</section>
-
-<!-- Footer -->
-<footer>
-  <div class="footer-columns">
-    <div>
-      <h3>About</h3>
-      <p>Premium printing and design solutions in Nepal.</p>
-    </div>
-    <div>
-      <h3>Contact</h3>
-      <p>📞 9811809093 / 9840545054<br>✉️ prntcare@gmail.com<br>📍 Nijgadh‑8, Bank Road</p>
-    </div>
-    <div>
-      <h3>Social</h3>
-      <div class="social-links">
-        <a href="https://www.facebook.com/prntcare" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      </div>
-    </div>
-  </div>
-  <p>© 2025 Print Care. All Rights Reserved.</p>
-</footer>
-
-<!-- Dark Mode Toggle -->
-<button id="darkToggle">🌓</button>
-
-<script src="js/main.js"></script>
-</body>
-</html>
+  <div class="contact-info">
+    <p>📞 9811809093 / 9840545054</p>
+    <p>✉️ prntcare@gmail.com</p>
+    <p>🌐 printcare.com.np</p>
+    <p>📍
