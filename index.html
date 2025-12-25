@@ -77,6 +77,9 @@
   .lightbox-overlay {position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;flex-direction:column;justify-content:center;align-items:center;z-index:2000;}
   .lightbox-overlay img {max-width:90%;max-height:90%;border-radius:10px;}
   .lightbox-caption {color:#fff;text-align:center;margin-top:10px;font-size:1.1rem;}
+  .lightbox-prev, .lightbox-next {position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:#fff;background:none;border:none;cursor:pointer;}
+  .lightbox-prev {left:20px;}
+  .lightbox-next {right:20px;}
 </style>
 </head>
 <body>
@@ -179,7 +182,9 @@
 
 <!-- Lightbox Overlay -->
 <div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-prev">&#10094;</button>
   <img src="" alt="Enlarged">
+  <button class="lightbox-next">&#10095;</button>
   <div class="lightbox-caption"></div>
 </div>
 
@@ -228,22 +233,43 @@
     }
   });
 
-  // Lightbox JS with captions
+  // Lightbox Slideable JS with captions
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox.querySelector('img');
   const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+  const lightboxLinks = [...document.querySelectorAll('.md-lightbox, .gallery-lightbox')];
+  let currentIndex = 0;
 
-  document.querySelectorAll('.md-lightbox, .gallery-lightbox').forEach(link => {
-    link.addEventListener('click', e => {
+  function openLightbox(index){
+    currentIndex = index;
+    lightbox.style.display = 'flex';
+    lightboxImg.src = lightboxLinks[currentIndex].href;
+    lightboxCaption.textContent = lightboxLinks[currentIndex].getAttribute('data-caption') || '';
+  }
+
+  lightboxLinks.forEach((link,i) => {
+    link.addEventListener('click', e=>{
       e.preventDefault();
-      lightbox.style.display = 'flex';
-      lightboxImg.src = link.href;
-      lightboxCaption.textContent = link.getAttribute('data-caption') || '';
+      openLightbox(i);
     });
   });
 
-  lightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
+  document.querySelector('.lightbox-next').addEventListener('click', e=>{
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % lightboxLinks.length;
+    openLightbox(currentIndex);
+  });
+
+  document.querySelector('.lightbox-prev').addEventListener('click', e=>{
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + lightboxLinks.length) % lightboxLinks.length;
+    openLightbox(currentIndex);
+  });
+
+  lightbox.addEventListener('click', e=>{
+    if(e.target === lightbox){
+      lightbox.style.display = 'none';
+    }
   });
 </script>
 
