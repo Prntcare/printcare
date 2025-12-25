@@ -1,1 +1,0 @@
-printcare is the main repo of this website
