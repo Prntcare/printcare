@@ -1,80 +1,87 @@
-/* Hero Section */
-.hero {
-  position: relative;
-  height: 90vh;
-  overflow: hidden;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print Care - Your Printing & Design Solution</title>
+<meta name="description" content="High-quality printing, graphic design, and packaging solutions in Nepal.">
 
-.hero .slider .slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transform: scale(1.05);
-  transition: opacity 1s ease, transform 5s ease;
-}
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- AOS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
-.hero .slider .slide.active {
-  opacity: 1;
-  transform: scale(1);
-}
+<style>
+/* ====== CSS START ====== */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+body {background:#f8f9fa; color:#333; line-height:1.6;}
+header {background:#f8f9fa; position:sticky; top:0; z-index:100; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+nav {display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:auto; padding:15px 20px;}
+.logo-wrapper img {height:50px;}
+.nav-links {list-style:none; display:flex; gap:20px;}
+.nav-links li a {text-decoration:none; color:#004080; font-weight:600; position:relative; transition:.3s;}
+.nav-links li a:hover::after {content:""; position:absolute; width:100%; height:2px; background:#007bff; bottom:-4px; left:0;}
+.hamburger {display:none; font-size:24px; cursor:pointer;}
 
-.hero .overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #fff;
-  z-index: 10;
-}
+/* Hero Slider */
+.hero {position:relative; height:80vh; overflow:hidden;}
+.hero .slide {position:absolute; top:0; left:0; width:100%; height:100%; background-size:cover; background-position:center; opacity:0; transition:1s ease;}
+.hero .slide.active {opacity:1;}
+.hero .overlay {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#fff; text-align:center; background:rgba(0,80,128,0.5); padding:30px; border-radius:10px;}
+.hero .overlay h1 {font-size:36px; margin-bottom:15px; color:#007bff;}
+.hero .overlay p {font-size:18px; margin-bottom:20px;}
+.hero .overlay .cta-btn {padding:12px 25px; background:#007bff; color:#fff; text-decoration:none; border-radius:5px; font-weight:600;}
 
-.hero .overlay h1 {
-  font-size: 3rem;
-  color: #007bff;
-  margin-bottom: 20px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideIn 1s forwards;
-}
+/* Value Proposition */
+.value-prop {display:flex; justify-content:center; gap:30px; padding:50px 20px; text-align:center;}
+.value-prop .value-card {background:#fff; padding:25px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1); flex:1;}
+.value-prop i {color:#007bff; margin-bottom:10px; font-size:32px;}
 
-.hero .overlay button {
-  padding: 15px 35px;
-  font-size: 1rem;
-  background: #007bff;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideIn 1s 0.5s forwards;
-}
+/* Services */
+.services {padding:50px 20px; max-width:1200px; margin:auto;}
+.services h2 {text-align:center; margin-bottom:40px; color:#007bff;}
+.service-grid {display:flex; flex-wrap:wrap; gap:20px; justify-content:center;}
+.service-card {background:#fff; padding:20px; flex:1 1 300px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+.service-card h3 {margin-bottom:15px; color:#0056b3;}
+.service-card ul {list-style:disc inside; text-align:left;}
 
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Gallery */
+.gallery {padding:50px 20px; max-width:1200px; margin:auto;}
+.gallery h2 {text-align:center; margin-bottom:30px; color:#007bff;}
+.gallery-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px;}
+.gallery-grid img {width:100%; border-radius:10px; cursor:pointer; transition:transform .3s;}
+.gallery-grid img:hover {transform:scale(1.05);}
+.modal {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:flex; justify-content:center; align-items:center; z-index:1000;}
+.modal-content {position:relative;}
+.modal-content img {max-width:90vw; max-height:90vh; border-radius:10px;}
+.modal-content .close {position:absolute; top:-10px; right:-10px; background:#fff; color:#000; font-size:28px; font-weight:bold; border:none; border-radius:50%; width:35px; height:35px; cursor:pointer;}
 
-/* Overlay gradient for readability */
-.hero::after {
-  content: "";
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
-  z-index:5;
-}
+/* Testimonials */
+.testimonials {padding:50px 20px; background:#f8f9fa;}
+.testimonials h2 {text-align:center; margin-bottom:40px; color:#007bff;}
+.testimonial-slider {display:flex; overflow-x:auto; gap:20px; scroll-behavior:smooth;}
+.testimonial-card {flex:0 0 300px; background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+
+/* CTA Banner */
+.cta-banner {text-align:center; background:#004080; color:#fff; padding:40px 20px;}
+.cta-banner a {background:#007bff; color:#fff; padding:12px 25px; border-radius:5px; text-decoration:none; font-weight:600;}
+
+/* Contact */
+.contact {padding:50px 20px; max-width:800px; margin:auto; text-align:center;}
+.contact input, .contact textarea {width:100%; margin-bottom:15px; padding:12px; border-radius:5px; border:1px solid #ccc;}
+.contact button {padding:12px 25px; border:none; background:#007bff; color:#fff; font-weight:600; border-radius:5px; cursor:pointer;}
+
+/* Managing Director */
+.director {max-width:1000px; margin:50px auto; padding:20px;}
+.md-card {display:flex; flex-wrap:wrap; gap:20px; align-items:center;}
+.md-card img {max-width:300px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+.md-info h3 {color:#0056b3; margin-bottom:10px;}
+.md-info blockquote {font-style:italic; margin-top:10px; color:#333;}
 
 /* Footer */
-footer {background:#004080; color:#f8f9fa; padding:40px 20px; text-align:center;}
+footer {background:#004080; color:#f8f9fa; padding:40px 20px;}
 .footer-columns {
   display:flex;
   flex-wrap:wrap;
@@ -83,12 +90,245 @@ footer {background:#004080; color:#f8f9fa; padding:40px 20px; text-align:center;
   align-items:flex-start;
   margin-bottom:20px;
 }
-.footer-columns > div {
-  min-width:150px; /* ensures columns don't shrink too small */
-  text-align:left;
-}
+.footer-columns > div {min-width:150px; text-align:left;}
 .footer-columns div h4 {margin-bottom:10px;}
 .footer-columns div ul {list-style:none; padding-left:0;}
 .footer-columns div ul li {margin-bottom:5px;}
-.footer-social {margin-bottom:15px;}
+.footer-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  border-top:1px solid rgba(255,255,255,0.3);
+  padding-top:15px;
+}
 .footer-social a {color:#fff; margin:0 5px; font-size:20px;}
+
+/* Dark Mode Toggle */
+#darkToggle {position:fixed; bottom:20px; right:20px; background:#007bff; color:#fff; border:none; padding:10px; border-radius:50%; cursor:pointer; z-index:100;}
+
+/* Responsive */
+@media(max-width:768px){
+.nav-links {display:none; flex-direction:column; background:#f8f9fa; position:absolute; top:70px; right:0; width:200px; padding:20px;}
+.hamburger {display:block;}
+.value-prop {flex-direction:column;}
+.md-card {flex-direction:column; text-align:center;}
+.footer-columns {flex-direction:column; align-items:center; text-align:center;}
+.footer-bottom {flex-direction:column; gap:5px;}
+}
+/* ====== CSS END ====== */
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+<nav>
+  <div class="logo-wrapper"><img src="logo.png" alt="Print Care Logo"></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#value">Why PrintCare</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger"><i class="fas fa-bars"></i></div>
+</nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="slide active" style="background-image:url('assets/slides/slide1.jpg');"></div>
+  <div class="slide" style="background-image:url('assets/slides/slide2.jpg');"></div>
+  <div class="slide" style="background-image:url('assets/slides/slide3.jpg');"></div>
+  <div class="slide" style="background-image:url('assets/slides/slide4.jpg');"></div>
+  <div class="overlay">
+    <h1>High-Quality Printing & Corporate Branding</h1>
+    <p>Expert solutions for your business</p>
+    <a href="#services" class="cta-btn">Explore Services</a>
+  </div>
+</section>
+
+<!-- Value Proposition -->
+<section class="value-prop" id="value">
+  <div class="value-card" data-aos="fade-up"><i class="fas fa-print"></i><h3>High-Quality Printing</h3><p>Flawless results for your business.</p></div>
+  <div class="value-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-pencil-ruler"></i><h3>Corporate Branding</h3><p>Elevate your brand identity.</p></div>
+  <div class="value-card" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-handshake"></i><h3>Trusted Partner</h3><p>Decades of experience.</p></div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services" data-aos="fade-up">
+<h2>Our Services</h2>
+<div class="service-grid">
+  <div class="service-card">
+    <h3>Printing Services</h3>
+    <ul>
+      <li>Business Cards</li>
+      <li>Flyers & Brochures</li>
+      <li>Posters & Banners</li>
+      <li>Books & Magazines</li>
+      <li>Certificates & Invitations</li>
+      <li>Calendars</li>
+      <li>Packaging Prints</li>
+    </ul>
+  </div>
+  <div class="service-card">
+    <h3>Graphic Design</h3>
+    <ul>
+      <li>Logo Design</li>
+      <li>Brand Identity</li>
+      <li>Advertising Design</li>
+      <li>Corporate Identity</li>
+      <li>Custom Artwork</li>
+    </ul>
+  </div>
+  <div class="service-card">
+    <h3>Specialized Solutions</h3>
+    <ul>
+      <li>Digital Printing / Offset Printing</li>
+      <li>Large Format / Packaging & Labeling</li>
+      <li>Promotional Items</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery" id="gallery">
+<h2>Our Gallery</h2>
+<div class="gallery-grid">
+  <img src="assets/gallery/gallery1.jpg" alt="Gallery1">
+  <img src="assets/gallery/gallery2.jpg" alt="Gallery2">
+  <img src="assets/gallery/gallery3.jpg" alt="Gallery3">
+  <img src="assets/gallery/gallery4.jpg" alt="Gallery4">
+  <img src="assets/gallery/gallery5.jpg" alt="Gallery5">
+  <img src="assets/gallery/gallery6.jpg" alt="Gallery6">
+  <img src="assets/gallery/gallery7.jpg" alt="Gallery7">
+  <img src="assets/gallery/gallery8.jpg" alt="Gallery8">
+  <img src="assets/gallery/gallery9.jpg" alt="Gallery9">
+  <img src="assets/gallery/gallery10.jpg" alt="Gallery10">
+</div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials" id="testimonials">
+<h2>What Our Clients Say</h2>
+<div class="testimonial-slider">
+  <div class="testimonial-card"><p>"Amazing work!"</p><span>- Client 1</span></div>
+  <div class="testimonial-card"><p>"Highly professional."</p><span>- Client 2</span></div>
+  <div class="testimonial-card"><p>"Great design quality."</p><span>- Client 3</span></div>
+  <div class="testimonial-card"><p>"Excellent service."</p><span>- Client 4</span></div>
+</div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+<h2>Ready to elevate your brand with #PrintCare?</h2>
+<a href="#contact">Request a Quote</a>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+<h2>Contact Us</h2>
+<input type="text" placeholder="Your Name" required>
+<textarea rows="5" placeholder="What do you want?" required></textarea>
+<button type="submit">Send Message</button>
+</section>
+
+<!-- Managing Director -->
+<section class="director">
+<div class="md-card">
+  <img src="photo unish.jpg" alt="Managing Director">
+  <div class="md-info">
+    <h3>Unish Neupane</h3>
+    <blockquote>"We provide top-quality printing and design solutions for your business."</blockquote>
+  </div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="footer-columns">
+  <div><h4>About</h4><p>Print Care Nepal</p></div>
+  <div><h4>Services</h4><p>Printing & Design Solutions</p></div>
+  <div><h4>Contact</h4>
+    <ul>
+      <li>📞 9811809093 / 9840545054</li>
+      <li>✉️ prntcare@gmail.com</li>
+      <li>🌐 printcare.com.np</li>
+      <li>📍 Nijgadh-8, Bank Road</li>
+    </ul>
+  </div>
+</div>
+<div class="footer-bottom">
+  <div class="footer-social">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+  <p>© 2025 Print Care. All Rights Reserved.</p>
+</div>
+</footer>
+
+<!-- Dark Mode -->
+<button id="darkToggle">🌓</button>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+/* ====== JS START ====== */
+// Slider
+const slides = document.querySelectorAll('.hero .slide');
+let currentSlide = 0;
+function showSlide(i){slides.forEach(s=>s.classList.remove('active')); slides[i].classList.add('active');}
+function nextSlide(){currentSlide=(currentSlide+1)%slides.length; showSlide(currentSlide);}
+setInterval(nextSlide,5000);
+
+// Mobile Menu
+const hamburger=document.querySelector('.hamburger');
+const navLinks=document.querySelector('.nav-links');
+hamburger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+
+// Gallery Lightbox with prev/next
+const galleryImgs=document.querySelectorAll('.gallery-grid img');
+let lightboxModal,currentImgIndex;
+galleryImgs.forEach((img,index)=>{
+  img.addEventListener('click',()=>{
+    currentImgIndex=index;
+    lightboxModal=document.createElement('div');
+    lightboxModal.classList.add('modal');
+    lightboxModal.innerHTML=`
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <img src="${img.src}" alt="${img.alt}">
+        <span class="prev">&lt;</span>
+        <span class="next">&gt;</span>
+      </div>`;
+    document.body.appendChild(lightboxModal);
+    const modalImg=lightboxModal.querySelector('img');
+    lightboxModal.querySelector('.close').onclick=()=>lightboxModal.remove();
+    lightboxModal.querySelector('.prev').onclick=()=>{currentImgIndex=(currentImgIndex-1+galleryImgs.length)%galleryImgs.length; modalImg.src=galleryImgs[currentImgIndex].src;}
+    lightboxModal.querySelector('.next').onclick=()=>{currentImgIndex=(currentImgIndex+1)%galleryImgs.length; modalImg.src=galleryImgs[currentImgIndex].src;}
+  });
+});
+
+// Dark Mode
+const darkToggle=document.getElementById('darkToggle');
+darkToggle.addEventListener('click',()=>document.body.classList.toggle('dark'));
+
+// Smooth Scroll
+document.querySelectorAll('nav a').forEach(anchor=>{
+  anchor.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(anchor.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// AOS
+AOS.init({duration:1000});
+/* ====== JS END ====== */
+</script>
+
+</body>
+</html>
