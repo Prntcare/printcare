@@ -81,11 +81,28 @@ nav {display:flex; justify-content:space-between; align-items:center; max-width:
 .md-info blockquote {font-style:italic; margin-top:10px; color:#333;}
 
 /* Footer */
-footer {background:#004080; color:#f8f9fa; padding:40px 20px; text-align:center;}
-.footer-columns {display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-bottom:20px;}
+footer {background:#004080; color:#f8f9fa; padding:40px 20px;}
+.footer-columns {
+  display:flex;
+  flex-wrap:wrap;
+  gap:40px;
+  justify-content:center;
+  align-items:flex-start;
+  margin-bottom:20px;
+}
+.footer-columns > div {min-width:150px; text-align:left;}
 .footer-columns div h4 {margin-bottom:10px;}
 .footer-columns div ul {list-style:none; padding-left:0;}
 .footer-columns div ul li {margin-bottom:5px;}
+.footer-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  border-top:1px solid rgba(255,255,255,0.3);
+  padding-top:15px;
+}
 .footer-social a {color:#fff; margin:0 5px; font-size:20px;}
 
 /* Dark Mode Toggle */
@@ -97,10 +114,11 @@ footer {background:#004080; color:#f8f9fa; padding:40px 20px; text-align:center;
 .hamburger {display:block;}
 .value-prop {flex-direction:column;}
 .md-card {flex-direction:column; text-align:center;}
+.footer-columns {flex-direction:column; align-items:center; text-align:center;}
+.footer-bottom {flex-direction:column; gap:5px;}
 }
 /* ====== CSS END ====== */
 </style>
-
 </head>
 <body>
 
@@ -213,53 +231,19 @@ footer {background:#004080; color:#f8f9fa; padding:40px 20px; text-align:center;
 
 <!-- Contact -->
 <section class="contact" id="contact">
-<h2>Contact / Order via WhatsApp</h2>
-
-<!-- Floating AI + WhatsApp -->
-<div id="aiChatBtn" style="
-position:fixed;bottom:90px;right:20px;
-width:55px;height:55px;border-radius:50%;
-background:#007bff;color:#fff;
-display:flex;align-items:center;justify-content:center;
-font-size:24px;cursor:pointer;z-index:999;">🤖</div>
-
-<div id="aiChatBox" style="
-display:none;position:fixed;bottom:155px;right:20px;
-background:#fff;padding:12px;width:220px;
-border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,.2);
-z-index:999;">
-<b>AI Assistant</b><br><br>
-<button onclick="aiSend('Business Card')" style="width:100%;margin-bottom:5px;">Business Card</button>
-<button onclick="aiSend('Banner / Flex')" style="width:100%;margin-bottom:5px;">Banner / Flex</button>
-<button onclick="aiSend('Book Printing')" style="width:100%;">Book Printing</button>
-</div>
-
-<a href="https://wa.me/9779811809093" target="_blank" style="
-position:fixed;bottom:20px;right:20px;
-width:55px;height:55px;border-radius:50%;
-background:#25D366;color:#fff;
-display:flex;align-items:center;justify-content:center;
-font-size:28px;z-index:999;">
-<i class="fab fa-whatsapp"></i>
-</a>
-
-
-<p style="margin-top:15px;font-size:14px;color:#555;">
-📁 File will be sent separately in WhatsApp chat
-</p>
+<h2>Contact Us</h2>
+<input type="text" placeholder="Your Name" required>
+<textarea rows="5" placeholder="What do you want?" required></textarea>
+<button type="submit">Send Message</button>
 </section>
-
 
 <!-- Managing Director -->
 <section class="director">
 <div class="md-card">
   <img src="photo unish.jpg" alt="Managing Director">
   <div class="md-info">
-    <h3 contenteditable="true">Unish Neupane</h3>
-<blockquote contenteditable="true">
-"We provide top-quality printing and design solutions for your business."
-</blockquote>
-
+    <h3>Unish Neupane</h3>
+    <blockquote>"We provide top-quality printing and design solutions for your business."</blockquote>
   </div>
 </div>
 </section>
@@ -278,10 +262,13 @@ font-size:28px;z-index:999;">
     </ul>
   </div>
 </div>
-<div class="footer-social">
-  <a href="#"><i class="fab fa-facebook-f"></i></a>
+<div class="footer-bottom">
+  <div class="footer-social">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+  <p>© 2025 Print Care. All Rights Reserved.</p>
 </div>
-<p>© 2025 Print Care. All Rights Reserved.</p>
 </footer>
 
 <!-- Dark Mode -->
