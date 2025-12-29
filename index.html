@@ -30,9 +30,9 @@ nav {display:flex; justify-content:space-between; align-items:center; max-width:
 .hero .slide {position:absolute; top:0; left:0; width:100%; height:100%; background-size:cover; background-position:center; opacity:0; transition:1s ease;}
 .hero .slide.active {opacity:1;}
 .hero .overlay {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#fff; text-align:center; background:rgba(0,80,128,0.5); padding:30px; border-radius:10px;}
-.hero .overlay h1 {font-size:36px; margin-bottom:15px; color:#007bff;}
+.hero .overlay h1 {font-size:36px; margin-bottom:15px; color:#fff;}
 .hero .overlay p {font-size:18px; margin-bottom:20px;}
-.hero .overlay .cta-btn {padding:12px 25px; background:#007bff; color:#fff; text-decoration:none; border-radius:5px; font-weight:600;}
+.hero .overlay .cta-btn {padding:12px 25px; background:#007bff; color:#fff; text-decoration:none; border-radius:5px; font-weight:600; display:inline-block; margin-top:10px;}
 
 /* Value Proposition */
 .value-prop {display:flex; justify-content:center; gap:30px; padding:50px 20px; text-align:center;}
@@ -57,6 +57,9 @@ nav {display:flex; justify-content:space-between; align-items:center; max-width:
 .modal-content {position:relative;}
 .modal-content img {max-width:90vw; max-height:90vh; border-radius:10px;}
 .modal-content .close {position:absolute; top:-10px; right:-10px; background:#fff; color:#000; font-size:28px; font-weight:bold; border:none; border-radius:50%; width:35px; height:35px; cursor:pointer;}
+.modal-content .prev, .modal-content .next {position:absolute; top:50%; transform:translateY(-50%); font-size:28px; font-weight:bold; color:#fff; cursor:pointer; padding:10px;}
+.modal-content .prev {left:-40px;}
+.modal-content .next {right:-40px;}
 
 /* Testimonials */
 .testimonials {padding:50px 20px; background:#f8f9fa;}
@@ -65,8 +68,9 @@ nav {display:flex; justify-content:space-between; align-items:center; max-width:
 .testimonial-card {flex:0 0 300px; background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);}
 
 /* CTA Banner */
-.cta-banner {text-align:center; background:#004080; color:#fff; padding:40px 20px;}
-.cta-banner a {background:#007bff; color:#fff; padding:12px 25px; border-radius:5px; text-decoration:none; font-weight:600;}
+.cta-banner {text-align:center; background:#004080; color:#fff; padding:80px 20px;}
+.cta-banner h2 {margin-bottom:20px;}
+.cta-banner a {background:#007bff; color:#fff; padding:12px 25px; border-radius:5px; text-decoration:none; font-weight:600; display:inline-block;}
 
 /* Contact */
 .contact {padding:50px 20px; max-width:800px; margin:auto; text-align:center;}
@@ -84,13 +88,13 @@ nav {display:flex; justify-content:space-between; align-items:center; max-width:
 footer {background:#004080; color:#f8f9fa; padding:40px 20px; text-align:center;}
 .footer-columns {display:flex; flex-wrap:wrap; gap:50px; justify-content:center; margin-bottom:20px;}
 .footer-columns div h4 {margin-bottom:10px;}
-.footer-columns div ul {list-style:none; padding-left:0;}
+.footer-columns div ul {list-style:none; padding-left:0; margin:0;}
 .footer-columns div ul li {margin-bottom:5px;}
 .footer-columns div p {margin-bottom:5px;}
 .footer-social a {color:#fff; margin:0 5px; font-size:20px;}
 
 /* Floating Buttons */
-#whatsappBtn, #aiBtn {position:fixed; bottom:80px; right:20px; width:55px; height:55px; border-radius:50%; display:flex; justify-content:center; align-items:center; color:#fff; font-size:28px; cursor:pointer; z-index:999;}
+#whatsappBtn, #aiBtn {position:fixed; right:20px; width:55px; height:55px; border-radius:50%; display:flex; justify-content:center; align-items:center; color:#fff; font-size:28px; cursor:pointer; z-index:999;}
 #whatsappBtn {background:#25D366; bottom:80px;}
 #aiBtn {background:#007bff; bottom:150px;}
 
@@ -255,6 +259,7 @@ footer {background:#004080; color:#f8f9fa; padding:40px 20px; text-align:center;
 </div>
 <div class="footer-social">
   <a href="https://www.facebook.com/prntcare" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://wa.me/9779811809093" target="_blank"><i class="fab fa-whatsapp"></i></a>
 </div>
 <p>© 2025 Print Care. All Rights Reserved.</p>
 </footer>
@@ -349,10 +354,8 @@ aiSend.onclick=()=>{
     const msgBox=document.createElement('div');
     msgBox.textContent=msg || `[File attached: ${file.name}]`;
     aiPopup.querySelector('.messages').appendChild(msgBox);
-    aiInput.value='';
-    aiFile.value='';
+    aiInput.value=''; aiFile.value='';
     aiPopup.querySelector('.messages').scrollTop=aiPopup.querySelector('.messages').scrollHeight;
-    // Here you can add code to send message/file to your WhatsApp or server
   }
 };
 /* ====== JS END ====== */
