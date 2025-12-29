@@ -72,3 +72,23 @@
   background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
   z-index:5;
 }
+
+/* Footer */
+footer {background:#004080; color:#f8f9fa; padding:40px 20px; text-align:center;}
+.footer-columns {
+  display:flex;
+  flex-wrap:wrap;
+  gap:40px;
+  justify-content:center;
+  align-items:flex-start;
+  margin-bottom:20px;
+}
+.footer-columns > div {
+  min-width:150px; /* ensures columns don't shrink too small */
+  text-align:left;
+}
+.footer-columns div h4 {margin-bottom:10px;}
+.footer-columns div ul {list-style:none; padding-left:0;}
+.footer-columns div ul li {margin-bottom:5px;}
+.footer-social {margin-bottom:15px;}
+.footer-social a {color:#fff; margin:0 5px; font-size:20px;}
